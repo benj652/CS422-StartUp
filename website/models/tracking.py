@@ -30,6 +30,16 @@ class Action(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
     timestamp = db.Column(db.DateTime, default=db.func.current_timestamp())
 
+class Feedback(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+
+    def __repr__(self):
+        return f"<Feedback id={self.id} created_at={self.created_at}>"
+
+
 class Error(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     error_type = db.Column(db.String(200), nullable=False)

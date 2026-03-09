@@ -1,3 +1,3 @@
-from .tracking import User, Visit, Action, Error
+from .tracking import User, Visit, Action, Error, Feedback
 
-__all__ = ["User", "Visit", "Action", "Error"]
+__all__ = ["User", "Visit", "Action", "Error", "Feedback"]
