@@ -38,7 +38,7 @@ CS_DEFAULT_NAME = "cs"
 '''
 Landing Values
 '''
-LANDING_DEFAULT_NAME = "landing"
+LANDING_DEFAULT_NAME = "homepage"
 
 '''
 HTTP constants
