@@ -411,18 +411,15 @@ var Charts = (function() {
 				}
 			}
 
-			// Update tooltips
+			// Tooltips
 			$chart.options.tooltips.callbacks.label = function(item, data) {
 				var label = data.datasets[item.datasetIndex].label || '';
 				var yLabel = item.yLabel;
-				var content = '';
-
+				var valueStr = prefix + (yLabel != null ? yLabel : '') + suffix;
 				if (data.datasets.length > 1) {
-					content += '<span class="popover-body-label mr-auto">' + label + '</span>';
+					return label + ': ' + valueStr + '%';
 				}
-
-				content += '<span class="popover-body-value">' + prefix + yLabel + suffix + '</span>';
-				return content;
+				return valueStr;
 			}
 
 		}
