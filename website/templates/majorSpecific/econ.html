@@ -1,21 +1,4 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page Title</title>
-    <!-- Favicon -->
-    <link rel="icon" href="../static/img/brand/favicon.png" type="image/png" />
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" />
-    <!-- Icons -->
-    <link rel="stylesheet" href="../static/css/nucleo.css" type="text/css" />
-    <link rel="stylesheet" href="../static/css/all.min.css" type="text/css" />
-    <!-- Page plugins -->
-    <!-- Argon CSS -->
-    <link rel="stylesheet" href="../static/css/argon.css?v=1.2.0" type="text/css" />
-</head><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -103,6 +86,7 @@
             margin: 0;
             color: var(--muted);
             line-height: 1.65;
+            max-width: 900px;
         }
 
         .year-tag {
@@ -116,10 +100,31 @@
             font-size: 0.95rem;
         }
 
+        .note-box {
+            margin-top: 16px;
+            background: var(--panel-2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .progress-box {
+            margin-top: 16px;
+            background: #fbfaf7;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 16px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
         .grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 18px;
+            margin-top: 18px;
         }
 
         .card {
@@ -139,6 +144,38 @@
             padding-left: 18px;
             line-height: 1.8;
             color: var(--muted);
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .checklist {
+            display: grid;
+            gap: 12px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            background: #fbfaf7;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .check-item input {
+            margin-top: 3px;
+            transform: scale(1.1);
+        }
+
+        .check-item label {
+            cursor: pointer;
+            color: var(--muted);
+            line-height: 1.5;
         }
 
         .footer-actions {
@@ -200,45 +237,109 @@
         <section class="hero">
             <h1>Economics Roadmap</h1>
             <p>
-                This first-pass Economics roadmap gives students a simpler place to start
-                planning classes, opportunities, and next steps. A later push can make the
-                page more specific by class year.
+                This first-pass Econ roadmap is based on Colby's major requirements and is meant to
+                help students think about the order and timing of the major. You can also check off
+                classes you've already taken, and this browser will remember them.
             </p>
             <div class="year-tag" id="selectedYearTag">Selected year: Not chosen</div>
+
+            <div class="note-box">
+                Colby's Economics major requires EC133, EC134, EC223, EC224, EC225, and EC325, plus one
+                senior seminar, three additional electives at 211 or above, at least two of those at the
+                300 level, and Math 120 or higher.
+            </div>
+
+            <div class="progress-box" id="progressBox">Classes completed: 0 / 8</div>
         </section>
 
         <section class="grid">
             <div class="card">
-                <h2>Recommended Classes</h2>
+                <h2>Core Courses to Plan Around</h2>
+                <div class="checklist">
+                    <div class="check-item">
+                        <input type="checkbox" id="econ-133" class="course-checkbox">
+                        <label for="econ-133">EC133</label>
+                    </div>
+                    <div class="check-item">
+                        <input type="checkbox" id="econ-134" class="course-checkbox">
+                        <label for="econ-134">EC134</label>
+                    </div>
+                    <div class="check-item">
+                        <input type="checkbox" id="econ-math120" class="course-checkbox">
+                        <label for="econ-math120">Math 120 or higher</label>
+                    </div>
+                    <div class="check-item">
+                        <input type="checkbox" id="econ-223" class="course-checkbox">
+                        <label for="econ-223">EC223</label>
+                    </div>
+                    <div class="check-item">
+                        <input type="checkbox" id="econ-224" class="course-checkbox">
+                        <label for="econ-224">EC224</label>
+                    </div>
+                    <div class="check-item">
+                        <input type="checkbox" id="econ-225" class="course-checkbox">
+                        <label for="econ-225">EC225</label>
+                    </div>
+                    <div class="check-item">
+                        <input type="checkbox" id="econ-325" class="course-checkbox">
+                        <label for="econ-325">EC325</label>
+                    </div>
+                    <div class="check-item">
+                        <input type="checkbox" id="econ-seminar" class="course-checkbox">
+                        <label for="econ-seminar">Senior seminar</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Experiences to Look For</h2>
                 <ul>
-                    <li>Intro to Microeconomics</li>
-                    <li>Intro to Macroeconomics</li>
-                    <li>Intermediate Theory Courses</li>
-                    <li>Statistics or Econometrics</li>
-                    <li>Advanced elective in a focus area</li>
+                    <li>Research with economics faculty</li>
+                    <li>Internships in finance, consulting, government, or policy</li>
+                    <li>Career center workshops and recruiting events</li>
+                    <li>Alumni networking</li>
+                    <li>Exploring the financial markets concentration if relevant</li>
                 </ul>
             </div>
 
             <div class="card">
-                <h2>Programs / Experiences</h2>
+                <h2>Planning Notes</h2>
                 <ul>
-                    <li>Research opportunities</li>
-                    <li>Internships in finance or consulting</li>
-                    <li>Policy and public sector opportunities</li>
-                    <li>Networking events</li>
-                    <li>Career center workshops</li>
+                    <li>Finish EC133 and math early if possible</li>
+                    <li>EC223 requires EC133 and calculus with at least a C-</li>
+                    <li>Keep track of grades needed to continue in the major</li>
+                    <li>Senior seminars must be completed at Colby</li>
+                    <li>If you may want grad school, consider more math and possibly CS151</li>
                 </ul>
+            </div>
+        </section>
+
+        <section class="grid">
+            <div class="card">
+                <h2>Freshman / Sophomore Focus</h2>
+                <p>
+                    Use the first half of college to make progress on EC133, EC134, and the math requirement.
+                    The earlier you finish the intro work, the easier it is to fit EC223, EC224, EC225,
+                    and later electives into a manageable schedule.
+                </p>
             </div>
 
             <div class="card">
-                <h2>Extra Resources</h2>
-                <ul>
-                    <li>Resume and LinkedIn refinement</li>
-                    <li>Excel and data analysis skill building</li>
-                    <li>Interview preparation</li>
-                    <li>Faculty and alumni advice</li>
-                    <li>Tracking recruiting timelines</li>
-                </ul>
+                <h2>Junior Focus</h2>
+                <p>
+                    Junior year is a good time to be deep into the upper-level sequence, start building
+                    toward 300-level electives, and connect coursework to internships, research, or other
+                    career-related experience.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2>Senior Focus</h2>
+                <p>
+                    Senior year should be about finishing EC325, completing the seminar requirement, and using
+                    electives to sharpen a specific interest area. Students interested in honors or a thesis
+                    should plan ahead and talk with the department early.
+                </p>
             </div>
         </section>
 
@@ -256,190 +357,56 @@
             const formattedYear = selectedYear.charAt(0).toUpperCase() + selectedYear.slice(1);
             yearTag.textContent = "Selected year: " + formattedYear;
         }
+
+        function setCookie(name, value, days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            document.cookie = name + "=" + value + ";expires=" + date.toUTCString() + ";path=/";
+        }
+
+        function getCookie(name) {
+            const cookieName = name + "=";
+            const decodedCookie = decodeURIComponent(document.cookie);
+            const cookieArray = decodedCookie.split(";");
+
+            for (let i = 0; i < cookieArray.length; i++) {
+                let cookie = cookieArray[i].trim();
+                if (cookie.indexOf(cookieName) === 0) {
+                    return cookie.substring(cookieName.length, cookie.length);
+                }
+            }
+            return "";
+        }
+
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll(".course-checkbox");
+            let completed = 0;
+
+            checkboxes.forEach((checkbox) => {
+                if (checkbox.checked) {
+                    completed++;
+                }
+            });
+
+            document.getElementById("progressBox").textContent =
+                "Classes completed: " + completed + " / " + checkboxes.length;
+        }
+
+        const courseCheckboxes = document.querySelectorAll(".course-checkbox");
+
+        courseCheckboxes.forEach((checkbox) => {
+            const cookieValue = getCookie("blueprint_" + checkbox.id);
+            if (cookieValue === "true") {
+                checkbox.checked = true;
+            }
+
+            checkbox.addEventListener("change", function () {
+                setCookie("blueprint_" + checkbox.id, checkbox.checked, 365);
+                updateProgress();
+            });
+        });
+
+        updateProgress();
     </script>
 </body>
-</html>
-
-<body>
-    <h1>Your CS Major Blueprint: SWE/SDE Track</h1>
-    <details>
-        <summary>Freshman</summary>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Recommended Courses</h5>
-                                <ul>
-                                    <li>CS231: Data Structures and Algorithms</li>
-                                </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Summer Programs</h5>
-                                <ul>
-                                    <li><a href="https://github.com/SimplifyJobs/Summer2026-Internships?tab=readme-ov-file">Apply Here!</a></li>
-                                </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Campus Resources</h5>
-                                <ul>
-                                    <li><a href="https://davisconnects.colby.edu/">Davis Connects</a></li>
-                                </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </details>
-    <details>
-        <summary>Sophmore</summary>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Recommended Courses</h5>
-                                <ul>
-                                    <li>Operating Systems</li>
-                                    <li>Computer Networks</li>
-                                    <li>Software Engineering</li>
-                                    <li>Database</li>
-                                </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Summer Programs</h5>
-                                <ul>
-                                    <li><a href="https://github.com/SimplifyJobs/Summer2026-Internships?tab=readme-ov-file">Apply Here!</a></li>
-                                </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Campus Resources</h5>
-                                <ul>
-                                    <li><a href="https://davisconnects.colby.edu/">Davis Connects</a></li>
-                                </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </details>
-    <details>
-        <summary>Junior</summary>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Recommended Courses</h5>
-                                <ul>
-                                    <li>Operating Systems</li>
-                                    <li>Computer Networks</li>
-                                    <li>Software Engineering</li>
-                                    <li>Database</li>
-                                </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Summer Programs</h5>
-                                <ul>
-                                    <li><a href="https://github.com/SimplifyJobs/Summer2026-Internships?tab=readme-ov-file">Apply Here!</a></li>
-                                </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Campus Resources</h5>
-                                <ul>
-                                    <li><a href="https://davisconnects.colby.edu/">Davis Connects</a></li>
-                                </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </details>
-    <details>
-        <summary>Senior</summary>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Recommended Courses</h5>
-                                <ul>
-                                    <li>Operating Systems</li>
-                                    <li>Computer Networks</li>
-                                    <li>Software Engineering</li>
-                                    <li>Database</li>
-                                </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Summer Programs</h5>
-                                <ul>
-                                    <li><a href="https://github.com/SimplifyJobs/Summer2026-Internships?tab=readme-ov-file">Apply Here!</a></li>
-                                </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Campus Resources</h5>
-                                <ul>
-                                    <li><a href="https://davisconnects.colby.edu/">Davis Connects</a></li>
-                                </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </details>
-
-    <!-- Argon Scripts -->
-    <!-- Core -->
-    <script src="../static/js/jquery.min.js"></script>
-    <script src="../static/js/bootstrap.bundle.min.js"></script>
-    <script src="../static/js/js.cookie.js"></script>
-    <script src="../static/js/jquery.scrollbar.min.js"></script>
-    <script src="../static/js/jquery-scrollLock.min.js"></script>
-    <!-- Optional JS -->
-    <script src="../static/js/Chart.min.js"></script>
-    <script src="../static/js/Chart.extension.js"></script>
-    <!-- Argon JS -->
-    <script src="../static/js/argon.js?v=1.2.0"></script>
-</body>
-
 </html>
