@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+from website import db
 from ..models import User, Visit, Action
 from ..consts import DASHBOARD_DEFAULT_NAME, PREFIX, HTML_EXTENSION
 from sqlalchemy import func
@@ -13,7 +14,7 @@ def dashboard():
     core_actions_total = Action.query.filter_by(atype='survey_submit').count()
     total_visits = Visit.query.count()
     
-    unique_visitors = Visit.query.distinct(Visit.user_id).count()
+    unique_visitors = db.session.query(func.count(Visit.user_id.distinct())).scalar()
     activation_rate = 0
     if unique_visitors > 0:
         activation_rate = round((core_actions_total / unique_visitors) * 100, 2)
@@ -34,7 +35,7 @@ def dashboard():
 
         # Helper to query data for a specific date
         def get_rate_for_date(d):
-            v = Visit.query.filter(func.date(Visit.timestamp) == d).distinct(Visit.user_id).count()
+            v = db.session.query(func.count(Visit.user_id.distinct())).filter(func.date(Visit.timestamp) == d).scalar()
             a = Action.query.filter(func.date(Action.timestamp) == d, Action.atype == 'survey_submit').count()
             return round((a / v * 100), 1) if v > 0 else 0
 
@@ -47,14 +48,14 @@ def dashboard():
         page_stats = []
 
         for page_name in tracked_pages:
-            # 1. Get all visits for this page
+            # Get all visits for this page
             all_visits = Visit.query.filter_by(page=page_name).all()
             total_p_visits = len(all_visits)
             
-            # 2. Unique Users
-            unique_p_users = Visit.query.filter_by(page=page_name).distinct(Visit.user_id).count()
+            # Unique Users
+            unique_p_users = db.session.query(func.count(Visit.user_id.distinct())).filter(Visit.page == page_name).scalar()
             
-            # 3. Calculate Bounces (Visits with no corresponding Actions)
+            # Calculate Bounces (Visits with no corresponding Actions)
             bounces = 0
             for visit in all_visits:
                 # Check if this user performed ANY action after this specific visit timestamp

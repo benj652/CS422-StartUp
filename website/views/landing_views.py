@@ -1,14 +1,17 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, jsonify, render_template
 
 from ..consts import HTML_EXTENSION, LANDING_DEFAULT_NAME, PREFIX
+from flask import Blueprint, render_template, request, make_response, redirect, url_for
+from ..models.tracking import User, Action, db
 from ..utils import log_visit
 from flask import request, make_response
+
 
 landing_blueprint = Blueprint(LANDING_DEFAULT_NAME, __name__)
 
 
 @landing_blueprint.route(PREFIX)
-def landing():
+def homepage():
     new_uuid = log_visit(page="homepage.html")
     response = make_response(render_template(LANDING_DEFAULT_NAME + HTML_EXTENSION))
     
@@ -17,3 +20,44 @@ def landing():
         response.set_cookie('tracking_id', new_uuid, max_age=30*24*60*60)
     
     return response
+
+@landing_blueprint.route('/track-action', methods=['POST'])
+def track_action():
+    """Logs non-form actions like button clicks."""
+    data = request.get_json()
+    user_uuid = request.cookies.get('tracking_id')
+    
+    if user_uuid:
+        user = User.query.filter_by(uuid=user_uuid).first()
+        if user:
+            new_action = Action(atype=data['atype'], user_id=user.id)
+            db.session.add(new_action)
+            db.session.commit()
+    return jsonify({"status": "success"}), 200
+
+@landing_blueprint.route('/submit-info', methods=['POST'])
+def submit_info():
+    class_year = request.form.get('class_year')
+    major = request.form.get('major')
+    user_uuid = request.cookies.get('tracking_id')
+    
+    if user_uuid:
+        user = User.query.filter_by(uuid=user_uuid).first()
+        if user:
+            # 1. Update user profile
+            user.class_year = class_year
+            user.major = major
+            
+            # 2. Log the CORE ACTION (survey_submit)
+            core_action = Action(atype='survey_submit', user_id=user.id)
+            db.session.add(core_action)
+            
+            db.session.commit()
+            
+            # 3. Redirect based on major
+            if major == 'cs':
+                return redirect(url_for('roadmap.cs'))
+            elif major == 'econ':
+                return redirect(url_for('roadmap.econ'))
+                
+    return redirect(url_for('homepage.landing'))

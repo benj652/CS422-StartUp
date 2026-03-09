@@ -16,26 +16,26 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="../../material-kit-master/material-kit-master/assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../../material-kit-master/material-kit-master/assets/img/favicon.png">
-  <title>
-    Homepage 
-  </title>
-  <!--     Fonts and icons     -->
+  
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ url_for('static', filename='assets/img/apple-icon.png') }}">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/img/favicon.png') }}">
+  
+  <title>Homepage</title>
+
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700,900" />
-  <!-- Nucleo Icons -->
-  <link href="../../material-kit-master/material-kit-master/assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="../../material-kit-master/material-kit-master/assets/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- Font Awesome Icons -->
+  
+  <link href="{{ url_for('static', filename='assets/css/nucleo-icons.css') }}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='assets/css/nucleo-svg.css') }}" rel="stylesheet" />
+  
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-  <!-- Material Icons -->
+  
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
-  <!-- CSS Files -->
-  <link id="pagestyle" href="../../material-kit-master/material-kit-master/assets/css/material-kit.css" rel="stylesheet" />
-  <link href="../static/css/style.css" rel="stylesheet" />
+  <link id="pagestyle" href="{{ url_for('static', filename='assets/css/material-kit.css') }}" rel="stylesheet" />
+  
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
 </head>
 
-<body class="contact-us" style="background-color: rgb(29, 39, 94);">
+<body class="contact-us" style="background-color: #142231;">
   <!-- Navbar -->
   <div class="container position-sticky z-index-sticky top-0 bg-transparent text-white">
     <div class="row">
@@ -78,16 +78,58 @@
   </div>
 
   <div class ="text-center text-nowrap position-absolute top-50 start-50 translate-middle">
+    
     <div class ="fs-2">Navigate Your Degree. Unlock your Career</div> 
     <div class ="fs-3 bridge-description">Find your personalized roadmap to take you from classes to industry</div>
     <!-- <img src="../assets/img/map-icon.png" -->
       <i class="fa-map opacity-6 me-2 text-md text-white"></i>
-    <button type="button" class="btn btn-secondary fs-5 mt-5"> Find your Roadmap </button>
+    <button type="button" id="roadmap-button" class="btn btn-roadmap glow-blue fs-5 mt-5 px-5 " data-bs-toggle="modal" data-bs-target="#roadmapModal"> Find your Roadmap </button>
+  </div>
+  <div class="modal fade" id="roadmapModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-radius-xl shadow-lg border-0">
+        <div class="modal-header border-0 justify-content-center pt-5">
+          <h2 class="modal-title modal-title-custom fs-1" id="roadmapModalLabel">Start Your Chapter</h2>
+        </div>
+        <div class="modal-body px-5">
+          <form role="form" method="POST" action="{{ url_for('homepage.submit_info') }}">
+            
+            <div class="mb-4">
+              <label class="form-label form-label-custom fs-5">What is your class year?</label>
+              <select class="form-select form-select-custom" name="class_year" required>
+                <option value="" disabled selected>Select Year</option>
+                <option value="Freshman">Freshman</option>
+                <option value="Sophomore">Sophomore</option>
+                <option value="Junior">Junior</option>
+                <option value="Senior">Senior</option>
+              </select>
+            </div>
+  
+            <div class="mb-5">
+              <label class="form-label form-label-custom fs-5">What is your major?</label>
+              <select class="form-select form-select-custom" name="major" required>
+                <option value="" disabled selected>Select Major</option>
+                <option value="cs">Computer Science</option>
+                <option value="econ">Economics</option>
+              </select>
+            </div>
+  
+            <div class="text-center pb-5">
+              <button type="submit" class="btn btn-submit-custom w-100 fs-4 py-3 shadow">
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
   <!--   Core JS Files   -->
-  <script src="../../material-kit-master/material-kit-master/assets/js/core/popper.min.js" type="text/javascript"></script>
-  <script src="../../material-kit-master/material-kit-master/assets/js/core/bootstrap.min.js" type="text/javascript"></script>
-  <script src="../../material-kit-master/material-kit-master/assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="{{ url_for('static', filename='assets/js/core/popper.min.js') }}" type="text/javascript"></script>
+  <script src="{{ url_for('static', filename='assets/js/core/bootstrap.min.js') }}" type="text/javascript"></script>
+  <script src="{{ url_for('static', filename='assets/js/plugins/perfect-scrollbar.min.js') }}" type="text/javascript"></script>
+  <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+  
 </body>
 
 </html>
