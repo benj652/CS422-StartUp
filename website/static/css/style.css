@@ -23,3 +23,36 @@ color: white;
 .glow-blue:hover {
   box-shadow: 0 0 25px 10px rgba(0, 123, 255, 0.8);
 }
+
+/* Start Your Chapter Heading */
+.modal-title-custom {
+  color: #032a52 !important; /* Deep Navy Blue */
+  font-weight: 800;
+}
+
+/* Modal Labels */
+.form-label-custom {
+  color: #000000;
+  font-weight: 600;
+}
+
+/* Custom Submit Button */
+.btn-submit-custom {
+  background-color: #032a52 !important; /* Matches your body background dark tone */
+  color: white !important;
+  border-radius: 12px;
+  border: 2px solid #142231;
+  transition: all 0.3s ease;
+}
+
+.btn-submit-custom:hover {
+  background-color: #003366 !important;
+  transform: translateY(-1px);
+}
+
+/* Styling the Select dropdowns to match the thick borders in mockup */
+.form-select-custom {
+  border: 2px solid #142231 !important;
+  border-radius: 10px !important;
+  padding: 10px !important;
+}
