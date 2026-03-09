@@ -9,90 +9,70 @@ dashboard_blueprint = Blueprint(DASHBOARD_DEFAULT_NAME, __name__)
 
 @dashboard_blueprint.route(PREFIX)
 def dashboard():
-    # Top Card Metrics 
+    # 1. Top Card Metrics
     total_users = User.query.count()
-    core_actions_total = Action.query.filter_by(atype='survey_submit').count()
+    users_who_activated = db.session.query(func.count(Action.user_id.distinct())).filter_by(atype='survey_submit').scalar()
     total_visits = Visit.query.count()
     
-    unique_visitors = db.session.query(func.count(Visit.user_id.distinct())).scalar()
-    activation_rate = 0
-    if unique_visitors > 0:
-        activation_rate = round((core_actions_total / unique_visitors) * 100, 2)
+    activation_rate = round((users_who_activated / total_users * 100), 2) if total_users > 0 else 0
 
-    # --- 3-Week Time-Series Logic ---
+    # 2. Time-Series Logic (Defined outside the loop)
+    def get_rate_for_date(d):
+        u_count = User.query.filter(func.date(User.created_at) <= d).count()
+        a_count = db.session.query(func.count(Action.user_id.distinct())).filter(
+            func.date(Action.timestamp) == d, 
+            Action.atype == 'survey_submit'
+        ).scalar()
+        return round((a_count / u_count * 100), 1) if u_count > 0 else 0
+
     today = datetime.utcnow().date()
-    labels = []
-    week_0_data = [] # Current 7 days
-    week_1_data = [] # 7-14 days ago
-    week_2_data = [] # 14-21 days ago
+    labels, week_0_data, week_1_data, week_2_data = [], [], [], []
 
-    # Iterate through the last 7 days (from 6 days ago up to today)
     for i in range(6, -1, -1):
         target_day = today - timedelta(days=i)
-        
-        # 1. Labels based on the current 7-day window
         labels.append(target_day.strftime('%a %d'))
+        week_0_data.append(get_rate_for_date(target_day))
+        week_1_data.append(get_rate_for_date(target_day - timedelta(days=7)))
+        week_2_data.append(get_rate_for_date(target_day - timedelta(days=14)))
 
-        # Helper to query data for a specific date
-        def get_rate_for_date(d):
-            v = db.session.query(func.count(Visit.user_id.distinct())).filter(func.date(Visit.timestamp) == d).scalar()
-            a = Action.query.filter(func.date(Action.timestamp) == d, Action.atype == 'survey_submit').count()
-            return round((a / v * 100), 1) if v > 0 else 0
+    # 3. Optimized Page Stats (One query per page instead of one per visit)
+    tracked_pages = ['homepage.html', 'cs', 'econ']
+    page_stats = []
 
-        # 2. Populate the 3 different lines
-        week_0_data.append(get_rate_for_date(target_day))                   # Current week
-        week_1_data.append(get_rate_for_date(target_day - timedelta(days=7))) # -1 week
-        week_2_data.append(get_rate_for_date(target_day - timedelta(days=14)))# -2 weeks
+    for page_name in tracked_pages:
+        # Get counts in bulk
+        total_p_visits = Visit.query.filter_by(page=page_name).count()
+        unique_p_users = db.session.query(func.count(Visit.user_id.distinct())).filter(Visit.page == page_name).scalar()
+        
+        # Bounce Calculation: 
+        # Count visits where NO action exists for that user within 30 mins of visit timestamp
+        bounces = db.session.query(Visit).filter(
+            Visit.page == page_name,
+            ~Action.query.filter(
+                Action.user_id == Visit.user_id,
+                Action.timestamp >= Visit.timestamp,
+                Action.timestamp <= Visit.timestamp + timedelta(minutes=30)
+            ).exists()
+        ).count()
 
-        tracked_pages = ['homepage.html', 'cs.html', 'econ.html']
-        page_stats = []
+        bounce_rate = round((bounces / total_p_visits * 100), 1) if total_p_visits > 0 else 0
 
-        for page_name in tracked_pages:
-            # Get all visits for this page
-            all_visits = Visit.query.filter_by(page=page_name).all()
-            total_p_visits = len(all_visits)
-            
-            # Unique Users
-            unique_p_users = db.session.query(func.count(Visit.user_id.distinct())).filter(Visit.page == page_name).scalar()
-            
-            # Calculate Bounces (Visits with no corresponding Actions)
-            bounces = 0
-            for visit in all_visits:
-                # Check if this user performed ANY action after this specific visit timestamp
-                # Limit the search to within 30 minutes of the visit to define a 'session'
-                session_end = visit.timestamp + timedelta(minutes=30)
-                
-                has_action = Action.query.filter(
-                    Action.user_id == visit.user_id,
-                    Action.timestamp >= visit.timestamp,
-                    Action.timestamp <= session_end
-                ).first()
-
-                if not has_action:
-                    bounces += 1
-
-            # 4. Calculate Final Bounce Rate
-            bounce_rate = round((bounces / total_p_visits * 100), 1) if total_p_visits > 0 else 0
-
-            page_stats.append({
-                'name': page_name,
-                'visitors': total_p_visits,
-                'unique': unique_p_users,
-                'bounce_rate': bounce_rate
-            })
-
-        # Sort by popularity
-        page_stats = sorted(page_stats, key=lambda x: x['visitors'], reverse=True)
+        page_stats.append({
+            'name': page_name,
+            'visitors': total_p_visits,
+            'unique': unique_p_users,
+            'bounce_rate': bounce_rate
+        })
 
     return render_template(
         DASHBOARD_DEFAULT_NAME + HTML_EXTENSION,
         total_users=total_users,
         total_visits=total_visits,
-        core_actions=core_actions_total,
+        core_actions=users_who_activated,
         activation_rate=activation_rate,
         chart_labels=labels,
         week_0_data=week_0_data,
         week_1_data=week_1_data,
         week_2_data=week_2_data,
-        page_stats=page_stats
+        page_stats=sorted(page_stats, key=lambda x: x['visitors'], reverse=True)
     )
