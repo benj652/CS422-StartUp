@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
 
 from website.consts import (
     CS_DEFAULT_NAME,
@@ -22,14 +22,20 @@ def roadmap():
 @roadmap_blueprint.route(CS_DEFAULT_NAME)
 def cs():
     log_visit(page="cs")
+    selected_year = request.args.get('year', 'Not chosen')
+
     return render_template(
-        MAJOR_SPECIFIC_FOLDER_NAME + CS_DEFAULT_NAME + HTML_EXTENSION
+        MAJOR_SPECIFIC_FOLDER_NAME + CS_DEFAULT_NAME + HTML_EXTENSION,
+        class_year=selected_year
     )
 
 
 @roadmap_blueprint.route(ECON_DEFAULT_NAME)
 def econ():
     log_visit(page="econ")
+    selected_year = request.args.get('year', 'Not chosen')
+    
     return render_template(
-        MAJOR_SPECIFIC_FOLDER_NAME + ECON_DEFAULT_NAME + HTML_EXTENSION
+        MAJOR_SPECIFIC_FOLDER_NAME + ECON_DEFAULT_NAME + HTML_EXTENSION,
+        class_year=selected_year
     )
