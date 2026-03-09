@@ -30,6 +30,11 @@ Roadmap Values
 '''
 ROADMAP_DEFAULT_NAME = "roadmap"
 
+MAJOR_SPECIFIC_FOLDER_NAME = "majorSpecific/"
+
+ECON_DEFAULT_NAME = "econ"
+CS_DEFAULT_NAME = "cs"
+
 '''
 Landing Values
 '''
