@@ -56,8 +56,8 @@ def submit_info():
             
             # 3. Redirect based on major
             if major == 'cs':
-                return redirect(url_for('roadmap.cs'))
+                return redirect(url_for('roadmap.cs', year=class_year))
             elif major == 'econ':
-                return redirect(url_for('roadmap.econ'))
+                return redirect(url_for('roadmap.econ', year=class_year))
                 
     return redirect(url_for('homepage.landing'))
