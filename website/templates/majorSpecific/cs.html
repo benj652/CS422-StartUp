@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CS Roadmap | Blueprint.edu</title>
     <style>
         :root {
-            --bg: #e7dfcf;
-            --panel: #f6f2ea;
-            --panel-2: #efe8d8;
-            --border: #c9c1b1;
-            --text: #2f2b26;
-            --muted: #665f55;
-            --nav: #2e3135;
-            --blue: #4479ad;
-            --blue-dark: #35638f;
+            --bg: #0d1b2a;
+            --bg-2: #13243a;
+            --panel: rgba(20, 34, 56, 0.82);
+            --panel-border: rgba(124, 170, 255, 0.14);
+            --text: #f4f7fb;
+            --muted: #b9c7da;
+            --accent: #69c8f2;
+            --accent-2: #4eb4e3;
+            --gold: #f0a333;
+            --shadow: 0 0 24px rgba(105, 200, 242, 0.22);
         }
 
         * {
@@ -23,245 +24,258 @@
 
         body {
             margin: 0;
+            min-height: 100vh;
             font-family: Arial, Helvetica, sans-serif;
-            background: var(--bg);
             color: var(--text);
+            background:
+                radial-gradient(circle at top, rgba(62, 112, 176, 0.22), transparent 30%),
+                linear-gradient(180deg, #10233a 0%, #0c1827 100%);
+        }
+
+        .nav-shell {
+            width: min(1240px, calc(100% - 48px));
+            margin: 18px auto 0;
+            background: rgba(17, 28, 46, 0.78);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 18px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.18);
         }
 
         .topbar {
-            background: var(--nav);
-            color: white;
-            padding: 16px 32px;
-        }
-
-        .topbar-inner {
-            max-width: 1180px;
-            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 20px 28px;
         }
 
         .brand {
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 1.7rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: white;
         }
 
         .nav-links {
             display: flex;
-            gap: 18px;
+            align-items: center;
+            gap: 28px;
         }
 
         .nav-links a {
-            color: white;
+            color: #f2f5fa;
             text-decoration: none;
+            font-weight: 600;
+            font-size: 0.98rem;
+            opacity: 0.95;
         }
 
         .nav-links a:hover {
-            text-decoration: underline;
+            opacity: 1;
+        }
+
+        .feedback-btn {
+            background: var(--gold);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 8px 24px rgba(240, 163, 51, 0.2);
         }
 
         .page {
-            max-width: 1180px;
+            width: min(1240px, calc(100% - 48px));
             margin: 0 auto;
-            padding: 38px 24px 60px;
+            padding: 70px 0 60px;
         }
 
         .hero {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 28px 30px;
-            margin-bottom: 22px;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto 42px;
         }
 
         .hero h1 {
-            margin: 0 0 10px;
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 2.35rem;
-            font-weight: normal;
+            margin: 0 0 18px;
+            font-size: clamp(2.4rem, 4.6vw, 4rem);
+            font-weight: 500;
+            letter-spacing: -0.02em;
         }
 
         .hero p {
-            margin: 0;
+            margin: 0 auto 18px;
+            max-width: 900px;
             color: var(--muted);
+            font-size: 1.18rem;
             line-height: 1.65;
         }
 
-        .year-tag {
+        .year-pill {
             display: inline-block;
-            margin-top: 14px;
-            padding: 8px 12px;
+            margin-top: 10px;
+            padding: 12px 18px;
             border-radius: 999px;
-            background: var(--panel-2);
-            border: 1px solid var(--border);
+            background: rgba(105, 200, 242, 0.14);
+            border: 1px solid rgba(105, 200, 242, 0.28);
+            color: #d8f4ff;
             font-weight: 700;
-            font-size: 0.95rem;
+            box-shadow: var(--shadow);
         }
 
-        .progress-box {
-            margin-top: 16px;
-            background: var(--panel-2);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 14px 16px;
-            font-weight: 600;
-            color: var(--text);
+        .highlight-box {
+            max-width: 980px;
+            margin: 28px auto 0;
+            padding: 20px 22px;
+            border-radius: 18px;
+            background: rgba(19, 36, 58, 0.88);
+            border: 1px solid var(--panel-border);
+            color: var(--muted);
+            line-height: 1.7;
+            text-align: left;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+            margin-top: 36px;
         }
 
         .card {
             background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 20px;
+            border: 1px solid var(--panel-border);
+            border-radius: 22px;
+            padding: 24px 22px;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+            backdrop-filter: blur(6px);
         }
 
         .card h2 {
-            margin: 0 0 14px;
-            font-size: 1.22rem;
+            margin: 0 0 16px;
+            font-size: 1.25rem;
+            color: white;
         }
 
         .card ul {
             margin: 0;
             padding-left: 18px;
+            color: var(--muted);
+            line-height: 1.85;
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--muted);
             line-height: 1.8;
-            color: var(--muted);
         }
 
-        .checklist {
-            display: grid;
-            gap: 12px;
-        }
-
-        .check-item {
+        .actions {
+            margin-top: 34px;
             display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            background: #fbfaf7;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 12px;
-        }
-
-        .check-item input {
-            margin-top: 3px;
-            transform: scale(1.1);
-        }
-
-        .check-item label {
-            cursor: pointer;
-            color: var(--muted);
-            line-height: 1.5;
-        }
-
-        .footer-actions {
-            margin-top: 24px;
-            display: flex;
-            gap: 12px;
+            justify-content: center;
+            gap: 14px;
             flex-wrap: wrap;
         }
 
         .btn {
             display: inline-block;
-            padding: 12px 16px;
-            border-radius: 8px;
+            padding: 14px 24px;
+            border-radius: 14px;
             text-decoration: none;
-            font-weight: 600;
-            border: 1px solid var(--border);
+            font-weight: 700;
+            transition: 0.18s ease;
         }
 
         .btn-primary {
-            background: var(--blue);
+            background: var(--accent);
             color: white;
-            border-color: var(--blue);
+            box-shadow: 0 0 24px rgba(105, 200, 242, 0.45);
         }
 
         .btn-primary:hover {
-            background: var(--blue-dark);
-            border-color: var(--blue-dark);
+            background: var(--accent-2);
         }
 
         .btn-secondary {
-            background: white;
-            color: var(--text);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.03);
         }
 
         .btn-secondary:hover {
-            background: #fbfaf7;
+            background: rgba(255,255,255,0.06);
         }
 
         @media (max-width: 980px) {
             .grid {
                 grid-template-columns: 1fr;
             }
+
+            .topbar {
+                flex-direction: column;
+                gap: 16px;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 14px;
+            }
         }
     </style>
 </head>
 <body>
-    <header class="topbar">
-        <div class="topbar-inner">
+    <div class="nav-shell">
+        <header class="topbar">
             <div class="brand">Blueprint.edu</div>
             <nav class="nav-links">
                 <a href="/">Home</a>
-                <a href="/roadmap/">Planner</a>
-                <a href="/dashboard/">Dashboard</a>
+                <a href="/roadmap/">Blueprints</a>
+                <a href="/dashboard/">Resources</a>
+                <a href="#" class="feedback-btn">Feedback</a>
             </nav>
-        </div>
-    </header>
+        </header>
+    </div>
 
     <main class="page">
         <section class="hero">
             <h1>Computer Science Roadmap</h1>
             <p>
-                This first-pass CS roadmap gives students a starting point for classes,
-                programs, and preparation steps. You can check off classes you’ve already taken,
-                and this browser will remember them.
+                A first-pass CS roadmap built to help students connect classes, projects,
+                internships, and technical preparation into one clearer plan.
             </p>
-            <div class="year-tag" id="selectedYearTag">Selected year: Not chosen</div>
-            <div class="progress-box" id="progressBox">Classes completed: 0 / 5</div>
+            <div class="year-pill" id="selectedYearTag">Selected year: Not chosen</div>
+
+            <div class="highlight-box">
+                This version gives one clean view of the major path. The goal is to make it easier
+                to see what classes matter most, what programs are worth knowing about, and what
+                preparation work should happen outside the classroom.
+            </div>
         </section>
 
         <section class="grid">
             <div class="card">
                 <h2>Recommended Classes</h2>
-                <div class="checklist">
-                    <div class="check-item">
-                        <input type="checkbox" id="cs-ds" class="course-checkbox">
-                        <label for="cs-ds">Data Structures</label>
-                    </div>
-                    <div class="check-item">
-                        <input type="checkbox" id="cs-os" class="course-checkbox">
-                        <label for="cs-os">Operating Systems</label>
-                    </div>
-                    <div class="check-item">
-                        <input type="checkbox" id="cs-networks" class="course-checkbox">
-                        <label for="cs-networks">Computer Networks</label>
-                    </div>
-                    <div class="check-item">
-                        <input type="checkbox" id="cs-databases" class="course-checkbox">
-                        <label for="cs-databases">Databases</label>
-                    </div>
-                    <div class="check-item">
-                        <input type="checkbox" id="cs-swe" class="course-checkbox">
-                        <label for="cs-swe">Software Engineering</label>
-                    </div>
-                </div>
+                <ul>
+                    <li>Data Structures</li>
+                    <li>Operating Systems</li>
+                    <li>Computer Networks</li>
+                    <li>Databases</li>
+                    <li>Software Engineering</li>
+                </ul>
             </div>
 
             <div class="card">
                 <h2>Programs / Experiences</h2>
                 <ul>
-                    <li>CodePath</li>
-                    <li>MLH Fellowship</li>
+                    <li>Bessemer Fellows</li>
+                    <li>Kleiner Perkins Fellows</li>
                     <li>Microsoft Explore</li>
-                    <li>Hackathons and coding clubs</li>
-                    <li>Career fairs and networking events</li>
+                    <li>Code2040</li>
+                    <li>Duolingo Thrive</li>
+                    <li>CodePath Tech Launchpad</li>
+                    <li>Thrive Capital Fellows</li>
+                    <li>8VC Fellowships</li>
+                    <li>MLH Fellowship</li>
                 </ul>
             </div>
 
@@ -277,9 +291,9 @@
             </div>
         </section>
 
-        <div class="footer-actions">
-            <a class="btn btn-primary" href="/roadmap/">Choose another path</a>
-            <a class="btn btn-secondary" href="/dashboard/">View dashboard</a>
+        <div class="actions">
+            <a class="btn btn-primary" href="/roadmap/">Choose Another Path</a>
+            <a class="btn btn-secondary" href="/dashboard/">Open Dashboard</a>
         </div>
     </main>
 
@@ -291,56 +305,6 @@
             const formattedYear = selectedYear.charAt(0).toUpperCase() + selectedYear.slice(1);
             yearTag.textContent = "Selected year: " + formattedYear;
         }
-
-        function setCookie(name, value, days) {
-            const date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            document.cookie = name + "=" + value + ";expires=" + date.toUTCString() + ";path=/";
-        }
-
-        function getCookie(name) {
-            const cookieName = name + "=";
-            const decodedCookie = decodeURIComponent(document.cookie);
-            const cookieArray = decodedCookie.split(";");
-
-            for (let i = 0; i < cookieArray.length; i++) {
-                let cookie = cookieArray[i].trim();
-                if (cookie.indexOf(cookieName) === 0) {
-                    return cookie.substring(cookieName.length, cookie.length);
-                }
-            }
-            return "";
-        }
-
-        function updateProgress() {
-            const checkboxes = document.querySelectorAll(".course-checkbox");
-            let completed = 0;
-
-            checkboxes.forEach((checkbox) => {
-                if (checkbox.checked) {
-                    completed++;
-                }
-            });
-
-            document.getElementById("progressBox").textContent =
-                "Classes completed: " + completed + " / " + checkboxes.length;
-        }
-
-        const courseCheckboxes = document.querySelectorAll(".course-checkbox");
-
-        courseCheckboxes.forEach((checkbox) => {
-            const cookieValue = getCookie("blueprint_" + checkbox.id);
-            if (cookieValue === "true") {
-                checkbox.checked = true;
-            }
-
-            checkbox.addEventListener("change", function () {
-                setCookie("blueprint_" + checkbox.id, checkbox.checked, 365);
-                updateProgress();
-            });
-        });
-
-        updateProgress();
     </script>
 </body>
 </html>
