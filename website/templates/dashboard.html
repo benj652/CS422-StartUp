@@ -456,9 +456,6 @@
                 <div class="col">
                   <h3 class="mb-0">Page visits</h3>
                 </div>
-                <div class="col text-right">
-                  <a href="#!" class="btn btn-sm btn-primary">See all</a>
-                </div>
               </div>
             </div>
             <div class="table-responsive">
@@ -473,76 +470,28 @@
                   </tr>
                 </thead>
                 <tbody>
+                  {% for page in page_stats %}
                   <tr>
                     <th scope="row">
-                      /argon/
+                      {{ page.name }}
                     </th>
                     <td>
-                      4,569
+                      {{ "{:,}".format(page.visitors) }}
                     </td>
                     <td>
-                      340
+                      {{ "{:,}".format(page.unique) }}
                     </td>
                     <td>
-                      <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
+                      {% if page.bounce_rate > 70 %}
+                        <i class="fas fa-arrow-up text-danger mr-3"></i> {{ page.bounce_rate }}%
+                      {% elif page.bounce_rate > 40 %}
+                        <i class="fas fa-arrow-right text-warning mr-3"></i> {{ page.bounce_rate }}%
+                      {% else %}
+                        <i class="fas fa-arrow-down text-success mr-3"></i> {{ page.bounce_rate }}%
+                      {% endif %}
                     </td>
                   </tr>
-                  <tr>
-                    <th scope="row">
-                      /argon/index.html
-                    </th>
-                    <td>
-                      3,985
-                    </td>
-                    <td>
-                      319
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-down text-warning mr-3"></i> 46,53%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      /argon/charts.html
-                    </th>
-                    <td>
-                      3,513
-                    </td>
-                    <td>
-                      294
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-down text-warning mr-3"></i> 36,49%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      /argon/tables.html
-                    </th>
-                    <td>
-                      2,050
-                    </td>
-                    <td>
-                      147
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-up text-success mr-3"></i> 50,87%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      /argon/profile.html
-                    </th>
-                    <td>
-                      1,795
-                    </td>
-                    <td>
-                      190
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-down text-danger mr-3"></i> 46,53%
-                    </td>
-                  </tr>
+                  {% endfor %}
                 </tbody>
               </table>
             </div>

@@ -43,6 +43,46 @@ def dashboard():
         week_1_data.append(get_rate_for_date(target_day - timedelta(days=7))) # -1 week
         week_2_data.append(get_rate_for_date(target_day - timedelta(days=14)))# -2 weeks
 
+        tracked_pages = ['homepage.html', 'cs.html', 'econ.html']
+        page_stats = []
+
+        for page_name in tracked_pages:
+            # 1. Get all visits for this page
+            all_visits = Visit.query.filter_by(page=page_name).all()
+            total_p_visits = len(all_visits)
+            
+            # 2. Unique Users
+            unique_p_users = Visit.query.filter_by(page=page_name).distinct(Visit.user_id).count()
+            
+            # 3. Calculate Bounces (Visits with no corresponding Actions)
+            bounces = 0
+            for visit in all_visits:
+                # Check if this user performed ANY action after this specific visit timestamp
+                # Limit the search to within 30 minutes of the visit to define a 'session'
+                session_end = visit.timestamp + timedelta(minutes=30)
+                
+                has_action = Action.query.filter(
+                    Action.user_id == visit.user_id,
+                    Action.timestamp >= visit.timestamp,
+                    Action.timestamp <= session_end
+                ).first()
+
+                if not has_action:
+                    bounces += 1
+
+            # 4. Calculate Final Bounce Rate
+            bounce_rate = round((bounces / total_p_visits * 100), 1) if total_p_visits > 0 else 0
+
+            page_stats.append({
+                'name': page_name,
+                'visitors': total_p_visits,
+                'unique': unique_p_users,
+                'bounce_rate': bounce_rate
+            })
+
+        # Sort by popularity
+        page_stats = sorted(page_stats, key=lambda x: x['visitors'], reverse=True)
+
     return render_template(
         DASHBOARD_DEFAULT_NAME + HTML_EXTENSION,
         total_users=total_users,
@@ -52,5 +92,6 @@ def dashboard():
         chart_labels=labels,
         week_0_data=week_0_data,
         week_1_data=week_1_data,
-        week_2_data=week_2_data
+        week_2_data=week_2_data,
+        page_stats=page_stats
     )
