@@ -411,18 +411,15 @@ var Charts = (function() {
 				}
 			}
 
-			// Update tooltips
+			// Tooltips
 			$chart.options.tooltips.callbacks.label = function(item, data) {
 				var label = data.datasets[item.datasetIndex].label || '';
 				var yLabel = item.yLabel;
-				var content = '';
-
+				var valueStr = prefix + (yLabel != null ? yLabel : '') + suffix;
 				if (data.datasets.length > 1) {
-					content += '<span class="popover-body-label mr-auto">' + label + '</span>';
+					return label + ': ' + valueStr + '%';
 				}
-
-				content += '<span class="popover-body-value">' + prefix + yLabel + suffix + '</span>';
-				return content;
+				return valueStr;
 			}
 
 		}
@@ -877,58 +874,44 @@ var SalesChart = (function() {
 
   // Methods
 
-  function init($chart) {
+	// ... inside var SalesChart = (function() { ...
 
-    var salesChart = new Chart($chart, {
-      type: 'line',
-      options: {
-        scales: {
-          yAxes: [{
-            gridLines: {
-              lineWidth: 1,
-              color: Charts.colors.gray[900],
-              zeroLineColor: Charts.colors.gray[900]
-            },
-            ticks: {
-              callback: function(value) {
-                if (!(value % 10)) {
-                  return '$' + value + 'k';
-                }
-              }
-            }
-          }]
-        },
-        tooltips: {
-          callbacks: {
-            label: function(item, data) {
-              var label = data.datasets[item.datasetIndex].label || '';
-              var yLabel = item.yLabel;
-              var content = '';
+	function init($chart) {
+		// Read the data we just put in the HTML attributes
+		var labels = $chart.data('initial-labels');
+		var data0 = $chart.data('initial-data-0');
+		var data1 = $chart.data('initial-data-1');
+		var data2 = $chart.data('initial-data-2');
 
-              if (data.datasets.length > 1) {
-                content += '<span class="popover-body-label mr-auto">' + label + '</span>';
-              }
+		var salesChart = new Chart($chart, {
+			type: 'line',
+			options: {
+				// ... (keep your existing options)
+			},
+			data: {
+				labels: labels, // Use the Flask labels
+				datasets: [
+					{
+						label: 'This Week',
+						data: data0, // Use the Flask data
+						borderColor: '#5e72e4'
+					},
+					{
+						label: 'Last Week',
+						data: data1,
+						borderColor: '#2dce89'
+					},
+					{
+						label: '2 Weeks Ago',
+						data: data2,
+						borderColor: '#fb6340'
+					}
+				]
+			}
+		});
 
-              content += '<span class="popover-body-value">$' + yLabel + 'k</span>';
-              return content;
-            }
-          }
-        }
-      },
-      data: {
-        labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        datasets: [{
-          label: 'Performance',
-          data: [0, 20, 10, 30, 15, 40, 20, 60, 60]
-        }]
-      }
-    });
-
-    // Save to jQuery object
-
-    $chart.data('chart', salesChart);
-
-  };
+		$chart.data('chart', salesChart);
+	};
 
 
   // Events
