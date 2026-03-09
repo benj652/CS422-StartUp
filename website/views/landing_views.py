@@ -1,8 +1,8 @@
-from flask import Blueprint, jsonify, render_template
+from flask import Blueprint, flash, jsonify, render_template
 
 from ..consts import HTML_EXTENSION, LANDING_DEFAULT_NAME, PREFIX
 from flask import Blueprint, render_template, request, make_response, redirect, url_for
-from ..models.tracking import User, Action, db
+from ..models.tracking import User, Action, Feedback, db
 from ..utils import log_visit
 from flask import request, make_response
 
@@ -60,4 +60,31 @@ def submit_info():
             elif major == 'econ':
                 return redirect(url_for('roadmap.econ'))
                 
-    return redirect(url_for('homepage.landing'))
+    return redirect(url_for('homepage.homepage'))
+
+
+@landing_blueprint.route('/feedback')
+def feedback_page():
+    return render_template('feedback.html')
+
+
+@landing_blueprint.route('/feedback', methods=['POST'])
+def submit_feedback():
+    content = request.form.get('feedback_content', '').strip()
+    if not content:
+        flash('Please enter your feedback before submitting.')
+        return redirect(url_for('homepage.feedback_page'))
+
+    user_id = None
+    user_uuid = request.cookies.get('tracking_id')
+    if user_uuid:
+        user = User.query.filter_by(uuid=user_uuid).first()
+        if user:
+            user_id = user.id
+
+    feedback = Feedback(content=content, user_id=user_id)
+    db.session.add(feedback)
+    db.session.commit()
+
+    flash('Thank you for your feedback! We really appreciate it.')
+    return redirect(url_for('homepage.feedback_page'))
