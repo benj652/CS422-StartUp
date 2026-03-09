@@ -1,0 +1,10 @@
+body{
+color: white;
+}
+
+.navbar,
+.navbar a,
+.navbar-brand,
+.nav-link {
+  color: white !important;
+}
