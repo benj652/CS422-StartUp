@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planner | Blueprint.edu</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blueprints | Blueprint.edu</title>
     <style>
         :root {
-            --bg: #e7dfcf;
-            --panel: #f6f2ea;
-            --panel-2: #efe8d8;
-            --border: #c9c1b1;
-            --text: #2f2b26;
-            --muted: #665f55;
-            --nav: #2e3135;
-            --blue: #4479ad;
-            --blue-dark: #35638f;
+            --bg: #0d1b2a;
+            --bg-2: #13243a;
+            --panel: rgba(255, 255, 255, 0.96);
+            --panel-border: rgba(255, 255, 255, 0.1);
+            --text: #f4f7fb;
+            --muted: #b9c7da;
+            --dark-text: #1f3350;
+            --field-border: #8c98a8;
+            --accent: #69c8f2;
+            --accent-2: #4eb4e3;
+            --gold: #f0a333;
+            --shadow: 0 0 24px rgba(105, 200, 242, 0.22);
         }
 
         * {
@@ -23,223 +26,278 @@
 
         body {
             margin: 0;
+            min-height: 100vh;
             font-family: Arial, Helvetica, sans-serif;
-            background: var(--bg);
             color: var(--text);
+            background:
+                radial-gradient(circle at top, rgba(62, 112, 176, 0.22), transparent 30%),
+                linear-gradient(180deg, #10233a 0%, #0c1827 100%);
+        }
+
+        .nav-shell {
+            width: min(1240px, calc(100% - 48px));
+            margin: 18px auto 0;
+            background: rgba(17, 28, 46, 0.78);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 18px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.18);
         }
 
         .topbar {
-            background: var(--nav);
-            color: white;
-            padding: 16px 32px;
-        }
-
-        .topbar-inner {
-            max-width: 1180px;
-            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 20px 28px;
         }
 
         .brand {
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 1.7rem;
-            letter-spacing: 0.02em;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: white;
         }
 
         .nav-links {
             display: flex;
-            gap: 18px;
+            align-items: center;
+            gap: 28px;
         }
 
         .nav-links a {
-            color: white;
+            color: #f2f5fa;
             text-decoration: none;
-            opacity: 0.92;
+            font-weight: 600;
+            font-size: 0.98rem;
+            opacity: 0.95;
         }
 
         .nav-links a:hover {
-            text-decoration: underline;
             opacity: 1;
         }
 
+        .feedback-btn {
+            background: var(--gold);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 8px 24px rgba(240, 163, 51, 0.2);
+        }
+
         .page {
-            max-width: 960px;
+            width: min(1240px, calc(100% - 48px));
             margin: 0 auto;
-            padding: 42px 24px 60px;
+            min-height: calc(100vh - 110px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 0 60px;
+        }
+
+        .planner-shell {
+            width: 100%;
+            max-width: 1220px;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 34px;
+            align-items: center;
         }
 
         .hero {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 32px;
-            margin-bottom: 24px;
+            padding: 20px 10px 20px 0;
         }
 
         .hero h1 {
-            margin: 0 0 12px;
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 2.4rem;
-            font-weight: normal;
+            margin: 0 0 16px;
+            font-size: clamp(2.4rem, 4.8vw, 4.1rem);
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            line-height: 1.08;
         }
 
         .hero p {
             margin: 0;
+            max-width: 760px;
             color: var(--muted);
+            font-size: 1.18rem;
             line-height: 1.65;
-            max-width: 700px;
         }
 
-        .planner-card {
+        .hero-note {
+            margin-top: 22px;
+            max-width: 760px;
+            color: #d4e4f4;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .form-card {
             background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 28px;
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 24px;
+            padding: 42px 46px 36px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.22);
         }
 
-        .planner-card h2 {
-            margin: 0 0 18px;
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 1.6rem;
-            font-weight: normal;
+        .form-card h2 {
+            margin: 0 0 30px;
+            color: #45628c;
+            font-size: clamp(2.2rem, 4vw, 3.8rem);
+            line-height: 1;
+            font-weight: 800;
+            letter-spacing: -0.03em;
         }
 
         .field-group {
-            margin-bottom: 18px;
+            margin-bottom: 26px;
         }
 
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+            color: #55677f;
+            font-size: 1rem;
             font-weight: 700;
         }
 
         select {
             width: 100%;
-            padding: 12px 14px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
+            padding: 18px 18px;
+            border-radius: 14px;
+            border: 2px solid var(--field-border);
             background: white;
-            font-size: 1rem;
+            color: #4d5c70;
+            font-size: 1.05rem;
+            outline: none;
         }
 
-        .actions {
-            margin-top: 22px;
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
+        select:focus {
+            border-color: #668fc8;
+            box-shadow: 0 0 0 4px rgba(102, 143, 200, 0.12);
         }
 
-        button,
-        .secondary-link {
-            padding: 12px 16px;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        button {
-            background: var(--blue);
+        .submit-btn {
+            width: 100%;
+            margin-top: 8px;
+            padding: 18px 20px;
+            border: none;
+            border-radius: 16px;
+            background: linear-gradient(180deg, #5f8fd1 0%, #4f79b8 100%);
             color: white;
-            border: 1px solid var(--blue);
+            font-size: 1.05rem;
+            font-weight: 800;
             cursor: pointer;
+            box-shadow: 0 10px 24px rgba(79, 121, 184, 0.22);
         }
 
-        button:hover {
-            background: var(--blue-dark);
-            border-color: var(--blue-dark);
+        .submit-btn:hover {
+            filter: brightness(1.04);
         }
 
-        .secondary-link {
-            background: white;
-            color: var(--text);
-            border: 1px solid var(--border);
-        }
-
-        .secondary-link:hover {
-            background: #fbfaf7;
-        }
-
-        .note-box {
-            margin-top: 22px;
-            background: var(--panel-2);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 16px;
-            color: var(--muted);
+        .helper-text {
+            margin-top: 16px;
+            color: #71839b;
+            font-size: 0.95rem;
             line-height: 1.6;
         }
 
-        .footer {
-            margin-top: 32px;
-            color: var(--muted);
-            font-size: 0.95rem;
+        @media (max-width: 1020px) {
+            .planner-shell {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                text-align: center;
+                padding-right: 0;
+            }
+
+            .hero p,
+            .hero-note {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .topbar {
+                flex-direction: column;
+                gap: 16px;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 14px;
+            }
+
+            .form-card {
+                padding: 28px 24px;
+            }
+
+            .form-card h2 {
+                font-size: 2.7rem;
+            }
         }
     </style>
 </head>
 <body>
-    <header class="topbar">
-        <div class="topbar-inner">
+    <div class="nav-shell">
+        <header class="topbar">
             <div class="brand">Blueprint.edu</div>
             <nav class="nav-links">
                 <a href="/">Home</a>
-                <a href="/roadmap/">Planner</a>
-                <a href="/dashboard/">Dashboard</a>
+                <a href="/roadmap/">Blueprints</a>
+                <a href="/dashboard/">Resources</a>
+                <a href="#" class="feedback-btn">Feedback</a>
             </nav>
-        </div>
-    </header>
+        </header>
+    </div>
 
     <main class="page">
-        <section class="hero">
-            <h1>Build your roadmap</h1>
-            <p>
-                Choose your major and class year to move into the first version of your roadmap.
-                This push connects the planner UI to the current CS and Economics pages while saving
-                your selected year for later improvements.
-            </p>
-        </section>
-
-        <section class="planner-card">
-            <h2>Select your path</h2>
-
-            <form id="plannerForm">
-                <div class="field-group">
-                    <label for="major">Major</label>
-                    <select id="major" name="major" required>
-                        <option value="">Choose a major</option>
-                        <option value="cs">Computer Science</option>
-                        <option value="econ">Economics</option>
-                    </select>
+        <div class="planner-shell">
+            <section class="hero">
+                <h1>Start Your Chapter</h1>
+                <p>
+                    Choose your year and major to open a roadmap that connects classes,
+                    opportunities, and next steps into one clearer plan.
+                </p>
+                <div class="hero-note">
+                    This version is meant to help students stop guessing what they should
+                    be doing each year and move from general uncertainty to a more usable path.
                 </div>
+            </section>
 
-                <div class="field-group">
-                    <label for="class_year">Class year</label>
-                    <select id="class_year" name="class_year" required>
-                        <option value="">Choose your year</option>
-                        <option value="freshman">Freshman</option>
-                        <option value="sophomore">Sophomore</option>
-                        <option value="junior">Junior</option>
-                        <option value="senior">Senior</option>
-                    </select>
-                </div>
+            <section class="form-card">
+                <h2>Start Your Chapter</h2>
 
-                <div class="actions">
-                    <button type="submit">Open roadmap</button>
-                    <a class="secondary-link" href="/">Back to home</a>
-                </div>
-            </form>
+                <form id="plannerForm">
+                    <div class="field-group">
+                        <label for="class_year">What is your class year?</label>
+                        <select id="class_year" name="class_year" required>
+                            <option value="">Select Year</option>
+                            <option value="freshman">Freshman</option>
+                            <option value="sophomore">Sophomore</option>
+                            <option value="junior">Junior</option>
+                            <option value="senior">Senior</option>
+                        </select>
+                    </div>
 
-            <div class="note-box">
-                Current MVP note: this first version routes students to the existing major-specific
-                roadmap pages and stores the selected class year locally for use in future updates.
-            </div>
-        </section>
+                    <div class="field-group">
+                        <label for="major">What is your major?</label>
+                        <select id="major" name="major" required>
+                            <option value="">Select Major</option>
+                            <option value="cs">Computer Science</option>
+                            <option value="econ">Economics</option>
+                        </select>
+                    </div>
 
-        <div class="footer">
-            First-pass planner flow for the MVP.
+                    <button type="submit" class="submit-btn">Submit</button>
+
+                    <div class="helper-text">
+                        Pick both fields to continue to the matching roadmap page.
+                    </div>
+                </form>
+            </section>
         </div>
     </main>
 
@@ -253,7 +311,7 @@
             const classYear = document.getElementById("class_year").value;
 
             if (!major || !classYear) {
-                alert("Please choose both a major and a class year.");
+                alert("Please choose both a class year and a major.");
                 return;
             }
 

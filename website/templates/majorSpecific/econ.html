@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Econ Roadmap | Blueprint.edu</title>
     <style>
         :root {
-            --bg: #e7dfcf;
-            --panel: #f6f2ea;
-            --panel-2: #efe8d8;
-            --border: #c9c1b1;
-            --text: #2f2b26;
-            --muted: #665f55;
-            --nav: #2e3135;
-            --blue: #4479ad;
-            --blue-dark: #35638f;
+            --bg: #0d1b2a;
+            --bg-2: #13243a;
+            --panel: rgba(20, 34, 56, 0.82);
+            --panel-border: rgba(124, 170, 255, 0.14);
+            --text: #f4f7fb;
+            --muted: #b9c7da;
+            --accent: #69c8f2;
+            --accent-2: #4eb4e3;
+            --gold: #f0a333;
+            --shadow: 0 0 24px rgba(105, 200, 242, 0.22);
         }
 
         * {
@@ -23,130 +24,156 @@
 
         body {
             margin: 0;
+            min-height: 100vh;
             font-family: Arial, Helvetica, sans-serif;
-            background: var(--bg);
             color: var(--text);
+            background:
+                radial-gradient(circle at top, rgba(62, 112, 176, 0.22), transparent 30%),
+                linear-gradient(180deg, #10233a 0%, #0c1827 100%);
+        }
+
+        .nav-shell {
+            width: min(1240px, calc(100% - 48px));
+            margin: 18px auto 0;
+            background: rgba(17, 28, 46, 0.78);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 18px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.18);
         }
 
         .topbar {
-            background: var(--nav);
-            color: white;
-            padding: 16px 32px;
-        }
-
-        .topbar-inner {
-            max-width: 1180px;
-            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 20px 28px;
         }
 
         .brand {
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 1.7rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: white;
         }
 
         .nav-links {
             display: flex;
-            gap: 18px;
+            align-items: center;
+            gap: 28px;
         }
 
         .nav-links a {
-            color: white;
+            color: #f2f5fa;
             text-decoration: none;
+            font-weight: 600;
+            font-size: 0.98rem;
+            opacity: 0.95;
         }
 
         .nav-links a:hover {
-            text-decoration: underline;
+            opacity: 1;
+        }
+
+        .feedback-btn {
+            background: var(--gold);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 8px 24px rgba(240, 163, 51, 0.2);
         }
 
         .page {
-            max-width: 1180px;
+            width: min(1240px, calc(100% - 48px));
             margin: 0 auto;
-            padding: 38px 24px 60px;
+            padding: 70px 0 60px;
         }
 
         .hero {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 28px 30px;
-            margin-bottom: 22px;
+            text-align: center;
+            max-width: 1020px;
+            margin: 0 auto 42px;
         }
 
         .hero h1 {
-            margin: 0 0 10px;
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 2.35rem;
-            font-weight: normal;
+            margin: 0 0 18px;
+            font-size: clamp(2.4rem, 4.6vw, 4rem);
+            font-weight: 500;
+            letter-spacing: -0.02em;
         }
 
         .hero p {
-            margin: 0;
+            margin: 0 auto 18px;
+            max-width: 920px;
             color: var(--muted);
+            font-size: 1.18rem;
             line-height: 1.65;
-            max-width: 900px;
         }
 
-        .year-tag {
+        .year-pill {
             display: inline-block;
-            margin-top: 14px;
-            padding: 8px 12px;
+            margin-top: 10px;
+            padding: 12px 18px;
             border-radius: 999px;
-            background: var(--panel-2);
-            border: 1px solid var(--border);
+            background: rgba(105, 200, 242, 0.14);
+            border: 1px solid rgba(105, 200, 242, 0.28);
+            color: #d8f4ff;
             font-weight: 700;
-            font-size: 0.95rem;
+            box-shadow: var(--shadow);
         }
 
-        .note-box {
-            margin-top: 16px;
-            background: var(--panel-2);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 16px;
+        .highlight-box {
+            max-width: 980px;
+            margin: 28px auto 0;
+            padding: 20px 22px;
+            border-radius: 18px;
+            background: rgba(19, 36, 58, 0.88);
+            border: 1px solid var(--panel-border);
             color: var(--muted);
-            line-height: 1.6;
+            line-height: 1.7;
+            text-align: left;
         }
 
         .section-title {
-            margin: 28px 0 14px;
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 1.6rem;
-            font-weight: normal;
+            margin: 34px 0 14px;
+            text-align: center;
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: white;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
             margin-top: 18px;
         }
 
         .card {
             background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 20px;
+            border: 1px solid var(--panel-border);
+            border-radius: 22px;
+            padding: 24px 22px;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+            backdrop-filter: blur(6px);
         }
 
         .card h2 {
-            margin: 0 0 14px;
+            margin: 0 0 16px;
             font-size: 1.22rem;
+            color: white;
         }
 
         .card ul {
             margin: 0;
             padding-left: 18px;
-            line-height: 1.8;
             color: var(--muted);
+            line-height: 1.85;
         }
 
         .card p {
             margin: 0;
             color: var(--muted);
-            line-height: 1.7;
+            line-height: 1.75;
         }
 
         .opportunity-list {
@@ -155,212 +182,282 @@
         }
 
         .opportunity-list li {
-            margin-bottom: 10px;
+            margin-bottom: 11px;
+            line-height: 1.7;
             color: var(--muted);
-            line-height: 1.6;
         }
 
         .opportunity-list a {
-            color: var(--blue-dark);
+            color: #8fdcff;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .opportunity-list a:hover {
             text-decoration: underline;
         }
 
-        .footer-actions {
-            margin-top: 24px;
+        .actions {
+            margin-top: 34px;
             display: flex;
-            gap: 12px;
+            justify-content: center;
+            gap: 14px;
             flex-wrap: wrap;
         }
 
         .btn {
             display: inline-block;
-            padding: 12px 16px;
-            border-radius: 8px;
+            padding: 14px 24px;
+            border-radius: 14px;
             text-decoration: none;
-            font-weight: 600;
-            border: 1px solid var(--border);
+            font-weight: 700;
+            transition: 0.18s ease;
         }
 
         .btn-primary {
-            background: var(--blue);
+            background: var(--accent);
             color: white;
-            border-color: var(--blue);
+            box-shadow: 0 0 24px rgba(105, 200, 242, 0.45);
         }
 
         .btn-primary:hover {
-            background: var(--blue-dark);
-            border-color: var(--blue-dark);
+            background: var(--accent-2);
         }
 
         .btn-secondary {
-            background: white;
-            color: var(--text);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.03);
         }
 
         .btn-secondary:hover {
-            background: #fbfaf7;
+            background: rgba(255,255,255,0.06);
         }
 
         @media (max-width: 980px) {
             .grid {
                 grid-template-columns: 1fr;
             }
+
+            .topbar {
+                flex-direction: column;
+                gap: 16px;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 14px;
+            }
         }
     </style>
 </head>
 <body>
-    <header class="topbar">
-        <div class="topbar-inner">
+    <div class="nav-shell">
+        <header class="topbar">
             <div class="brand">Blueprint.edu</div>
             <nav class="nav-links">
                 <a href="/">Home</a>
-                <a href="/roadmap/">Planner</a>
-                <a href="/dashboard/">Dashboard</a>
+                <a href="/roadmap/">Blueprints</a>
+                <a href="/dashboard/">Resources</a>
+                <a href="#" class="feedback-btn">Feedback</a>
             </nav>
-        </div>
-    </header>
+        </header>
+    </div>
 
     <main class="page">
         <section class="hero">
             <h1>Economics Roadmap</h1>
-            <p>
-                This Econ roadmap is organized around a Colby student's path through the major.
-                It highlights what classes to prioritize each year, plus useful programs and resources
-                for finance, consulting, policy, and quant-oriented students.
+            <p id="heroText">
+                A clearer year-by-year roadmap for Colby Economics students, combining course
+                planning, opportunity discovery, and practical next steps.
             </p>
-            <div class="year-tag" id="selectedYearTag">Selected year: Not chosen</div>
+            <div class="year-pill" id="selectedYearTag">Selected year: Not chosen</div>
 
-            <div class="note-box">
-                Main idea: finish the intro and methods work early enough that junior and senior year can be
-                used for upper-level electives, econometrics, and seminar work.
+            <div class="highlight-box" id="highlightBox">
+                Main idea: get through the intro and methods work early enough that junior and senior year
+                can focus on upper-level electives, econometrics, seminar work, and stronger internship preparation.
             </div>
         </section>
 
-        <h2 class="section-title">Classes by Year</h2>
+        <h2 class="section-title">Your Recommendations</h2>
         <section class="grid">
             <div class="card">
-                <h2>Freshman Year</h2>
-                <ul>
-                    <li>EC 133: Microeconomics</li>
-                    <li>EC 134: Macroeconomics</li>
-                </ul>
+                <h2>Classes to Prioritize</h2>
+                <ul id="classesList"></ul>
             </div>
 
             <div class="card">
-                <h2>Sophomore Year</h2>
-                <ul>
-                    <li>EC 224: Macro Theory</li>
-                    <li>EC 223: Micro Theory</li>
-                    <li>PS 214: Research Methods or EC 293: Econ Research Methods</li>
-                    <li>Any Math class between MA 125 to MA 160</li>
-                </ul>
+                <h2>Programs / Opportunities</h2>
+                <ul id="programsList" class="opportunity-list"></ul>
             </div>
 
             <div class="card">
-                <h2>Junior Year</h2>
-                <ul>
-                    <li>Econ elective above 200</li>
-                    <li>EC 393: Econometrics</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <h2>Senior Year</h2>
-                <ul>
-                    <li>Econ elective at the 300 level</li>
-                    <li>Econ seminar</li>
-                </ul>
+                <h2>Resources / Notes</h2>
+                <ul id="resourcesList"></ul>
             </div>
         </section>
 
-        <h2 class="section-title">Summer Programs by Year</h2>
-        <section class="grid">
-            <div class="card">
-                <h2>Freshman Year</h2>
-                <ul class="opportunity-list">
-                    <li><a href="https://www.citadel.com/careers/students/discover-citadel/" target="_blank">Citadel Discover</a></li>
-                    <li><a href="https://www.goldmansachs.com/careers/students/programs/americas/possibilities-summit/" target="_blank">Goldman Sachs Possibilities Summit</a></li>
-                    <li><a href="https://www.jpmorganchase.com/impact/people/advancing-black-pathways" target="_blank">J.P. Morgan Advancing Black Pathways</a></li>
-                    <li><a href="https://fellowships.deshaw.com/" target="_blank">D.E. Shaw Fellowships</a></li>
-                    <li><a href="https://www.janestreet.com/join-jane-street/programs-and-events/fttp/" target="_blank">Jane Street FTTP</a></li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <h2>Sophomore Year</h2>
-                <ul class="opportunity-list">
-                    <li><a href="https://www.citadel.com/careers/students/launch/" target="_blank">Citadel Launch</a></li>
-                    <li><a href="https://www.pwc.com/us/en/careers/while-you-work/student-opportunities/start.html" target="_blank">PwC Start</a></li>
-                    <li><a href="https://www.morganstanley.com/careers/students-graduates/early-insights-program" target="_blank">Morgan Stanley Early Insights</a></li>
-                    <li><a href="https://careers.point72.com/students" target="_blank">Point72 Academy Sophomore Summit</a></li>
-                    <li><a href="https://www.pjtpartners.com/careers/students/" target="_blank">PJT Partners Sophomore Internship</a></li>
-                    <li><a href="https://www.blackrock.com/corporate/careers/students-and-graduates" target="_blank">BlackRock Founders Scholarship</a></li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <h2>Junior Year</h2>
-                <ul class="opportunity-list">
-                    <li><a href="https://www.goldmansachs.com/careers/students/programs/" target="_blank">Goldman Sachs Summer Analyst Program</a></li>
-                    <li><a href="https://www.pwc.com/us/en/careers/while-you-work/student-opportunities/advance.html" target="_blank">PwC Advance</a></li>
-                    <li><a href="https://www.janestreet.com/join-jane-street/programs-and-events/quantitative-trader-internship/" target="_blank">Jane Street Quantitative Trader Internship</a></li>
-                    <li><a href="https://careers.jpmorgan.com/us/en/students/programs/quantitative-finance-analyst" target="_blank">J.P. Morgan Quantitative Finance Internship</a></li>
-                    <li><a href="https://careers.sig.com/students/" target="_blank">SIG Quantitative Trading Intern</a></li>
-                    <li><a href="https://www.bridgewater.com/campus" target="_blank">Bridgewater Associates Investment Engineer Intern</a></li>
-                    <li>Evercore / Lazard / Centerview</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <h2>How to Use These</h2>
-                <p>
-                    These are not all required. They are examples of the kinds of programs students can look
-                    into depending on their interests. Freshman and sophomore programs are useful for getting
-                    exposure early, while junior summer is usually the most important internship summer.
-                </p>
-            </div>
-        </section>
-
-        <h2 class="section-title">Extra Resources</h2>
-        <section class="grid">
-            <div class="card">
-                <h2>Skill / Career Resources</h2>
-                <ul>
-                    <li>Wall Street Prep</li>
-                    <li>Paving the Road</li>
-                    <li>Mergers and Acquisition class with Mike McHale</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <h2>Planning Notes</h2>
-                <ul>
-                    <li>Use freshman and sophomore year to get the core sequence moving early.</li>
-                    <li>Methods and math work matter because they open up upper-level econ coursework.</li>
-                    <li>Junior year is a good time to connect classes with internships and recruiting.</li>
-                    <li>Senior year should focus on finishing upper-level work and seminar requirements well.</li>
-                </ul>
-            </div>
-        </section>
-
-        <div class="footer-actions">
-            <a class="btn btn-primary" href="/roadmap/">Choose another path</a>
-            <a class="btn btn-secondary" href="/dashboard/">View dashboard</a>
+        <div class="actions">
+            <a class="btn btn-primary" href="/roadmap/">Choose Another Path</a>
+            <a class="btn btn-secondary" href="/dashboard/">Open Dashboard</a>
         </div>
     </main>
 
     <script>
+        const ECON_DATA = {
+            freshman: {
+                hero: "Freshman year is mainly about getting the intro sequence started and beginning to understand what the major looks like at Colby.",
+                highlight: "Best use of freshman year: complete EC133 and EC134, start building your foundation early, and get familiar with finance, policy, consulting, and research paths before recruiting ramps up later.",
+                classes: [
+                    "EC 133: Microeconomics",
+                    "EC 134: Macroeconomics"
+                ],
+                programs: [
+                    { text: "Citadel Discover", href: "https://www.citadel.com/careers/students/discover-citadel/" },
+                    { text: "Goldman Sachs Possibilities Summit", href: "https://www.goldmansachs.com/careers/students/programs/americas/possibilities-summit/" },
+                    { text: "J.P. Morgan Advancing Black Pathways", href: "https://www.jpmorganchase.com/impact/people/advancing-black-pathways" },
+                    { text: "D.E. Shaw Fellowships", href: "https://fellowships.deshaw.com/" },
+                    { text: "Jane Street FTTP", href: "https://www.janestreet.com/join-jane-street/programs-and-events/fttp/" }
+                ],
+                resources: [
+                    "Get the intro sequence moving early.",
+                    "Start learning what finance, consulting, policy, and quant paths actually look like.",
+                    "Use first-year events and networking to explore without overcommitting too early.",
+                    "Keep your options open by building strong study habits in the major from the start."
+                ]
+            },
+            sophomore: {
+                hero: "Sophomore year is where the major starts to become more structured, with theory, methods, and math becoming much more important.",
+                highlight: "Best use of sophomore year: finish the core theory and methods work so junior year can be used for stronger electives, technical development, and internship preparation.",
+                classes: [
+                    "EC 224: Macro Theory",
+                    "EC 223: Micro Theory",
+                    "PS 214: Research Methods or EC 293: Econ Research Methods",
+                    "Any Math class between MA 125 to MA 160"
+                ],
+                programs: [
+                    { text: "Citadel Launch", href: "https://www.citadel.com/careers/students/launch/" },
+                    { text: "PwC Start", href: "https://www.pwc.com/us/en/careers/while-you-work/student-opportunities/start.html" },
+                    { text: "Morgan Stanley Early Insights", href: "https://www.morganstanley.com/careers/students-graduates/early-insights-program" },
+                    { text: "Point72 Academy Sophomore Summit", href: "https://careers.point72.com/students" },
+                    { text: "PJT Partners Sophomore Internship", href: "https://www.pjtpartners.com/careers/students/" },
+                    { text: "BlackRock Founders Scholarship", href: "https://www.blackrock.com/corporate/careers/students-and-graduates" }
+                ],
+                resources: [
+                    "This is a good year to become more intentional about recruiting direction.",
+                    "Methods and math matter because they support upper-level econ work and more technical opportunities.",
+                    "Build spreadsheet, data, and interview skills alongside classwork.",
+                    "Start keeping a clearer timeline for sophomore and junior recruiting windows."
+                ]
+            },
+            junior: {
+                hero: "Junior year is usually the most important year for connecting coursework to internships, recruiting, and upper-level economics work.",
+                highlight: "Best use of junior year: pair upper-level econ classes with serious internship prep, stronger technical skill building, and a more focused recruiting strategy.",
+                classes: [
+                    "Econ elective above 200",
+                    "EC 393: Econometrics"
+                ],
+                programs: [
+                    { text: "Goldman Sachs Summer Analyst Program", href: "https://www.goldmansachs.com/careers/students/programs/" },
+                    { text: "PwC Advance", href: "https://www.pwc.com/us/en/careers/while-you-work/student-opportunities/advance.html" },
+                    { text: "Jane Street Quantitative Trader Internship", href: "https://www.janestreet.com/join-jane-street/programs-and-events/quantitative-trader-internship/" },
+                    { text: "J.P. Morgan Quantitative Finance Internship", href: "https://careers.jpmorgan.com/us/en/students/programs/quantitative-finance-analyst" },
+                    { text: "SIG Quantitative Trading Intern", href: "https://careers.sig.com/students/" },
+                    { text: "Bridgewater Associates Investment Engineer Intern", href: "https://www.bridgewater.com/campus" },
+                    { text: "Evercore / Lazard / Centerview", href: null }
+                ],
+                resources: [
+                    "Junior summer is often the most important internship summer.",
+                    "Econometrics should start paying off here by making your quantitative background more usable.",
+                    "Use networking and alumni outreach more seriously this year.",
+                    "Tighten your resume and know what type of roles you are actually targeting."
+                ]
+            },
+            senior: {
+                hero: "Senior year should be about finishing strong, completing the seminar requirement, and turning your coursework and experience into a clear next step.",
+                highlight: "Best use of senior year: finish upper-level work well, complete the seminar, and use the fall to convert your experience into full-time opportunities or a stronger post-grad plan.",
+                classes: [
+                    "Econ elective in the 300 level",
+                    "Econ seminar"
+                ],
+                programs: [
+                    { text: "Focus on full-time recruiting, late-cycle opportunities, and alumni outreach", href: null },
+                    { text: "Use seminar and upper-level work to sharpen your specific interests", href: null }
+                ],
+                resources: [
+                    "Wall Street Prep",
+                    "Paving the Road",
+                    "Mergers and Acquisition class with Mike McHale",
+                    "Senior year is about finishing the major well and making your next move more concrete."
+                ]
+            }
+        };
+
         const selectedYear = sessionStorage.getItem("selected_class_year");
         const yearTag = document.getElementById("selectedYearTag");
+        const heroText = document.getElementById("heroText");
+        const highlightBox = document.getElementById("highlightBox");
+        const classesList = document.getElementById("classesList");
+        const programsList = document.getElementById("programsList");
+        const resourcesList = document.getElementById("resourcesList");
 
-        if (selectedYear) {
-            const formattedYear = selectedYear.charAt(0).toUpperCase() + selectedYear.slice(1);
-            yearTag.textContent = "Selected year: " + formattedYear;
+        function formatYear(year) {
+            return year.charAt(0).toUpperCase() + year.slice(1);
+        }
+
+        function renderList(listEl, items, isPrograms = false) {
+            listEl.innerHTML = "";
+
+            items.forEach(item => {
+                const li = document.createElement("li");
+
+                if (isPrograms && item.href) {
+                    const a = document.createElement("a");
+                    a.href = item.href;
+                    a.target = "_blank";
+                    a.textContent = item.text;
+                    li.appendChild(a);
+                } else if (isPrograms) {
+                    li.textContent = item.text;
+                } else {
+                    li.textContent = item;
+                }
+
+                listEl.appendChild(li);
+            });
+        }
+
+        if (selectedYear && ECON_DATA[selectedYear]) {
+            const data = ECON_DATA[selectedYear];
+            yearTag.textContent = "Selected year: " + formatYear(selectedYear);
+            heroText.textContent = data.hero;
+            highlightBox.textContent = data.highlight;
+            renderList(classesList, data.classes, false);
+            renderList(programsList, data.programs, true);
+            renderList(resourcesList, data.resources, false);
+        } else {
+            yearTag.textContent = "Selected year: Not chosen";
+            heroText.textContent = "Choose a year on the roadmap page first to see more specific Econ recommendations.";
+            highlightBox.textContent = "Right now this page changes its recommendations based on the class year selected in the planner.";
+            renderList(classesList, [
+                "EC 133: Microeconomics",
+                "EC 134: Macroeconomics",
+                "EC 223: Micro Theory",
+                "EC 224: Macro Theory",
+                "Methods / research course",
+                "Upper-level electives and seminar"
+            ], false);
+            renderList(programsList, [
+                { text: "Freshman and sophomore exposure programs", href: null },
+                { text: "Junior summer internships", href: null },
+                { text: "Career center and alumni networking", href: null }
+            ], true);
+            renderList(resourcesList, [
+                "Wall Street Prep",
+                "Paving the Road",
+                "Mergers and Acquisition class with Mike McHale"
+            ], false);
         }
     </script>
 </body>
