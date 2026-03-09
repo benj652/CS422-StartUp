@@ -99,6 +99,16 @@
             font-size: 0.95rem;
         }
 
+        .progress-box {
+            margin-top: 16px;
+            background: var(--panel-2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 16px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
         .grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -122,6 +132,32 @@
             padding-left: 18px;
             line-height: 1.8;
             color: var(--muted);
+        }
+
+        .checklist {
+            display: grid;
+            gap: 12px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            background: #fbfaf7;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .check-item input {
+            margin-top: 3px;
+            transform: scale(1.1);
+        }
+
+        .check-item label {
+            cursor: pointer;
+            color: var(--muted);
+            line-height: 1.5;
         }
 
         .footer-actions {
@@ -184,22 +220,38 @@
             <h1>Computer Science Roadmap</h1>
             <p>
                 This first-pass CS roadmap gives students a starting point for classes,
-                programs, and preparation steps. In a later push, this page can become
-                fully year-specific.
+                programs, and preparation steps. You can check off classes you’ve already taken,
+                and this browser will remember them.
             </p>
             <div class="year-tag" id="selectedYearTag">Selected year: Not chosen</div>
+            <div class="progress-box" id="progressBox">Classes completed: 0 / 5</div>
         </section>
 
         <section class="grid">
             <div class="card">
                 <h2>Recommended Classes</h2>
-                <ul>
-                    <li>Data Structures</li>
-                    <li>Operating Systems</li>
-                    <li>Computer Networks</li>
-                    <li>Databases</li>
-                    <li>Software Engineering</li>
-                </ul>
+                <div class="checklist">
+                    <div class="check-item">
+                        <input type="checkbox" id="cs-ds" class="course-checkbox">
+                        <label for="cs-ds">Data Structures</label>
+                    </div>
+                    <div class="check-item">
+                        <input type="checkbox" id="cs-os" class="course-checkbox">
+                        <label for="cs-os">Operating Systems</label>
+                    </div>
+                    <div class="check-item">
+                        <input type="checkbox" id="cs-networks" class="course-checkbox">
+                        <label for="cs-networks">Computer Networks</label>
+                    </div>
+                    <div class="check-item">
+                        <input type="checkbox" id="cs-databases" class="course-checkbox">
+                        <label for="cs-databases">Databases</label>
+                    </div>
+                    <div class="check-item">
+                        <input type="checkbox" id="cs-swe" class="course-checkbox">
+                        <label for="cs-swe">Software Engineering</label>
+                    </div>
+                </div>
             </div>
 
             <div class="card">
@@ -239,6 +291,56 @@
             const formattedYear = selectedYear.charAt(0).toUpperCase() + selectedYear.slice(1);
             yearTag.textContent = "Selected year: " + formattedYear;
         }
+
+        function setCookie(name, value, days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            document.cookie = name + "=" + value + ";expires=" + date.toUTCString() + ";path=/";
+        }
+
+        function getCookie(name) {
+            const cookieName = name + "=";
+            const decodedCookie = decodeURIComponent(document.cookie);
+            const cookieArray = decodedCookie.split(";");
+
+            for (let i = 0; i < cookieArray.length; i++) {
+                let cookie = cookieArray[i].trim();
+                if (cookie.indexOf(cookieName) === 0) {
+                    return cookie.substring(cookieName.length, cookie.length);
+                }
+            }
+            return "";
+        }
+
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll(".course-checkbox");
+            let completed = 0;
+
+            checkboxes.forEach((checkbox) => {
+                if (checkbox.checked) {
+                    completed++;
+                }
+            });
+
+            document.getElementById("progressBox").textContent =
+                "Classes completed: " + completed + " / " + checkboxes.length;
+        }
+
+        const courseCheckboxes = document.querySelectorAll(".course-checkbox");
+
+        courseCheckboxes.forEach((checkbox) => {
+            const cookieValue = getCookie("blueprint_" + checkbox.id);
+            if (cookieValue === "true") {
+                checkbox.checked = true;
+            }
+
+            checkbox.addEventListener("change", function () {
+                setCookie("blueprint_" + checkbox.id, checkbox.checked, 365);
+                updateProgress();
+            });
+        });
+
+        updateProgress();
     </script>
 </body>
 </html>

@@ -110,6 +110,16 @@
             line-height: 1.6;
         }
 
+        .progress-box {
+            margin-top: 16px;
+            background: #fbfaf7;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 16px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
         .grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -140,6 +150,32 @@
             margin: 0;
             color: var(--muted);
             line-height: 1.7;
+        }
+
+        .checklist {
+            display: grid;
+            gap: 12px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            background: #fbfaf7;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .check-item input {
+            margin-top: 3px;
+            transform: scale(1.1);
+        }
+
+        .check-item label {
+            cursor: pointer;
+            color: var(--muted);
+            line-height: 1.5;
         }
 
         .footer-actions {
@@ -202,8 +238,8 @@
             <h1>Economics Roadmap</h1>
             <p>
                 This first-pass Econ roadmap is based on Colby's major requirements and is meant to
-                help students think about the order and timing of the major. The main idea is to finish
-                the early core soon enough to leave room for upper-level electives, EC325, and a senior seminar.
+                help students think about the order and timing of the major. You can also check off
+                classes you've already taken, and this browser will remember them.
             </p>
             <div class="year-tag" id="selectedYearTag">Selected year: Not chosen</div>
 
@@ -212,23 +248,47 @@
                 senior seminar, three additional electives at 211 or above, at least two of those at the
                 300 level, and Math 120 or higher.
             </div>
+
+            <div class="progress-box" id="progressBox">Classes completed: 0 / 8</div>
         </section>
 
         <section class="grid">
             <div class="card">
                 <h2>Core Courses to Plan Around</h2>
-                <ul>
-                    <li>EC133</li>
-                    <li>EC134</li>
-                    <li>Math 120 or higher</li>
-                    <li>EC223</li>
-                    <li>EC224</li>
-                    <li>EC225</li>
-                    <li>EC325</li>
-                    <li>One senior seminar</li>
-                    <li>Three electives at 211 or above</li>
-                    <li>At least two 300-level electives</li>
-                </ul>
+                <div class="checklist">
+                    <div class="check-item">
+                        <input type="checkbox" id="econ-133" class="course-checkbox">
+                        <label for="econ-133">EC133</label>
+                    </div>
+                    <div class="check-item">
+                        <input type="checkbox" id="econ-134" class="course-checkbox">
+                        <label for="econ-134">EC134</label>
+                    </div>
+                    <div class="check-item">
+                        <input type="checkbox" id="econ-math120" class="course-checkbox">
+                        <label for="econ-math120">Math 120 or higher</label>
+                    </div>
+                    <div class="check-item">
+                        <input type="checkbox" id="econ-223" class="course-checkbox">
+                        <label for="econ-223">EC223</label>
+                    </div>
+                    <div class="check-item">
+                        <input type="checkbox" id="econ-224" class="course-checkbox">
+                        <label for="econ-224">EC224</label>
+                    </div>
+                    <div class="check-item">
+                        <input type="checkbox" id="econ-225" class="course-checkbox">
+                        <label for="econ-225">EC225</label>
+                    </div>
+                    <div class="check-item">
+                        <input type="checkbox" id="econ-325" class="course-checkbox">
+                        <label for="econ-325">EC325</label>
+                    </div>
+                    <div class="check-item">
+                        <input type="checkbox" id="econ-seminar" class="course-checkbox">
+                        <label for="econ-seminar">Senior seminar</label>
+                    </div>
+                </div>
             </div>
 
             <div class="card">
@@ -297,6 +357,56 @@
             const formattedYear = selectedYear.charAt(0).toUpperCase() + selectedYear.slice(1);
             yearTag.textContent = "Selected year: " + formattedYear;
         }
+
+        function setCookie(name, value, days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            document.cookie = name + "=" + value + ";expires=" + date.toUTCString() + ";path=/";
+        }
+
+        function getCookie(name) {
+            const cookieName = name + "=";
+            const decodedCookie = decodeURIComponent(document.cookie);
+            const cookieArray = decodedCookie.split(";");
+
+            for (let i = 0; i < cookieArray.length; i++) {
+                let cookie = cookieArray[i].trim();
+                if (cookie.indexOf(cookieName) === 0) {
+                    return cookie.substring(cookieName.length, cookie.length);
+                }
+            }
+            return "";
+        }
+
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll(".course-checkbox");
+            let completed = 0;
+
+            checkboxes.forEach((checkbox) => {
+                if (checkbox.checked) {
+                    completed++;
+                }
+            });
+
+            document.getElementById("progressBox").textContent =
+                "Classes completed: " + completed + " / " + checkboxes.length;
+        }
+
+        const courseCheckboxes = document.querySelectorAll(".course-checkbox");
+
+        courseCheckboxes.forEach((checkbox) => {
+            const cookieValue = getCookie("blueprint_" + checkbox.id);
+            if (cookieValue === "true") {
+                checkbox.checked = true;
+            }
+
+            checkbox.addEventListener("change", function () {
+                setCookie("blueprint_" + checkbox.id, checkbox.checked, 365);
+                updateProgress();
+            });
+        });
+
+        updateProgress();
     </script>
 </body>
 </html>
