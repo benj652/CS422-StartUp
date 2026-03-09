@@ -35,11 +35,16 @@ def dashboard():
         week_1_data.append(get_rate_for_date(target_day - timedelta(days=7)))
         week_2_data.append(get_rate_for_date(target_day - timedelta(days=14)))
 
-    # 3. Optimized Page Stats (One query per page instead of one per visit)
-    tracked_pages = ['homepage.html', 'cs', 'econ']
+    # 3. Optimized Page Stats (One query per page instead of one per visit)s
+    tracked_pages = [
+        ('homepage.html', 'Home'),
+        ('roadmap', 'Roadmap'),
+        ('cs', 'CS'),
+        ('econ', 'Economics'),
+    ]
     page_stats = []
 
-    for page_name in tracked_pages:
+    for page_name, display_name in tracked_pages:
         # Get counts in bulk
         total_p_visits = Visit.query.filter_by(page=page_name).count()
         unique_p_users = db.session.query(func.count(Visit.user_id.distinct())).filter(Visit.page == page_name).scalar()
@@ -58,7 +63,7 @@ def dashboard():
         bounce_rate = round((bounces / total_p_visits * 100), 1) if total_p_visits > 0 else 0
 
         page_stats.append({
-            'name': page_name,
+            'name': display_name,
             'visitors': total_p_visits,
             'unique': unique_p_users,
             'bounce_rate': bounce_rate
