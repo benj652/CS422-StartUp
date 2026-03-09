@@ -110,19 +110,16 @@
             line-height: 1.6;
         }
 
-        .progress-box {
-            margin-top: 16px;
-            background: #fbfaf7;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 14px 16px;
-            font-weight: 600;
-            color: var(--text);
+        .section-title {
+            margin: 28px 0 14px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.6rem;
+            font-weight: normal;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 18px;
             margin-top: 18px;
         }
@@ -152,30 +149,25 @@
             line-height: 1.7;
         }
 
-        .checklist {
-            display: grid;
-            gap: 12px;
+        .opportunity-list {
+            list-style: none;
+            padding-left: 0;
         }
 
-        .check-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            background: #fbfaf7;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 12px;
-        }
-
-        .check-item input {
-            margin-top: 3px;
-            transform: scale(1.1);
-        }
-
-        .check-item label {
-            cursor: pointer;
+        .opportunity-list li {
+            margin-bottom: 10px;
             color: var(--muted);
-            line-height: 1.5;
+            line-height: 1.6;
+        }
+
+        .opportunity-list a {
+            color: var(--blue-dark);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .opportunity-list a:hover {
+            text-decoration: underline;
         }
 
         .footer-actions {
@@ -237,109 +229,122 @@
         <section class="hero">
             <h1>Economics Roadmap</h1>
             <p>
-                This first-pass Econ roadmap is based on Colby's major requirements and is meant to
-                help students think about the order and timing of the major. You can also check off
-                classes you've already taken, and this browser will remember them.
+                This Econ roadmap is organized around a Colby student's path through the major.
+                It highlights what classes to prioritize each year, plus useful programs and resources
+                for finance, consulting, policy, and quant-oriented students.
             </p>
             <div class="year-tag" id="selectedYearTag">Selected year: Not chosen</div>
 
             <div class="note-box">
-                Colby's Economics major requires EC133, EC134, EC223, EC224, EC225, and EC325, plus one
-                senior seminar, three additional electives at 211 or above, at least two of those at the
-                300 level, and Math 120 or higher.
+                Main idea: finish the intro and methods work early enough that junior and senior year can be
+                used for upper-level electives, econometrics, and seminar work.
             </div>
-
-            <div class="progress-box" id="progressBox">Classes completed: 0 / 8</div>
         </section>
 
+        <h2 class="section-title">Classes by Year</h2>
         <section class="grid">
             <div class="card">
-                <h2>Core Courses to Plan Around</h2>
-                <div class="checklist">
-                    <div class="check-item">
-                        <input type="checkbox" id="econ-133" class="course-checkbox">
-                        <label for="econ-133">EC133</label>
-                    </div>
-                    <div class="check-item">
-                        <input type="checkbox" id="econ-134" class="course-checkbox">
-                        <label for="econ-134">EC134</label>
-                    </div>
-                    <div class="check-item">
-                        <input type="checkbox" id="econ-math120" class="course-checkbox">
-                        <label for="econ-math120">Math 120 or higher</label>
-                    </div>
-                    <div class="check-item">
-                        <input type="checkbox" id="econ-223" class="course-checkbox">
-                        <label for="econ-223">EC223</label>
-                    </div>
-                    <div class="check-item">
-                        <input type="checkbox" id="econ-224" class="course-checkbox">
-                        <label for="econ-224">EC224</label>
-                    </div>
-                    <div class="check-item">
-                        <input type="checkbox" id="econ-225" class="course-checkbox">
-                        <label for="econ-225">EC225</label>
-                    </div>
-                    <div class="check-item">
-                        <input type="checkbox" id="econ-325" class="course-checkbox">
-                        <label for="econ-325">EC325</label>
-                    </div>
-                    <div class="check-item">
-                        <input type="checkbox" id="econ-seminar" class="course-checkbox">
-                        <label for="econ-seminar">Senior seminar</label>
-                    </div>
-                </div>
+                <h2>Freshman Year</h2>
+                <ul>
+                    <li>EC 133: Microeconomics</li>
+                    <li>EC 134: Macroeconomics</li>
+                </ul>
             </div>
 
             <div class="card">
-                <h2>Experiences to Look For</h2>
+                <h2>Sophomore Year</h2>
                 <ul>
-                    <li>Research with economics faculty</li>
-                    <li>Internships in finance, consulting, government, or policy</li>
-                    <li>Career center workshops and recruiting events</li>
-                    <li>Alumni networking</li>
-                    <li>Exploring the financial markets concentration if relevant</li>
+                    <li>EC 224: Macro Theory</li>
+                    <li>EC 223: Micro Theory</li>
+                    <li>PS 214: Research Methods or EC 293: Econ Research Methods</li>
+                    <li>Any Math class between MA 125 to MA 160</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Junior Year</h2>
+                <ul>
+                    <li>Econ elective above 200</li>
+                    <li>EC 393: Econometrics</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Senior Year</h2>
+                <ul>
+                    <li>Econ elective at the 300 level</li>
+                    <li>Econ seminar</li>
+                </ul>
+            </div>
+        </section>
+
+        <h2 class="section-title">Summer Programs by Year</h2>
+        <section class="grid">
+            <div class="card">
+                <h2>Freshman Year</h2>
+                <ul class="opportunity-list">
+                    <li><a href="https://www.citadel.com/careers/students/discover-citadel/" target="_blank">Citadel Discover</a></li>
+                    <li><a href="https://www.goldmansachs.com/careers/students/programs/americas/possibilities-summit/" target="_blank">Goldman Sachs Possibilities Summit</a></li>
+                    <li><a href="https://www.jpmorganchase.com/impact/people/advancing-black-pathways" target="_blank">J.P. Morgan Advancing Black Pathways</a></li>
+                    <li><a href="https://fellowships.deshaw.com/" target="_blank">D.E. Shaw Fellowships</a></li>
+                    <li><a href="https://www.janestreet.com/join-jane-street/programs-and-events/fttp/" target="_blank">Jane Street FTTP</a></li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Sophomore Year</h2>
+                <ul class="opportunity-list">
+                    <li><a href="https://www.citadel.com/careers/students/launch/" target="_blank">Citadel Launch</a></li>
+                    <li><a href="https://www.pwc.com/us/en/careers/while-you-work/student-opportunities/start.html" target="_blank">PwC Start</a></li>
+                    <li><a href="https://www.morganstanley.com/careers/students-graduates/early-insights-program" target="_blank">Morgan Stanley Early Insights</a></li>
+                    <li><a href="https://careers.point72.com/students" target="_blank">Point72 Academy Sophomore Summit</a></li>
+                    <li><a href="https://www.pjtpartners.com/careers/students/" target="_blank">PJT Partners Sophomore Internship</a></li>
+                    <li><a href="https://www.blackrock.com/corporate/careers/students-and-graduates" target="_blank">BlackRock Founders Scholarship</a></li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Junior Year</h2>
+                <ul class="opportunity-list">
+                    <li><a href="https://www.goldmansachs.com/careers/students/programs/" target="_blank">Goldman Sachs Summer Analyst Program</a></li>
+                    <li><a href="https://www.pwc.com/us/en/careers/while-you-work/student-opportunities/advance.html" target="_blank">PwC Advance</a></li>
+                    <li><a href="https://www.janestreet.com/join-jane-street/programs-and-events/quantitative-trader-internship/" target="_blank">Jane Street Quantitative Trader Internship</a></li>
+                    <li><a href="https://careers.jpmorgan.com/us/en/students/programs/quantitative-finance-analyst" target="_blank">J.P. Morgan Quantitative Finance Internship</a></li>
+                    <li><a href="https://careers.sig.com/students/" target="_blank">SIG Quantitative Trading Intern</a></li>
+                    <li><a href="https://www.bridgewater.com/campus" target="_blank">Bridgewater Associates Investment Engineer Intern</a></li>
+                    <li>Evercore / Lazard / Centerview</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>How to Use These</h2>
+                <p>
+                    These are not all required. They are examples of the kinds of programs students can look
+                    into depending on their interests. Freshman and sophomore programs are useful for getting
+                    exposure early, while junior summer is usually the most important internship summer.
+                </p>
+            </div>
+        </section>
+
+        <h2 class="section-title">Extra Resources</h2>
+        <section class="grid">
+            <div class="card">
+                <h2>Skill / Career Resources</h2>
+                <ul>
+                    <li>Wall Street Prep</li>
+                    <li>Paving the Road</li>
+                    <li>Mergers and Acquisition class with Mike McHale</li>
                 </ul>
             </div>
 
             <div class="card">
                 <h2>Planning Notes</h2>
                 <ul>
-                    <li>Finish EC133 and math early if possible</li>
-                    <li>EC223 requires EC133 and calculus with at least a C-</li>
-                    <li>Keep track of grades needed to continue in the major</li>
-                    <li>Senior seminars must be completed at Colby</li>
-                    <li>If you may want grad school, consider more math and possibly CS151</li>
+                    <li>Use freshman and sophomore year to get the core sequence moving early.</li>
+                    <li>Methods and math work matter because they open up upper-level econ coursework.</li>
+                    <li>Junior year is a good time to connect classes with internships and recruiting.</li>
+                    <li>Senior year should focus on finishing upper-level work and seminar requirements well.</li>
                 </ul>
-            </div>
-        </section>
-
-        <section class="grid">
-            <div class="card">
-                <h2>Freshman / Sophomore Focus</h2>
-                <p>
-                    Use the first half of college to make progress on EC133, EC134, and the math requirement.
-                    The earlier you finish the intro work, the easier it is to fit EC223, EC224, EC225,
-                    and later electives into a manageable schedule.
-                </p>
-            </div>
-
-            <div class="card">
-                <h2>Junior Focus</h2>
-                <p>
-                    Junior year is a good time to be deep into the upper-level sequence, start building
-                    toward 300-level electives, and connect coursework to internships, research, or other
-                    career-related experience.
-                </p>
-            </div>
-
-            <div class="card">
-                <h2>Senior Focus</h2>
-                <p>
-                    Senior year should be about finishing EC325, completing the seminar requirement, and using
-                    electives to sharpen a specific interest area. Students interested in honors or a thesis
-                    should plan ahead and talk with the department early.
-                </p>
             </div>
         </section>
 
@@ -357,56 +362,6 @@
             const formattedYear = selectedYear.charAt(0).toUpperCase() + selectedYear.slice(1);
             yearTag.textContent = "Selected year: " + formattedYear;
         }
-
-        function setCookie(name, value, days) {
-            const date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            document.cookie = name + "=" + value + ";expires=" + date.toUTCString() + ";path=/";
-        }
-
-        function getCookie(name) {
-            const cookieName = name + "=";
-            const decodedCookie = decodeURIComponent(document.cookie);
-            const cookieArray = decodedCookie.split(";");
-
-            for (let i = 0; i < cookieArray.length; i++) {
-                let cookie = cookieArray[i].trim();
-                if (cookie.indexOf(cookieName) === 0) {
-                    return cookie.substring(cookieName.length, cookie.length);
-                }
-            }
-            return "";
-        }
-
-        function updateProgress() {
-            const checkboxes = document.querySelectorAll(".course-checkbox");
-            let completed = 0;
-
-            checkboxes.forEach((checkbox) => {
-                if (checkbox.checked) {
-                    completed++;
-                }
-            });
-
-            document.getElementById("progressBox").textContent =
-                "Classes completed: " + completed + " / " + checkboxes.length;
-        }
-
-        const courseCheckboxes = document.querySelectorAll(".course-checkbox");
-
-        courseCheckboxes.forEach((checkbox) => {
-            const cookieValue = getCookie("blueprint_" + checkbox.id);
-            if (cookieValue === "true") {
-                checkbox.checked = true;
-            }
-
-            checkbox.addEventListener("change", function () {
-                setCookie("blueprint_" + checkbox.id, checkbox.checked, 365);
-                updateProgress();
-            });
-        });
-
-        updateProgress();
     </script>
 </body>
 </html>
