@@ -16,7 +16,7 @@ def dashboard():
     # 3. Core Action Completions (Total Submits)
     core_actions = Action.query.filter_by(atype='survey_submit').count()
 
-    # 4. Activation Rate (Percentage of visitors who submitted)
+    # 4. Activation Rate (Percentage of visitors who submitted the form)
     total_visits = Visit.query.distinct(Visit.user_id).count()
     activation_rate = 0
     if total_visits > 0:
