@@ -1,202 +1,244 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page Title</title>
-    <!-- Favicon -->
-    <link rel="icon" href="../static/img/brand/favicon.png" type="image/png" />
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" />
-    <!-- Icons -->
-    <link rel="stylesheet" href="../static/css/nucleo.css" type="text/css" />
-    <link rel="stylesheet" href="../static/css/all.min.css" type="text/css" />
-    <!-- Page plugins -->
-    <!-- Argon CSS -->
-    <link rel="stylesheet" href="../static/css/argon.css?v=1.2.0" type="text/css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS Roadmap | Blueprint.edu</title>
+    <style>
+        :root {
+            --bg: #e7dfcf;
+            --panel: #f6f2ea;
+            --panel-2: #efe8d8;
+            --border: #c9c1b1;
+            --text: #2f2b26;
+            --muted: #665f55;
+            --nav: #2e3135;
+            --blue: #4479ad;
+            --blue-dark: #35638f;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .topbar {
+            background: var(--nav);
+            color: white;
+            padding: 16px 32px;
+        }
+
+        .topbar-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.7rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 18px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        .page {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 38px 24px 60px;
+        }
+
+        .hero {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px 30px;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            margin: 0 0 10px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 2.35rem;
+            font-weight: normal;
+        }
+
+        .hero p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        .year-tag {
+            display: inline-block;
+            margin-top: 14px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: var(--panel-2);
+            border: 1px solid var(--border);
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .card h2 {
+            margin: 0 0 14px;
+            font-size: 1.22rem;
+        }
+
+        .card ul {
+            margin: 0;
+            padding-left: 18px;
+            line-height: 1.8;
+            color: var(--muted);
+        }
+
+        .footer-actions {
+            margin-top: 24px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid var(--border);
+        }
+
+        .btn-primary {
+            background: var(--blue);
+            color: white;
+            border-color: var(--blue);
+        }
+
+        .btn-primary:hover {
+            background: var(--blue-dark);
+            border-color: var(--blue-dark);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            background: #fbfaf7;
+        }
+
+        @media (max-width: 980px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <h1>Your CS Major Blueprint: SWE/SDE Track</h1>
-    <details>
-        <summary>Freshman</summary>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Recommended Courses</h5>
-                                <ul>
-                                    <li>CS231: Data Structures and Algorithms</li>
-                                </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Summer Programs</h5>
-                                <ul>
-                                    <li><a href="https://github.com/SimplifyJobs/Summer2026-Internships?tab=readme-ov-file">Apply Here!</a></li>
-                                </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Campus Resources</h5>
-                                <ul>
-                                    <li><a href="https://davisconnects.colby.edu/">Davis Connects</a></li>
-                                </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <header class="topbar">
+        <div class="topbar-inner">
+            <div class="brand">Blueprint.edu</div>
+            <nav class="nav-links">
+                <a href="/">Home</a>
+                <a href="/roadmap/">Planner</a>
+                <a href="/dashboard/">Dashboard</a>
+            </nav>
         </div>
-    </details>
-    <details>
-        <summary>Sophmore</summary>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Recommended Courses</h5>
-                                <ul>
-                                    <li>Operating Systems</li>
-                                    <li>Computer Networks</li>
-                                    <li>Software Engineering</li>
-                                    <li>Database</li>
-                                </ul>
-                        </div>
-                    </div>
-                </div>
+    </header>
 
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Summer Programs</h5>
-                                <ul>
-                                    <li><a href="https://github.com/SimplifyJobs/Summer2026-Internships?tab=readme-ov-file">Apply Here!</a></li>
-                                </ul>
-                        </div>
-                    </div>
-                </div>
+    <main class="page">
+        <section class="hero">
+            <h1>Computer Science Roadmap</h1>
+            <p>
+                This first-pass CS roadmap gives students a starting point for classes,
+                programs, and preparation steps. In a later push, this page can become
+                fully year-specific.
+            </p>
+            <div class="year-tag" id="selectedYearTag">Selected year: Not chosen</div>
+        </section>
 
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Campus Resources</h5>
-                                <ul>
-                                    <li><a href="https://davisconnects.colby.edu/">Davis Connects</a></li>
-                                </ul>
-                        </div>
-                    </div>
-                </div>
+        <section class="grid">
+            <div class="card">
+                <h2>Recommended Classes</h2>
+                <ul>
+                    <li>Data Structures</li>
+                    <li>Operating Systems</li>
+                    <li>Computer Networks</li>
+                    <li>Databases</li>
+                    <li>Software Engineering</li>
+                </ul>
             </div>
-        </div>
-    </details>
-    <details>
-        <summary>Junior</summary>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Recommended Courses</h5>
-                                <ul>
-                                    <li>Operating Systems</li>
-                                    <li>Computer Networks</li>
-                                    <li>Software Engineering</li>
-                                    <li>Database</li>
-                                </ul>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Summer Programs</h5>
-                                <ul>
-                                    <li><a href="https://github.com/SimplifyJobs/Summer2026-Internships?tab=readme-ov-file">Apply Here!</a></li>
-                                </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Campus Resources</h5>
-                                <ul>
-                                    <li><a href="https://davisconnects.colby.edu/">Davis Connects</a></li>
-                                </ul>
-                        </div>
-                    </div>
-                </div>
+            <div class="card">
+                <h2>Programs / Experiences</h2>
+                <ul>
+                    <li>CodePath</li>
+                    <li>MLH Fellowship</li>
+                    <li>Microsoft Explore</li>
+                    <li>Hackathons and coding clubs</li>
+                    <li>Career fairs and networking events</li>
+                </ul>
             </div>
-        </div>
-    </details>
-    <details>
-        <summary>Senior</summary>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Recommended Courses</h5>
-                                <ul>
-                                    <li>Operating Systems</li>
-                                    <li>Computer Networks</li>
-                                    <li>Software Engineering</li>
-                                    <li>Database</li>
-                                </ul>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Summer Programs</h5>
-                                <ul>
-                                    <li><a href="https://github.com/SimplifyJobs/Summer2026-Internships?tab=readme-ov-file">Apply Here!</a></li>
-                                </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Campus Resources</h5>
-                                <ul>
-                                    <li><a href="https://davisconnects.colby.edu/">Davis Connects</a></li>
-                                </ul>
-                        </div>
-                    </div>
-                </div>
+            <div class="card">
+                <h2>Extra Resources</h2>
+                <ul>
+                    <li>Resume preparation</li>
+                    <li>GitHub portfolio building</li>
+                    <li>Technical interview practice</li>
+                    <li>Project-based experience</li>
+                    <li>Advice from upperclassmen and alumni</li>
+                </ul>
             </div>
-        </div>
-    </details>
+        </section>
 
-    <!-- Argon Scripts -->
-    <!-- Core -->
-    <script src="../static/js/jquery.min.js"></script>
-    <script src="../static/js/bootstrap.bundle.min.js"></script>
-    <script src="../static/js/js.cookie.js"></script>
-    <script src="../static/js/jquery.scrollbar.min.js"></script>
-    <script src="../static/js/jquery-scrollLock.min.js"></script>
-    <!-- Optional JS -->
-    <script src="../static/js/Chart.min.js"></script>
-    <script src="../static/js/Chart.extension.js"></script>
-    <!-- Argon JS -->
-    <script src="../static/js/argon.js?v=1.2.0"></script>
+        <div class="footer-actions">
+            <a class="btn btn-primary" href="/roadmap/">Choose another path</a>
+            <a class="btn btn-secondary" href="/dashboard/">View dashboard</a>
+        </div>
+    </main>
+
+    <script>
+        const selectedYear = sessionStorage.getItem("selected_class_year");
+        const yearTag = document.getElementById("selectedYearTag");
+
+        if (selectedYear) {
+            const formattedYear = selectedYear.charAt(0).toUpperCase() + selectedYear.slice(1);
+            yearTag.textContent = "Selected year: " + formattedYear;
+        }
+    </script>
 </body>
-
 </html>
