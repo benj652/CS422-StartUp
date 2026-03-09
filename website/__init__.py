@@ -3,7 +3,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 
-from .views import dashboard_blueprint, landing_blueprint, roadmap_blueprint
+
 
 from .consts import (
     DASHBOARD_DEFAULT_NAME,
@@ -52,11 +52,15 @@ def create_app():
 
     db.init_app(app)
 
-    app.register_blueprint(dashboard_blueprint, url_prefix=PREFIX + DASHBOARD_DEFAULT_NAME)
-    app.register_blueprint(landing_blueprint, url_prefix=PREFIX)
-    app.register_blueprint(roadmap_blueprint, url_prefix=PREFIX + ROADMAP_DEFAULT_NAME)
-
     with app.app_context():
+        from .models.tracking import User, Visit, Action
+
+        from .views import dashboard_blueprint, landing_blueprint, roadmap_blueprint
+
+        app.register_blueprint(dashboard_blueprint, url_prefix=PREFIX + DASHBOARD_DEFAULT_NAME)
+        app.register_blueprint(landing_blueprint, url_prefix=PREFIX)
+        app.register_blueprint(roadmap_blueprint, url_prefix=PREFIX + ROADMAP_DEFAULT_NAME)
+
         db.create_all()  
 
     return app

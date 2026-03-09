@@ -5,12 +5,12 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     # This stores the UUID for anonymous tracking until they "sign up" or identify
     uuid = db.Column(db.String(100), unique=True, nullable=False)
-    # Fields from your "Start Your Chapter" form
+    # Log info from form
     class_year = db.Column(db.String(50)) 
     major = db.Column(db.String(100))
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
 
-    # Relationship to see all their actions/visits easily
+    # Relationship to see user actions and visits easily
     visits = db.relationship('Visit', backref='visitor', lazy=True)
     actions = db.relationship('Action', backref='actor', lazy=True)
 
@@ -27,6 +27,7 @@ class Visit(db.Model):
 class Action(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     atype = db.Column(db.String(200), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
     timestamp = db.Column(db.DateTime, default=db.func.current_timestamp())
 
 class Error(db.Model):
