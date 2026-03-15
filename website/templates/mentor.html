@@ -22,20 +22,38 @@
                     <h5 class="text-white font-weight-bolder">Blueprint<span class="text-info">.edu</span></h5>
                 </div>
                 
-                <div class="nav flex-column px-2">
-                    <a href="#" class="nav-link text-white active-link mb-3"><i class="fas fa-compass me-3"></i> Explore</a>
-                    <a href="#" class="nav-link text-white opacity-6 mb-3"><i class="fas fa-book-open me-3"></i> Library</a>
-                    <a href="#" class="nav-link text-white opacity-6 mb-3"><i class="fas fa-folder me-3"></i> Files</a>
-                    <a href="#" class="nav-link text-white opacity-6 mb-3"><i class="fas fa-history me-3"></i> History</a>
+                <div class="px-2 mt-2">
+                    <div class="profile-data-item mb-4">
+                        <label class="text-sm text-uppercase text-info font-weight-bolder opacity-7 mb-1 d-block">Class Year</label>
+                        <p class="text-white text-sm font-weight-bold mb-0">Sophomore</p>
+                    </div>
+            
+                    <div class="profile-data-item mb-4">
+                        <label class="text-sm text-uppercase text-info font-weight-bolder opacity-7 mb-1 d-block">Major</label>
+                        <p class="text-white text-sm font-weight-bold mb-0">Computer Science</p>
+                    </div>
+            
+                    <div class="profile-data-item mb-4">
+                        <label class="text-sm text-uppercase text-info font-weight-bolder opacity-7 mb-1 d-block">Career Path</label>
+                        <p class="text-white text-sm font-weight-bold mb-0">Software Engineering</p>
+                    </div>
                 </div>
+            
+                <div class="mt-auto px-2">
+                    <hr class="horizontal light opacity-2 mb-4">
 
-
+                    <div class="p-3 upgrade-card-glass text-center mt-2">
+                        <p class="text-xxs text-white mb-2 opacity-8">Need more detail?</p>
+                        <button class="btn btn-sm btn-mentor w-200 mb-1">View Full Roadmap</button>
+                    </div>
+                </div>
             </div>
 
             <div class="col-lg-10 col-12 d-flex flex-column h-100 p-0 position-relative">
                 <div class="p-3 d-flex align-items-center justify-content-between">
                     <div class="dropdown">
-                        <button class="btn btn-outline-white btn-sm dropdown-toggle mb-0" type="button">Back Home</button>
+                        <a href="{{ url_for('homepage.homepage') }}" class="nav-link text-white opacity-6 text-xs mb-3">
+                        <button class="btn btn-outline-white btn-sm dropdown-toggle mb-0" type="button">Back Home</button> </a>
                     </div>
                     <div class="user-profile-small d-flex align-items-center">
                         <div class="text-end me-3">
