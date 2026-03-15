@@ -24,6 +24,41 @@ color: white;
   box-shadow: 0 0 25px 10px rgba(0, 123, 255, 0.8);
 }
 
+/* Ensure both buttons have the exact same width */
+.custom-btn-width {
+  min-width: 300px; /* Adjust this value to fit your text */
+  display: inline-block;
+}
+
+/* Meet Your Mentor Button Styling (Matching Feedback Gold) */
+.btn-mentor {
+  background-image: linear-gradient(310deg, #f53939 0%, #fbcf33 100%); /* Material Kit Warning Gradient */
+  color: white !important;
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Gold Glow Effect */
+.glow-gold {
+  box-shadow: 0 0 15px 2px rgba(251, 207, 51, 0.4);
+  transition: all 0.3s ease-in-out;
+}
+
+.glow-gold:hover {
+  box-shadow: 0 0 25px 8px rgba(251, 207, 51, 0.7);
+  transform: translateY(-2px); /* Subtle lift on hover */
+  color: #fff !important;
+}
+
+/* Standardizing the Roadmap button transition for consistency */
+.btn-roadmap {
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-roadmap:hover {
+  transform: translateY(-2px);
+}
+
 /* Start Your Chapter Heading */
 .modal-title-custom {
   color: #032a52 !important; /* Deep Navy Blue */
@@ -57,3 +92,98 @@ color: white;
   padding: 10px !important;
 }
 
+/* Welcoming Background Glows */
+.glow-bg-1 {
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(26, 173, 193, 0.15) 0%, rgba(26, 173, 193, 0) 70%);
+  z-index: 1;
+}
+
+.glow-bg-2 {
+  position: absolute;
+  bottom: -5%;
+  left: 15%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(251, 207, 51, 0.1) 0%, rgba(251, 207, 51, 0) 70%);
+  z-index: 1;
+}
+
+/* Glassmorphism V2 */
+.glass-sidebar-v2 {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.action-card-glass {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.action-card-glass:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-5px);
+  border-color: rgba(251, 207, 51, 0.3);
+}
+
+/* Floating Input Style */
+.max-width-800 { max-width: 800px; }
+
+.floating-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.glass-input {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 15px !important;
+  padding: 15px 50px 15px 20px !important;
+  color: white !important;
+}
+
+.send-icon-btn {
+  position: absolute;
+  right: 10px;
+  background: white;
+  border: none;
+  border-radius: 10px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.send-icon-btn:hover {
+  background: #fbcf33;
+  transform: scale(1.1);
+}
+
+/* Typography Enhancements */
+.welcome-text {
+  font-size: 4rem;
+  font-weight: 700;
+  background: linear-gradient(to right, #ffffff, #fbcf33);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.active-link {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.icon-box-purple { color: #d633ff; background: rgba(214, 51, 255, 0.1); width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+.icon-box-blue { color: #1AADC1; background: rgba(26, 173, 193, 0.1); width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+.icon-box-gold { color: #fbcf33; background: rgba(251, 207, 51, 0.1); width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center; }

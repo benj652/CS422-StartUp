@@ -67,6 +67,11 @@ def submit_info():
 def feedback_page():
     return render_template('feedback.html')
 
+@landing_blueprint.route('/mentor')
+def mentor_page():
+    """Serves the AI Mentor chat page."""
+    log_visit(page="mentor.html") 
+    return render_template('mentor.html')
 
 @landing_blueprint.route('/feedback', methods=['POST'])
 def submit_feedback():
