@@ -84,6 +84,10 @@
     <!-- <img src="../assets/img/map-icon.png" -->
       <i class="fa-map opacity-6 me-2 text-md text-white"></i>
     <button type="button" id="roadmap-button" class="btn btn-roadmap glow-blue fs-5 mt-5 px-5 " data-bs-toggle="modal" data-bs-target="#roadmapModal"> Find your Roadmap </button>
+
+    <div class="mt-3">
+      <a href="{{ url_for('homepage.mentor_page') }}" id="mentor-button" class="btn btn-mentor glow-gold fs-5 px-5 custom-btn-width"> Meet Your Mentor </a>
+    </div>
   </div>
   <div class="modal fade" id="roadmapModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">

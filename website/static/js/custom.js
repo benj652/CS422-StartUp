@@ -1,10 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
     const roadmapBtn = document.getElementById('roadmap-button');
+    const mentorBtn = document.getElementById('mentor-button');
 
     if (roadmapBtn) {
         roadmapBtn.addEventListener('click', function() {
             // Track that the user opened the modal
             trackAction('roadmap_modal_open');
+        });
+    }
+    if (mentorBtn) {
+        mentorBtn.addEventListener('click', function() {
+            trackAction('mentor_click');
         });
     }
 });

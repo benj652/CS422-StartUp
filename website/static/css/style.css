@@ -24,6 +24,41 @@ color: white;
   box-shadow: 0 0 25px 10px rgba(0, 123, 255, 0.8);
 }
 
+/* Ensure both buttons have the exact same width */
+.custom-btn-width {
+  min-width: 300px; /* Adjust this value to fit your text */
+  display: inline-block;
+}
+
+/* Meet Your Mentor Button Styling (Matching Feedback Gold) */
+.btn-mentor {
+  background-image: linear-gradient(310deg, #f53939 0%, #fbcf33 100%); /* Material Kit Warning Gradient */
+  color: white !important;
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Gold Glow Effect */
+.glow-gold {
+  box-shadow: 0 0 15px 2px rgba(251, 207, 51, 0.4);
+  transition: all 0.3s ease-in-out;
+}
+
+.glow-gold:hover {
+  box-shadow: 0 0 25px 8px rgba(251, 207, 51, 0.7);
+  transform: translateY(-2px); /* Subtle lift on hover */
+  color: #fff !important;
+}
+
+/* Standardizing the Roadmap button transition for consistency */
+.btn-roadmap {
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-roadmap:hover {
+  transform: translateY(-2px);
+}
+
 /* Start Your Chapter Heading */
 .modal-title-custom {
   color: #032a52 !important; /* Deep Navy Blue */
