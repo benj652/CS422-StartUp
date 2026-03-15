@@ -1,13 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>AI Mentor - Blueprint.edu</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>AI Mentor | Blueprint.edu</title>
+    
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700,900" />
     <link id="pagestyle" href="{{ url_for('static', filename='assets/css/material-kit.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
 </head>
-<body style="background-color: #142231; color: white; padding: 50px;">
-    <h1>Meet Your Mentor</h1>
-    <p>The AI Chatbot interface will go here.</p>
-    <a href="{{ url_for('homepage.homepage') }}" class="btn btn-primary">Back to Home</a>
+
+<body class="mentor-page" style="background-color: #142231; overflow: hidden;">
+    <div class="glow-bg-1"></div>
+    <div class="glow-bg-2"></div>
+
+    <div class="container-fluid vh-100 position-relative z-index-2">
+        <div class="row h-100">
+            <div class="col-lg-2 d-none d-lg-flex flex-column glass-sidebar-v2 p-4">
+                <div class="mb-5 px-2">
+                    <h5 class="text-white font-weight-bolder">Blueprint<span class="text-info">.edu</span></h5>
+                </div>
+                
+                <div class="nav flex-column px-2">
+                    <a href="#" class="nav-link text-white active-link mb-3"><i class="fas fa-compass me-3"></i> Explore</a>
+                    <a href="#" class="nav-link text-white opacity-6 mb-3"><i class="fas fa-book-open me-3"></i> Library</a>
+                    <a href="#" class="nav-link text-white opacity-6 mb-3"><i class="fas fa-folder me-3"></i> Files</a>
+                    <a href="#" class="nav-link text-white opacity-6 mb-3"><i class="fas fa-history me-3"></i> History</a>
+                </div>
+
+
+            </div>
+
+            <div class="col-lg-10 col-12 d-flex flex-column h-100 p-0 position-relative">
+                <div class="p-3 d-flex align-items-center justify-content-between">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-white btn-sm dropdown-toggle mb-0" type="button">Back Home</button>
+                    </div>
+                    <div class="user-profile-small d-flex align-items-center">
+                        <div class="text-end me-3">
+                            <p class="text-white text-xs mb-0 font-weight-bold">Marcus Aurelius</p>
+                            <p class="text-white text-xxs opacity-5 mb-0">CS Major</p>
+                        </div>
+                        <img src="https://ui-avatars.com/api/?name=MA&background=fbcf33&color=fff" class="avatar avatar-sm rounded-circle">
+                    </div>
+                </div>
+
+                <div class="flex-grow-1 d-flex flex-column align-items-center justify-content-center px-4" id="chat-container">
+                    <div class="text-center mb-5">
+                        <h1 class="welcome-text mb-2">Hey there!</h1>
+                        <h2 class="text-white opacity-4 fw-light">How can I guide you today?</h2>
+                    </div>
+
+                    <div class="row w-100 max-width-800">
+                        <div class="col-md-4 mb-3">
+                            <div class="action-card-glass p-4 h-100">
+                                <div class="icon-box-purple mb-3"><i class="fas fa-globe"></i></div>
+                                <h6 class="text-white text-sm">What's happening?</h6>
+                                <p class="text-xxs text-white opacity-5 mb-0">Tell me a little bit about yourself so we can figure out what's next</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="action-card-glass p-4 h-100">
+                                <div class="icon-box-blue mb-3"><i class="fas fa-chart-line"></i></div>
+                                <h6 class="text-white text-sm">Roadmap Discovery</h6>
+                                <p class="text-xxs text-white opacity-5 mb-0">Already decided on a major? Let's give you an outline to get you to your goal</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="action-card-glass p-4 h-100">
+                                <div class="icon-box-gold mb-3"><i class="fas fa-file-alt"></i></div>
+                                <h6 class="text-white text-sm">Beyond the Classroom</h6>
+                                <p class="text-xxs text-white opacity-5 mb-0">Curated resources from experts to help you outside of class</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-4 d-flex justify-content-center">
+                    <div class="floating-input-container w-100 max-width-800">
+                        <input type="text" class="form-control glass-input" placeholder="Ask something...">
+                        <button class="send-icon-btn"><i class="fas fa-arrow-up"></i></button>
+                    </div>
+                </div>
+                <p class="text-center text-xxs text-white opacity-3 pb-3">Join the Blueprint community for more insights <a href="#" class="text-white text-decoration-underline">Join Discord</a></p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
