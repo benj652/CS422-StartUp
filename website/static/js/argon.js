@@ -819,43 +819,36 @@ if($map.length) {
 // Bars chart
 //
 
+//
+// Bars chart
+//
+
 var BarsChart = (function() {
 
-	//
-	// Variables
-	//
+    var $chart = $('#chart-bars');
 
-	var $chart = $('#chart-bars');
+    function initChart($chart) {
+        // UPDATED: Read real data from HTML attributes
+        var labels = $chart.data('initial-labels');
+        var counts = $chart.data('initial-counts');
 
+        var ordersChart = new Chart($chart, {
+            type: 'bar',
+            data: {
+                labels: labels, // Now dynamic: ['Freshman', 'Sophomore', etc.]
+                datasets: [{
+                    label: 'Students',
+                    data: counts // Now dynamic: counts from your DB
+                }]
+            }
+        });
 
-	//
-	// Methods
-	//
+        $chart.data('chart', ordersChart);
+    }
 
-	// Init chart
-	function initChart($chart) {
-
-		// Create chart
-		var ordersChart = new Chart($chart, {
-			type: 'bar',
-			data: {
-				labels: ['Freshman', 'Sophomore', 'Junior', 'Senior'],
-				datasets: [{
-					label: 'Students',
-					data: [45, 32, 28, 18]
-				}]
-			}
-		});
-
-		// Save to jQuery object
-		$chart.data('chart', ordersChart);
-	}
-
-
-	// Init chart
-	if ($chart.length) {
-		initChart($chart);
-	}
+    if ($chart.length) {
+        initChart($chart);
+    }
 
 })();
 
