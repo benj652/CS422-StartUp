@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 from website import db
-from ..models import User, Visit, Action
+from ..models import User, Visit, Action, Feedback
 from ..consts import DASHBOARD_DEFAULT_NAME, PREFIX, HTML_EXTENSION
 from sqlalchemy import func
 from datetime import datetime, timedelta
@@ -69,6 +69,7 @@ def dashboard():
             'bounce_rate': bounce_rate
         })
 
+    feedback_list = Feedback.query.order_by(Feedback.created_at.desc()).all() 
     return render_template(
         DASHBOARD_DEFAULT_NAME + HTML_EXTENSION,
         total_users=total_users,
@@ -79,5 +80,6 @@ def dashboard():
         week_0_data=week_0_data,
         week_1_data=week_1_data,
         week_2_data=week_2_data,
-        page_stats=sorted(page_stats, key=lambda x: x['visitors'], reverse=True)
+        page_stats=sorted(page_stats, key=lambda x: x['visitors'], reverse=True),
+        feedback_list=feedback_list
     )

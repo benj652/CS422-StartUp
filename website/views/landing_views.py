@@ -109,6 +109,7 @@ def submit_feedback():
     feedback = Feedback(content=content, user_id=user_id)
     db.session.add(feedback)
     db.session.commit()
+    print("Feedback ID:", feedback.id)
 
     flash('Thank you for your feedback! We really appreciate it.')
     return redirect(url_for('homepage.feedback_page'))
