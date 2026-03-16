@@ -56,7 +56,7 @@ def dashboard():
         ('onboarding.html', 'Onboarding'), # Ensure these match your log_visit strings
         ('cs', 'CS'),
         ('econ', 'Economics'),
-        ('feedback', 'Feedback'),
+        ('feedback.html', 'Feedback'),
     ]
     page_stats = []
 
