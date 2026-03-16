@@ -271,6 +271,50 @@
             </div>
           </div>
         </div>
+        <div class="col-xl-4">
+          <div class="card">
+            <div class="card-header border-0">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h3 class="mb-0">User Feedback</h3>
+                </div>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <!-- Feedback table -->
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">User ID</th>
+                    <th scope="col">Feedback</th>
+                    <th scope="col">Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% if feedback_list %}
+                    {% for feedback in feedback_list %}
+                  <tr>
+                    <th scope="row">
+                      {{ feedback.user_id }}
+                    </th>
+                    <td>
+                      {{ feedback.content }}
+                    </td>
+                    <td>
+                      {{ feedback.created_at.strftime("%Y-%m-%d")}}
+                    </td>
+                  </tr>
+                    {% endfor %}
+                  {% else %}
+                  <tr>
+                    <td colspan="3" class="text-center"> Currently no feedback </td>
+                  </tr>
+                  {% endif %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
       
     </div>
