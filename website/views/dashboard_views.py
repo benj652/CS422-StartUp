@@ -37,31 +37,45 @@ def dashboard():
         week_1_data.append(get_rate_for_date(target_day - timedelta(days=7)))
         week_2_data.append(get_rate_for_date(target_day - timedelta(days=14)))
 
-    # 3. Optimized Page Stats (One query per page instead of one per visit)s
+    # 3. Optimized Page Stats
     tracked_pages = [
         ('homepage.html', 'Home'),
-        ('roadmap', 'Roadmap'),
+        ('onboarding.html', 'Onboarding'), # Ensure these match your log_visit strings
         ('cs', 'CS'),
         ('econ', 'Economics'),
+        ('feedback', 'Feedback'),
     ]
     page_stats = []
 
     for page_name, display_name in tracked_pages:
-        # Get counts in bulk
+        # 1. Get basic counts
         total_p_visits = Visit.query.filter_by(page=page_name).count()
         unique_p_users = db.session.query(func.count(Visit.user_id.distinct())).filter(Visit.page == page_name).scalar()
         
-        # Bounce Calculation: 
-        # Count visits where NO action exists for that user within 30 mins of visit timestamp
-        bounces = db.session.query(Visit).filter(
-            Visit.page == page_name,
-            ~Action.query.filter(
-                Action.user_id == Visit.user_id,
-                Action.timestamp >= Visit.timestamp,
-                Action.timestamp <= Visit.timestamp + timedelta(minutes=30)
-            ).exists()
-        ).count()
+        # 2. Calculate Bounces
+        bounces = 0
+        all_visits_to_page = Visit.query.filter_by(page=page_name).all()
+        
+        for v in all_visits_to_page:
+            three_mins_later = v.timestamp + timedelta(minutes=3)
+            
+            has_further_activity = db.session.query(
+                db.session.query(Visit).filter(
+                    Visit.user_id == v.user_id,
+                    Visit.timestamp > v.timestamp,
+                    Visit.timestamp <= three_mins_later
+                ).exists() | 
+                db.session.query(Action).filter(
+                    Action.user_id == v.user_id,
+                    Action.timestamp > v.timestamp,
+                    Action.timestamp <= three_mins_later
+                ).exists()
+            ).scalar()
 
+            if not has_further_activity:
+                bounces += 1
+
+        # 3. Calculate Rate and Append (OUTSIDE the 'v' loop, INSIDE the 'page_name' loop)
         bounce_rate = round((bounces / total_p_visits * 100), 1) if total_p_visits > 0 else 0
 
         page_stats.append({

@@ -79,6 +79,7 @@ def submit_info():
 
 @landing_blueprint.route('/feedback')
 def feedback_page():
+    log_visit(page="feedback.html")
     return render_template('feedback.html')
 
 
