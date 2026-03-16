@@ -1,135 +1,89 @@
-<!--
-=========================================================
-* Material Kit 3 - v3.1.0
-=========================================================
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blueprint.edu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/homepage.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/footer.css') }}"
+    />
+  </head>
 
-* Product Page:  https://www.creative-tim.com/product/material-kit 
-* Copyright 2024 Creative Tim (https://www.creative-tim.com)
-* Coded by www.creative-tim.com
+  <body>
+    <!-- Header -->
+    <header class="site-header">
+      <a class="logo" href="#">
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Blueprint Career Roadmaps" class="logo-img" />
+      </a>
+      <a class="btn-feedback" href="{{ url_for('homepage.feedback_page') }}">Feedback</a>
+    </header>
 
- =========================================================
+    <!-- Hero -->
+    <main class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">Your personalized roadmap</p>
+        <h1 class="hero-title">Navigate your degree.<br />Unlock your career.</h1>
+        <p class="hero-desc">
+          Find a personalized roadmap that bridges your coursework to the career
+          you want — tailored to your major and year.
+        </p>
+        <a class="btn-cta" href="{{ url_for('homepage.onboarding') }}">Get Started</a>
+      </div>
 
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
-<!DOCTYPE html>
-<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+      <div class="hero-visual">
+        <img
+          src="{{ url_for('static', filename='img/undraw_road-to-knowledge_f9zn.svg') }}"
+          alt="Road to knowledge illustration"
+          class="hero-img"
+        />
+      </div>
+    </main>
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
-  <link rel="apple-touch-icon" sizes="76x76" href="{{ url_for('static', filename='assets/img/apple-icon.png') }}">
-  <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/img/favicon.png') }}">
-  
-  <title>Homepage</title>
+    {% include 'footer.html' %}
 
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700,900" />
-  
-  <link href="{{ url_for('static', filename='assets/css/nucleo-icons.css') }}" rel="stylesheet" />
-  <link href="{{ url_for('static', filename='assets/css/nucleo-svg.css') }}" rel="stylesheet" />
-  
-  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-  
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
-  <link id="pagestyle" href="{{ url_for('static', filename='assets/css/material-kit.css') }}" rel="stylesheet" />
-  
-  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
-</head>
-
-<body class="contact-us" style="background-color: #142231;">
-  <!-- Navbar -->
-  <div class="container position-sticky z-index-sticky top-0 bg-transparent text-white">
-    <div class="row">
-      <div class="col-12">
-        <nav class="navbar navbar-expand-lg border-radius-lg mt-4 top-0 z-index-3 shadow position-absolute my-3 p-2 start-0 end-0 mx-4 ">
-          <div class="container-fluid px-0">
-            <a class="navbar-brand font-weight-bolder ms-sm-3 text-sm text-white" href="https://demos.creative-tim.com/material-kit/index" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom" target="_blank">
-              Blueprint.edu
-            </a>
-            <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100 text-white" id="navigation">
-              <ul class="navbar-nav navbar-nav-hover ms-auto">
-                <li class="nav-item dropdown dropdown-hover mx-2">
-                  <a class="nav-link ps-2 d-flex cursor-pointer align-items-center font-weight-semibold" id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="material-symbols-rounded opacity-6 me-2 text-md text-white">dashboard</i>
-                    Home 
-                  </a>
-                </li>
-                <li class="nav-item dropdown dropdown-hover mx-2">
-                  <a class="nav-link ps-2 d-flex cursor-pointer align-items-center font-weight-semibold" id="dropdownMenuBlocks" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="material-symbols-rounded opacity-6 me-2 text-md text-white">view_day</i>
-                    Blueprints
-                  </a>
-                </li>
-                <li class="nav-item dropdown dropdown-hover mx-2">
-                  <a class="nav-link ps-2 d-flex cursor-pointer align-items-center font-weight-semibold" id="dropdownMenuDocs" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="material-symbols-rounded opacity-6 me-2 text-md">article</i>
-                    Resources 
-                  </a>
-                </li>
-                <li class="nav-item my-auto ms-3 ms-lg-0">
-                  <a href="{{ url_for('homepage.feedback_page') }}" class="btn  bg-gradient-warning  mb-0 mt-2 mt-md-0">Feedback</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-        <!-- End Navbar -->
+    <!-- Disclosure modal — shown on first visit only -->
+    <div class="disc-overlay" id="discOverlay">
+      <div class="disc-box">
+        <p class="disc-text">
+          <strong>Important notice:</strong> Blueprint is an experimental prototype
+          developed as part of a university software engineering course (CS422).
+          It is not a commercial product, a certified academic advising tool, or an
+          official university service. Any data collected is used solely for educational
+          research purposes. By using this application, you acknowledge that it should
+          not be relied upon for important academic or career decisions. The developers
+          assume no liability for any loss, harm, or damages resulting from the use of this prototype.
+        </p>
+        <p class="disc-cookie">
+          This site uses cookies and basic analytics to measure usage and improve the product.
+          See our <a href="{{ url_for('homepage.privacy') }}">Privacy Policy</a> and
+          <a href="{{ url_for('homepage.cookie_policy') }}">Cookie Policy</a>.
+        </p>
+        <button class="disc-btn" id="discClose">I understand</button>
       </div>
     </div>
-  </div>
 
-  <div class ="text-center text-nowrap position-absolute top-50 start-50 translate-middle">
-    
-    <div class ="fs-2">Navigate Your Degree. Unlock your Career</div> 
-    <div class ="fs-3 bridge-description">Find your personalized roadmap to take you from classes to industry</div>
-    <!-- <img src="../assets/img/map-icon.png" -->
-      <i class="fa-map opacity-6 me-2 text-md text-white"></i>
-    <button type="button" id="roadmap-button" class="btn btn-roadmap glow-blue fs-5 mt-5 px-5 " data-bs-toggle="modal" data-bs-target="#roadmapModal"> Find your Roadmap </button>
-  </div>
-  <div class="modal fade" id="roadmapModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content border-radius-xl shadow-lg border-0">
-        <div class="modal-header border-0 justify-content-center pt-5">
-          <h2 class="modal-title modal-title-custom fs-1" id="roadmapModalLabel">Start Your Chapter</h2>
-        </div>
-        <div class="modal-body px-5">
-          <form role="form" method="POST" action="{{ url_for('homepage.submit_info') }}">
-            
-            <div class="mb-4">
-              <label class="form-label form-label-custom fs-5">What is your class year?</label>
-              <select class="form-select form-select-custom" name="class_year" required>
-                <option value="" disabled selected>Select Year</option>
-                <option value="Freshman">Freshman</option>
-                <option value="Sophomore">Sophomore</option>
-                <option value="Junior">Junior</option>
-                <option value="Senior">Senior</option>
-              </select>
-            </div>
-  
-            <div class="mb-5">
-              <label class="form-label form-label-custom fs-5">What is your major?</label>
-              <select class="form-select form-select-custom" name="major" required>
-                <option value="" disabled selected>Select Major</option>
-                <option value="cs">Computer Science</option>
-                <option value="econ">Economics</option>
-              </select>
-            </div>
-  
-            <div class="text-center pb-5">
-              <button type="submit" class="btn btn-submit-custom w-100 fs-4 py-3 shadow">
-                Submit
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--   Core JS Files   -->
-  <script src="{{ url_for('static', filename='assets/js/core/popper.min.js') }}" type="text/javascript"></script>
-  <script src="{{ url_for('static', filename='assets/js/core/bootstrap.min.js') }}" type="text/javascript"></script>
-  <script src="{{ url_for('static', filename='assets/js/plugins/perfect-scrollbar.min.js') }}" type="text/javascript"></script>
-  <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
-  
-</body>
-
+    <script>
+      (function () {
+        var overlay = document.getElementById('discOverlay');
+        if (!localStorage.getItem('disc_seen')) {
+          overlay.classList.add('active');
+        }
+        document.getElementById('discClose').addEventListener('click', function () {
+          overlay.classList.remove('active');
+          localStorage.setItem('disc_seen', '1');
+        });
+      })();
+    </script>
+  </body>
 </html>

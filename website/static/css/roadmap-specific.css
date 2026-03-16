@@ -1,0 +1,228 @@
+:root {
+  --bg: #f8f7f3;
+  --text: #0f172a;
+  --muted: #64748b;
+  --accent: #127be4;
+  --border: #e2ded6;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Header ─────────────────────────────────────────────── */
+.rm-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  border-bottom: 1px solid var(--border);
+}
+
+.rm-logo-link {
+  display: block;
+  text-decoration: none;
+}
+
+.rm-logo-img {
+  height: 40px;
+  width: auto;
+}
+
+.rm-feedback-btn {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  border: 1.5px solid var(--border);
+  padding: 9px 22px;
+  border-radius: 100px;
+  background: white;
+  transition: border-color 0.18s, color 0.18s;
+  white-space: nowrap;
+}
+
+.rm-feedback-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ── Main layout ────────────────────────────────────────── */
+.rm-main {
+  flex: 1;
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 52px 24px 80px;
+}
+
+/* ── Profile header ─────────────────────────────────────── */
+.rm-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
+.rm-title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.07;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+}
+
+.rm-subtitle {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.65;
+  max-width: 620px;
+  margin-bottom: 24px;
+}
+
+/* ── Profile pills ──────────────────────────────────────── */
+.rm-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+.rm-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  background: white;
+  border: 1.5px solid var(--border);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.rm-pill-label {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* ── Divider ────────────────────────────────────────────── */
+.rm-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin-bottom: 32px;
+}
+
+/* ── Highlight note ─────────────────────────────────────── */
+.rm-highlight {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  padding: 16px 20px;
+  font-size: 0.9375rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+/* ── Section label ──────────────────────────────────────── */
+.rm-section-label {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+/* ── Card grid ──────────────────────────────────────────── */
+.rm-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+/* ── Cards ──────────────────────────────────────────────── */
+.rm-card {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 24px 22px;
+}
+
+.rm-card-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.rm-card-title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.rm-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.rm-card ul li {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.6;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.rm-card ul li:last-child {
+  border-bottom: none;
+}
+
+.rm-card ul li a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.rm-card ul li a:hover {
+  text-decoration: underline;
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .rm-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .rm-header {
+    padding: 18px 24px;
+  }
+
+  .rm-main {
+    padding: 36px 20px 60px;
+  }
+}

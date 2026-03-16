@@ -5,9 +5,12 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     # This stores the UUID for anonymous tracking until they "sign up" or identify
     uuid = db.Column(db.String(100), unique=True, nullable=False)
-    # Log info from form
-    class_year = db.Column(db.String(50)) 
+    # Log info from onboarding form
+    class_year = db.Column(db.String(50))
     major = db.Column(db.String(100))
+    career_goal = db.Column(db.String(100))
+    career_stage = db.Column(db.String(100))
+    priority = db.Column(db.String(100))
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
 
     # Relationship to see user actions and visits easily

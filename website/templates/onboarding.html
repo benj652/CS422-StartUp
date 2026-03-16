@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Get Started · Blueprint</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/onboarding.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/footer.css') }}"
+    />
+  </head>
+
+  <body>
+    <header class="ob-header">
+      <a href="{{ url_for('homepage.homepage') }}" class="ob-logo-link">
+        <img
+          src="{{ url_for('static', filename='img/logo.png') }}"
+          alt="Blueprint"
+          class="ob-logo-img"
+        />
+      </a>
+    </header>
+
+    <main class="ob-main">
+      <form method="POST" action="{{ url_for('homepage.submit_info') }}">
+        <div class="ob-intro">
+          <h1 class="ob-page-title">Let's build your roadmap</h1>
+          <p class="ob-page-sub">
+            Five quick questions to personalise your path.
+          </p>
+        </div>
+
+        <!-- Q1: Class Year -->
+        <section class="ob-section">
+          <p class="ob-q-num">01</p>
+          <h2 class="ob-q-title">What year are you?</h2>
+          <div class="ob-options ob-options--4col">
+            <label class="ob-card">
+              <input type="radio" name="class_year" value="Freshman" required />
+              <span class="ob-card-inner">
+                <span class="ob-card-title">Freshman</span>
+                <span class="ob-card-sub">1st year</span>
+              </span>
+            </label>
+            <label class="ob-card">
+              <input type="radio" name="class_year" value="Sophomore" />
+              <span class="ob-card-inner">
+                <span class="ob-card-title">Sophomore</span>
+                <span class="ob-card-sub">2nd year</span>
+              </span>
+            </label>
+            <label class="ob-card">
+              <input type="radio" name="class_year" value="Junior" />
+              <span class="ob-card-inner">
+                <span class="ob-card-title">Junior</span>
+                <span class="ob-card-sub">3rd year</span>
+              </span>
+            </label>
+            <label class="ob-card">
+              <input type="radio" name="class_year" value="Senior" />
+              <span class="ob-card-inner">
+                <span class="ob-card-title">Senior</span>
+                <span class="ob-card-sub">4th year</span>
+              </span>
+            </label>
+          </div>
+        </section>
+
+        <!-- Q2: Major -->
+        <section class="ob-section">
+          <p class="ob-q-num">02</p>
+          <h2 class="ob-q-title">What's your major?</h2>
+          <div class="ob-options ob-options--2col">
+            <label class="ob-card">
+              <input type="radio" name="major" value="cs" required />
+              <span class="ob-card-inner">
+                <span class="ob-card-title">Computer Science</span>
+              </span>
+            </label>
+            <label class="ob-card">
+              <input type="radio" name="major" value="econ" />
+              <span class="ob-card-inner">
+                <span class="ob-card-title">Economics</span>
+              </span>
+            </label>
+          </div>
+        </section>
+
+        <!-- Q3: Career Goal -->
+        <section class="ob-section">
+          <p class="ob-q-num">03</p>
+          <h2 class="ob-q-title">What's your career goal?</h2>
+          <div class="ob-options ob-options--3col">
+            <label class="ob-card">
+              <input
+                type="radio"
+                name="career_goal"
+                value="software_engineer"
+                required
+              />
+              <span class="ob-card-inner">
+                <span class="ob-card-title">Software Engineer</span>
+              </span>
+            </label>
+            <label class="ob-card">
+              <input type="radio" name="career_goal" value="data_science" />
+              <span class="ob-card-inner">
+                <span class="ob-card-title">Data Scientist / Analyst</span>
+              </span>
+            </label>
+            <label class="ob-card">
+              <input type="radio" name="career_goal" value="product_manager" />
+              <span class="ob-card-inner">
+                <span class="ob-card-title">Product Manager</span>
+              </span>
+            </label>
+            <label class="ob-card">
+              <input type="radio" name="career_goal" value="finance" />
+              <span class="ob-card-inner">
+                <span class="ob-card-title">Finance / Banking</span>
+              </span>
+            </label>
+            <label class="ob-card">
+              <input type="radio" name="career_goal" value="consulting" />
+              <span class="ob-card-inner">
+                <span class="ob-card-title">Consulting</span>
+              </span>
+            </label>
+            <label class="ob-card">
+              <input type="radio" name="career_goal" value="exploring" />
+              <span class="ob-card-inner">
+                <span class="ob-card-title">Still Exploring</span>
+              </span>
+            </label>
+          </div>
+        </section>
+
+        <!-- Q4: Career Stage -->
+        <section class="ob-section">
+          <p class="ob-q-num">04</p>
+          <h2 class="ob-q-title">Where are you in your career journey?</h2>
+          <div class="ob-options ob-options--2col">
+            <label class="ob-card">
+              <input
+                type="radio"
+                name="career_stage"
+                value="no_internships"
+                required
+              />
+              <span class="ob-card-inner">
+                <span class="ob-card-title">No internships yet</span>
+                <span class="ob-card-sub">Just getting started</span>
+              </span>
+            </label>
+            <label class="ob-card">
+              <input type="radio" name="career_stage" value="applying" />
+              <span class="ob-card-inner">
+                <span class="ob-card-title">Currently applying</span>
+                <span class="ob-card-sub">In the recruiting process</span>
+              </span>
+            </label>
+            <label class="ob-card">
+              <input type="radio" name="career_stage" value="has_internship" />
+              <span class="ob-card-inner">
+                <span class="ob-card-title">Had 1+ internship</span>
+                <span class="ob-card-sub">Building experience</span>
+              </span>
+            </label>
+            <label class="ob-card">
+              <input type="radio" name="career_stage" value="has_offer" />
+              <span class="ob-card-inner">
+                <span class="ob-card-title">Have a full-time offer</span>
+                <span class="ob-card-sub">Finishing strong</span>
+              </span>
+            </label>
+          </div>
+        </section>
+
+        <!-- Q5: Priority -->
+        <section class="ob-section">
+          <p class="ob-q-num">05</p>
+          <h2 class="ob-q-title">What matters most to you right now?</h2>
+          <div class="ob-options ob-options--2col">
+            <label class="ob-card">
+              <input type="radio" name="priority" value="classes" required />
+              <span class="ob-card-inner">
+                <span class="ob-card-title">Finding the right classes</span>
+                <span class="ob-card-sub">Build the best academic path</span>
+              </span>
+            </label>
+            <label class="ob-card">
+              <input type="radio" name="priority" value="internship" />
+              <span class="ob-card-inner">
+                <span class="ob-card-title">Landing an internship</span>
+                <span class="ob-card-sub">Break into the industry</span>
+              </span>
+            </label>
+            <label class="ob-card">
+              <input type="radio" name="priority" value="projects" />
+              <span class="ob-card-inner">
+                <span class="ob-card-title">Building projects</span>
+                <span class="ob-card-sub">Grow my portfolio</span>
+              </span>
+            </label>
+            <label class="ob-card">
+              <input type="radio" name="priority" value="networking" />
+              <span class="ob-card-inner">
+                <span class="ob-card-title">Networking &amp; recruiting</span>
+                <span class="ob-card-sub">Expand my connections</span>
+              </span>
+            </label>
+          </div>
+        </section>
+
+        <div class="ob-footer">
+          <button type="submit" class="ob-btn-submit">Find My Roadmap</button>
+        </div>
+      </form>
+    </main>
+
+    <!-- Loading overlay -->
+    <div class="ob-loading" id="obLoading" aria-hidden="true">
+      <div class="ob-loading-inner">
+        <div class="ob-loading-logo">
+          <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Blueprint" />
+        </div>
+        <div class="ob-loading-spinner">
+          <span></span><span></span><span></span>
+        </div>
+        <p class="ob-loading-msg" id="obLoadingMsg">Analyzing your profile…</p>
+        <div class="ob-loading-bar-track">
+          <div class="ob-loading-bar" id="obLoadingBar"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/onboarding.js') }}" defer></script>
+
+    {% include 'footer.html' %}
+  </body>
+</html>
