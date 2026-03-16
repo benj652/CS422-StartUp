@@ -11,17 +11,19 @@ dashboard_blueprint = Blueprint(DASHBOARD_DEFAULT_NAME, __name__)
 def dashboard():
     # 1. Top Card Metrics
     total_users = User.query.count()
-    users_who_activated = db.session.query(func.count(Action.user_id.distinct())).filter_by(atype='survey_submit').scalar()
+    users_who_activated = db.session.query(func.count(Action.user_id.distinct())).filter_by(atype='get_started_click').scalar()
     total_visits = Visit.query.count()
+    users_who_complete_core_action = db.session.query(func.count(Action.user_id.distinct())).filter_by(atype='roadmap_submit').scalar()
     
     activation_rate = round((users_who_activated / total_users * 100), 2) if total_users > 0 else 0
+    core_action_rate = round((users_who_complete_core_action / total_users * 100), 2) if total_users > 0 else 0
 
     # 2. Time-Series Logic (Defined outside the loop)
     def get_rate_for_date(d):
         u_count = User.query.filter(func.date(User.created_at) <= d).count()
         a_count = db.session.query(func.count(Action.user_id.distinct())).filter(
             func.date(Action.timestamp) == d, 
-            Action.atype == 'survey_submit'
+            Action.atype == 'get_started_click'
         ).scalar()
         return round((a_count / u_count * 100), 1) if u_count > 0 else 0
 
@@ -73,7 +75,7 @@ def dashboard():
         DASHBOARD_DEFAULT_NAME + HTML_EXTENSION,
         total_users=total_users,
         total_visits=total_visits,
-        core_actions=users_who_activated,
+        core_actions=core_action_rate,
         activation_rate=activation_rate,
         chart_labels=labels,
         week_0_data=week_0_data,

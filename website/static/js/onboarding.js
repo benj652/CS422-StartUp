@@ -12,6 +12,21 @@ const barEl = document.getElementById("obLoadingBar");
 
 let loading = false;
 
+/**
+ * Sends a POST request to the Flask backend to log an action
+ */
+function trackAction(actionType) {
+  // Using fetch with keepalive ensures the request finishes even if the page begins unloading
+  fetch("/track-action", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ atype: actionType }),
+    keepalive: true 
+  });
+}
+
 form.addEventListener("submit", function (e) {
   if (loading) return;
   e.preventDefault();
@@ -22,6 +37,9 @@ form.addEventListener("submit", function (e) {
   }
 
   loading = true;
+
+  trackAction('roadmap_submit');
+
   overlay.classList.add("ob-loading--visible");
   overlay.setAttribute("aria-hidden", "false");
 
@@ -35,5 +53,6 @@ form.addEventListener("submit", function (e) {
     }, i * step);
   });
 
+  // Final form submission after animation
   setTimeout(() => form.submit(), TOTAL + 200);
 });

@@ -59,7 +59,7 @@ def submit_info():
             user.career_stage = career_stage
             user.priority = priority
 
-            core_action = Action(atype='onboarding_submit', user_id=user.id)
+            core_action = Action(atype='roadmap_submit', user_id=user.id)
             db.session.add(core_action)
             db.session.commit()
 

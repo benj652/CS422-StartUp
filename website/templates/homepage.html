@@ -38,7 +38,7 @@
           Find a personalized roadmap that bridges your coursework to the career
           you want — tailored to your major and year.
         </p>
-        <a class="btn-cta" href="{{ url_for('homepage.onboarding') }}">Get Started</a>
+        <a id="get-started-btn" class="btn-cta" href="{{ url_for('homepage.onboarding') }}">Get Started</a>
       </div>
 
       <div class="hero-visual">
@@ -73,6 +73,7 @@
       </div>
     </div>
 
+    <script src="{{ url_for('static', filename='js/custom.js') }}" defer></script>
     <script>
       (function () {
         var overlay = document.getElementById('discOverlay');

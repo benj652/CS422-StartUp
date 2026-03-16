@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const roadmapBtn = document.getElementById('roadmap-button');
+    // Target the Get Started button ID from .html file
+    const getStartedBtn = document.getElementById('get-started-btn');
 
-    if (roadmapBtn) {
-        roadmapBtn.addEventListener('click', function() {
-            // Track that the user opened the modal
-            trackAction('roadmap_modal_open');
+    if (getStartedBtn) {
+        getStartedBtn.addEventListener('click', function() {
+        
+            trackAction('get_started_click');
         });
     }
 });
@@ -14,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
  * @param {string} actionType - The 'atype' string saved in the DB
  */
 function trackAction(actionType) {
-    fetch("/track-action", { // Ensure this matches your route in landing_views
+    fetch("/track-action", { 
         method: "POST",
         headers: {
             "Content-Type": "application/json",
