@@ -37,10 +37,7 @@
       <!-- Profile header -->
       <p class="rm-eyebrow">Economics</p>
       <h1 class="rm-title">Your Roadmap</h1>
-      <p class="rm-subtitle" id="heroText">
-        A year-by-year guide connecting courses, opportunities, and practical
-        next steps for your path in Economics.
-      </p>
+      <p class="rm-subtitle">{{ hero }}</p>
 
       <div class="rm-pills">
         {% if class_year %}
@@ -59,10 +56,7 @@
 
       <hr class="rm-divider" />
 
-      <p class="rm-highlight" id="highlightBox">
-        This roadmap is a starting point — a guide to the classes, programs, and
-        resources worth thinking about as you navigate a career in Economics.
-      </p>
+      <p class="rm-highlight">{{ highlight }}</p>
 
       <p class="rm-section-label">Recommendations</p>
 
@@ -71,170 +65,42 @@
         <div class="rm-card">
           <p class="rm-card-eyebrow">01</p>
           <h2 class="rm-card-title">Classes to Prioritize</h2>
-          <ul id="classesList"></ul>
+          <ul>
+            {% for item in classes %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
         </div>
 
         <div class="rm-card">
           <p class="rm-card-eyebrow">02</p>
           <h2 class="rm-card-title">Programs &amp; Opportunities</h2>
-          <ul id="programsList"></ul>
+          <ul>
+            {% for item in programs %}
+            <li>
+              {% if item.href %}
+              <a href="{{ item.href }}" target="_blank" rel="noopener noreferrer">{{ item.text }}</a>
+              {% else %}
+              {{ item.text }}
+              {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
         </div>
 
         <div class="rm-card">
           <p class="rm-card-eyebrow">03</p>
           <h2 class="rm-card-title">Resources &amp; Notes</h2>
-          <ul id="resourcesList"></ul>
+          <ul>
+            {% for item in resources %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
         </div>
 
       </div>
     </main>
 
     {% include 'footer.html' %}
-
-    <script>
-      const ECON_DATA = {
-        freshman: {
-          hero: "Freshman year is mainly about getting the intro sequence started and beginning to understand what the major looks like.",
-          highlight: "Best use of freshman year: complete EC133 and EC134, start building your foundation early, and get familiar with finance, policy, consulting, and research paths before recruiting ramps up later.",
-          classes: [
-            "EC 133: Microeconomics",
-            "EC 134: Macroeconomics"
-          ],
-          programs: [
-            { text: "Citadel Discover", href: "https://www.citadel.com/careers/students/discover-citadel/" },
-            { text: "Goldman Sachs Possibilities Summit", href: "https://www.goldmansachs.com/careers/students/programs/americas/possibilities-summit/" },
-            { text: "J.P. Morgan Advancing Black Pathways", href: "https://www.jpmorganchase.com/impact/people/advancing-black-pathways" },
-            { text: "D.E. Shaw Fellowships", href: "https://fellowships.deshaw.com/" },
-            { text: "Jane Street FTTP", href: "https://www.janestreet.com/join-jane-street/programs-and-events/fttp/" }
-          ],
-          resources: [
-            "Get the intro sequence moving early",
-            "Start learning what finance, consulting, policy, and quant paths look like",
-            "Use first-year events and networking to explore without overcommitting",
-            "Keep options open by building strong study habits from the start"
-          ]
-        },
-        sophomore: {
-          hero: "Sophomore year is where the major becomes more structured — theory, methods, and math become much more important.",
-          highlight: "Best use of sophomore year: finish the core theory and methods work so junior year can focus on stronger electives, technical development, and internship preparation.",
-          classes: [
-            "EC 224: Macro Theory",
-            "EC 223: Micro Theory",
-            "PS 214: Research Methods or EC 293: Econ Research Methods",
-            "Any Math class between MA 125 to MA 160"
-          ],
-          programs: [
-            { text: "Citadel Launch", href: "https://www.citadel.com/careers/students/launch/" },
-            { text: "PwC Start", href: "https://www.pwc.com/us/en/careers/while-you-work/student-opportunities/start.html" },
-            { text: "Morgan Stanley Early Insights", href: "https://www.morganstanley.com/careers/students-graduates/early-insights-program" },
-            { text: "Point72 Academy Sophomore Summit", href: "https://careers.point72.com/students" },
-            { text: "PJT Partners Sophomore Internship", href: "https://www.pjtpartners.com/careers/students/" },
-            { text: "BlackRock Founders Scholarship", href: "https://www.blackrock.com/corporate/careers/students-and-graduates" }
-          ],
-          resources: [
-            "Become more intentional about recruiting direction",
-            "Methods and math support upper-level econ and more technical roles",
-            "Build spreadsheet, data, and interview skills alongside coursework",
-            "Start keeping a clear timeline for sophomore and junior recruiting windows"
-          ]
-        },
-        junior: {
-          hero: "Junior year is usually the most important year for connecting coursework to internships, recruiting, and upper-level economics work.",
-          highlight: "Best use of junior year: pair upper-level econ classes with serious internship prep, stronger technical skill building, and a more focused recruiting strategy.",
-          classes: [
-            "Econ elective above 200",
-            "EC 393: Econometrics"
-          ],
-          programs: [
-            { text: "Goldman Sachs Summer Analyst Program", href: "https://www.goldmansachs.com/careers/students/programs/" },
-            { text: "PwC Advance", href: "https://www.pwc.com/us/en/careers/while-you-work/student-opportunities/advance.html" },
-            { text: "Jane Street Quantitative Trader Internship", href: "https://www.janestreet.com/join-jane-street/programs-and-events/quantitative-trader-internship/" },
-            { text: "J.P. Morgan Quantitative Finance Internship", href: "https://careers.jpmorgan.com/us/en/students/programs/quantitative-finance-analyst" },
-            { text: "SIG Quantitative Trading Intern", href: "https://careers.sig.com/students/" },
-            { text: "Bridgewater Investment Engineer Intern", href: "https://www.bridgewater.com/campus" },
-            { text: "Evercore / Lazard / Centerview", href: null }
-          ],
-          resources: [
-            "Junior summer is often the most important internship summer",
-            "Econometrics makes your quantitative background more usable",
-            "Use networking and alumni outreach more seriously this year",
-            "Tighten your resume and know what roles you are targeting"
-          ]
-        },
-        senior: {
-          hero: "Senior year should be about finishing strong, completing the seminar requirement, and turning your experience into a clear next step.",
-          highlight: "Best use of senior year: finish upper-level work well, complete the seminar, and use the fall to convert your experience into full-time opportunities or a stronger post-grad plan.",
-          classes: [
-            "Econ elective in the 300 level",
-            "Econ seminar"
-          ],
-          programs: [
-            { text: "Focus on full-time recruiting and late-cycle opportunities", href: null },
-            { text: "Use seminar and upper-level work to sharpen your interests", href: null }
-          ],
-          resources: [
-            "Wall Street Prep",
-            "Paving the Road",
-            "Mergers and Acquisitions class with Mike McHale",
-            "Senior year is about finishing the major well and making your next move concrete"
-          ]
-        }
-      };
-
-      const selectedYear = "{{ class_year | lower }}";
-      const heroText     = document.getElementById("heroText");
-      const highlightBox = document.getElementById("highlightBox");
-      const classesList  = document.getElementById("classesList");
-      const programsList = document.getElementById("programsList");
-      const resourcesList = document.getElementById("resourcesList");
-
-      function renderList(listEl, items, isPrograms) {
-        listEl.innerHTML = "";
-        items.forEach(function (item) {
-          const li = document.createElement("li");
-          if (isPrograms && item.href) {
-            const a = document.createElement("a");
-            a.href = item.href;
-            a.target = "_blank";
-            a.rel = "noopener noreferrer";
-            a.textContent = item.text;
-            li.appendChild(a);
-          } else if (isPrograms) {
-            li.textContent = item.text;
-          } else {
-            li.textContent = item;
-          }
-          listEl.appendChild(li);
-        });
-      }
-
-      if (selectedYear && ECON_DATA[selectedYear]) {
-        const data = ECON_DATA[selectedYear];
-        heroText.textContent = data.hero;
-        highlightBox.textContent = data.highlight;
-        renderList(classesList, data.classes, false);
-        renderList(programsList, data.programs, true);
-        renderList(resourcesList, data.resources, false);
-      } else {
-        renderList(classesList, [
-          "EC 133: Microeconomics",
-          "EC 134: Macroeconomics",
-          "EC 223: Micro Theory",
-          "EC 224: Macro Theory",
-          "Methods / research course",
-          "Upper-level electives and seminar"
-        ], false);
-        renderList(programsList, [
-          { text: "Freshman and sophomore exposure programs", href: null },
-          { text: "Junior summer internships", href: null },
-          { text: "Career center and alumni networking", href: null }
-        ], true);
-        renderList(resourcesList, [
-          "Wall Street Prep",
-          "Paving the Road",
-          "Mergers and Acquisitions class with Mike McHale"
-        ], false);
-      }
-    </script>
   </body>
 </html>

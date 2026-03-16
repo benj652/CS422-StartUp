@@ -1,3 +1,6 @@
+import json
+import os
+
 from flask import Blueprint, redirect, render_template, request, url_for
 
 from website.consts import (
@@ -12,6 +15,11 @@ from website.consts import (
 from website.utils import log_visit
 
 roadmap_blueprint = Blueprint(ROADMAP_DEFAULT_NAME, __name__)
+
+_DATA_PATH = os.path.join(os.path.dirname(__file__), '..', 'static', 'data', 'roadmap_data.json')
+
+with open(_DATA_PATH) as _f:
+    ROADMAP_DATA = json.load(_f)
 
 CAREER_GOAL_LABELS = {
     'software_engineer': 'Software Engineer',
@@ -54,16 +62,32 @@ def roadmap():
 @roadmap_blueprint.route(CS_DEFAULT_NAME)
 def cs():
     log_visit(page="cs")
+    year_key = request.args.get('year', '').lower()
+    cs_data = ROADMAP_DATA['cs']
+    year_data = cs_data.get(year_key, cs_data['default'])
     return render_template(
         MAJOR_SPECIFIC_FOLDER_NAME + CS_DEFAULT_NAME + HTML_EXTENSION,
-        **_profile_context()
+        **_profile_context(),
+        hero=year_data['hero'],
+        highlight=year_data['highlight'],
+        classes=year_data['classes'],
+        programs=year_data['programs'],
+        resources=year_data['resources'],
     )
 
 
 @roadmap_blueprint.route(ECON_DEFAULT_NAME)
 def econ():
     log_visit(page="econ")
+    year_key = request.args.get('year', '').lower()
+    econ_data = ROADMAP_DATA['econ']
+    year_data = econ_data.get(year_key, econ_data['default'])
     return render_template(
         MAJOR_SPECIFIC_FOLDER_NAME + ECON_DEFAULT_NAME + HTML_EXTENSION,
-        **_profile_context()
+        **_profile_context(),
+        hero=year_data['hero'],
+        highlight=year_data['highlight'],
+        classes=year_data['classes'],
+        programs=year_data['programs'],
+        resources=year_data['resources'],
     )

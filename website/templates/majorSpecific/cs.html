@@ -37,10 +37,7 @@
       <!-- Profile header -->
       <p class="rm-eyebrow">Computer Science</p>
       <h1 class="rm-title">Your Roadmap</h1>
-      <p class="rm-subtitle">
-        A personalised path connecting classes, programs, and resources
-        to the career you're building toward.
-      </p>
+      <p class="rm-subtitle">{{ hero }}</p>
 
       <div class="rm-pills">
         {% if class_year %}
@@ -59,10 +56,7 @@
 
       <hr class="rm-divider" />
 
-      <p class="rm-highlight">
-        This roadmap is a starting point — a guide to the classes, programs, and
-        resources worth thinking about as you navigate a career in Computer Science.
-      </p>
+      <p class="rm-highlight">{{ highlight }}</p>
 
       <p class="rm-section-label">Recommendations</p>
 
@@ -72,11 +66,9 @@
           <p class="rm-card-eyebrow">01</p>
           <h2 class="rm-card-title">Recommended Classes</h2>
           <ul>
-            <li>Data Structures</li>
-            <li>Operating Systems</li>
-            <li>Computer Networks</li>
-            <li>Databases</li>
-            <li>Software Engineering</li>
+            {% for item in classes %}
+            <li>{{ item }}</li>
+            {% endfor %}
           </ul>
         </div>
 
@@ -84,15 +76,15 @@
           <p class="rm-card-eyebrow">02</p>
           <h2 class="rm-card-title">Programs &amp; Experiences</h2>
           <ul>
-            <li>Bessemer Fellows</li>
-            <li>Kleiner Perkins Fellows</li>
-            <li>Microsoft Explore</li>
-            <li>Code2040</li>
-            <li>Duolingo Thrive</li>
-            <li>CodePath Tech Launchpad</li>
-            <li>Thrive Capital Fellows</li>
-            <li>8VC Fellowships</li>
-            <li>MLH Fellowship</li>
+            {% for item in programs %}
+            <li>
+              {% if item.href %}
+              <a href="{{ item.href }}" target="_blank" rel="noopener noreferrer">{{ item.text }}</a>
+              {% else %}
+              {{ item.text }}
+              {% endif %}
+            </li>
+            {% endfor %}
           </ul>
         </div>
 
@@ -100,11 +92,9 @@
           <p class="rm-card-eyebrow">03</p>
           <h2 class="rm-card-title">Resources</h2>
           <ul>
-            <li>Resume preparation</li>
-            <li>GitHub portfolio building</li>
-            <li>Technical interview practice</li>
-            <li>Project-based experience</li>
-            <li>Advice from upperclassmen and alumni</li>
+            {% for item in resources %}
+            <li>{{ item }}</li>
+            {% endfor %}
           </ul>
         </div>
 
