@@ -9,7 +9,7 @@ SQLALCHEMY_TRACK_MODIFICATIONS = "SQLALCHEMY_TRACK_MODIFICATIONS"
 fallbacks
 '''
 FALLBACK_SECRET_KEY = "dev"
-FALLBACK_SQLALCHEMY_DATABASE_URI = "sqlite:///testing.db"
+FALLBACK_SQLALCHEMY_DATABASE_URI = "sqlite:///instance/testing.db"
 
 '''
 Deployment variables

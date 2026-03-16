@@ -37,6 +37,19 @@ def dashboard():
         week_1_data.append(get_rate_for_date(target_day - timedelta(days=7)))
         week_2_data.append(get_rate_for_date(target_day - timedelta(days=14)))
 
+    # Class Year Data for Bar Chart
+    # We query the counts for each year stored in the User model
+    year_counts = {
+        'Freshman': User.query.filter_by(class_year='Freshman').count(),
+        'Sophomore': User.query.filter_by(class_year='Sophomore').count(),
+        'Junior': User.query.filter_by(class_year='Junior').count(),
+        'Senior': User.query.filter_by(class_year='Senior').count(),
+    }
+    
+    # Format data for the chart (labels and data list)
+    class_year_labels = list(year_counts.keys())
+    class_year_values = list(year_counts.values())
+
     # 3. Optimized Page Stats
     tracked_pages = [
         ('homepage.html', 'Home'),
@@ -96,6 +109,8 @@ def dashboard():
         week_0_data=week_0_data,
         week_1_data=week_1_data,
         week_2_data=week_2_data,
+        class_year_labels=class_year_labels,
+        class_year_values=class_year_values,
         page_stats=sorted(page_stats, key=lambda x: x['visitors'], reverse=True),
         feedback_list=feedback_list
     )

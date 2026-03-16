@@ -43,7 +43,14 @@ def create_app():
 
     if not app.config[SQLALCHEMY_DATABASE_URI]:
         print("Warning: SQLALCHEMY_DATABASE_URI not set in environment. Using fallback value.")
-        app.config[SQLALCHEMY_DATABASE_URI] = FALLBACK_SQLALCHEMY_DATABASE_URI
+        # Build an absolute path to the local SQLite database to avoid
+        # "unable to open database file" errors that can happen when the
+        # working directory is different from the project root.
+        project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+        instance_dir = os.path.join(project_root, "instance")
+        os.makedirs(instance_dir, exist_ok=True)
+        db_path = os.path.join(instance_dir, "testing.db")
+        app.config[SQLALCHEMY_DATABASE_URI] = f"sqlite:///{db_path}"
 
     # Keep the SQLAlchemy option as a boolean-like environment value if present.
     app.config[SQLALCHEMY_TRACK_MODIFICATIONS] = os.getenv(

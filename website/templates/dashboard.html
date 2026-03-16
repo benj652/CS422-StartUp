@@ -208,7 +208,7 @@
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
                 <div class="col">
-                  <h6 class="text-uppercase text-muted ls-1 mb-1">Planner</h6>
+                  <h6 class="text-uppercase text-muted ls-1 mb-1">Student Breakdown</h6>
                   <h5 class="h3 mb-0">Class Year</h5>
                 </div>
               </div>
@@ -216,7 +216,8 @@
             <div class="card-body">
               <!-- Chart -->
               <div class="chart">
-                <canvas id="chart-bars" class="chart-canvas"></canvas>
+                <canvas id="chart-bars" class="chart-canvas" data-initial-labels='{{ class_year_labels|tojson }}'
+                data-initial-counts='{{ class_year_values|tojson }}'></canvas>
               </div>
             </div>
           </div>
