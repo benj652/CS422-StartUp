@@ -1,0 +1,16 @@
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-copy">
+      &copy; <span class="footer-year"></span> Blueprint.edu. All rights reserved.
+    </span>
+    <nav class="footer-links">
+      <a href="{{ url_for('homepage.privacy') }}">Privacy Policy</a>
+      <a href="{{ url_for('homepage.cookie_policy') }}">Cookie Policy</a>
+    </nav>
+  </div>
+</footer>
+<script>
+  document.querySelectorAll('.footer-year').forEach(function(el) {
+    el.textContent = new Date().getFullYear();
+  });
+</script>
