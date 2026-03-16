@@ -1,241 +1,133 @@
 {
-"cs": {
-  "default": {
-    "hero": "A year-by-year guide connecting courses, internships, and technical skill-building for your path in Computer Science.",
-    "highlight": "This roadmap is a starting point — a guide to the classes, technical skills, and recruiting timelines worth thinking about as you navigate a career in software engineering, AI, systems, or data.",
-    "classes": [
-      "CS 151X",
-      "CS 232: Computer Organization",
-      "CS 231: Data Structures",
-      "CS 251: Data Analysis and Visualization",
-      "CS 333: Programming Languages",
-      "CS 3XX: Theory course",
-      "Upper-level CS electives"
-    ],
-    "programs": [
-      { "text": "Freshman and sophomore engineering exposure programs", "href": null },
-      { "text": "Junior summer software engineering internships", "href": null },
-      { "text": "Faculty research and independent study opportunities", "href": "https://cs.colby.edu/" }
-    ],
-    "resources": [
-      "LeetCode",
-      "NeetCode",
-      "System Design Primer",
-      "Colby CS research opportunities"
-    ]
+  "cs": {
+    "default": {
+      "hero": "A year-by-year guide connecting courses, internships, and technical skill-building for your path in Computer Science.",
+      "highlight": "This roadmap is a starting point — a guide to the classes, technical skills, and recruiting timelines worth thinking about as you navigate a career in software engineering, AI, systems, or data.",
+      "classes": [
+        { "text": "CS 151X", "popupText": "Introductory computer science course covering programming fundamentals." },
+        { "text": "CS 232: Computer Organization", "popupText": "Course on how computers work at the hardware and systems level." },
+        { "text": "CS 231: Data Structures", "popupText": "Core course covering algorithms and common data structures used in software engineering." },
+        { "text": "CS 251: Data Analysis and Visualization", "popupText": "Course focused on analyzing datasets and building visualizations." },
+        { "text": "CS 333: Programming Languages", "popupText": "Course studying how programming languages are designed and implemented." },
+        { "text": "CS 3XX: Theory course", "popupText": "Upper-level theory class such as algorithms, complexity, or automata." },
+        { "text": "Upper-level CS electives", "popupText": "Advanced courses in areas like AI, machine learning, systems, or networks." }
+      ],
+      "programs": [
+        {
+          "text": "Freshman and sophomore engineering exposure programs",
+          "href": null,
+          "popupText": "Early-career programs that introduce students to engineering roles and recruiting."
+        },
+        {
+          "text": "Junior summer software engineering internships",
+          "href": null,
+          "popupText": "Traditional software engineering internships typically taken the summer before senior year."
+        },
+        {
+          "text": "Faculty research and independent study opportunities",
+          "href": "https://cs.colby.edu/",
+          "popupText": "Opportunities to work with professors on research projects or independent studies."
+        }
+      ],
+      "resources": [
+        { "text": "LeetCode", "popupText": "Platform used to practice coding interview problems." },
+        { "text": "NeetCode", "popupText": "Curated roadmap and explanations for common coding interview problems." },
+        { "text": "System Design Primer", "popupText": "Open-source guide for learning large-scale system design." },
+        { "text": "Colby CS research opportunities", "popupText": "Research projects available through the Colby computer science department." }
+      ]
+    },
+
+    "freshman": {
+      "hero": "Freshman year is about starting the CS sequence and learning the foundations of programming and computational thinking.",
+      "highlight": "Best use of freshman year: complete CS15X early, build strong programming fundamentals, and start exploring different areas of computer science such as software engineering, AI, systems, and data.",
+      "classes": [
+        { "text": "CS 151X", "popupText": "Introductory programming and computer science fundamentals course." },
+        { "text": "MA 125 / MA 130 / MA 160 (math foundation depending on placement)", "popupText": "Mathematics courses that build the quantitative foundation for computer science." }
+      ],
+      "programs": [
+        {
+          "text": "Google STEP Internship",
+          "href": "https://buildyourfuture.withgoogle.com/programs/step",
+          "popupText": "Google’s freshman and sophomore internship focused on early software engineering development."
+        },
+        {
+          "text": "Microsoft Explore Internship",
+          "href": "https://careers.microsoft.com/students/us/en/usexploremicrosoftprogram",
+          "popupText": "Microsoft program designed for early college students exploring software engineering."
+        },
+        {
+          "text": "Meta University",
+          "href": "https://www.metacareers.com/careerprograms/students",
+          "popupText": "Meta program for early undergraduate students interested in engineering careers."
+        },
+        {
+          "text": "Uber STAR Program",
+          "href": "https://jobs.uber.com/en/teams/emerging-talent/",
+          "popupText": "Uber’s internship program aimed at developing early-career software engineers."
+        },
+        {
+          "text": "Jane Street SEE Program",
+          "href": "https://www.janestreet.com/join-jane-street/programs-and-events/see/",
+          "popupText": "Jane Street program introducing students to trading and quantitative engineering."
+        },
+        {
+          "text": "Code2040",
+          "href": "https://www.code2040.org/",
+          "popupText": "Fellowship program connecting diverse students with tech internships."
+        },
+        {
+          "text": "CodePath Tech Launchpad",
+          "href": "https://codepath.org/launchpad",
+          "popupText": "Program helping students build practical software engineering skills."
+        },
+        {
+          "text": "MLH Fellowship",
+          "href": "https://fellowship.mlh.io/",
+          "popupText": "Remote fellowship where students contribute to open source and collaborative coding projects."
+        }
+      ],
+      "resources": [
+        { "text": "Learn Python or Java deeply", "popupText": "Focus on mastering one programming language well." },
+        { "text": "Attend hackathons or CS club events", "popupText": "Events where students collaborate on projects and meet other programmers." },
+        { "text": "Begin simple programming projects", "popupText": "Small personal coding projects to build experience." },
+        { "text": "Focus on strong study habits early", "popupText": "Developing consistent study and time management practices." }
+      ]
+    }
   },
 
-  "freshman": {
-    "hero": "Freshman year is about starting the CS sequence and learning the foundations of programming and computational thinking.",
-    "highlight": "Best use of freshman year: complete CS15X early, build strong programming fundamentals, and start exploring different areas of computer science such as software engineering, AI, systems, and data.",
-    "classes": [
-      "CS 151X",
-      "MA 125 / MA 130 / MA 160 (math foundation depending on placement)"
-    ],
-    "programs": [
-      { "text": "Google STEP Internship", "href": "https://buildyourfuture.withgoogle.com/programs/step" },
-      { "text": "Microsoft Explore Internship", "href": "https://careers.microsoft.com/students/us/en/usexploremicrosoftprogram" },
-      { "text": "Microsoft Explore", "href": "https://careers.microsoft.com/students/us/en/usexploremicrosoft" },
-      { "text": "Meta University", "href": "https://www.metacareers.com/careerprograms/students" },
-      { "text": "Uber STAR Program", "href": "https://jobs.uber.com/en/teams/emerging-talent/" },
-      { "text": "Jane Street SEE Program", "href": "https://www.janestreet.com/join-jane-street/programs-and-events/see/" },
-      { "text": "Code2040", "href": "https://www.code2040.org/" },
-      { "text": "CodePath Tech Launchpad", "href": "https://codepath.org/launchpad" },
-      { "text": "MLH Fellowship", "href": "https://fellowship.mlh.io/" }
-    ],
-    "resources": [
-      "Learn Python or Java deeply",
-      "Attend hackathons or CS club events",
-      "Begin simple programming projects",
-      "Focus on strong study habits early"
-    ]
-  },
-
-  "sophomore": {
-    "hero": "Sophomore year introduces the core technical foundations of the CS major.",
-    "highlight": "Best use of sophomore year: complete the systems and data structures courses while starting technical interview preparation and applying for sophomore engineering programs.",
-    "classes": [
-      "CS 232: Computer Organization",
-      "CS 231: Data Structures",
-      "CS 251: Data Analysis and Visualization",
-      "MA 2XX math course (Linear Algebra, Probability, or Discrete Math)"
-    ],
-    "programs": [
-      { "text": "Google Engineering Internships", "href": "https://careers.google.com/students/" },
-      { "text": "Microsoft Internship Programs", "href": "https://careers.microsoft.com/students/us/en" },
-      { "text": "Amazon SDE Internship", "href": "https://www.amazon.jobs/en/teams/internships-for-students" },
-      { "text": "Stripe Internship Program", "href": "https://stripe.com/jobs/students-and-new-grads" },
-      { "text": "HubSpot Software Engineering Internship", "href": "https://www.hubspot.com/careers/students" },
-      { "text": "Duolingo Thrive", "href": "https://careers.duolingo.com/thrive" },
-      { "text": "Code2040", "href": "https://www.code2040.org/" },
-      { "text": "CodePath Tech Launchpad", "href": "https://codepath.org/launchpad" },
-      { "text": "MLH Fellowship", "href": "https://fellowship.mlh.io/" }
-    ],
-    "resources": [
-      "Start regular LeetCode practice",
-      "Learn Git and collaborative development",
-      "Build at least two meaningful personal projects",
-      "Start tracking internship recruiting timelines"
-    ]
-  },
-
-  "junior": {
-    "hero": "Junior year is when advanced CS coursework connects directly with internship recruiting.",
-    "highlight": "Best use of junior year: take advanced CS courses, strengthen technical interview preparation, and secure a summer software engineering internship.",
-    "classes": [
-      "CS 333: Programming Languages",
-      "CS 3XX: Theory course",
-      "CS 3XX electives (AI, Machine Learning, Databases, Distributed Systems, Networks)"
-    ],
-    "programs": [
-      { "text": "Google Software Engineering Internship", "href": "https://careers.google.com/students/" },
-      { "text": "Meta Software Engineering Internship", "href": "https://www.metacareers.com/careerprograms/students" },
-      { "text": "Apple Software Engineering Internship", "href": "https://jobs.apple.com/en-us/search?team=internships-STDNT-INTRN" },
-      { "text": "Stripe Software Engineering Internship", "href": "https://stripe.com/jobs/students-and-new-grads" },
-      { "text": "Jane Street Software Engineer Internship", "href": "https://www.janestreet.com/join-jane-street/programs-and-events/software-engineer-internship/" },
-      { "text": "Citadel Software Engineering Internship", "href": "https://www.citadel.com/careers/students/" },
-      { "text": "Bessemer Fellows", "href": "https://www.bvp.com/bessemer-fellows" },
-      { "text": "Kleiner Perkins Fellows", "href": "https://fellows.kleinerperkins.com/" },
-      { "text": "Thrive Capital Fellows", "href": "https://www.thrivecapital.com/fellows" },
-      { "text": "8VC Fellowships", "href": "https://www.8vc.com/fellows" },
-      { "text": "MLH Fellowship", "href": "https://fellowship.mlh.io/" }
-    ],
-    "resources": [
-      "Junior summer internship is the most important for full-time conversion",
-      "Practice algorithms and system design interviews",
-      "Build larger technical projects",
-      "Use networking and alumni outreach more seriously"
-    ]
-  },
-
-  "senior": {
-    "hero": "Senior year focuses on advanced electives and converting internship experience into full-time opportunities.",
-    "highlight": "Best use of senior year: complete advanced CS electives, refine your technical portfolio, and use fall recruiting to secure a full-time engineering role.",
-    "classes": [
-      "CS 3XX elective",
-      "CS 4XX advanced elective",
-      "CS 3XX theory course (if not completed earlier)"
-    ],
-    "programs": [
-      { "text": "Full-time Software Engineering roles", "href": "https://careers.google.com/" },
-      { "text": "YC Startup Jobs", "href": "https://www.ycombinator.com/jobs" },
-      { "text": "Engineering fellowships and research opportunities", "href": "https://cs.colby.edu/" }
-    ],
-    "resources": [
-      "Finalize portfolio and GitHub projects",
-      "Practice system design interviews",
-      "Leverage internship experience for full-time roles",
-      "Use alumni networking and referrals"
-    ]
-  }
-},
   "econ": {
     "default": {
       "hero": "A year-by-year guide connecting courses, opportunities, and practical next steps for your path in Economics.",
       "highlight": "This roadmap is a starting point — a guide to the classes, programs, and resources worth thinking about as you navigate a career in Economics.",
       "classes": [
-        "EC 133: Microeconomics",
-        "EC 134: Macroeconomics",
-        "EC 223: Micro Theory",
-        "EC 224: Macro Theory",
-        "Methods / research course",
-        "Upper-level electives and seminar"
+        { "text": "EC 133: Microeconomics", "popupText": "Introductory course studying how individuals and firms make economic decisions." },
+        { "text": "EC 134: Macroeconomics", "popupText": "Introductory course examining national economies and economic policy." },
+        { "text": "EC 223: Micro Theory", "popupText": "Intermediate theory course expanding on microeconomic decision models." },
+        { "text": "EC 224: Macro Theory", "popupText": "Intermediate macroeconomic models covering growth, inflation, and policy." },
+        { "text": "Methods / research course", "popupText": "Course focused on economic research methods and data analysis." },
+        { "text": "Upper-level electives and seminar", "popupText": "Advanced economics topics and capstone seminar work." }
       ],
       "programs": [
-        { "text": "Freshman and sophomore exposure programs", "href": null },
-        { "text": "Junior summer internships", "href": null },
-        { "text": "Career center and alumni networking", "href": null }
+        {
+          "text": "Freshman and sophomore exposure programs",
+          "href": null,
+          "popupText": "Programs introducing early college students to finance, consulting, or economics careers."
+        },
+        {
+          "text": "Junior summer internships",
+          "href": null,
+          "popupText": "Industry internships that often lead to full-time job offers."
+        },
+        {
+          "text": "Career center and alumni networking",
+          "href": null,
+          "popupText": "University resources for networking, resume help, and recruiting guidance."
+        }
       ],
       "resources": [
-        "Wall Street Prep",
-        "Paving the Road",
-        "Mergers and Acquisitions class with Mike McHale"
-      ]
-    },
-    "freshman": {
-      "hero": "Freshman year is mainly about getting the intro sequence started and beginning to understand what the major looks like.",
-      "highlight": "Best use of freshman year: complete EC133 and EC134, start building your foundation early, and get familiar with finance, policy, consulting, and research paths before recruiting ramps up later.",
-      "classes": [
-        "EC 133: Microeconomics",
-        "EC 134: Macroeconomics"
-      ],
-      "programs": [
-        { "text": "Citadel Discover", "href": "https://www.citadel.com/careers/students/discover-citadel/" },
-        { "text": "Goldman Sachs Possibilities Summit", "href": "https://www.goldmansachs.com/careers/students/programs/americas/possibilities-summit/" },
-        { "text": "J.P. Morgan Advancing Black Pathways", "href": "https://www.jpmorganchase.com/impact/people/advancing-black-pathways" },
-        { "text": "D.E. Shaw Fellowships", "href": "https://fellowships.deshaw.com/" },
-        { "text": "Jane Street FTTP", "href": "https://www.janestreet.com/join-jane-street/programs-and-events/fttp/" }
-      ],
-      "resources": [
-        "Get the intro sequence moving early",
-        "Start learning what finance, consulting, policy, and quant paths look like",
-        "Use first-year events and networking to explore without overcommitting",
-        "Keep options open by building strong study habits from the start"
-      ]
-    },
-    "sophomore": {
-      "hero": "Sophomore year is where the major becomes more structured — theory, methods, and math become much more important.",
-      "highlight": "Best use of sophomore year: finish the core theory and methods work so junior year can focus on stronger electives, technical development, and internship preparation.",
-      "classes": [
-        "EC 224: Macro Theory",
-        "EC 223: Micro Theory",
-        "PS 214: Research Methods or EC 293: Econ Research Methods",
-        "Any Math class between MA 125 to MA 160"
-      ],
-      "programs": [
-        { "text": "Citadel Launch", "href": "https://www.citadel.com/careers/students/launch/" },
-        { "text": "PwC Start", "href": "https://www.pwc.com/us/en/careers/while-you-work/student-opportunities/start.html" },
-        { "text": "Morgan Stanley Early Insights", "href": "https://www.morganstanley.com/careers/students-graduates/early-insights-program" },
-        { "text": "Point72 Academy Sophomore Summit", "href": "https://careers.point72.com/students" },
-        { "text": "PJT Partners Sophomore Internship", "href": "https://www.pjtpartners.com/careers/students/" },
-        { "text": "BlackRock Founders Scholarship", "href": "https://www.blackrock.com/corporate/careers/students-and-graduates" }
-      ],
-      "resources": [
-        "Become more intentional about recruiting direction",
-        "Methods and math support upper-level econ and more technical roles",
-        "Build spreadsheet, data, and interview skills alongside coursework",
-        "Start keeping a clear timeline for sophomore and junior recruiting windows"
-      ]
-    },
-    "junior": {
-      "hero": "Junior year is usually the most important year for connecting coursework to internships, recruiting, and upper-level economics work.",
-      "highlight": "Best use of junior year: pair upper-level econ classes with serious internship prep, stronger technical skill building, and a more focused recruiting strategy.",
-      "classes": [
-        "Econ elective above 200",
-        "EC 393: Econometrics"
-      ],
-      "programs": [
-        { "text": "Goldman Sachs Summer Analyst Program", "href": "https://www.goldmansachs.com/careers/students/programs/" },
-        { "text": "PwC Advance", "href": "https://www.pwc.com/us/en/careers/while-you-work/student-opportunities/advance.html" },
-        { "text": "Jane Street Quantitative Trader Internship", "href": "https://www.janestreet.com/join-jane-street/programs-and-events/quantitative-trader-internship/" },
-        { "text": "J.P. Morgan Quantitative Finance Internship", "href": "https://careers.jpmorgan.com/us/en/students/programs/quantitative-finance-analyst" },
-        { "text": "SIG Quantitative Trading Intern", "href": "https://careers.sig.com/students/" },
-        { "text": "Bridgewater Investment Engineer Intern", "href": "https://www.bridgewater.com/campus" },
-        { "text": "Evercore / Lazard / Centerview", "href": null }
-      ],
-      "resources": [
-        "Junior summer is often the most important internship summer",
-        "Econometrics makes your quantitative background more usable",
-        "Use networking and alumni outreach more seriously this year",
-        "Tighten your resume and know what roles you are targeting"
-      ]
-    },
-    "senior": {
-      "hero": "Senior year should be about finishing strong, completing the seminar requirement, and turning your experience into a clear next step.",
-      "highlight": "Best use of senior year: finish upper-level work well, complete the seminar, and use the fall to convert your experience into full-time opportunities or a stronger post-grad plan.",
-      "classes": [
-        "Econ elective in the 300 level",
-        "Econ seminar"
-      ],
-      "programs": [
-        { "text": "Focus on full-time recruiting and late-cycle opportunities", "href": null },
-        { "text": "Use seminar and upper-level work to sharpen your interests", "href": null }
-      ],
-      "resources": [
-        "Wall Street Prep",
-        "Paving the Road",
-        "Mergers and Acquisitions class with Mike McHale",
-        "Senior year is about finishing the major well and making your next move concrete"
+        { "text": "Wall Street Prep", "popupText": "Financial modeling training used for investment banking preparation." },
+        { "text": "Paving the Road", "popupText": "Student resource and guide for breaking into finance careers." },
+        { "text": "Mergers and Acquisitions class with Mike McHale", "popupText": "Colby course focused on corporate mergers, acquisitions, and deal analysis." }
       ]
     }
   }
