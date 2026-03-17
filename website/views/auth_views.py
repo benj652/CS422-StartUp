@@ -2,6 +2,8 @@ from flask import Blueprint, redirect, url_for
 
 from authlib.integrations.flask_client import OAuth
 from flask_login import login_required, login_user, logout_user
+import os
+
 
 from website.consts import (
     AUTH_BASE,
@@ -11,6 +13,12 @@ from website.consts import (
     LOGIN_BASE,
     LOGOUT_BASE,
     PREFIX,
+    OAUTH_NAME,
+    SERVER_METADATA_URL,
+    CLIENT_KWARGS_KEY,
+    CLIENT_KWARGS_ITEMS,
+    GOOGLE_CLIENT_ID,
+    GOOGLE_CLIENT_SECRET,
 )
 
 

@@ -1,11 +1,7 @@
 import os
 from flask import Flask
-from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
-
-from website.views.auth_views import init_oauth
-
 
 from .consts import (
     AUTH_BASE,
@@ -64,21 +60,6 @@ def create_app():
         SQLALCHEMY_TRACK_MODIFICATIONS
     )
 
-    # login_manager = LoginManager()
-    # login_manager.init_app(app)
-    # login_manager.login_view = PREFIX + AUTH_BASE
-    # login_manager.login_message = None
-
-    # @login_manager.user_loader
-    # def load_user(user_id):
-    #     """Load a user by ID for flask-login.
-
-    #     Returns ``None`` when the user isn't found.
-    #     """
-    #     return User.query.get(int(user_id))
-
-    # init_oauth(app)
-
     db.init_app(app)
 
     with app.app_context():
@@ -101,5 +82,8 @@ def create_app():
         app.register_blueprint(auth_blueprint, url_prefix=PREFIX + AUTH_BASE)
 
         db.create_all()
+
+    from website.views.auth_views import init_oauth
+    init_oauth(app)
 
     return app
