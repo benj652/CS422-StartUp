@@ -4,6 +4,8 @@
 SECRET_KEY = "SECRET_KEY"
 SQLALCHEMY_DATABASE_URI = "SQLALCHEMY_DATABASE_URI"
 SQLALCHEMY_TRACK_MODIFICATIONS = "SQLALCHEMY_TRACK_MODIFICATIONS"
+GOOGLE_CLIENT_ID = "GOOGLE_CLIENT_ID"
+GOOGLE_CLIENT_SECRET = "GOOGLE_CLIENT_SECRET"
 
 '''
 fallbacks
@@ -18,6 +20,19 @@ CLOUD = "CLOUD"
 DATABASE_URL = "DATABASE_URL"
 POSTGRES_SQL = "postgres://"
 POSTGRES_SQL_DEPLOYED = "postgresql://"
+
+'''
+Google OAuth values
+'''
+GOOGLE_USER_INFO_API = "https://www.googleapis.com/oauth2/v1/userinfo"
+
+'''
+Auth Values
+'''
+AUTH_BASE = "auth"
+LOGIN_BASE = "login"
+LOGOUT_BASE = "logout"
+AUTHORIZE_BASE = "authorize"
 
 '''
 Dashboard Values
@@ -68,5 +83,5 @@ misc
 '''
 PREFIX = "/"
 HTML_EXTENSION = ".html"
-
+DOT_PREFIX = "."
 

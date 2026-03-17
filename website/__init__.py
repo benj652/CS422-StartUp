@@ -1,11 +1,14 @@
 import os
 from flask import Flask
+from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 
+from website.views.auth_views import init_oauth
 
 
 from .consts import (
+    AUTH_BASE,
     DASHBOARD_DEFAULT_NAME,
     PREFIX,
     ROADMAP_DEFAULT_NAME,
@@ -17,7 +20,7 @@ from .consts import (
     CLOUD,
     DATABASE_URL,
     POSTGRES_SQL,
-    POSTGRES_SQL_DEPLOYED
+    POSTGRES_SQL_DEPLOYED,
 )
 
 db = SQLAlchemy()
@@ -42,11 +45,15 @@ def create_app():
         app.config[SQLALCHEMY_DATABASE_URI] = os.getenv(SQLALCHEMY_DATABASE_URI)
 
     if not app.config[SQLALCHEMY_DATABASE_URI]:
-        print("Warning: SQLALCHEMY_DATABASE_URI not set in environment. Using fallback value.")
+        print(
+            "Warning: SQLALCHEMY_DATABASE_URI not set in environment. Using fallback value."
+        )
         # Build an absolute path to the local SQLite database to avoid
         # "unable to open database file" errors that can happen when the
         # working directory is different from the project root.
-        project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+        project_root = os.path.abspath(
+            os.path.join(os.path.dirname(__file__), os.pardir)
+        )
         instance_dir = os.path.join(project_root, "instance")
         os.makedirs(instance_dir, exist_ok=True)
         db_path = os.path.join(instance_dir, "testing.db")
@@ -57,17 +64,42 @@ def create_app():
         SQLALCHEMY_TRACK_MODIFICATIONS
     )
 
+    # login_manager = LoginManager()
+    # login_manager.init_app(app)
+    # login_manager.login_view = PREFIX + AUTH_BASE
+    # login_manager.login_message = None
+
+    # @login_manager.user_loader
+    # def load_user(user_id):
+    #     """Load a user by ID for flask-login.
+
+    #     Returns ``None`` when the user isn't found.
+    #     """
+    #     return User.query.get(int(user_id))
+
+    # init_oauth(app)
+
     db.init_app(app)
 
     with app.app_context():
         from .models.tracking import User, Visit, Action
 
-        from .views import dashboard_blueprint, landing_blueprint, roadmap_blueprint
+        from .views import (
+            dashboard_blueprint,
+            landing_blueprint,
+            roadmap_blueprint,
+            auth_blueprint,
+        )
 
-        app.register_blueprint(dashboard_blueprint, url_prefix=PREFIX + DASHBOARD_DEFAULT_NAME)
+        app.register_blueprint(
+            dashboard_blueprint, url_prefix=PREFIX + DASHBOARD_DEFAULT_NAME
+        )
         app.register_blueprint(landing_blueprint, url_prefix=PREFIX)
-        app.register_blueprint(roadmap_blueprint, url_prefix=PREFIX + ROADMAP_DEFAULT_NAME)
+        app.register_blueprint(
+            roadmap_blueprint, url_prefix=PREFIX + ROADMAP_DEFAULT_NAME
+        )
+        app.register_blueprint(auth_blueprint, url_prefix=PREFIX + AUTH_BASE)
 
-        db.create_all()  
+        db.create_all()
 
     return app
