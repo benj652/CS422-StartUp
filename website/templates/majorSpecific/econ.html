@@ -69,14 +69,17 @@
             <div class="rm-card">
                 <p class="rm-card-eyebrow">02</p>
                 <h2 class="rm-card-title">Programs &amp; Opportunities</h2>
-                <ul>
-                    {% for item in programs %} {% if item.href %}
+                <ul class = "roadmap-list">
+                    {% for item in programs %} 
                     <li>
-                        <a href="{{ item.href }}" target="_blank" rel="noopener noreferrer">{{ item.text }}</a>
+                        <input type="checkbox" class="program-checker">
+                        {% if item.href %}
+                            <a href="{{ item.href }}" target="_blank" rel="noopener noreferrer" class = "item-text">{{ item.text }}</a>
+                        {% else %}
+                            <span class="clickable item-text" data-popup="{{ item.popupText }}">{{ item.text }}</span>
+                        {% endif %} 
                     </li>
-                    {% else %}
-                    <li class="clickable" data-popup="{{ item.popupText }}">{{ item.text }}</li>
-                    {% endif %} {% endfor %}
+                    {% endfor %}
                 </ul>
             </div>
 
