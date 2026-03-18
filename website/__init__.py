@@ -2,6 +2,7 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
+from flask_login import LoginManager
 
 from .consts import (
     AUTH_BASE,
@@ -20,6 +21,15 @@ from .consts import (
 )
 
 db = SQLAlchemy()
+
+
+from .views import (
+    dashboard_blueprint,
+    landing_blueprint,
+    roadmap_blueprint,
+    auth_blueprint,
+)
+
 
 load_dotenv()
 
@@ -60,30 +70,39 @@ def create_app():
         SQLALCHEMY_TRACK_MODIFICATIONS
     )
 
+    # Initialize the LoginManager
+    login_manager = LoginManager()
+    login_manager.init_app(app)
+    login_manager.login_view = PREFIX + AUTH_BASE
+    login_manager.login_message = None
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        """
+        Load a user by ID for Flask-Login.
+
+        Since we are not persisting users in the database, this function
+        will create a temporary user object with the given user_id.
+        """
+        from website.models.temp_user import (
+            TempUser,
+        )
+
+        return TempUser(user_id=user_id, email=None, name=None)
+
     db.init_app(app)
 
+    app.register_blueprint(
+        dashboard_blueprint, url_prefix=PREFIX + DASHBOARD_DEFAULT_NAME
+    )
+    app.register_blueprint(landing_blueprint, url_prefix=PREFIX)
+    app.register_blueprint(roadmap_blueprint, url_prefix=PREFIX + ROADMAP_DEFAULT_NAME)
+    app.register_blueprint(auth_blueprint, url_prefix=PREFIX + AUTH_BASE)
     with app.app_context():
-        from .models.tracking import User, Visit, Action
-
-        from .views import (
-            dashboard_blueprint,
-            landing_blueprint,
-            roadmap_blueprint,
-            auth_blueprint,
-        )
-
-        app.register_blueprint(
-            dashboard_blueprint, url_prefix=PREFIX + DASHBOARD_DEFAULT_NAME
-        )
-        app.register_blueprint(landing_blueprint, url_prefix=PREFIX)
-        app.register_blueprint(
-            roadmap_blueprint, url_prefix=PREFIX + ROADMAP_DEFAULT_NAME
-        )
-        app.register_blueprint(auth_blueprint, url_prefix=PREFIX + AUTH_BASE)
-
         db.create_all()
 
     from website.views.auth_views import init_oauth
+
     init_oauth(app)
 
     return app
