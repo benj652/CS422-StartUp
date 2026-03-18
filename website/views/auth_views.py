@@ -1,7 +1,8 @@
-from flask import Blueprint, redirect, url_for
+from flask import Blueprint, redirect, session, url_for
 
 from authlib.integrations.flask_client import OAuth
 from flask_login import login_required, login_user, logout_user
+from website.models.temp_user import TempUser
 import os
 
 
@@ -71,7 +72,12 @@ def authorize():
     resp = google.get(GOOGLE_USER_INFO_API, token=token)
     google_user = resp.json()
 
-    login_user(google_user)
+    # Create a TempUser instance from the Google user info
+    user = TempUser(
+        user_id=google_user["id"], email=google_user["email"], name=google_user["name"]
+    )
+
+    login_user(user)
     return redirect(PREFIX)
 
 
