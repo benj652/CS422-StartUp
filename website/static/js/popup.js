@@ -37,10 +37,17 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.querySelectorAll('.program-checker').forEach(checkbox => {
-    checkbox.addEventListener('change', function() {
+  const check_box = checkbox.parentElement.querySelector('.item-text').innerHTML;
+  if (localStorage.getItem(check_box) === 'true') {
+    checkbox.checked = true;
+  }
+
+  checkbox.addEventListener('change', function() {
         if (this.checked) {
+          localStorage.setItem(check_box, 'true');
           console.log('Done!');
         } else {
+          localStorage.setItem(check_box, 'false');
           console.log('Not done!');
         }
     });
