@@ -59,8 +59,11 @@
                 <h2 class="rm-card-title">Classes to Prioritize</h2>
                 <ul>
                     {% for item in classes %}
-                    <li data-popup="{{ item.popupText }}" class="clickable">
-                        {{ item.text }}
+                    <li>
+                        <input type="checkbox" class="program-checker">
+                        <span data-popup="{{ item.popupText }}" class="clickable item-text">
+                            {{ item.text }}
+                        </span>
                     </li>
                     {% endfor %}
                 </ul>
