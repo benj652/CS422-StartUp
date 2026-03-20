@@ -54,13 +54,14 @@
         <p class="rm-section-label">Recommendations</p>
 
         <div class="rm-grid">
-            <div class="rm-card">
+             <div class="rm-card">
                 <p class="rm-card-eyebrow">01</p>
                 <h2 class="rm-card-title">Recommended Classes</h2>
-                <ul>
+                <ul class="roadmap-list">
                     {% for item in classes %}
-                    <li class="clickable" data-popup="{{ item.popupText }}">
-                        {{ item.text }}
+                    <li>
+                        <input type="checkbox" class="program-checker">
+                        <span data-popup="{{ item.popupText }}" class="clickable item-text"> {{ item.text }} </span>
                     </li>
                     {% endfor %}
                 </ul>
@@ -68,17 +69,18 @@
 
             <div class="rm-card">
                 <p class="rm-card-eyebrow">02</p>
-                <h2 class="rm-card-title">Programs &amp; Experiences</h2>
-                <ul>
-                    {% for item in programs %} {% if item.href %}
+                <h2 class="rm-card-title">Programs &amp; Opportunities</h2>
+                <ul class = "roadmap-list">
+                    {% for item in programs %} 
                     <li>
-                        <a href="{{ item.href }}" target="_blank" rel="noopener noreferrer">{{ item.text }}</a>
+                        <input type="checkbox" class="program-checker">
+                        {% if item.href %}
+                            <a href="{{ item.href }}" target="_blank" rel="noopener noreferrer" class = "item-text">{{ item.text }}</a>
+                        {% else %}
+                            <span class="clickable item-text" data-popup="{{ item.popupText }}">{{ item.text }}</span>
+                        {% endif %} 
                     </li>
-                    {% else %}
-                    <li class="clickable" data-popup="{{ item.popupText }}">
-                        {{ item.text }}
-                    </li>
-                    {% endif %} {% endfor %}
+                    {% endfor %}
                 </ul>
             </div>
 

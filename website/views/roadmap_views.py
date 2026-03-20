@@ -84,7 +84,12 @@ def econ():
     career_goal_key = request.args.get('career_goal', '').lower()
 
     year_block = econ_data.get(year_key, econ_data['default'])
-    year_data = year_block.get('base', {}).copy()
+    base_block = year_block.get('base', {})
+    year_data = {
+        'classes': base_block.get('classes', []).copy(),
+        'programs': base_block.get('programs', []).copy(),
+        'resources': base_block.get('resources', []).copy()
+    }
     
     goal_data = year_block.get(career_goal_key, {})
     if goal_data:
