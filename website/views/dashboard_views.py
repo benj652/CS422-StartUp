@@ -15,7 +15,7 @@ def dashboard():
     total_visits = Visit.query.count()
     users_who_complete_core_action = db.session.query(func.count(Action.user_id.distinct())).filter_by(atype='roadmap_submit').scalar()
     
-    activation_rate = round((users_who_activated / total_users * 100), 2) if total_users > 0 else 0
+    engagement_rate = round((users_who_activated / total_users * 100), 2) if total_users > 0 else 0
     core_action_rate = round((users_who_complete_core_action / total_users * 100), 2) if total_users > 0 else 0
 
     # 2. Time-Series Logic (Defined outside the loop)
@@ -103,8 +103,8 @@ def dashboard():
         DASHBOARD_DEFAULT_NAME + HTML_EXTENSION,
         total_users=total_users,
         total_visits=total_visits,
-        core_actions=core_action_rate,
-        activation_rate=activation_rate,
+        engagement_rate=engagement_rate,
+        activation_rate=core_action_rate,
         chart_labels=labels,
         week_0_data=week_0_data,
         week_1_data=week_1_data,
