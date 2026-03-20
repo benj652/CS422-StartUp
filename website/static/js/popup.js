@@ -35,3 +35,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
+document.querySelectorAll('.program-checker').forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+        if (this.checked) {
+          console.log('Done!');
+        } else {
+          console.log('Not done!');
+        }
+    });
+});
