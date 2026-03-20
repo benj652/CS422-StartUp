@@ -18,7 +18,7 @@ def dashboard():
     engagement_rate = round((users_who_activated / total_users * 100), 2) if total_users > 0 else 0
     core_action_rate = round((users_who_complete_core_action / total_users * 100), 2) if total_users > 0 else 0
 
-    # 2. Time-Series Logic (Defined outside the loop)
+    # 2. Time-Series Logic
     def get_rate_for_date(d):
         u_count = User.query.filter(func.date(User.created_at) <= d).count()
         a_count = db.session.query(func.count(Action.user_id.distinct())).filter(
@@ -49,6 +49,33 @@ def dashboard():
     # Format data for the chart (labels and data list)
     class_year_labels = list(year_counts.keys())
     class_year_values = list(year_counts.values())
+
+    # --- 2-Week Retention Rate (Core Action: roadmap_submit) ---
+    # 1. Define the Cohort Window (Users active 2 weeks ago)
+    cohort_start = today - timedelta(days=21)
+    cohort_end = today - timedelta(days=14)
+
+    # 2. Get unique User IDs who performed the core action in that window
+    cohort_query = db.session.query(Action.user_id.distinct()).filter(
+        Action.atype == 'roadmap_submit',
+        func.date(Action.timestamp) >= cohort_start,
+        func.date(Action.timestamp) <= cohort_end
+    ).all()
+
+    cohort_user_ids = [u[0] for u in cohort_query]
+    cohort_count = len(cohort_user_ids)
+
+    # 3. Check how many of those specific users performed the action again recently
+    if cohort_count > 0:
+        retained_count = db.session.query(func.count(Action.user_id.distinct())).filter(
+            Action.user_id.in_(cohort_user_ids),
+            Action.atype == 'roadmap_submit',
+            func.date(Action.timestamp) > (today - timedelta(days=7))
+        ).scalar()
+        
+        retention_rate = round((retained_count / cohort_count * 100), 1)
+    else:
+        retention_rate = 0
 
     # 3. Optimized Page Stats
     tracked_pages = [
@@ -103,6 +130,7 @@ def dashboard():
         DASHBOARD_DEFAULT_NAME + HTML_EXTENSION,
         total_users=total_users,
         total_visits=total_visits,
+        retention_rate=retention_rate,
         engagement_rate=engagement_rate,
         activation_rate=core_action_rate,
         chart_labels=labels,
