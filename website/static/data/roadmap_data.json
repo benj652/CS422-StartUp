@@ -156,23 +156,58 @@
     "freshman": {
       "hero": "Freshman year is mainly about getting the intro sequence started and beginning to understand what the major looks like.",
       "highlight": "Best use of freshman year: complete EC133 and EC134, start building your foundation early, and get familiar with finance, policy, consulting, and research paths before recruiting ramps up later.",
-      "classes": [
-        { "text": "EC 133: Microeconomics", "popupText": "Introductory course studying how individuals and firms make economic decisions." },
-        { "text": "EC 134: Macroeconomics", "popupText": "Introductory course examining national economies and economic policy." }
-      ],
-      "programs": [
-        { "text": "Citadel Discover", "href": "https://www.citadel.com/careers/students/discover-citadel/", "popupText": "Citadel's freshman discovery program introducing students to quantitative finance." },
-        { "text": "Goldman Sachs Possibilities Summit", "href": "https://www.goldmansachs.com/careers/students/programs/americas/possibilities-summit/", "popupText": "Goldman Sachs event connecting early undergraduates with finance careers." },
-        { "text": "J.P. Morgan Advancing Black Pathways", "href": "https://www.jpmorganchase.com/impact/people/advancing-black-pathways", "popupText": "J.P. Morgan program supporting Black students pursuing finance careers." },
-        { "text": "D.E. Shaw Fellowships", "href": "https://fellowships.deshaw.com/", "popupText": "D.E. Shaw's fellowship program for students interested in quantitative finance." },
-        { "text": "Jane Street FTTP", "href": "https://www.janestreet.com/join-jane-street/programs-and-events/fttp/", "popupText": "Jane Street's First-Year Trading and Technology Program." }
-      ],
-      "resources": [
-        { "text": "Get the intro sequence moving early", "popupText": "Starting required courses in the first year to stay on track for upper-level work." },
-        { "text": "Start learning what finance, consulting, policy, and quant paths look like", "popupText": "Exploring different economics career paths before committing to a direction." },
-        { "text": "Use first-year events and networking to explore without overcommitting", "popupText": "Attending career events to build awareness without narrowing your options too early." },
-        { "text": "Keep options open by building strong study habits from the start", "popupText": "Developing consistent academic habits that support performance across all econ paths." }
-      ]
+      "base":{
+        "classes": [
+          { "text": "EC 133: Microeconomics", "popupText": "Introductory course studying how individuals and firms make economic decisions." },
+          { "text": "EC 134: Macroeconomics-", "popupText": "Introductory course examining national economies and economic policy." }
+        ],
+        "programs": [
+          { "text": "Citadel Discover", "href": "https://www.citadel.com/careers/students/discover-citadel/", "popupText": "Citadel's freshman discovery program introducing students to quantitative finance." },
+          { "text": "Goldman Sachs Possibilities Summit", "href": "https://www.goldmansachs.com/careers/students/programs/americas/possibilities-summit/", "popupText": "Goldman Sachs event connecting early undergraduates with finance careers." },
+          { "text": "J.P. Morgan Advancing Black Pathways", "href": "https://www.jpmorganchase.com/impact/people/advancing-black-pathways", "popupText": "J.P. Morgan program supporting Black students pursuing finance careers." },
+          { "text": "D.E. Shaw Fellowships", "href": "https://fellowships.deshaw.com/", "popupText": "D.E. Shaw's fellowship program for students interested in quantitative finance." },
+          { "text": "Jane Street FTTP", "href": "https://www.janestreet.com/join-jane-street/programs-and-events/fttp/", "popupText": "Jane Street's First-Year Trading and Technology Program." }
+        ],
+        "resources": [
+          { "text": "Get the intro sequence moving early", "popupText": "Starting required courses in the first year to stay on track for upper-level work." },
+          { "text": "Start learning what finance, consulting, policy, and quant paths look like", "popupText": "Exploring different economics career paths before committing to a direction." },
+          { "text": "Use first-year events and networking to explore without overcommitting", "popupText": "Attending career events to build awareness without narrowing your options too early." },
+          { "text": "Keep options open by building strong study habits from the start", "popupText": "Developing consistent academic habits that support performance across all econ paths." }
+        ]
+      },
+      "consulting":{
+        "extra_classes":[
+           { "text": "JP: Tuck Bridge Program", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        ],
+        "extra_programs":[
+           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        ]
+      },
+      "finance":{
+        "extra_classes":[
+           { "text": "JP: Tuck Bridge Program", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        ],
+        "extra_programs":[
+           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        ]
+      },
+      "exploring":{
+        "extra_classes":[
+           { "text": "JP: Tuck Bridge Program", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        ],
+        "extra_programs":[
+           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        ]
+      },
+      "product_manager":{
+        "extra_classes":[
+           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ],
+        "extra_programs":[
+           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        ]
+      }
+
     },
 
     "sophomore": {
