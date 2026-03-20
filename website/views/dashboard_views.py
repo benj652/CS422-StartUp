@@ -3,6 +3,7 @@ from website import db
 from ..models import User, Visit, Action, Feedback
 from ..consts import DASHBOARD_DEFAULT_NAME, PREFIX, HTML_EXTENSION
 from sqlalchemy import func
+from sqlalchemy.orm import aliased
 from datetime import datetime, timedelta
 
 dashboard_blueprint = Blueprint(DASHBOARD_DEFAULT_NAME, __name__)
@@ -50,32 +51,27 @@ def dashboard():
     class_year_labels = list(year_counts.keys())
     class_year_values = list(year_counts.values())
 
-    # --- 2-Week Retention Rate (Core Action: roadmap_submit) ---
-    # 1. Define the Cohort Window (Users active 2 weeks ago)
-    cohort_start = today - timedelta(days=21)
-    cohort_end = today - timedelta(days=14)
+    # --- 14-Day Bounded Retention (Core Action: roadmap_submit) ---
 
-    # 2. Get unique User IDs who performed the core action in that window
-    cohort_query = db.session.query(Action.user_id.distinct()).filter(
-        Action.atype == 'roadmap_submit',
-        func.date(Action.timestamp) >= cohort_start,
-        func.date(Action.timestamp) <= cohort_end
-    ).all()
+    # Create an alias of the Action table so we can join it to itself
+    Action1 = aliased(Action)
+    Action2 = aliased(Action)
 
-    cohort_user_ids = [u[0] for u in cohort_query]
-    cohort_count = len(cohort_user_ids)
+    # This query finds unique users (Action1) who have a SECOND action (Action2) 
+    # that happened between 1 second and 14 days AFTER the first one.
+    retained_users_count = db.session.query(func.count(Action1.user_id.distinct())).join(
+        Action2, Action1.user_id == Action2.user_id
+    ).filter(
+        Action1.atype == 'roadmap_submit',
+        Action2.atype == 'roadmap_submit',
+        Action2.timestamp > Action1.timestamp,
+        Action2.timestamp <= Action1.timestamp + timedelta(days=14)
+    ).scalar()
 
-    # 3. Check how many of those specific users performed the action again recently
-    if cohort_count > 0:
-        retained_count = db.session.query(func.count(Action.user_id.distinct())).filter(
-            Action.user_id.in_(cohort_user_ids),
-            Action.atype == 'roadmap_submit',
-            func.date(Action.timestamp) > (today - timedelta(days=7))
-        ).scalar()
-        
-        retention_rate = round((retained_count / cohort_count * 100), 1)
-    else:
-        retention_rate = 0
+    # Calculate rate against total users who have ever done the core action
+    total_core_users = db.session.query(func.count(Action.user_id.distinct())).filter_by(atype='roadmap_submit').scalar()
+
+    retention_rate = round((retained_users_count / total_core_users * 100), 1) if total_core_users > 0 else 0
 
     # 3. Optimized Page Stats
     tracked_pages = [
