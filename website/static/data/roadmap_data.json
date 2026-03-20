@@ -156,29 +156,65 @@
     "freshman": {
       "hero": "Freshman year is mainly about getting the intro sequence started and beginning to understand what the major looks like.",
       "highlight": "Best use of freshman year: complete EC133 and EC134, start building your foundation early, and get familiar with finance, policy, consulting, and research paths before recruiting ramps up later.",
-      "classes": [
-        { "text": "EC 133: Microeconomics", "popupText": "Introductory course studying how individuals and firms make economic decisions." },
-        { "text": "EC 134: Macroeconomics", "popupText": "Introductory course examining national economies and economic policy." }
-      ],
-      "programs": [
-        { "text": "Citadel Discover", "href": "https://www.citadel.com/careers/students/discover-citadel/", "popupText": "Citadel's freshman discovery program introducing students to quantitative finance." },
-        { "text": "Goldman Sachs Possibilities Summit", "href": "https://www.goldmansachs.com/careers/students/programs/americas/possibilities-summit/", "popupText": "Goldman Sachs event connecting early undergraduates with finance careers." },
-        { "text": "J.P. Morgan Advancing Black Pathways", "href": "https://www.jpmorganchase.com/impact/people/advancing-black-pathways", "popupText": "J.P. Morgan program supporting Black students pursuing finance careers." },
-        { "text": "D.E. Shaw Fellowships", "href": "https://fellowships.deshaw.com/", "popupText": "D.E. Shaw's fellowship program for students interested in quantitative finance." },
-        { "text": "Jane Street FTTP", "href": "https://www.janestreet.com/join-jane-street/programs-and-events/fttp/", "popupText": "Jane Street's First-Year Trading and Technology Program." }
-      ],
-      "resources": [
-        { "text": "Get the intro sequence moving early", "popupText": "Starting required courses in the first year to stay on track for upper-level work." },
-        { "text": "Start learning what finance, consulting, policy, and quant paths look like", "popupText": "Exploring different economics career paths before committing to a direction." },
-        { "text": "Use first-year events and networking to explore without overcommitting", "popupText": "Attending career events to build awareness without narrowing your options too early." },
-        { "text": "Keep options open by building strong study habits from the start", "popupText": "Developing consistent academic habits that support performance across all econ paths." }
-      ]
+      "base":{
+        "classes": [
+          { "text": "EC 133: Microeconomics", "popupText": "Introductory course studying how individuals and firms make economic decisions." },
+          { "text": "EC 134: Macroeconomics-", "popupText": "Introductory course examining national economies and economic policy." }
+        ],
+        "programs": [
+          { "text": "Citadel Discover", "href": "https://www.citadel.com/careers/students/discover-citadel/", "popupText": "Citadel's freshman discovery program introducing students to quantitative finance." },
+          { "text": "Goldman Sachs Possibilities Summit", "href": "https://www.goldmansachs.com/careers/students/programs/americas/possibilities-summit/", "popupText": "Goldman Sachs event connecting early undergraduates with finance careers." },
+          { "text": "J.P. Morgan Advancing Black Pathways", "href": "https://www.jpmorganchase.com/impact/people/advancing-black-pathways", "popupText": "J.P. Morgan program supporting Black students pursuing finance careers." },
+          { "text": "D.E. Shaw Fellowships", "href": "https://fellowships.deshaw.com/", "popupText": "D.E. Shaw's fellowship program for students interested in quantitative finance." },
+          { "text": "Jane Street FTTP", "href": "https://www.janestreet.com/join-jane-street/programs-and-events/fttp/", "popupText": "Jane Street's First-Year Trading and Technology Program." }
+        ],
+        "resources": [
+          { "text": "Get the intro sequence moving early", "popupText": "Starting required courses in the first year to stay on track for upper-level work." },
+          { "text": "Start learning what finance, consulting, policy, and quant paths look like", "popupText": "Exploring different economics career paths before committing to a direction." },
+          { "text": "Use first-year events and networking to explore without overcommitting", "popupText": "Attending career events to build awareness without narrowing your options too early." },
+          { "text": "Keep options open by building strong study habits from the start", "popupText": "Developing consistent academic habits that support performance across all econ paths." }
+        ]
+      },
+      "consulting":{
+        "extra_classes":[
+           { "text": "JP: Tuck Bridge Program", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        ],
+        "extra_programs":[
+           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        ]
+      },
+      "finance":{
+        "extra_classes":[
+           { "text": "JP: Tuck Bridge Program", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        ],
+        "extra_programs":[
+           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        ]
+      },
+      "exploring":{
+        "extra_classes":[
+           { "text": "JP: Tuck Bridge Program", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        ],
+        "extra_programs":[
+           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        ]
+      },
+      "product_manager":{
+        "extra_classes":[
+           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ],
+        "extra_programs":[
+           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        ]
+      }
+
     },
 
     "sophomore": {
       "hero": "Sophomore year is where the major becomes more structured — theory, methods, and math become much more important.",
       "highlight": "Best use of sophomore year: finish the core theory and methods work so junior year can focus on stronger electives, technical development, and internship preparation.",
-      "classes": [
+      "base":{
+        "classes": [
         { "text": "EC 224: Macro Theory", "popupText": "Intermediate macroeconomic models covering growth, inflation, and policy." },
         { "text": "EC 223: Micro Theory", "popupText": "Intermediate theory course expanding on microeconomic decision models." },
         { "text": "PS 214: Research Methods or EC 293: Econ Research Methods", "popupText": "Quantitative and qualitative methods courses that support rigorous economic analysis." },
@@ -198,49 +234,57 @@
         { "text": "Build spreadsheet, data, and interview skills alongside coursework", "popupText": "Practical skills like Excel and financial modeling that recruiters look for." },
         { "text": "Start keeping a clear timeline for sophomore and junior recruiting windows", "popupText": "Understanding when applications open for competitive programs and internships." }
       ]
+      }
+      
     },
 
     "junior": {
       "hero": "Junior year is usually the most important year for connecting coursework to internships, recruiting, and upper-level economics work.",
       "highlight": "Best use of junior year: pair upper-level econ classes with serious internship prep, stronger technical skill building, and a more focused recruiting strategy.",
-      "classes": [
-        { "text": "Econ elective above 200", "popupText": "Upper-level economics course in a specialization of interest." },
-        { "text": "EC 393: Econometrics", "popupText": "Course using statistical methods to analyze economic data and test theory." }
-      ],
-      "programs": [
-        { "text": "Goldman Sachs Summer Analyst Program", "href": "https://www.goldmansachs.com/careers/students/programs/", "popupText": "Goldman Sachs' flagship summer internship across investment banking and markets." },
-        { "text": "PwC Advance", "href": "https://www.pwc.com/us/en/careers/while-you-work/student-opportunities/advance.html", "popupText": "PwC's junior summer internship in consulting and advisory services." },
-        { "text": "Jane Street Quantitative Trader Internship", "href": "https://www.janestreet.com/join-jane-street/programs-and-events/quantitative-trader-internship/", "popupText": "Jane Street's internship for students interested in quantitative trading." },
-        { "text": "J.P. Morgan Quantitative Finance Internship", "href": "https://careers.jpmorgan.com/us/en/students/programs/quantitative-finance-analyst", "popupText": "J.P. Morgan's internship for quantitative finance and analyst roles." },
-        { "text": "SIG Quantitative Trading Intern", "href": "https://careers.sig.com/students/", "popupText": "SIG's trading and research internship for quantitatively strong students." },
-        { "text": "Bridgewater Investment Engineer Intern", "href": "https://www.bridgewater.com/campus", "popupText": "Bridgewater's internship combining investment research and systems work." },
-        { "text": "Evercore / Lazard / Centerview", "href": null, "popupText": "Elite boutique investment banks with competitive summer analyst programs." }
-      ],
-      "resources": [
-        { "text": "Junior summer is often the most important internship summer", "popupText": "The junior internship is the primary path to full-time finance and consulting offers." },
-        { "text": "Econometrics makes your quantitative background more usable", "popupText": "Econometrics signals technical credibility for research and quantitative roles." },
-        { "text": "Use networking and alumni outreach more seriously this year", "popupText": "Connecting with alumni for referrals becomes much more important in junior year." },
-        { "text": "Tighten your resume and know what roles you are targeting", "popupText": "A focused, well-crafted resume targeting specific roles and firms is essential." }
-      ]
+      "base":{
+        "classes": [
+          { "text": "Econ elective above 200", "popupText": "Upper-level economics course in a specialization of interest." },
+          { "text": "EC 393: Econometrics", "popupText": "Course using statistical methods to analyze economic data and test theory." }
+        ],
+        "programs": [
+          { "text": "Goldman Sachs Summer Analyst Program", "href": "https://www.goldmansachs.com/careers/students/programs/", "popupText": "Goldman Sachs' flagship summer internship across investment banking and markets." },
+          { "text": "PwC Advance", "href": "https://www.pwc.com/us/en/careers/while-you-work/student-opportunities/advance.html", "popupText": "PwC's junior summer internship in consulting and advisory services." },
+          { "text": "Jane Street Quantitative Trader Internship", "href": "https://www.janestreet.com/join-jane-street/programs-and-events/quantitative-trader-internship/", "popupText": "Jane Street's internship for students interested in quantitative trading." },
+          { "text": "J.P. Morgan Quantitative Finance Internship", "href": "https://careers.jpmorgan.com/us/en/students/programs/quantitative-finance-analyst", "popupText": "J.P. Morgan's internship for quantitative finance and analyst roles." },
+          { "text": "SIG Quantitative Trading Intern", "href": "https://careers.sig.com/students/", "popupText": "SIG's trading and research internship for quantitatively strong students." },
+          { "text": "Bridgewater Investment Engineer Intern", "href": "https://www.bridgewater.com/campus", "popupText": "Bridgewater's internship combining investment research and systems work." },
+          { "text": "Evercore / Lazard / Centerview", "href": null, "popupText": "Elite boutique investment banks with competitive summer analyst programs." }
+        ],
+        "resources": [
+          { "text": "Junior summer is often the most important internship summer", "popupText": "The junior internship is the primary path to full-time finance and consulting offers." },
+          { "text": "Econometrics makes your quantitative background more usable", "popupText": "Econometrics signals technical credibility for research and quantitative roles." },
+          { "text": "Use networking and alumni outreach more seriously this year", "popupText": "Connecting with alumni for referrals becomes much more important in junior year." },
+          { "text": "Tighten your resume and know what roles you are targeting", "popupText": "A focused, well-crafted resume targeting specific roles and firms is essential." }
+        ]
+      }
+      
     },
 
     "senior": {
       "hero": "Senior year should be about finishing strong, completing the seminar requirement, and turning your experience into a clear next step.",
       "highlight": "Best use of senior year: finish upper-level work well, complete the seminar, and use the fall to convert your experience into full-time opportunities or a stronger post-grad plan.",
-      "classes": [
-        { "text": "Econ elective in the 300 level", "popupText": "Advanced economics course in your area of interest." },
-        { "text": "Econ seminar", "popupText": "Capstone seminar completing the economics major requirement." }
-      ],
-      "programs": [
-        { "text": "Focus on full-time recruiting and late-cycle opportunities", "href": null, "popupText": "Senior recruiting cycles for banking, consulting, and research roles." },
-        { "text": "Use seminar and upper-level work to sharpen your interests", "href": null, "popupText": "Leveraging coursework to clarify your economics career direction." }
-      ],
-      "resources": [
-        { "text": "Wall Street Prep", "popupText": "Financial modeling training used for investment banking preparation." },
-        { "text": "Paving the Road", "popupText": "Student resource and guide for breaking into finance careers." },
-        { "text": "Mergers and Acquisitions class with Mike McHale", "popupText": "Colby course focused on corporate mergers, acquisitions, and deal analysis." },
-        { "text": "Senior year is about finishing the major well and making your next move concrete", "popupText": "Completing the major strong while locking in your first post-graduation step." }
-      ]
+      "base":{
+        "classes": [
+          { "text": "Econ elective in the 300 level", "popupText": "Advanced economics course in your area of interest." },
+          { "text": "Econ seminar", "popupText": "Capstone seminar completing the economics major requirement." }
+        ],
+        "programs": [
+          { "text": "Focus on full-time recruiting and late-cycle opportunities", "href": null, "popupText": "Senior recruiting cycles for banking, consulting, and research roles." },
+          { "text": "Use seminar and upper-level work to sharpen your interests", "href": null, "popupText": "Leveraging coursework to clarify your economics career direction." }
+        ],
+        "resources": [
+          { "text": "Wall Street Prep", "popupText": "Financial modeling training used for investment banking preparation." },
+          { "text": "Paving the Road", "popupText": "Student resource and guide for breaking into finance careers." },
+          { "text": "Mergers and Acquisitions class with Mike McHale", "popupText": "Colby course focused on corporate mergers, acquisitions, and deal analysis." },
+          { "text": "Senior year is about finishing the major well and making your next move concrete", "popupText": "Completing the major strong while locking in your first post-graduation step." }
+        ]
+      }
+
     }
   }
 }

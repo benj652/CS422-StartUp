@@ -57,10 +57,11 @@
             <div class="rm-card">
                 <p class="rm-card-eyebrow">01</p>
                 <h2 class="rm-card-title">Classes to Prioritize</h2>
-                <ul>
+                <ul class="roadmap-list">
                     {% for item in classes %}
-                    <li data-popup="{{ item.popupText }}" class="clickable">
-                        {{ item.text }}
+                    <li>
+                        <input type="checkbox" class="program-checker">
+                        <span data-popup="{{ item.popupText }}" class="clickable item-text"> {{ item.text }} </span>
                     </li>
                     {% endfor %}
                 </ul>

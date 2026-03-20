@@ -81,13 +81,26 @@ def econ():
     log_visit(page="econ")
     year_key = request.args.get('year', '').lower()
     econ_data = ROADMAP_DATA['econ']
-    year_data = econ_data.get(year_key, econ_data['default'])
+    career_goal_key = request.args.get('career_goal', '').lower()
+
+    year_block = econ_data.get(year_key, econ_data['default'])
+    base_block = year_block.get('base', {})
+    year_data = {
+        'classes': base_block.get('classes', []).copy(),
+        'programs': base_block.get('programs', []).copy(),
+        'resources': base_block.get('resources', []).copy()
+    }
+    
+    goal_data = year_block.get(career_goal_key, {})
+    if goal_data:
+        year_data['classes'].extend(goal_data.get('extra_classes', []))
+        year_data['programs'].extend(goal_data.get('extra_programs', []))
     return render_template(
         MAJOR_SPECIFIC_FOLDER_NAME + ECON_DEFAULT_NAME + HTML_EXTENSION,
         **_profile_context(),
-        hero=year_data['hero'],
-        highlight=year_data['highlight'],
-        classes=year_data['classes'],
-        programs=year_data['programs'],
-        resources=year_data['resources'],
+        hero=year_block.get('hero', ''),
+        highlight=year_block.get('highlight', ''),
+        classes=year_data.get('classes',[]),
+        programs=year_data.get('programs', []),
+        resources=year_data.get('resources',[]),
     )
