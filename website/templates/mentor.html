@@ -1,109 +1,107 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>AI Mentor | Blueprint.edu</title>
-    
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700,900" />
-    <link id="pagestyle" href="{{ url_for('static', filename='assets/css/material-kit.css') }}" rel="stylesheet" />
-    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mentor.css') }}" />
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-</head>
+  </head>
+  <body class="mentor-page">
+    <header class="site-header mentor-header">
+      <a class="logo" href="{{ url_for('homepage.homepage') }}">
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Blueprint Career Roadmaps" class="logo-img" />
+      </a>
+      <a class="btn-feedback" href="{{ url_for('homepage.feedback_page') }}">Feedback</a>
+    </header>
 
-<body class="mentor-page" style="background-color: #142231; overflow: hidden;">
-    <div class="glow-bg-1"></div>
-    <div class="glow-bg-2"></div>
+    <div class="mentor-layout">
+      <aside class="mentor-sidebar">
+        <h1 class="mentor-logo">Blueprint<span>.edu</span></h1>
 
-    <div class="container-fluid vh-100 position-relative z-index-2">
-        <div class="row h-100">
-            <div class="col-lg-2 d-none d-lg-flex flex-column glass-sidebar-v2 p-4">
-                <div class="mb-5 px-2">
-                    <h5 class="text-white font-weight-bolder">Blueprint<span class="text-info">.edu</span></h5>
-                </div>
-                
-                <div class="px-2 mt-2">
-                    <div class="profile-data-item mb-4">
-                        <label class="text-sm text-uppercase text-info font-weight-bolder opacity-7 mb-1 d-block">Class Year</label>
-                        <p class="text-white text-sm font-weight-bold mb-0">Sophomore</p>
-                    </div>
-            
-                    <div class="profile-data-item mb-4">
-                        <label class="text-sm text-uppercase text-info font-weight-bolder opacity-7 mb-1 d-block">Major</label>
-                        <p class="text-white text-sm font-weight-bold mb-0">Computer Science</p>
-                    </div>
-            
-                    <div class="profile-data-item mb-4">
-                        <label class="text-sm text-uppercase text-info font-weight-bolder opacity-7 mb-1 d-block">Career Path</label>
-                        <p class="text-white text-sm font-weight-bold mb-0">Software Engineering</p>
-                    </div>
-                </div>
-            
-                <div class="mt-auto px-2">
-                    <hr class="horizontal light opacity-2 mb-4">
-
-                    <div class="p-3 upgrade-card-glass text-center mt-2">
-                        <p class="text-xxs text-white mb-2 opacity-8">Need more detail?</p>
-                        <button class="btn btn-sm btn-mentor w-200 mb-1">View Full Roadmap</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-10 col-12 d-flex flex-column h-100 p-0 position-relative">
-                <div class="p-3 d-flex align-items-center justify-content-between">
-                    <div class="dropdown">
-                        <a href="{{ url_for('homepage.homepage') }}" class="nav-link text-white opacity-6 text-xs mb-3">
-                        <button class="btn btn-outline-white btn-sm dropdown-toggle mb-0" type="button">Back Home</button> </a>
-                    </div>
-                    <div class="user-profile-small d-flex align-items-center">
-                        <div class="text-end me-3">
-                            <p class="text-white text-xs mb-0 font-weight-bold">Marcus Aurelius</p>
-                            <p class="text-white text-xxs opacity-5 mb-0">CS Major</p>
-                        </div>
-                        <img src="https://ui-avatars.com/api/?name=MA&background=fbcf33&color=fff" class="avatar avatar-sm rounded-circle">
-                    </div>
-                </div>
-
-                <div class="flex-grow-1 d-flex flex-column align-items-center justify-content-center px-4" id="chat-container">
-                    <div class="text-center mb-5">
-                        <h1 class="welcome-text mb-2">Hey there!</h1>
-                        <h2 class="text-white opacity-4 fw-light">How can I guide you today?</h2>
-                    </div>
-
-                    <div class="row w-100 max-width-800">
-                        <div class="col-md-4 mb-3">
-                            <div class="action-card-glass p-4 h-100">
-                                <div class="icon-box-purple mb-3"><i class="fas fa-globe"></i></div>
-                                <h6 class="text-white text-sm">What's happening?</h6>
-                                <p class="text-xxs text-white opacity-5 mb-0">Tell me a little bit about yourself so we can figure out what's next</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <div class="action-card-glass p-4 h-100">
-                                <div class="icon-box-blue mb-3"><i class="fas fa-chart-line"></i></div>
-                                <h6 class="text-white text-sm">Roadmap Discovery</h6>
-                                <p class="text-xxs text-white opacity-5 mb-0">Already decided on a major? Let's give you an outline to get you to your goal</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <div class="action-card-glass p-4 h-100">
-                                <div class="icon-box-gold mb-3"><i class="fas fa-file-alt"></i></div>
-                                <h6 class="text-white text-sm">Beyond the Classroom</h6>
-                                <p class="text-xxs text-white opacity-5 mb-0">Curated resources from experts to help you outside of class</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-4 d-flex justify-content-center">
-                    <div class="floating-input-container w-100 max-width-800">
-                        <input type="text" class="form-control glass-input" placeholder="Ask something...">
-                        <button class="send-icon-btn"><i class="fas fa-arrow-up"></i></button>
-                    </div>
-                </div>
-                <p class="text-center text-xxs text-white opacity-3 pb-3">Join the Blueprint community for more insights <a href="#" class="text-white text-decoration-underline">Join Discord</a></p>
-            </div>
+        <div class="profile-data-item">
+          <label>Class Year</label>
+          <p>Sophomore</p>
         </div>
+
+        <div class="profile-data-item">
+          <label>Major</label>
+          <p>Computer Science</p>
+        </div>
+
+        <div class="profile-data-item">
+          <label>Career Path</label>
+          <p>Software Engineering</p>
+        </div>
+
+        <div class="mentor-sidebar-footer">
+          <div class="upgrade-card">
+            <p>Need more detail?</p>
+            <button class="btn-primary-soft" type="button">View Full Roadmap</button>
+          </div>
+        </div>
+      </aside>
+
+      <main class="mentor-main">
+        <div class="mentor-topbar">
+          <a href="{{ url_for('homepage.homepage') }}" class="btn-back">Back Home</a>
+          <div class="user-profile-small">
+            <div class="user-meta">
+              <p class="user-name">Marcus Aurelius</p>
+              <p class="user-major">CS Major</p>
+            </div>
+            <img src="https://ui-avatars.com/api/?name=MA&background=127be4&color=fff" class="avatar" alt="User avatar" />
+          </div>
+        </div>
+
+        <section class="mentor-content" id="chat-container">
+          <div>
+            <h2 class="welcome-text">Hey there!</h2>
+            <p class="welcome-subtext">How can I guide you today?</p>
+          </div>
+
+          <div class="action-grid">
+            <div class="action-card">
+              <div class="icon-box icon-box-purple"><i class="fas fa-globe"></i></div>
+              <h6>What's happening?</h6>
+              <p>Tell me a little bit about yourself so we can figure out what is next.</p>
+            </div>
+            <div class="action-card">
+              <div class="icon-box icon-box-blue"><i class="fas fa-chart-line"></i></div>
+              <h6>Roadmap Discovery</h6>
+              <p>Already decided on a major? Let us map out your path to that goal.</p>
+            </div>
+            <div class="action-card">
+              <div class="icon-box icon-box-gold"><i class="fas fa-file-alt"></i></div>
+              <h6>Beyond the Classroom</h6>
+              <p>Get curated resources from experts to help you grow outside class.</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="mentor-input-wrap">
+          <div class="floating-input-container">
+            <input type="text" class="mentor-input" placeholder="Ask something..." />
+            <button class="send-icon-btn" type="button" aria-label="Send question">
+              <i class="fas fa-arrow-up"></i>
+            </button>
+          </div>
+          <p class="mentor-footnote">
+            Join the Blueprint community for more insights
+            <a href="#">Join Discord</a>
+          </p>
+        </div>
+      </main>
     </div>
-</body>
+
+    {% include 'footer.html' %}
+  </body>
 </html>
