@@ -22,11 +22,41 @@ body.mentor-page {
   display: flex;
   flex-direction: column;
   -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.mentor-blob {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.mentor-blob-1 {
+  top: 55%;
+  right: 40%;
+  width: 620px;
+  height: 620px;
+  transform: translate(50%, -50%);
+  background: radial-gradient(circle, rgba(18, 123, 228, 0.28) 0%, rgba(18, 123, 228, 0.16) 42%, rgba(18, 123, 228, 0) 74%);
+  filter: blur(6px);
+  z-index: 0;
+}
+
+.mentor-blob-2 {
+  bottom: -180px;
+  left: -120px;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(180, 83, 9, 0.1) 0%, rgba(180, 83, 9, 0) 72%);
 }
 
 .mentor-header {
   width: min(1240px, 100%);
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .mentor-layout {
@@ -37,6 +67,8 @@ body.mentor-page {
   grid-template-columns: 280px 1fr;
   gap: 24px;
   padding: 24px;
+  position: relative;
+  z-index: 1;
 }
 
 .mentor-sidebar {
@@ -127,6 +159,11 @@ body.mentor-page {
   display: flex;
   flex-direction: column;
   min-height: 0;
+  position: relative;
+  overflow: visible;
+  box-shadow:
+    0 0 0 1px rgba(18, 123, 228, 0.08),
+    0 0 64px rgba(18, 123, 228, 0.16);
 }
 
 .mentor-topbar {
@@ -244,6 +281,11 @@ body.mentor-page {
   font-size: 0.9rem;
 }
 
+.action-icon-svg {
+  width: 18px;
+  height: 18px;
+}
+
 .icon-box-purple {
   color: #7c3aed;
   background: #f3e8ff;
@@ -316,6 +358,13 @@ body.mentor-page {
 .send-icon-btn:hover {
   background: var(--accent-strong);
   transform: translateY(-50%) scale(1.04);
+}
+
+.send-glyph {
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 1;
+  font-weight: 700;
 }
 
 .mentor-footnote {

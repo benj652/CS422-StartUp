@@ -16,6 +16,9 @@
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   </head>
   <body class="mentor-page">
+    <div class="mentor-blob mentor-blob-1" aria-hidden="true"></div>
+    <div class="mentor-blob mentor-blob-2" aria-hidden="true"></div>
+
     <header class="site-header mentor-header">
       <a class="logo" href="{{ url_for('homepage.homepage') }}">
         <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Blueprint Career Roadmaps" class="logo-img" />
@@ -70,17 +73,37 @@
 
           <div class="action-grid">
             <div class="action-card">
-              <div class="icon-box icon-box-purple"><i class="fas fa-globe"></i></div>
+              <div class="icon-box icon-box-purple" aria-hidden="true">
+                <svg class="action-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <path d="M3 12h18"></path>
+                  <path d="M12 3c2.5 2.6 2.5 15.4 0 18"></path>
+                  <path d="M12 3c-2.5 2.6-2.5 15.4 0 18"></path>
+                </svg>
+              </div>
               <h6>What's happening?</h6>
               <p>Tell me a little bit about yourself so we can figure out what is next.</p>
             </div>
             <div class="action-card">
-              <div class="icon-box icon-box-blue"><i class="fas fa-chart-line"></i></div>
+              <div class="icon-box icon-box-blue" aria-hidden="true">
+                <svg class="action-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 19h16"></path>
+                  <path d="M6 15l4-4 3 2 5-6"></path>
+                  <path d="M18 7h-3"></path>
+                </svg>
+              </div>
               <h6>Roadmap Discovery</h6>
               <p>Already decided on a major? Let us map out your path to that goal.</p>
             </div>
             <div class="action-card">
-              <div class="icon-box icon-box-gold"><i class="fas fa-file-alt"></i></div>
+              <div class="icon-box icon-box-gold" aria-hidden="true">
+                <svg class="action-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M8 3h6l4 4v14H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"></path>
+                  <path d="M14 3v4h4"></path>
+                  <path d="M10 12h6"></path>
+                  <path d="M10 16h6"></path>
+                </svg>
+              </div>
               <h6>Beyond the Classroom</h6>
               <p>Get curated resources from experts to help you grow outside class.</p>
             </div>
@@ -91,7 +114,7 @@
           <div class="floating-input-container">
             <input type="text" class="mentor-input" placeholder="Ask something..." />
             <button class="send-icon-btn" type="button" aria-label="Send question">
-              <i class="fas fa-arrow-up"></i>
+              <span class="send-glyph" aria-hidden="true">&#8593;</span>
             </button>
           </div>
           <p class="mentor-footnote">
