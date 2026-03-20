@@ -1,16 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const roadmapBtn = document.getElementById('roadmap-button');
-    const mentorBtn = document.getElementById('mentor-button');
+    // Target the Get Started button ID from .html file
+    const getStartedBtn = document.getElementById('get-started-btn');
 
-    if (roadmapBtn) {
-        roadmapBtn.addEventListener('click', function() {
-            // Track that the user opened the modal
-            trackAction('roadmap_modal_open');
-        });
-    }
-    if (mentorBtn) {
-        mentorBtn.addEventListener('click', function() {
-            trackAction('mentor_click');
+    if (getStartedBtn) {
+        getStartedBtn.addEventListener('click', function() {
+        
+            trackAction('get_started_click');
         });
     }
 });
@@ -20,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
  * @param {string} actionType - The 'atype' string saved in the DB
  */
 function trackAction(actionType) {
-    fetch("/track-action", { // Ensure this matches your route in landing_views
+    fetch("/track-action", { 
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -31,3 +26,14 @@ function trackAction(actionType) {
     .then(data => console.log('Action tracked:', actionType))
     .catch((error) => console.error('Error tracking action:', error));
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const googleBtn = document.getElementById("google-oauth-btn");
+
+  if (googleBtn) {
+    googleBtn.addEventListener("click", function () {
+      // Redirect to your backend OAuth route
+      window.location.href = "/auth/login";
+    });
+  }
+});

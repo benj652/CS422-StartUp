@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy · Blueprint</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/policy.css') }}" />
+  </head>
+  <body>
+    <header class="policy-header">
+      <a href="{{ url_for('homepage.homepage') }}">
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Blueprint" />
+      </a>
+    </header>
+
+    <main class="policy-main">
+      <h1>Privacy Policy</h1>
+      <p class="policy-updated">Last updated: March 2026</p>
+
+      <h2>About This Project</h2>
+      <p>
+        Blueprint is an experimental prototype developed as part of a Colby's software
+        engineering course (CS422). It is not a commercial product. Any data collected is
+        used solely for educational research and product improvement purposes.
+      </p>
+
+      <h2>What Data We Collect</h2>
+      <p>When you use Blueprint, we collect the following information:</p>
+      <ul>
+        <li><strong>Academic profile:</strong> Your class year, major, career goal, career stage, and current priority — submitted voluntarily through the onboarding form.</li>
+        <li><strong>Usage data:</strong> Pages visited and interactions (e.g. button clicks, form submissions), logged anonymously.</li>
+        <li><strong>Session identifier:</strong> An anonymous UUID stored in a cookie to link your visits across sessions. No name, email, or personally identifiable information is collected.</li>
+      </ul>
+
+      <h2>Why We Collect It</h2>
+      <ul>
+        <li>To generate a personalised academic roadmap based on your answers.</li>
+        <li>To understand how users interact with the product and improve it.</li>
+        <li>To validate the product concept as part of our course research.</li>
+      </ul>
+
+      <h2>How We Use Your Data</h2>
+      <p>
+        Your data is used only within the scope of this course project. It is never sold,
+        shared with third parties, or used for advertising. Access is limited to the
+        student development team and course instructors.
+      </p>
+
+      <h2>Data Retention</h2>
+      <p>
+        Data is retained for the duration of the course and will be deleted or anonymised
+        at the end of the project. You may request early deletion at any time.
+      </p>
+
+      <h2>Your Rights</h2>
+      <p>
+        You have the right to request access to, correction of, or deletion of any data
+        associated with your session. To make a request, please contact the development
+        team at your institution. Because we do not collect your name or email, you will
+        need to provide your anonymous session identifier (found in your browser's cookies
+        for this site).
+      </p>
+
+      <h2>Limitations</h2>
+      <p>
+        Blueprint is an experimental prototype. The roadmaps and recommendations it
+        provides are not professionally verified and should not be used as the sole basis
+        for academic or career decisions. Please consult your academic advisor for
+        official guidance.
+      </p>
+    </main>
+
+    {% include 'footer.html' %}
+  </body>
+</html>

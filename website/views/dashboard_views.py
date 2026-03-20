@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 from website import db
-from ..models import User, Visit, Action
+from ..models import User, Visit, Action, Feedback
 from ..consts import DASHBOARD_DEFAULT_NAME, PREFIX, HTML_EXTENSION
 from sqlalchemy import func
 from datetime import datetime, timedelta
@@ -11,17 +11,19 @@ dashboard_blueprint = Blueprint(DASHBOARD_DEFAULT_NAME, __name__)
 def dashboard():
     # 1. Top Card Metrics
     total_users = User.query.count()
-    users_who_activated = db.session.query(func.count(Action.user_id.distinct())).filter_by(atype='survey_submit').scalar()
+    users_who_activated = db.session.query(func.count(Action.user_id.distinct())).filter_by(atype='get_started_click').scalar()
     total_visits = Visit.query.count()
+    users_who_complete_core_action = db.session.query(func.count(Action.user_id.distinct())).filter_by(atype='roadmap_submit').scalar()
     
     activation_rate = round((users_who_activated / total_users * 100), 2) if total_users > 0 else 0
+    core_action_rate = round((users_who_complete_core_action / total_users * 100), 2) if total_users > 0 else 0
 
     # 2. Time-Series Logic (Defined outside the loop)
     def get_rate_for_date(d):
         u_count = User.query.filter(func.date(User.created_at) <= d).count()
         a_count = db.session.query(func.count(Action.user_id.distinct())).filter(
             func.date(Action.timestamp) == d, 
-            Action.atype == 'survey_submit'
+            Action.atype == 'get_started_click'
         ).scalar()
         return round((a_count / u_count * 100), 1) if u_count > 0 else 0
 
@@ -35,31 +37,58 @@ def dashboard():
         week_1_data.append(get_rate_for_date(target_day - timedelta(days=7)))
         week_2_data.append(get_rate_for_date(target_day - timedelta(days=14)))
 
-    # 3. Optimized Page Stats (One query per page instead of one per visit)s
+    # Class Year Data for Bar Chart
+    # We query the counts for each year stored in the User model
+    year_counts = {
+        'Freshman': User.query.filter_by(class_year='Freshman').count(),
+        'Sophomore': User.query.filter_by(class_year='Sophomore').count(),
+        'Junior': User.query.filter_by(class_year='Junior').count(),
+        'Senior': User.query.filter_by(class_year='Senior').count(),
+    }
+    
+    # Format data for the chart (labels and data list)
+    class_year_labels = list(year_counts.keys())
+    class_year_values = list(year_counts.values())
+
+    # 3. Optimized Page Stats
     tracked_pages = [
         ('homepage.html', 'Home'),
-        ('roadmap', 'Roadmap'),
+        ('onboarding.html', 'Onboarding'), # Ensure these match your log_visit strings
         ('cs', 'CS'),
         ('econ', 'Economics'),
+        ('feedback.html', 'Feedback'),
     ]
     page_stats = []
 
     for page_name, display_name in tracked_pages:
-        # Get counts in bulk
+        # 1. Get basic counts
         total_p_visits = Visit.query.filter_by(page=page_name).count()
         unique_p_users = db.session.query(func.count(Visit.user_id.distinct())).filter(Visit.page == page_name).scalar()
         
-        # Bounce Calculation: 
-        # Count visits where NO action exists for that user within 30 mins of visit timestamp
-        bounces = db.session.query(Visit).filter(
-            Visit.page == page_name,
-            ~Action.query.filter(
-                Action.user_id == Visit.user_id,
-                Action.timestamp >= Visit.timestamp,
-                Action.timestamp <= Visit.timestamp + timedelta(minutes=30)
-            ).exists()
-        ).count()
+        # 2. Calculate Bounces
+        bounces = 0
+        all_visits_to_page = Visit.query.filter_by(page=page_name).all()
+        
+        for v in all_visits_to_page:
+            three_mins_later = v.timestamp + timedelta(minutes=3)
+            
+            has_further_activity = db.session.query(
+                db.session.query(Visit).filter(
+                    Visit.user_id == v.user_id,
+                    Visit.timestamp > v.timestamp,
+                    Visit.timestamp <= three_mins_later
+                ).exists() | 
+                db.session.query(Action).filter(
+                    Action.user_id == v.user_id,
+                    Action.timestamp > v.timestamp,
+                    Action.timestamp <= three_mins_later
+                ).exists()
+            ).scalar()
 
+            if not has_further_activity:
+                bounces += 1
+
+        # 3. Calculate Rate and Append (OUTSIDE the 'v' loop, INSIDE the 'page_name' loop)
         bounce_rate = round((bounces / total_p_visits * 100), 1) if total_p_visits > 0 else 0
 
         page_stats.append({
@@ -69,15 +98,19 @@ def dashboard():
             'bounce_rate': bounce_rate
         })
 
+    feedback_list = Feedback.query.order_by(Feedback.created_at.desc()).all() 
     return render_template(
         DASHBOARD_DEFAULT_NAME + HTML_EXTENSION,
         total_users=total_users,
         total_visits=total_visits,
-        core_actions=users_who_activated,
+        core_actions=core_action_rate,
         activation_rate=activation_rate,
         chart_labels=labels,
         week_0_data=week_0_data,
         week_1_data=week_1_data,
         week_2_data=week_2_data,
-        page_stats=sorted(page_stats, key=lambda x: x['visitors'], reverse=True)
+        class_year_labels=class_year_labels,
+        class_year_values=class_year_values,
+        page_stats=sorted(page_stats, key=lambda x: x['visitors'], reverse=True),
+        feedback_list=feedback_list
     )

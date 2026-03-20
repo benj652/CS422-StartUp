@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookie Policy · Blueprint</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/policy.css') }}" />
+  </head>
+  <body>
+    <header class="policy-header">
+      <a href="{{ url_for('homepage.homepage') }}">
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Blueprint" />
+      </a>
+    </header>
+
+    <main class="policy-main">
+      <h1>Cookie Policy</h1>
+      <p class="policy-updated">Last updated: March 2026</p>
+
+      <h2>What Are Cookies?</h2>
+      <p>
+        Cookies are small text files stored in your browser by a website. Blueprint uses
+        a minimal number of cookies strictly necessary to provide the service.
+      </p>
+
+      <h2>Cookies We Use</h2>
+      <table class="cookie-table">
+        <thead>
+          <tr>
+            <th>Cookie</th>
+            <th>Purpose</th>
+            <th>Duration</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Session cookie</td>
+            <td>
+              Stores an anonymous identifier to link your visits across sessions, enabling
+              personalised roadmap delivery and anonymous usage analytics.
+            </td>
+            <td>30 days</td>
+            <td>First-party, functional</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>What We Don't Do</h2>
+      <ul>
+        <li>We do not use third-party advertising or tracking cookies.</li>
+        <li>We do not share cookie data with any external services.</li>
+        <li>We do not use cookies to identify you personally.</li>
+      </ul>
+
+      <h2>Analytics</h2>
+      <p>
+        We log anonymous page visits and interactions (such as form submissions) tied to
+        your session cookie. This data helps us understand how the product is used and
+        improve it. All analytics are stored on our own servers and are not shared with
+        third parties.
+      </p>
+
+      <h2>Managing Cookies</h2>
+      <p>
+        You can delete or block cookies at any time through your browser settings. If you
+        clear your session cookie, a new anonymous session will be created on your next
+        visit and any previously saved preferences will not be recoverable.
+      </p>
+    </main>
+
+    {% include 'footer.html' %}
+  </body>
+</html>

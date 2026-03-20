@@ -1,308 +1,103 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CS Roadmap | Blueprint.edu</title>
-    <style>
-        :root {
-            --bg: #0d1b2a;
-            --bg-2: #13243a;
-            --panel: rgba(20, 34, 56, 0.82);
-            --panel-border: rgba(124, 170, 255, 0.14);
-            --text: #f4f7fb;
-            --muted: #b9c7da;
-            --accent: #69c8f2;
-            --accent-2: #4eb4e3;
-            --gold: #f0a333;
-            --shadow: 0 0 24px rgba(105, 200, 242, 0.22);
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            min-height: 100vh;
-            font-family: Arial, Helvetica, sans-serif;
-            color: var(--text);
-            background:
-                radial-gradient(circle at top, rgba(62, 112, 176, 0.22), transparent 30%),
-                linear-gradient(180deg, #10233a 0%, #0c1827 100%);
-        }
-
-        .nav-shell {
-            width: min(1240px, calc(100% - 48px));
-            margin: 18px auto 0;
-            background: rgba(17, 28, 46, 0.78);
-            border: 1px solid rgba(255,255,255,0.04);
-            border-radius: 18px;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.18);
-        }
-
-        .topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 28px;
-        }
-
-        .brand {
-            font-weight: 700;
-            font-size: 1.15rem;
-            color: white;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 28px;
-        }
-
-        .nav-links a {
-            color: #f2f5fa;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.98rem;
-            opacity: 0.95;
-        }
-
-        .nav-links a:hover {
-            opacity: 1;
-        }
-
-        .feedback-btn {
-            background: var(--gold);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 700;
-            box-shadow: 0 8px 24px rgba(240, 163, 51, 0.2);
-        }
-
-        .page {
-            width: min(1240px, calc(100% - 48px));
-            margin: 0 auto;
-            padding: 70px 0 60px;
-        }
-
-        .hero {
-            text-align: center;
-            max-width: 1000px;
-            margin: 0 auto 42px;
-        }
-
-        .hero h1 {
-            margin: 0 0 18px;
-            font-size: clamp(2.4rem, 4.6vw, 4rem);
-            font-weight: 500;
-            letter-spacing: -0.02em;
-        }
-
-        .hero p {
-            margin: 0 auto 18px;
-            max-width: 900px;
-            color: var(--muted);
-            font-size: 1.18rem;
-            line-height: 1.65;
-        }
-
-        .year-pill {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 12px 18px;
-            border-radius: 999px;
-            background: rgba(105, 200, 242, 0.14);
-            border: 1px solid rgba(105, 200, 242, 0.28);
-            color: #d8f4ff;
-            font-weight: 700;
-            box-shadow: var(--shadow);
-        }
-
-        .highlight-box {
-            max-width: 980px;
-            margin: 28px auto 0;
-            padding: 20px 22px;
-            border-radius: 18px;
-            background: rgba(19, 36, 58, 0.88);
-            border: 1px solid var(--panel-border);
-            color: var(--muted);
-            line-height: 1.7;
-            text-align: left;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 22px;
-            margin-top: 36px;
-        }
-
-        .card {
-            background: var(--panel);
-            border: 1px solid var(--panel-border);
-            border-radius: 22px;
-            padding: 24px 22px;
-            box-shadow: 0 18px 40px rgba(0,0,0,0.18);
-            backdrop-filter: blur(6px);
-        }
-
-        .card h2 {
-            margin: 0 0 16px;
-            font-size: 1.25rem;
-            color: white;
-        }
-
-        .card ul {
-            margin: 0;
-            padding-left: 18px;
-            color: var(--muted);
-            line-height: 1.85;
-        }
-
-        .card p {
-            margin: 0;
-            color: var(--muted);
-            line-height: 1.8;
-        }
-
-        .actions {
-            margin-top: 34px;
-            display: flex;
-            justify-content: center;
-            gap: 14px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 14px 24px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: 0.18s ease;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-            box-shadow: 0 0 24px rgba(105, 200, 242, 0.45);
-        }
-
-        .btn-primary:hover {
-            background: var(--accent-2);
-        }
-
-        .btn-secondary {
-            color: white;
-            border: 1px solid rgba(255,255,255,0.12);
-            background: rgba(255,255,255,0.03);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.06);
-        }
-
-        @media (max-width: 980px) {
-            .grid {
-                grid-template-columns: 1fr;
-            }
-
-            .topbar {
-                flex-direction: column;
-                gap: 16px;
-                align-items: flex-start;
-            }
-
-            .nav-links {
-                flex-wrap: wrap;
-                gap: 14px;
-            }
-        }
-    </style>
+    <title>CS Roadmap · Blueprint</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/roadmap-specific.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/popup.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}" />
 </head>
+
 <body>
-    <div class="nav-shell">
-        <header class="topbar">
-            <div class="brand">Blueprint.edu</div>
-            <nav class="nav-links">
-                <a href="/">Home</a>
-                <a href="/roadmap/">Blueprints</a>
-                <a href="/dashboard/">Resources</a>
-                <a href="#" class="feedback-btn">Feedback</a>
-            </nav>
-        </header>
-    </div>
+    <header class="rm-header">
+        <a href="{{ url_for('homepage.homepage') }}" class="rm-logo-link">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Blueprint" class="rm-logo-img" />
+        </a>
+        <a href="{{ url_for('homepage.feedback_page') }}" class="rm-feedback-btn">Feedback</a>
+    </header>
 
-    <main class="page">
-        <section class="hero">
-            <h1>Computer Science Roadmap</h1>
-            <p>
-                A first-pass CS roadmap built to help students connect classes, projects,
-                internships, and technical preparation into one clearer plan.
-            </p>
-            <div class="year-pill" id="selectedYearTag">Selected year: {{ class_year }}</div>
+    <main class="rm-main">
+        <!-- Profile header -->
+        <p class="rm-eyebrow">Computer Science</p>
+        <h1 class="rm-title">Your Roadmap</h1>
+        <p class="rm-subtitle">{{ hero }}</p>
 
-            <div class="highlight-box">
-                Welcome! This roadmap is a guideline to the classes, summer programs and resources you should start thinking about as you try to navigate a career path in this major 
+        <div class="rm-pills">
+            {% if class_year %}
+            <div class="rm-pill">{{ class_year }}</div>
+            {% endif %} {% if career_goal %}
+            <div class="rm-pill">
+                <span class="rm-pill-label">Goal&nbsp;</span>{{ career_goal }}
             </div>
-        </section>
+            {% endif %} {% if career_stage %}
+            <div class="rm-pill">
+                <span class="rm-pill-label">Stage&nbsp;</span>{{ career_stage }}
+            </div>
+            {% endif %} {% if priority %}
+            <div class="rm-pill">
+                <span class="rm-pill-label">Focus&nbsp;</span>{{ priority }}
+            </div>
+            {% endif %}
+        </div>
 
-        <section class="grid">
-            <div class="card">
-                <h2>Recommended Classes</h2>
+        <hr class="rm-divider" />
+
+        <p class="rm-highlight">{{ highlight }}</p>
+
+        <p class="rm-section-label">Recommendations</p>
+
+        <div class="rm-grid">
+            <div class="rm-card">
+                <p class="rm-card-eyebrow">01</p>
+                <h2 class="rm-card-title">Recommended Classes</h2>
                 <ul>
-                    <li>Data Structures</li>
-                    <li>Operating Systems</li>
-                    <li>Computer Networks</li>
-                    <li>Databases</li>
-                    <li>Software Engineering</li>
+                    {% for item in classes %}
+                    <li class="clickable" data-popup="{{ item.popupText }}">
+                        {{ item.text }}
+                    </li>
+                    {% endfor %}
                 </ul>
             </div>
 
-            <div class="card">
-                <h2>Programs / Experiences</h2>
+            <div class="rm-card">
+                <p class="rm-card-eyebrow">02</p>
+                <h2 class="rm-card-title">Programs &amp; Experiences</h2>
                 <ul>
-                    <li>Bessemer Fellows</li>
-                    <li>Kleiner Perkins Fellows</li>
-                    <li>Microsoft Explore</li>
-                    <li>Code2040</li>
-                    <li>Duolingo Thrive</li>
-                    <li>CodePath Tech Launchpad</li>
-                    <li>Thrive Capital Fellows</li>
-                    <li>8VC Fellowships</li>
-                    <li>MLH Fellowship</li>
+                    {% for item in programs %} {% if item.href %}
+                    <li>
+                        <a href="{{ item.href }}" target="_blank" rel="noopener noreferrer">{{ item.text }}</a>
+                    </li>
+                    {% else %}
+                    <li class="clickable" data-popup="{{ item.popupText }}">
+                        {{ item.text }}
+                    </li>
+                    {% endif %} {% endfor %}
                 </ul>
             </div>
 
-            <div class="card">
-                <h2>Extra Resources</h2>
+            <div class="rm-card">
+                <p class="rm-card-eyebrow">03</p>
+                <h2 class="rm-card-title">Resources</h2>
                 <ul>
-                    <li>Resume preparation</li>
-                    <li>GitHub portfolio building</li>
-                    <li>Technical interview practice</li>
-                    <li>Project-based experience</li>
-                    <li>Advice from upperclassmen and alumni</li>
+                    {% for item in resources %}
+                    <li class="clickable" data-popup="{{ item.popupText }}">
+                        {{ item.text }}
+                    </li>
+                    {% endfor %}
                 </ul>
             </div>
-        </section>
-
-        <div class="actions">
-            <a class="btn btn-primary" href="/roadmap/">Choose Another Path</a>
-            <a class="btn btn-secondary" href="/dashboard/">Open Dashboard</a>
         </div>
     </main>
 
-    <script>
-        const selectedYear = sessionStorage.getItem("selected_class_year");
-        const yearTag = document.getElementById("selectedYearTag");
-
-        if (selectedYear) {
-            const formattedYear = selectedYear.charAt(0).toUpperCase() + selectedYear.slice(1);
-            yearTag.textContent = "Selected year: " + formattedYear;
-        }
-    </script>
+    {% include 'footer.html' %}
 </body>
+<script src="{{ url_for('static', filename='js/popup.js') }}"></script>
+
 </html>

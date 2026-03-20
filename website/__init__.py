@@ -2,10 +2,10 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
-
-
+from flask_login import LoginManager
 
 from .consts import (
+    AUTH_BASE,
     DASHBOARD_DEFAULT_NAME,
     PREFIX,
     ROADMAP_DEFAULT_NAME,
@@ -17,10 +17,19 @@ from .consts import (
     CLOUD,
     DATABASE_URL,
     POSTGRES_SQL,
-    POSTGRES_SQL_DEPLOYED
+    POSTGRES_SQL_DEPLOYED,
 )
 
 db = SQLAlchemy()
+
+
+from .views import (
+    dashboard_blueprint,
+    landing_blueprint,
+    roadmap_blueprint,
+    auth_blueprint,
+)
+
 
 load_dotenv()
 
@@ -42,25 +51,58 @@ def create_app():
         app.config[SQLALCHEMY_DATABASE_URI] = os.getenv(SQLALCHEMY_DATABASE_URI)
 
     if not app.config[SQLALCHEMY_DATABASE_URI]:
-        print("Warning: SQLALCHEMY_DATABASE_URI not set in environment. Using fallback value.")
-        app.config[SQLALCHEMY_DATABASE_URI] = FALLBACK_SQLALCHEMY_DATABASE_URI
+        print(
+            "Warning: SQLALCHEMY_DATABASE_URI not set in environment. Using fallback value."
+        )
+        # Build an absolute path to the local SQLite database to avoid
+        # "unable to open database file" errors that can happen when the
+        # working directory is different from the project root.
+        project_root = os.path.abspath(
+            os.path.join(os.path.dirname(__file__), os.pardir)
+        )
+        instance_dir = os.path.join(project_root, "instance")
+        os.makedirs(instance_dir, exist_ok=True)
+        db_path = os.path.join(instance_dir, "testing.db")
+        app.config[SQLALCHEMY_DATABASE_URI] = f"sqlite:///{db_path}"
 
     # Keep the SQLAlchemy option as a boolean-like environment value if present.
     app.config[SQLALCHEMY_TRACK_MODIFICATIONS] = os.getenv(
         SQLALCHEMY_TRACK_MODIFICATIONS
     )
 
+    # Initialize the LoginManager
+    login_manager = LoginManager()
+    login_manager.init_app(app)
+    login_manager.login_view = PREFIX + AUTH_BASE
+    login_manager.login_message = None
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        """
+        Load a user by ID for Flask-Login.
+
+        Since we are not persisting users in the database, this function
+        will create a temporary user object with the given user_id.
+        """
+        from website.models.temp_user import (
+            TempUser,
+        )
+
+        return TempUser(user_id=user_id, email=None, name=None)
+
     db.init_app(app)
 
+    app.register_blueprint(
+        dashboard_blueprint, url_prefix=PREFIX + DASHBOARD_DEFAULT_NAME
+    )
+    app.register_blueprint(landing_blueprint, url_prefix=PREFIX)
+    app.register_blueprint(roadmap_blueprint, url_prefix=PREFIX + ROADMAP_DEFAULT_NAME)
+    app.register_blueprint(auth_blueprint, url_prefix=PREFIX + AUTH_BASE)
     with app.app_context():
-        from .models.tracking import User, Visit, Action
+        db.create_all()
 
-        from .views import dashboard_blueprint, landing_blueprint, roadmap_blueprint
+    from website.views.auth_views import init_oauth
 
-        app.register_blueprint(dashboard_blueprint, url_prefix=PREFIX + DASHBOARD_DEFAULT_NAME)
-        app.register_blueprint(landing_blueprint, url_prefix=PREFIX)
-        app.register_blueprint(roadmap_blueprint, url_prefix=PREFIX + ROADMAP_DEFAULT_NAME)
-
-        db.create_all()  
+    init_oauth(app)
 
     return app
