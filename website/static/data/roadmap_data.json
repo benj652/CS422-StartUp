@@ -134,11 +134,11 @@
       "hero": "A year-by-year guide connecting courses, opportunities, and practical next steps for your path in Economics.",
       "highlight": "This roadmap is a starting point — a guide to the classes, programs, and resources worth thinking about as you navigate a career in Economics.",
       "classes": [
-        { "text": "EC 133: Microeconomics", "popupText": "Introductory course studying how individuals and firms make economic decisions." },
-        { "text": "EC 134: Macroeconomics", "popupText": "Introductory course examining national economies and economic policy." },
-        { "text": "EC 223: Micro Theory", "popupText": "Intermediate theory course expanding on microeconomic decision models." },
-        { "text": "EC 224: Macro Theory", "popupText": "Intermediate macroeconomic models covering growth, inflation, and policy." },
-        { "text": "Methods / research course", "popupText": "Course focused on economic research methods and data analysis." },
+        { "text": "EC 133: Microeconomics", "popupText": "Introduces the fundamental problem in economics: limited resources to satisfy unlimited needs and wants. Concentration on how markets allocate these scarce resources and when they fail to operate efficiently. After analyzing costs, students look at how firms in market structures ranging from perfectly competitive to monopolistic make decisions. Key principles are illustrated by applying them to current economic issues. Students will use standard economic models to describe market structures and the effects of policy interventions, solve problems using graphical or algebraic models of these markets, and choose an appropriate model to analyze economic events described in news articles." },
+        { "text": "EC 134: Macroeconomics", "popupText": "Introduces the measurement of macroeconomic variables and basic theoretical models of aggregate economic behavior. Focuses on the study of fluctuations in economic activity, long-run economic growth, and the role of monetary and fiscal policy in achieving macroeconomic goals. Students will develop their analytical problem-solving skills, hone their ability to think critically, gain experience in building and understanding theoretical models, and sharpen their capacity to understand and critique macroeconomic policy." },
+        { "text": "EC 223: Micro Theory", "popupText": "The theory of the pricing, distribution, and allocation of resources in a market economy. Emphasis placed on the various meanings of economic efficiency." },
+        { "text": "EC 224: Macro Theory", "popupText": "Devoted to the development and examination of various theoretical frameworks to explain fluctuations in output, interest rates, exchange rates, unemployment, inflation, and economic growth in a globally interdependent economy. Continued study of the theoretical development of macroeconomic models and further refinement of understanding the effectiveness and optimality of macroeconomic policy. Students gain an understanding of the importance of expectations, the determination of asset prices (e.g., bond and stock prices), the relationship between financial markets and the macroeconomy, and the implications and limitations of models and policies." },
+        { "text": "Methods / research course", "popupText": "Provides students with the fundamental ability to understand and carry out research in economics. Covers the use of basic statistical methods, probability, and regression analysis in the description and interpretation of economic data. Students practice the application of these techniques working with powerful statistical software." },
         { "text": "Upper-level electives and seminar", "popupText": "Advanced economics topics and capstone seminar work." }
       ],
       "programs": [
@@ -158,8 +158,8 @@
       "highlight": "Best use of freshman year: complete EC133 and EC134, start building your foundation early, and get familiar with finance, policy, consulting, and research paths before recruiting ramps up later.",
       "base":{
         "classes": [
-          { "text": "EC 133: Microeconomics", "popupText": "Introductory course studying how individuals and firms make economic decisions." },
-          { "text": "EC 134: Macroeconomics-", "popupText": "Introductory course examining national economies and economic policy." }
+          { "text": "EC 133: Microeconomics", "popupText": "Introduces the fundamental problem in economics: limited resources to satisfy unlimited needs and wants. Concentration on how markets allocate these scarce resources and when they fail to operate efficiently. After analyzing costs, students look at how firms in market structures ranging from perfectly competitive to monopolistic make decisions. Key principles are illustrated by applying them to current economic issues. Students will use standard economic models to describe market structures and the effects of policy interventions, solve problems using graphical or algebraic models of these markets, and choose an appropriate model to analyze economic events described in news articles." },
+          { "text": "EC 134: Macroeconomics-", "popupText": "Introduces the measurement of macroeconomic variables and basic theoretical models of aggregate economic behavior. Focuses on the study of fluctuations in economic activity, long-run economic growth, and the role of monetary and fiscal policy in achieving macroeconomic goals. Students will develop their analytical problem-solving skills, hone their ability to think critically, gain experience in building and understanding theoretical models, and sharpen their capacity to understand and critique macroeconomic policy." }
         ],
         "programs": [
           { "text": "Citadel Discover", "href": "https://www.citadel.com/careers/students/discover-citadel/", "popupText": "Citadel's freshman discovery program introducing students to quantitative finance." },
@@ -215,8 +215,8 @@
       "highlight": "Best use of sophomore year: finish the core theory and methods work so junior year can focus on stronger electives, technical development, and internship preparation.",
       "base":{
         "classes": [
-        { "text": "EC 224: Macro Theory", "popupText": "Intermediate macroeconomic models covering growth, inflation, and policy." },
-        { "text": "EC 223: Micro Theory", "popupText": "Intermediate theory course expanding on microeconomic decision models." },
+        { "text": "EC 224: Macro Theory", "popupText": "Devoted to the development and examination of various theoretical frameworks to explain fluctuations in output, interest rates, exchange rates, unemployment, inflation, and economic growth in a globally interdependent economy. Continued study of the theoretical development of macroeconomic models and further refinement of understanding the effectiveness and optimality of macroeconomic policy. Students gain an understanding of the importance of expectations, the determination of asset prices (e.g., bond and stock prices), the relationship between financial markets and the macroeconomy, and the implications and limitations of models and policies." },
+        { "text": "EC 223: Micro Theory", "popupText": "The theory of the pricing, distribution, and allocation of resources in a market economy. Emphasis placed on the various meanings of economic efficiency." },
         { "text": "PS 214: Research Methods or EC 293: Econ Research Methods", "popupText": "Quantitative and qualitative methods courses that support rigorous economic analysis." },
         { "text": "Any Math class between MA 125 to MA 160", "popupText": "Math courses that strengthen quantitative skills needed for upper-level econ." }
       ],
@@ -244,7 +244,7 @@
       "base":{
         "classes": [
           { "text": "Econ elective above 200", "popupText": "Upper-level economics course in a specialization of interest." },
-          { "text": "EC 393: Econometrics", "popupText": "Course using statistical methods to analyze economic data and test theory." }
+          { "text": "EC 393: Econometrics", "popupText": "An introduction to quantitative methods used for the analysis of economic phenomenon, covering the theoretical development of the ordinary least squares regression framework, tools for model specification and estimation, hypothesis testing, methods for correcting errors in parameter estimation, and the analysis of econometric results in the context of a wide range of empirical applications. Through lab exercises and a final empirical project, develops model-building skills, builds confidence in applying econometric methods to real-world data, deepens the understanding of statistical inference, and improves the capacity for communicating econometric results." }
         ],
         "programs": [
           { "text": "Goldman Sachs Summer Analyst Program", "href": "https://www.goldmansachs.com/careers/students/programs/", "popupText": "Goldman Sachs' flagship summer internship across investment banking and markets." },
