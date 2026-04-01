@@ -23,7 +23,10 @@
       <a class="logo" href="{{ url_for('homepage.homepage') }}">
         <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Blueprint Career Roadmaps" class="logo-img" />
       </a>
-      <a class="btn-feedback" href="{{ url_for('homepage.feedback_page') }}">Feedback</a>
+      <div class="site-header-actions">
+        <a class="btn-ai-mentor" href="{{ url_for('homepage.mentor_page') }}" aria-current="page">AI Mentor</a>
+        <a class="btn-feedback" href="{{ url_for('homepage.feedback_page') }}">Feedback</a>
+      </div>
     </header>
 
     <div class="mentor-layout">
