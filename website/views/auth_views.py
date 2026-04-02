@@ -1,4 +1,6 @@
-from flask import Blueprint, redirect, session, url_for
+from urllib.parse import urlparse
+
+from flask import Blueprint, redirect, request, session, url_for
 
 from authlib.integrations.flask_client import OAuth
 from flask_login import login_required, login_user, logout_user
@@ -26,6 +28,27 @@ from website.consts import (
 oauth = OAuth()
 google = None
 
+POST_OAUTH_NEXT_KEY = "post_oauth_next"
+
+
+def _safe_next_url(next_url: str | None) -> str | None:
+    """Allow only same-origin paths (Flask-Login may pass a full URL in ?next=)."""
+    if not next_url or not isinstance(next_url, str):
+        return None
+    next_url = next_url.strip()
+    parsed = urlparse(next_url)
+    if parsed.scheme or parsed.netloc:
+        req_netloc = urlparse(request.host_url).netloc
+        if parsed.netloc != req_netloc:
+            return None
+        path = parsed.path or "/"
+        if parsed.query:
+            path = f"{path}?{parsed.query}"
+        return path if path.startswith("/") and not path.startswith("//") else None
+    if not next_url.startswith("/") or next_url.startswith("//"):
+        return None
+    return next_url
+
 
 def init_oauth(app):
     """Initialize OAuth and register Google provider."""
@@ -47,6 +70,10 @@ auth_blueprint = Blueprint(AUTH_BASE, __name__)
 @auth_blueprint.route(PREFIX + LOGIN_BASE)
 def login():
     """Start the OAuth login flow by redirecting to Google's authorize URL."""
+    session.pop(POST_OAUTH_NEXT_KEY, None)
+    safe = _safe_next_url(request.args.get("next"))
+    if safe:
+        session[POST_OAUTH_NEXT_KEY] = safe
     redirect_uri = url_for(AUTH_BASE + DOT_PREFIX + AUTHORIZE_BASE, _external=True)
     return google.authorize_redirect(redirect_uri)
 
@@ -78,6 +105,9 @@ def authorize():
     )
 
     login_user(user)
+    next_path = session.pop(POST_OAUTH_NEXT_KEY, None)
+    if next_path:
+        return redirect(next_path)
     return redirect(PREFIX)
 
 

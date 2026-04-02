@@ -73,7 +73,7 @@ def create_app():
     # Initialize the LoginManager
     login_manager = LoginManager()
     login_manager.init_app(app)
-    login_manager.login_view = PREFIX + AUTH_BASE
+    login_manager.login_view = f"{AUTH_BASE}.login"
     login_manager.login_message = None
 
     @login_manager.user_loader

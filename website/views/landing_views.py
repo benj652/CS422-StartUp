@@ -1,5 +1,7 @@
 from flask import Blueprint, flash, jsonify, render_template, session
 
+from flask_login import login_required
+
 from ..consts import HTML_EXTENSION, LANDING_DEFAULT_NAME, PREFIX
 from flask import Blueprint, render_template, request, make_response, redirect, url_for
 from ..models.tracking import User, Action, Feedback, db
@@ -84,11 +86,12 @@ def feedback_page():
     log_visit(page="feedback.html")
     return render_template("feedback.html")
 
-@landing_blueprint.route('/mentor')
+@landing_blueprint.route("/mentor")
+@login_required
 def mentor_page():
-    """Serves the AI Mentor chat page."""
-    log_visit(page="mentor.html") 
-    return render_template('mentor.html')
+    """Serves the AI Mentor chat page (Google sign-in required)."""
+    log_visit(page="mentor.html")
+    return render_template("mentor.html")
 
 @landing_blueprint.route("/privacy")
 def privacy():
