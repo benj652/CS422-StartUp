@@ -1,6 +1,6 @@
 from urllib.parse import urlparse
 
-from flask import Blueprint, redirect, request, session, url_for
+from flask import Blueprint, redirect, render_template, request, session, url_for
 
 from authlib.integrations.flask_client import OAuth
 from flask_login import login_required, login_user, logout_user
@@ -14,6 +14,8 @@ from website.consts import (
     DOT_PREFIX,
     GOOGLE_USER_INFO_API,
     LOGIN_BASE,
+    LOGIN_CANCEL,
+    LOGIN_GOOGLE_START,
     LOGOUT_BASE,
     PREFIX,
     OAUTH_NAME,
@@ -69,13 +71,26 @@ auth_blueprint = Blueprint(AUTH_BASE, __name__)
 
 @auth_blueprint.route(PREFIX + LOGIN_BASE)
 def login():
-    """Start the OAuth login flow by redirecting to Google's authorize URL."""
+    """Sign-in page: choose Google or return home without signing in."""
     session.pop(POST_OAUTH_NEXT_KEY, None)
     safe = _safe_next_url(request.args.get("next"))
     if safe:
         session[POST_OAUTH_NEXT_KEY] = safe
+    return render_template("sign_in.html")
+
+
+@auth_blueprint.route(PREFIX + LOGIN_GOOGLE_START)
+def google_login():
+    """Redirect to Google's OAuth consent screen."""
     redirect_uri = url_for(AUTH_BASE + DOT_PREFIX + AUTHORIZE_BASE, _external=True)
     return google.authorize_redirect(redirect_uri)
+
+
+@auth_blueprint.route(PREFIX + LOGIN_CANCEL)
+def cancel_login():
+    """Leave sign-in flow and discard any pending post-login redirect."""
+    session.pop(POST_OAUTH_NEXT_KEY, None)
+    return redirect(url_for("homepage.homepage"))
 
 
 @auth_blueprint.route(PREFIX + AUTHORIZE_BASE)

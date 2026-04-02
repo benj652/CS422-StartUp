@@ -41,6 +41,8 @@ Auth Values
 """
 AUTH_BASE = "auth"
 LOGIN_BASE = "login"
+LOGIN_GOOGLE_START = "google"
+LOGIN_CANCEL = "cancel"
 LOGOUT_BASE = "logout"
 AUTHORIZE_BASE = "authorize"
 
