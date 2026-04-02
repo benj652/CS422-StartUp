@@ -28,7 +28,8 @@
     "freshman": {
       "hero": "Freshman year is about starting the CS sequence and learning the foundations of programming and computational thinking.",
       "highlight": "Best use of freshman year: complete CS15X early, build strong programming fundamentals, and start exploring different areas of computer science such as software engineering, AI, systems, and data.",
-      "classes": [
+      "base":{
+        "classes": [
         { "text": "CS 151X", "popupText": "Introductory programming and computer science fundamentals course." },
         { "text": "MA 125 / MA 130 / MA 160 (math foundation depending on placement)", "popupText": "Mathematics courses that build the quantitative foundation for computer science." }
       ],
@@ -48,12 +49,43 @@
         { "text": "Begin simple programming projects", "popupText": "Small personal coding projects to build experience." },
         { "text": "Focus on strong study habits early", "popupText": "Developing consistent study and time management practices." }
       ]
+      },
+      "no_internships":{
+        "extra_classes":[
+           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ]
+      },
+      "applying":{
+        
+      },
+      "has_internships":{
+        
+      },
+      "has_offer":{
+
+      },
+      "classes":{
+
+      },
+      "internship":{
+
+      },
+      "projects":{
+
+      },
+      "networking":{
+        "extra_classes":[
+           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ]
+      }
+    
     },
 
     "sophomore": {
       "hero": "Sophomore year introduces the core technical foundations of the CS major.",
       "highlight": "Best use of sophomore year: complete the systems and data structures courses while starting technical interview preparation and applying for sophomore engineering programs.",
-      "classes": [
+      "base":{
+        "classes": [
         { "text": "CS 232: Computer Organization", "popupText": "Course on how computers work at the hardware and systems level." },
         { "text": "CS 231: Data Structures", "popupText": "Core course covering algorithms and common data structures used in software engineering." },
         { "text": "CS 251: Data Analysis and Visualization", "popupText": "Course focused on analyzing datasets and building visualizations." },
@@ -75,13 +107,42 @@
         { "text": "Learn Git and collaborative development", "popupText": "Version control and team coding workflows used in professional engineering." },
         { "text": "Build at least two meaningful personal projects", "popupText": "Personal projects that demonstrate your engineering skills to employers." },
         { "text": "Start tracking internship recruiting timelines", "popupText": "Understanding when applications open and close for summer internships." }
-      ]
+      ]},
+      "no_internships":{
+        "extra_classes":[
+           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ]
+      },
+      "applying":{
+        
+      },
+      "has_internships":{
+        
+      },
+      "has_offer":{
+
+      },
+      "classes":{
+
+      },
+      "internship":{
+
+      },
+      "projects":{
+
+      },
+      "networking":{
+        "extra_classes":[
+           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ]
+      }
     },
 
     "junior": {
       "hero": "Junior year is when advanced CS coursework connects directly with internship recruiting.",
       "highlight": "Best use of junior year: take advanced CS courses, strengthen technical interview preparation, and secure a summer software engineering internship.",
-      "classes": [
+      "base":{
+        "classes": [
         { "text": "CS 333: Programming Languages", "popupText": "Course studying how programming languages are designed and implemented." },
         { "text": "CS 3XX: Theory course", "popupText": "Upper-level theory class such as algorithms, complexity, or automata." },
         { "text": "CS 3XX electives (AI, Machine Learning, Databases, Distributed Systems, Networks)", "popupText": "Advanced CS electives covering specialized engineering and computer science topics." }
@@ -104,13 +165,42 @@
         { "text": "Practice algorithms and system design interviews", "popupText": "Technical interview prep covering both coding problems and large-scale system design." },
         { "text": "Build larger technical projects", "popupText": "More ambitious engineering projects that show depth and team collaboration." },
         { "text": "Use networking and alumni outreach more seriously", "popupText": "Connecting with alumni and professionals to access referrals and hidden opportunities." }
-      ]
+      ]},
+      "no_internships":{
+        "extra_classes":[
+           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ]
+      },
+      "applying":{
+        
+      },
+      "has_internships":{
+        
+      },
+      "has_offer":{
+
+      },
+      "classes":{
+
+      },
+      "internship":{
+
+      },
+      "projects":{
+
+      },
+      "networking":{
+        "extra_classes":[
+           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ]
+      }
     },
 
     "senior": {
       "hero": "Senior year focuses on advanced electives and converting internship experience into full-time opportunities.",
       "highlight": "Best use of senior year: complete advanced CS electives, refine your technical portfolio, and use fall recruiting to secure a full-time engineering role.",
-      "classes": [
+      "base":{
+       "classes": [
         { "text": "CS 3XX elective", "popupText": "Upper-level CS elective in a specialization of interest." },
         { "text": "CS 4XX advanced elective", "popupText": "Senior-level course in a specialized area of computer science." },
         { "text": "CS 3XX theory course (if not completed earlier)", "popupText": "Theory course covering algorithms, complexity, or formal methods." }
@@ -126,6 +216,34 @@
         { "text": "Leverage internship experience for full-time roles", "popupText": "Using past internship work and networks to convert to a full-time offer." },
         { "text": "Use alumni networking and referrals", "popupText": "Reaching out to Colby alumni for referrals at companies you are targeting." }
       ]
+      },"no_internships":{
+        "extra_classes":[
+           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ]
+      },
+      "applying":{
+        
+      },
+      "has_internships":{
+        
+      },
+      "has_offer":{
+
+      },
+      "classes":{
+
+      },
+      "internship":{
+
+      },
+      "projects":{
+
+      },
+      "networking":{
+        "extra_classes":[
+           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ]
+      }   
     }
   },
 
@@ -177,23 +295,23 @@
       },
       "consulting":{
         "extra_classes":[
-           { "text": "JP: Tuck Bridge Program", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
         ],
         "extra_programs":[
-           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Freshamn year internship that focuses on Deloitte's service lines" }
         ]
       },
       "finance":{
         "extra_classes":[
-           { "text": "JP: Tuck Bridge Program", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
         ],
         "extra_programs":[
-           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+           { "text": "Capital One","href": "https://www.capitalonecareers.com/early-internships-program", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
         ]
       },
       "exploring":{
         "extra_classes":[
-           { "text": "JP: Tuck Bridge Program", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
         ],
         "extra_programs":[
            { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
@@ -205,6 +323,34 @@
         ],
         "extra_programs":[
            { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        ]
+      },
+      "no_internships":{
+        "extra_classes":[
+           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ]
+      },
+      "applying":{
+        
+      },
+      "has_internships":{
+        
+      },
+      "has_offer":{
+
+      },
+      "classes":{
+
+      },
+      "internship":{
+
+      },
+      "projects":{
+
+      },
+      "networking":{
+        "extra_classes":[
+           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
         ]
       }
 
@@ -234,8 +380,68 @@
         { "text": "Build spreadsheet, data, and interview skills alongside coursework", "popupText": "Practical skills like Excel and financial modeling that recruiters look for." },
         { "text": "Start keeping a clear timeline for sophomore and junior recruiting windows", "popupText": "Understanding when applications open for competitive programs and internships." }
       ]
+      },
+      "consulting":{
+        "extra_classes":[
+           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ],
+        "extra_programs":[
+           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Freshamn year internship that focuses on Deloitte's service lines" }
+        ]
+      },
+      "finance":{
+        "extra_classes":[
+           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ],
+        "extra_programs":[
+           { "text": "PwC Start Internship","href": "https://jobs.us.pwc.com/entry-level?utm_source=chatgpt.com", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        ]
+      },
+      "exploring":{
+        "extra_classes":[
+           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ],
+        "extra_programs":[
+           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Introductory course studying how individuals and firms make economic decisions." },
+           { "text": "PwC Start Internship","href": "https://jobs.us.pwc.com/entry-level?utm_source=chatgpt.com", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        ]
+      },
+      "product_manager":{
+        "extra_classes":[
+           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ],
+        "extra_programs":[
+           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        ]
+      }, 
+      "no_internships":{
+        "extra_classes":[
+           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ]
+      },
+      "applying":{
+        
+      },
+      "has_internships":{
+        
+      },
+      "has_offer":{
+
+      },
+      "classes":{
+
+      },
+      "internship":{
+
+      },
+      "projects":{
+
+      },
+      "networking":{
+        "extra_resources":[
+           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ]
       }
-      
     },
 
     "junior": {
@@ -261,8 +467,69 @@
           { "text": "Use networking and alumni outreach more seriously this year", "popupText": "Connecting with alumni for referrals becomes much more important in junior year." },
           { "text": "Tighten your resume and know what roles you are targeting", "popupText": "A focused, well-crafted resume targeting specific roles and firms is essential." }
         ]
+      },
+      "consulting":{
+        "extra_classes":[
+           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ],
+        "extra_programs":[
+           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Freshamn year internship that focuses on Deloitte's service lines" }
+        ]
+      },
+      "finance":{
+        "extra_classes":[
+           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ],
+        "extra_programs":[
+           { "text": "Capital One","href": "https://www.capitalonecareers.com/early-internships-program", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        ]
+      },
+      "exploring":{
+        "extra_classes":[
+           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ],
+        "extra_programs":[
+           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        ]
+      },
+      "product_manager":{
+        "extra_classes":[
+           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ],
+        "extra_programs":[
+           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        ]
+      },
+
+      "no_internships":{
+        "extra_classes":[
+           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ]
+      },
+      "applying":{
+        
+      },
+      "has_internships":{
+        
+      },
+      "has_offer":{
+
+      },
+      "classes":{
+
+      },
+      "internship":{
+
+      },
+      "projects":{
+
+      },
+      "networking":{
+        "extra_classes":[
+           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ]
       }
-      
+
     },
 
     "senior": {
@@ -282,6 +549,68 @@
           { "text": "Paving the Road", "popupText": "Student resource and guide for breaking into finance careers." },
           { "text": "Mergers and Acquisitions class with Mike McHale", "popupText": "Colby course focused on corporate mergers, acquisitions, and deal analysis." },
           { "text": "Senior year is about finishing the major well and making your next move concrete", "popupText": "Completing the major strong while locking in your first post-graduation step." }
+        ]
+      },
+      "consulting":{
+        "extra_classes":[
+           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ],
+        "extra_programs":[
+           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Freshamn year internship that focuses on Deloitte's service lines" }
+        ]
+      },
+      "finance":{
+        "extra_classes":[
+           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ],
+        "extra_programs":[
+           { "text": "Capital One","href": "https://www.capitalonecareers.com/early-internships-program", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        ]
+      },
+      "exploring":{
+        "extra_classes":[
+           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ],
+        "extra_programs":[
+           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        ]
+      },
+      "product_manager":{
+        "extra_classes":[
+           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ],
+        "extra_programs":[
+           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        ]
+      },
+
+      "no_internships":{
+        "extra_classes":[
+           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        ]
+      },
+      "applying":{
+        
+      },
+      "has_internships":{
+        
+      },
+      "has_offer":{
+
+      },
+
+      "classes":{
+
+      },
+      "internship":{
+
+      },
+      "projects":{
+
+      },
+      "networking":{
+        "extra_classes":[
+           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
         ]
       }
 
