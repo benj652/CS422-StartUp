@@ -95,6 +95,26 @@
                     {% endfor %}
                 </ul>
             </div>
+
+            {% if project_items %}
+            <div class="rm-card rm-card--projects">
+                <p class="rm-card-eyebrow">04</p>
+                <h2 class="rm-card-title">Portfolio project ideas</h2>
+                <ul class="roadmap-list">
+                    {% for item in project_items %}
+                    <li>
+                        <input type="checkbox" class="program-checker" />
+                        {% if item.link %}
+                        <a href="{{ item.link }}" target="_blank" rel="noopener noreferrer" class="item-text">{{ item.text }}</a>
+                        <span class="clickable rm-project-info" data-popup="{{ item.popupText }}" title="Description">ⓘ</span>
+                        {% else %}
+                        <span class="clickable item-text" data-popup="{{ item.popupText }}">{{ item.text }}</span>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
         </div>
     </main>
 

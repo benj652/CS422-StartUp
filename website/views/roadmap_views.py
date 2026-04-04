@@ -72,11 +72,20 @@ def cs():
     year_block = cs_data.get(year_key, cs_data['default'])
 
     base_block = year_block.get('base', {})
-    year_data = {
-        'classes': base_block.get('classes', []).copy(),
-        'programs': base_block.get('programs', []).copy(),
-        'resources': base_block.get('resources', []).copy()
-    }
+    if base_block:
+        year_data = {
+            'classes': base_block.get('classes', []).copy(),
+            'programs': base_block.get('programs', []).copy(),
+            'resources': base_block.get('resources', []).copy(),
+            'project_items': [],
+        }
+    else:
+        year_data = {
+            'classes': year_block.get('classes', []).copy(),
+            'programs': year_block.get('programs', []).copy(),
+            'resources': year_block.get('resources', []).copy(),
+            'project_items': [],
+        }
     
     goal_data = year_block.get(career_goal_key, {})
     if goal_data:
@@ -95,6 +104,7 @@ def cs():
         year_data['classes'].extend(priority_data.get('extra_classes', []))
         year_data['programs'].extend(priority_data.get('extra_programs', []))
         year_data['resources'].extend(priority_data.get('extra_resources', []))
+        year_data['project_items'] = priority_data.get('extra_projects', [])
 
     return render_template(
         MAJOR_SPECIFIC_FOLDER_NAME + CS_DEFAULT_NAME + HTML_EXTENSION,
@@ -104,6 +114,7 @@ def cs():
         classes=year_data.get('classes',[]),
         programs=year_data.get('programs', []),
         resources=year_data.get('resources',[]),
+        project_items=year_data.get('project_items', []),
     )
 
 

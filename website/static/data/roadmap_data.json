@@ -4,616 +4,1337 @@
       "hero": "A year-by-year guide connecting courses, internships, and technical skill-building for your path in Computer Science.",
       "highlight": "This roadmap is a starting point — a guide to the classes, technical skills, and recruiting timelines worth thinking about as you navigate a career in software engineering, AI, systems, or data.",
       "classes": [
-        { "text": "CS 151X", "popupText": "Introductory computer science course covering programming fundamentals." },
-        { "text": "CS 232: Computer Organization", "popupText": "Course on how computers work at the hardware and systems level." },
-        { "text": "CS 231: Data Structures", "popupText": "Core course covering algorithms and common data structures used in software engineering." },
-        { "text": "CS 251: Data Analysis and Visualization", "popupText": "Course focused on analyzing datasets and building visualizations." },
-        { "text": "CS 333: Programming Languages", "popupText": "Course studying how programming languages are designed and implemented." },
-        { "text": "CS 3XX: Theory course", "popupText": "Upper-level theory class such as algorithms, complexity, or automata." },
-        { "text": "Upper-level CS electives", "popupText": "Advanced courses in areas like AI, machine learning, systems, or networks." }
+        {
+          "text": "CS 151X",
+          "popupText": "Introductory computer science course covering programming fundamentals."
+        },
+        {
+          "text": "CS 232: Computer Organization",
+          "popupText": "Course on how computers work at the hardware and systems level."
+        },
+        {
+          "text": "CS 231: Data Structures",
+          "popupText": "Core course covering algorithms and common data structures used in software engineering."
+        },
+        {
+          "text": "CS 251: Data Analysis and Visualization",
+          "popupText": "Course focused on analyzing datasets and building visualizations."
+        },
+        {
+          "text": "CS 333: Programming Languages",
+          "popupText": "Course studying how programming languages are designed and implemented."
+        },
+        {
+          "text": "CS 3XX: Theory course",
+          "popupText": "Upper-level theory class such as algorithms, complexity, or automata."
+        },
+        {
+          "text": "Upper-level CS electives",
+          "popupText": "Advanced courses in areas like AI, machine learning, systems, or networks."
+        }
       ],
       "programs": [
-        { "text": "Freshman and sophomore engineering exposure programs", "href": null, "popupText": "Early-career programs that introduce students to engineering roles and recruiting." },
-        { "text": "Junior summer software engineering internships", "href": null, "popupText": "Traditional software engineering internships typically taken the summer before senior year." },
-        { "text": "Faculty research and independent study opportunities", "href": "https://cs.colby.edu/", "popupText": "Opportunities to work with professors on research projects or independent studies." }
+        {
+          "text": "Freshman and sophomore engineering exposure programs",
+          "href": null,
+          "popupText": "Early-career programs that introduce students to engineering roles and recruiting."
+        },
+        {
+          "text": "Junior summer software engineering internships",
+          "href": null,
+          "popupText": "Traditional software engineering internships typically taken the summer before senior year."
+        },
+        {
+          "text": "Faculty research and independent study opportunities",
+          "href": "https://cs.colby.edu/",
+          "popupText": "Opportunities to work with professors on research projects or independent studies."
+        }
       ],
       "resources": [
-        { "text": "LeetCode", "popupText": "Platform used to practice coding interview problems." },
-        { "text": "NeetCode", "popupText": "Curated roadmap and explanations for common coding interview problems." },
-        { "text": "System Design Primer", "popupText": "Open-source guide for learning large-scale system design." },
-        { "text": "Colby CS research opportunities", "popupText": "Research projects available through the Colby computer science department." }
-      ]
+        {
+          "text": "LeetCode",
+          "popupText": "Platform used to practice coding interview problems."
+        },
+        {
+          "text": "NeetCode",
+          "popupText": "Curated roadmap and explanations for common coding interview problems."
+        },
+        {
+          "text": "System Design Primer",
+          "popupText": "Open-source guide for learning large-scale system design."
+        },
+        {
+          "text": "Colby CS research opportunities",
+          "popupText": "Research projects available through the Colby computer science department."
+        }
+      ],
+      "projects": {
+        "extra_projects": [
+          {
+            "text": "roadmap.sh — Project ideas",
+            "popupText": "Specs for CLIs, APIs, front-end components, DevOps tasks, and more.",
+            "link": "https://roadmap.sh/projects"
+          },
+          {
+            "text": "15 Vanilla JavaScript projects (YouTube)",
+            "popupText": "Full freeCodeCamp course building UI components in vanilla JS.",
+            "link": "https://www.youtube.com/watch?v=3PHXvlpOkf4"
+          },
+          {
+            "text": "Build Your Own X",
+            "popupText": "Curated tutorials to recreate classic systems from scratch.",
+            "link": "https://github.com/codecrafters-io/build-your-own-x"
+          }
+        ]
+      }
     },
-
     "freshman": {
       "hero": "Freshman year is about starting the CS sequence and learning the foundations of programming and computational thinking.",
       "highlight": "Best use of freshman year: complete CS15X early, build strong programming fundamentals, and start exploring different areas of computer science such as software engineering, AI, systems, and data.",
-      "base":{
+      "base": {
         "classes": [
-        { "text": "CS 151X", "popupText": "Introductory programming and computer science fundamentals course." },
-        { "text": "MA 125 / MA 130 / MA 160 (math foundation depending on placement)", "popupText": "Mathematics courses that build the quantitative foundation for computer science." }
-      ],
-      "programs": [
-        { "text": "Google STEP Internship", "href": "https://buildyourfuture.withgoogle.com/programs/step", "popupText": "Google's freshman and sophomore internship focused on early software engineering development." },
-        { "text": "Microsoft Explore Internship", "href": "https://careers.microsoft.com/students/us/en/usexploremicrosoftprogram", "popupText": "Microsoft program designed for early college students exploring software engineering." },
-        { "text": "Meta University", "href": "https://www.metacareers.com/careerprograms/students", "popupText": "Meta program for early undergraduate students interested in engineering careers." },
-        { "text": "Uber STAR Program", "href": "https://jobs.uber.com/en/teams/emerging-talent/", "popupText": "Uber's internship program aimed at developing early-career software engineers." },
-        { "text": "Jane Street SEE Program", "href": "https://www.janestreet.com/join-jane-street/programs-and-events/see/", "popupText": "Jane Street program introducing students to trading and quantitative engineering." },
-        { "text": "Code2040", "href": "https://www.code2040.org/", "popupText": "Fellowship program connecting diverse students with tech internships." },
-        { "text": "CodePath Tech Launchpad", "href": "https://codepath.org/launchpad", "popupText": "Program helping students build practical software engineering skills." },
-        { "text": "MLH Fellowship", "href": "https://fellowship.mlh.io/", "popupText": "Remote fellowship where students contribute to open source and collaborative coding projects." }
-      ],
-      "resources": [
-        { "text": "Learn Python or Java deeply", "popupText": "Focus on mastering one programming language well." },
-        { "text": "Attend hackathons or CS club events", "popupText": "Events where students collaborate on projects and meet other programmers." },
-        { "text": "Begin simple programming projects", "popupText": "Small personal coding projects to build experience." },
-        { "text": "Focus on strong study habits early", "popupText": "Developing consistent study and time management practices." }
-      ]
-      },
-      "no_internships":{
-        "extra_classes":[
-           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+          {
+            "text": "CS 151X",
+            "popupText": "Introductory programming and computer science fundamentals course."
+          },
+          {
+            "text": "MA 125 / MA 130 / MA 160 (math foundation depending on placement)",
+            "popupText": "Mathematics courses that build the quantitative foundation for computer science."
+          }
+        ],
+        "programs": [
+          {
+            "text": "Google STEP Internship",
+            "href": "https://buildyourfuture.withgoogle.com/programs/step",
+            "popupText": "Google's freshman and sophomore internship focused on early software engineering development."
+          },
+          {
+            "text": "Microsoft Explore Internship",
+            "href": "https://careers.microsoft.com/students/us/en/usexploremicrosoftprogram",
+            "popupText": "Microsoft program designed for early college students exploring software engineering."
+          },
+          {
+            "text": "Meta University",
+            "href": "https://www.metacareers.com/careerprograms/students",
+            "popupText": "Meta program for early undergraduate students interested in engineering careers."
+          },
+          {
+            "text": "Uber STAR Program",
+            "href": "https://jobs.uber.com/en/teams/emerging-talent/",
+            "popupText": "Uber's internship program aimed at developing early-career software engineers."
+          },
+          {
+            "text": "Jane Street SEE Program",
+            "href": "https://www.janestreet.com/join-jane-street/programs-and-events/see/",
+            "popupText": "Jane Street program introducing students to trading and quantitative engineering."
+          },
+          {
+            "text": "Code2040",
+            "href": "https://www.code2040.org/",
+            "popupText": "Fellowship program connecting diverse students with tech internships."
+          },
+          {
+            "text": "CodePath Tech Launchpad",
+            "href": "https://codepath.org/launchpad",
+            "popupText": "Program helping students build practical software engineering skills."
+          },
+          {
+            "text": "MLH Fellowship",
+            "href": "https://fellowship.mlh.io/",
+            "popupText": "Remote fellowship where students contribute to open source and collaborative coding projects."
+          }
+        ],
+        "resources": [
+          {
+            "text": "Learn Python or Java deeply",
+            "popupText": "Focus on mastering one programming language well."
+          },
+          {
+            "text": "Attend hackathons or CS club events",
+            "popupText": "Events where students collaborate on projects and meet other programmers."
+          },
+          {
+            "text": "Begin simple programming projects",
+            "popupText": "Small personal coding projects to build experience."
+          },
+          {
+            "text": "Focus on strong study habits early",
+            "popupText": "Developing consistent study and time management practices."
+          }
         ]
       },
-      "applying":{
-        
+      "no_internships": {
+        "extra_classes": [
+          {
+            "text": "IT WORKS!",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
+        ]
       },
-      "has_internships":{
-        
+      "applying": {},
+      "has_internships": {},
+      "has_offer": {},
+      "classes": {},
+      "internship": {},
+      "projects": {
+        "extra_projects": [
+          {
+            "text": "15 Vanilla JavaScript UI Projects (full course)",
+            "popupText": "Guided series: color flipper, counter, navbar, modal, tabs, slider, and more—solid DOM practice.",
+            "link": "https://www.youtube.com/watch?v=3PHXvlpOkf4"
+          },
+          {
+            "text": "Single-page HTML CV",
+            "popupText": "roadmap.sh spec: one-page résumé in semantic HTML—good first GitHub Pages deploy.",
+            "link": "https://roadmap.sh/projects/single-page-cv"
+          },
+          {
+            "text": "Personal portfolio website",
+            "popupText": "Turn a simple HTML site into a styled, responsive portfolio.",
+            "link": "https://roadmap.sh/projects/portfolio-website"
+          },
+          {
+            "text": "CLI number guessing game",
+            "popupText": "Random number, loops, and user input in your first language.",
+            "link": "https://roadmap.sh/projects/number-guessing-game"
+          },
+          {
+            "text": "CLI expense tracker",
+            "popupText": "Track spending in the terminal—practice persistence and data modeling basics.",
+            "link": "https://roadmap.sh/projects/expense-tracker"
+          },
+          {
+            "text": "CLI task tracker",
+            "popupText": "To-do list in the terminal—foundation for later REST APIs and databases.",
+            "link": "https://roadmap.sh/projects/task-tracker"
+          },
+          {
+            "text": "Unit converter web app",
+            "popupText": "Simple UI plus conversion logic—bridge from HTML/CSS to light JavaScript.",
+            "link": "https://roadmap.sh/projects/unit-converter"
+          },
+          {
+            "text": "GitHub user activity (CLI + API)",
+            "popupText": "Fetch public events for a user—first JSON, HTTP, and APIs without auth.",
+            "link": "https://roadmap.sh/projects/github-user-activity"
+          },
+          {
+            "text": "The Odin Project — Foundations",
+            "popupText": "Free curriculum with hands-on projects leading into HTML/CSS/JS and Git.",
+            "link": "https://www.theodinproject.com/paths/foundations/courses/foundations"
+          }
+        ]
       },
-      "has_offer":{
-
-      },
-      "classes":{
-
-      },
-      "internship":{
-
-      },
-      "projects":{
-
-      },
-      "networking":{
-        "extra_classes":[
-           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+      "networking": {
+        "extra_classes": [
+          {
+            "text": "IT WORKS!",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
         ]
       }
-    
     },
-
     "sophomore": {
       "hero": "Sophomore year introduces the core technical foundations of the CS major.",
       "highlight": "Best use of sophomore year: complete the systems and data structures courses while starting technical interview preparation and applying for sophomore engineering programs.",
-      "base":{
+      "base": {
         "classes": [
-        { "text": "CS 232: Computer Organization", "popupText": "Course on how computers work at the hardware and systems level." },
-        { "text": "CS 231: Data Structures", "popupText": "Core course covering algorithms and common data structures used in software engineering." },
-        { "text": "CS 251: Data Analysis and Visualization", "popupText": "Course focused on analyzing datasets and building visualizations." },
-        { "text": "MA 2XX math course (Linear Algebra, Probability, or Discrete Math)", "popupText": "Math courses that strengthen the quantitative foundation needed for upper-level CS." }
-      ],
-      "programs": [
-        { "text": "Google Engineering Internships", "href": "https://careers.google.com/students/", "popupText": "Google's software engineering internship program for early undergraduate students." },
-        { "text": "Microsoft Internship Programs", "href": "https://careers.microsoft.com/students/us/en", "popupText": "Microsoft's internship programs across software engineering and product roles." },
-        { "text": "Amazon SDE Internship", "href": "https://www.amazon.jobs/en/teams/internships-for-students", "popupText": "Amazon's software development engineer internship program." },
-        { "text": "Stripe Internship Program", "href": "https://stripe.com/jobs/students-and-new-grads", "popupText": "Stripe's engineering internship focused on payments and financial infrastructure." },
-        { "text": "HubSpot Software Engineering Internship", "href": "https://www.hubspot.com/careers/students", "popupText": "HubSpot's software engineering internship for undergraduate students." },
-        { "text": "Duolingo Thrive", "href": "https://careers.duolingo.com/thrive", "popupText": "Duolingo's early engineering internship program for underrepresented students." },
-        { "text": "Code2040", "href": "https://www.code2040.org/", "popupText": "Fellowship program connecting diverse students with tech internships." },
-        { "text": "CodePath Tech Launchpad", "href": "https://codepath.org/launchpad", "popupText": "Program helping students build practical software engineering skills." },
-        { "text": "MLH Fellowship", "href": "https://fellowship.mlh.io/", "popupText": "Remote fellowship where students contribute to open source and collaborative coding projects." }
-      ],
-      "resources": [
-        { "text": "Start regular LeetCode practice", "popupText": "Consistent practice with coding problems to build interview readiness." },
-        { "text": "Learn Git and collaborative development", "popupText": "Version control and team coding workflows used in professional engineering." },
-        { "text": "Build at least two meaningful personal projects", "popupText": "Personal projects that demonstrate your engineering skills to employers." },
-        { "text": "Start tracking internship recruiting timelines", "popupText": "Understanding when applications open and close for summer internships." }
-      ]},
-      "no_internships":{
-        "extra_classes":[
-           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+          {
+            "text": "CS 232: Computer Organization",
+            "popupText": "Course on how computers work at the hardware and systems level."
+          },
+          {
+            "text": "CS 231: Data Structures",
+            "popupText": "Core course covering algorithms and common data structures used in software engineering."
+          },
+          {
+            "text": "CS 251: Data Analysis and Visualization",
+            "popupText": "Course focused on analyzing datasets and building visualizations."
+          },
+          {
+            "text": "MA 2XX math course (Linear Algebra, Probability, or Discrete Math)",
+            "popupText": "Math courses that strengthen the quantitative foundation needed for upper-level CS."
+          }
+        ],
+        "programs": [
+          {
+            "text": "Google Engineering Internships",
+            "href": "https://careers.google.com/students/",
+            "popupText": "Google's software engineering internship program for early undergraduate students."
+          },
+          {
+            "text": "Microsoft Internship Programs",
+            "href": "https://careers.microsoft.com/students/us/en",
+            "popupText": "Microsoft's internship programs across software engineering and product roles."
+          },
+          {
+            "text": "Amazon SDE Internship",
+            "href": "https://www.amazon.jobs/en/teams/internships-for-students",
+            "popupText": "Amazon's software development engineer internship program."
+          },
+          {
+            "text": "Stripe Internship Program",
+            "href": "https://stripe.com/jobs/students-and-new-grads",
+            "popupText": "Stripe's engineering internship focused on payments and financial infrastructure."
+          },
+          {
+            "text": "HubSpot Software Engineering Internship",
+            "href": "https://www.hubspot.com/careers/students",
+            "popupText": "HubSpot's software engineering internship for undergraduate students."
+          },
+          {
+            "text": "Duolingo Thrive",
+            "href": "https://careers.duolingo.com/thrive",
+            "popupText": "Duolingo's early engineering internship program for underrepresented students."
+          },
+          {
+            "text": "Code2040",
+            "href": "https://www.code2040.org/",
+            "popupText": "Fellowship program connecting diverse students with tech internships."
+          },
+          {
+            "text": "CodePath Tech Launchpad",
+            "href": "https://codepath.org/launchpad",
+            "popupText": "Program helping students build practical software engineering skills."
+          },
+          {
+            "text": "MLH Fellowship",
+            "href": "https://fellowship.mlh.io/",
+            "popupText": "Remote fellowship where students contribute to open source and collaborative coding projects."
+          }
+        ],
+        "resources": [
+          {
+            "text": "Start regular LeetCode practice",
+            "popupText": "Consistent practice with coding problems to build interview readiness."
+          },
+          {
+            "text": "Learn Git and collaborative development",
+            "popupText": "Version control and team coding workflows used in professional engineering."
+          },
+          {
+            "text": "Build at least two meaningful personal projects",
+            "popupText": "Personal projects that demonstrate your engineering skills to employers."
+          },
+          {
+            "text": "Start tracking internship recruiting timelines",
+            "popupText": "Understanding when applications open and close for summer internships."
+          }
         ]
       },
-      "applying":{
-        
+      "no_internships": {
+        "extra_classes": [
+          {
+            "text": "IT WORKS!",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
+        ]
       },
-      "has_internships":{
-        
+      "applying": {},
+      "has_internships": {},
+      "has_offer": {},
+      "classes": {},
+      "internship": {},
+      "projects": {
+        "extra_projects": [
+          {
+            "text": "Flask Mega-Tutorial (Microblog)",
+            "popupText": "Multi-chapter Flask app: templates, SQLAlchemy, auth, migrations—classic full-stack progression.",
+            "link": "https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world"
+          },
+          {
+            "text": "Microblog source (GitHub)",
+            "popupText": "Official companion repo for the Flask Mega-Tutorial.",
+            "link": "https://github.com/miguelgrinberg/microblog"
+          },
+          {
+            "text": "FastAPI tutorial",
+            "popupText": "Modern Python API with automatic OpenAPI docs at /docs.",
+            "link": "https://fastapi.tiangolo.com/tutorial/"
+          },
+          {
+            "text": "Todo list REST API",
+            "popupText": "roadmap.sh spec: CRUD over HTTP—models, validation, and API design.",
+            "link": "https://roadmap.sh/projects/todo-list-api"
+          },
+          {
+            "text": "Weather API wrapper service",
+            "popupText": "Proxy weather data behind your own API—env vars, HTTP client, JSON.",
+            "link": "https://roadmap.sh/projects/weather-api-wrapper-service"
+          },
+          {
+            "text": "Personal blog (web app)",
+            "popupText": "Posts, routing, styling—strong portfolio centerpiece.",
+            "link": "https://roadmap.sh/projects/personal-blog"
+          },
+          {
+            "text": "Public APIs catalog",
+            "popupText": "Curated free APIs—pick a domain and build a small client or dashboard.",
+            "link": "https://github.com/public-apis/public-apis"
+          },
+          {
+            "text": "GitHub Pages deployment (CI)",
+            "popupText": "Deploy a static site with GitHub Actions—practice shipping frontend work.",
+            "link": "https://roadmap.sh/projects/github-actions-deployment-workflow"
+          },
+          {
+            "text": "MIT Missing Semester",
+            "popupText": "Shell, Git, debugging, and metadata—skills that speed up every project.",
+            "link": "https://missing.csail.mit.edu/"
+          }
+        ]
       },
-      "has_offer":{
-
-      },
-      "classes":{
-
-      },
-      "internship":{
-
-      },
-      "projects":{
-
-      },
-      "networking":{
-        "extra_classes":[
-           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+      "networking": {
+        "extra_classes": [
+          {
+            "text": "IT WORKS!",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
         ]
       }
     },
-
     "junior": {
       "hero": "Junior year is when advanced CS coursework connects directly with internship recruiting.",
       "highlight": "Best use of junior year: take advanced CS courses, strengthen technical interview preparation, and secure a summer software engineering internship.",
-      "base":{
+      "base": {
         "classes": [
-        { "text": "CS 333: Programming Languages", "popupText": "Course studying how programming languages are designed and implemented." },
-        { "text": "CS 3XX: Theory course", "popupText": "Upper-level theory class such as algorithms, complexity, or automata." },
-        { "text": "CS 3XX electives (AI, Machine Learning, Databases, Distributed Systems, Networks)", "popupText": "Advanced CS electives covering specialized engineering and computer science topics." }
-      ],
-      "programs": [
-        { "text": "Google Software Engineering Internship", "href": "https://careers.google.com/students/", "popupText": "Google's flagship summer software engineering internship." },
-        { "text": "Meta Software Engineering Internship", "href": "https://www.metacareers.com/careerprograms/students", "popupText": "Meta's software engineering internship across products and infrastructure." },
-        { "text": "Apple Software Engineering Internship", "href": "https://jobs.apple.com/en-us/search?team=internships-STDNT-INTRN", "popupText": "Apple's summer software engineering internship across hardware and software teams." },
-        { "text": "Stripe Software Engineering Internship", "href": "https://stripe.com/jobs/students-and-new-grads", "popupText": "Stripe's engineering internship on payments infrastructure and developer tools." },
-        { "text": "Jane Street Software Engineer Internship", "href": "https://www.janestreet.com/join-jane-street/programs-and-events/software-engineer-internship/", "popupText": "Jane Street's software engineering internship focused on trading systems." },
-        { "text": "Citadel Software Engineering Internship", "href": "https://www.citadel.com/careers/students/", "popupText": "Citadel's engineering internship for quantitative finance and systems work." },
-        { "text": "Bessemer Fellows", "href": "https://www.bvp.com/bessemer-fellows", "popupText": "Venture capital fellowship for students interested in startups and investing." },
-        { "text": "Kleiner Perkins Fellows", "href": "https://fellows.kleinerperkins.com/", "popupText": "KP's fellowship connecting students with top technology companies." },
-        { "text": "Thrive Capital Fellows", "href": "https://www.thrivecapital.com/fellows", "popupText": "Fellowship program for students interested in technology and venture capital." },
-        { "text": "8VC Fellowships", "href": "https://www.8vc.com/fellows", "popupText": "Fellowship connecting students with 8VC portfolio companies." },
-        { "text": "MLH Fellowship", "href": "https://fellowship.mlh.io/", "popupText": "Remote fellowship where students contribute to open source and collaborative coding projects." }
-      ],
-      "resources": [
-        { "text": "Junior summer internship is the most important for full-time conversion", "popupText": "The junior internship is often the deciding factor for full-time job offers." },
-        { "text": "Practice algorithms and system design interviews", "popupText": "Technical interview prep covering both coding problems and large-scale system design." },
-        { "text": "Build larger technical projects", "popupText": "More ambitious engineering projects that show depth and team collaboration." },
-        { "text": "Use networking and alumni outreach more seriously", "popupText": "Connecting with alumni and professionals to access referrals and hidden opportunities." }
-      ]},
-      "no_internships":{
-        "extra_classes":[
-           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+          {
+            "text": "CS 333: Programming Languages",
+            "popupText": "Course studying how programming languages are designed and implemented."
+          },
+          {
+            "text": "CS 3XX: Theory course",
+            "popupText": "Upper-level theory class such as algorithms, complexity, or automata."
+          },
+          {
+            "text": "CS 3XX electives (AI, Machine Learning, Databases, Distributed Systems, Networks)",
+            "popupText": "Advanced CS electives covering specialized engineering and computer science topics."
+          }
+        ],
+        "programs": [
+          {
+            "text": "Google Software Engineering Internship",
+            "href": "https://careers.google.com/students/",
+            "popupText": "Google's flagship summer software engineering internship."
+          },
+          {
+            "text": "Meta Software Engineering Internship",
+            "href": "https://www.metacareers.com/careerprograms/students",
+            "popupText": "Meta's software engineering internship across products and infrastructure."
+          },
+          {
+            "text": "Apple Software Engineering Internship",
+            "href": "https://jobs.apple.com/en-us/search?team=internships-STDNT-INTRN",
+            "popupText": "Apple's summer software engineering internship across hardware and software teams."
+          },
+          {
+            "text": "Stripe Software Engineering Internship",
+            "href": "https://stripe.com/jobs/students-and-new-grads",
+            "popupText": "Stripe's engineering internship on payments infrastructure and developer tools."
+          },
+          {
+            "text": "Jane Street Software Engineer Internship",
+            "href": "https://www.janestreet.com/join-jane-street/programs-and-events/software-engineer-internship/",
+            "popupText": "Jane Street's software engineering internship focused on trading systems."
+          },
+          {
+            "text": "Citadel Software Engineering Internship",
+            "href": "https://www.citadel.com/careers/students/",
+            "popupText": "Citadel's engineering internship for quantitative finance and systems work."
+          },
+          {
+            "text": "Bessemer Fellows",
+            "href": "https://www.bvp.com/bessemer-fellows",
+            "popupText": "Venture capital fellowship for students interested in startups and investing."
+          },
+          {
+            "text": "Kleiner Perkins Fellows",
+            "href": "https://fellows.kleinerperkins.com/",
+            "popupText": "KP's fellowship connecting students with top technology companies."
+          },
+          {
+            "text": "Thrive Capital Fellows",
+            "href": "https://www.thrivecapital.com/fellows",
+            "popupText": "Fellowship program for students interested in technology and venture capital."
+          },
+          {
+            "text": "8VC Fellowships",
+            "href": "https://www.8vc.com/fellows",
+            "popupText": "Fellowship connecting students with 8VC portfolio companies."
+          },
+          {
+            "text": "MLH Fellowship",
+            "href": "https://fellowship.mlh.io/",
+            "popupText": "Remote fellowship where students contribute to open source and collaborative coding projects."
+          }
+        ],
+        "resources": [
+          {
+            "text": "Junior summer internship is the most important for full-time conversion",
+            "popupText": "The junior internship is often the deciding factor for full-time job offers."
+          },
+          {
+            "text": "Practice algorithms and system design interviews",
+            "popupText": "Technical interview prep covering both coding problems and large-scale system design."
+          },
+          {
+            "text": "Build larger technical projects",
+            "popupText": "More ambitious engineering projects that show depth and team collaboration."
+          },
+          {
+            "text": "Use networking and alumni outreach more seriously",
+            "popupText": "Connecting with alumni and professionals to access referrals and hidden opportunities."
+          }
         ]
       },
-      "applying":{
-        
+      "no_internships": {
+        "extra_classes": [
+          {
+            "text": "IT WORKS!",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
+        ]
       },
-      "has_internships":{
-        
+      "applying": {},
+      "has_internships": {},
+      "has_offer": {},
+      "classes": {},
+      "internship": {},
+      "projects": {
+        "extra_projects": [
+          {
+            "text": "URL shortening service",
+            "popupText": "Design short links, storage, redirects—common interview-style system with clear extensions.",
+            "link": "https://roadmap.sh/projects/url-shortening-service"
+          },
+          {
+            "text": "E-commerce REST API",
+            "popupText": "Products, cart, payments—relational modeling, transactions, error handling.",
+            "link": "https://roadmap.sh/projects/ecommerce-api"
+          },
+          {
+            "text": "Caching proxy server",
+            "popupText": "HTTP cache in front of an origin—sockets, caching policy, concurrency.",
+            "link": "https://roadmap.sh/projects/caching-server"
+          },
+          {
+            "text": "Markdown note-taking app",
+            "popupText": "Editor, storage, preview—shows full-stack polish.",
+            "link": "https://roadmap.sh/projects/markdown-note-taking-app"
+          },
+          {
+            "text": "Reddit-style multi-column client",
+            "popupText": "API integration, async loading, UI state—great React or Vue practice.",
+            "link": "https://roadmap.sh/projects/reddit-client"
+          },
+          {
+            "text": "Fitness / workout tracker API",
+            "popupText": "Users, sessions, progress—realistic domain modeling.",
+            "link": "https://roadmap.sh/projects/fitness-workout-tracker"
+          },
+          {
+            "text": "Intro to Machine Learning (Kaggle)",
+            "popupText": "Short course leading to a simple model—pair with a notebook portfolio piece.",
+            "link": "https://www.kaggle.com/learn/intro-to-machine-learning"
+          },
+          {
+            "text": "Pandas (Kaggle Learn)",
+            "popupText": "Data cleaning and analysis—foundation for DS/ML projects.",
+            "link": "https://www.kaggle.com/learn/pandas"
+          },
+          {
+            "text": "OpenAI API in Python",
+            "popupText": "Call models from code; document costs, limits, and safety.",
+            "link": "https://roadmap.sh/projects/openai-api-python"
+          },
+          {
+            "text": "Awesome for beginners (OSS)",
+            "popupText": "Projects tagged for newcomers—ship a real pull request.",
+            "link": "https://github.com/MunGell/awesome-for-beginners"
+          }
+        ]
       },
-      "has_offer":{
-
-      },
-      "classes":{
-
-      },
-      "internship":{
-
-      },
-      "projects":{
-
-      },
-      "networking":{
-        "extra_classes":[
-           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+      "networking": {
+        "extra_classes": [
+          {
+            "text": "IT WORKS!",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
         ]
       }
     },
-
     "senior": {
       "hero": "Senior year focuses on advanced electives and converting internship experience into full-time opportunities.",
       "highlight": "Best use of senior year: complete advanced CS electives, refine your technical portfolio, and use fall recruiting to secure a full-time engineering role.",
-      "base":{
-       "classes": [
-        { "text": "CS 3XX elective", "popupText": "Upper-level CS elective in a specialization of interest." },
-        { "text": "CS 4XX advanced elective", "popupText": "Senior-level course in a specialized area of computer science." },
-        { "text": "CS 3XX theory course (if not completed earlier)", "popupText": "Theory course covering algorithms, complexity, or formal methods." }
-      ],
-      "programs": [
-        { "text": "Full-time Software Engineering roles", "href": "https://careers.google.com/", "popupText": "Full-time engineering positions at technology companies after graduation." },
-        { "text": "YC Startup Jobs", "href": "https://www.ycombinator.com/jobs", "popupText": "Job board for roles at Y Combinator-backed startups." },
-        { "text": "Engineering fellowships and research opportunities", "href": "https://cs.colby.edu/", "popupText": "Post-grad fellowships and faculty research options for continued technical growth." }
-      ],
-      "resources": [
-        { "text": "Finalize portfolio and GitHub projects", "popupText": "Polishing your public code portfolio before full-time recruiting." },
-        { "text": "Practice system design interviews", "popupText": "Senior-level technical interviews focused on architecting large-scale systems." },
-        { "text": "Leverage internship experience for full-time roles", "popupText": "Using past internship work and networks to convert to a full-time offer." },
-        { "text": "Use alumni networking and referrals", "popupText": "Reaching out to Colby alumni for referrals at companies you are targeting." }
-      ]
-      },"no_internships":{
-        "extra_classes":[
-           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+      "base": {
+        "classes": [
+          {
+            "text": "CS 3XX elective",
+            "popupText": "Upper-level CS elective in a specialization of interest."
+          },
+          {
+            "text": "CS 4XX advanced elective",
+            "popupText": "Senior-level course in a specialized area of computer science."
+          },
+          {
+            "text": "CS 3XX theory course (if not completed earlier)",
+            "popupText": "Theory course covering algorithms, complexity, or formal methods."
+          }
+        ],
+        "programs": [
+          {
+            "text": "Full-time Software Engineering roles",
+            "href": "https://careers.google.com/",
+            "popupText": "Full-time engineering positions at technology companies after graduation."
+          },
+          {
+            "text": "YC Startup Jobs",
+            "href": "https://www.ycombinator.com/jobs",
+            "popupText": "Job board for roles at Y Combinator-backed startups."
+          },
+          {
+            "text": "Engineering fellowships and research opportunities",
+            "href": "https://cs.colby.edu/",
+            "popupText": "Post-grad fellowships and faculty research options for continued technical growth."
+          }
+        ],
+        "resources": [
+          {
+            "text": "Finalize portfolio and GitHub projects",
+            "popupText": "Polishing your public code portfolio before full-time recruiting."
+          },
+          {
+            "text": "Practice system design interviews",
+            "popupText": "Senior-level technical interviews focused on architecting large-scale systems."
+          },
+          {
+            "text": "Leverage internship experience for full-time roles",
+            "popupText": "Using past internship work and networks to convert to a full-time offer."
+          },
+          {
+            "text": "Use alumni networking and referrals",
+            "popupText": "Reaching out to Colby alumni for referrals at companies you are targeting."
+          }
         ]
       },
-      "applying":{
-        
-      },
-      "has_internships":{
-        
-      },
-      "has_offer":{
-
-      },
-      "classes":{
-
-      },
-      "internship":{
-
-      },
-      "projects":{
-
-      },
-      "networking":{
-        "extra_classes":[
-           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+      "no_internships": {
+        "extra_classes": [
+          {
+            "text": "IT WORKS!",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
         ]
-      }   
+      },
+      "applying": {},
+      "has_internships": {},
+      "has_offer": {},
+      "classes": {},
+      "internship": {},
+      "projects": {
+        "extra_projects": [
+          {
+            "text": "Scalable e-commerce (microservices)",
+            "popupText": "roadmap.sh advanced track: service boundaries and scaling concerns.",
+            "link": "https://roadmap.sh/projects/scalable-ecommerce-platform"
+          },
+          {
+            "text": "Real-time leaderboard system",
+            "popupText": "Ranking, concurrency, live updates—WebSockets or SSE practice.",
+            "link": "https://roadmap.sh/projects/realtime-leaderboard-system"
+          },
+          {
+            "text": "Movie reservation system",
+            "popupText": "Seats, inventory, contention—transactions and race conditions.",
+            "link": "https://roadmap.sh/projects/movie-reservation-system"
+          },
+          {
+            "text": "Database backup utility (CLI)",
+            "popupText": "Backup/restore workflows—ops credibility and scripting depth.",
+            "link": "https://roadmap.sh/projects/database-backup-utility"
+          },
+          {
+            "text": "Prometheus + Grafana monitoring",
+            "popupText": "Metrics, dashboards, alerts—strong for SRE-minded portfolios.",
+            "link": "https://roadmap.sh/projects/monitoring"
+          },
+          {
+            "text": "Blue–green deployment",
+            "popupText": "Zero-downtime releases—pairs with apps you already built.",
+            "link": "https://roadmap.sh/projects/blue-green-deployment"
+          },
+          {
+            "text": "Build Your Own X (curated tutorials)",
+            "popupText": "Shells, Git, databases, compilers—pick one deep dive for a standout story.",
+            "link": "https://github.com/codecrafters-io/build-your-own-x"
+          },
+          {
+            "text": "CodeCrafters — Build your own Redis",
+            "popupText": "Incremental TCP server and Redis protocol—systems interview prep (check current access/terms).",
+            "link": "https://codecrafters.io/redis"
+          },
+          {
+            "text": "CodeCrafters — Build your own Git",
+            "popupText": "Implement Git objects and plumbing—deepen VCS internals.",
+            "link": "https://codecrafters.io/challenges/git"
+          }
+        ]
+      },
+      "networking": {
+        "extra_classes": [
+          {
+            "text": "IT WORKS!",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
+        ]
+      }
     }
   },
-
   "econ": {
     "default": {
       "hero": "A year-by-year guide connecting courses, opportunities, and practical next steps for your path in Economics.",
       "highlight": "This roadmap is a starting point — a guide to the classes, programs, and resources worth thinking about as you navigate a career in Economics.",
       "classes": [
-        { "text": "EC 133: Microeconomics", "popupText": "Introduces the fundamental problem in economics: limited resources to satisfy unlimited needs and wants. Concentration on how markets allocate these scarce resources and when they fail to operate efficiently. After analyzing costs, students look at how firms in market structures ranging from perfectly competitive to monopolistic make decisions. Key principles are illustrated by applying them to current economic issues. Students will use standard economic models to describe market structures and the effects of policy interventions, solve problems using graphical or algebraic models of these markets, and choose an appropriate model to analyze economic events described in news articles." },
-        { "text": "EC 134: Macroeconomics", "popupText": "Introduces the measurement of macroeconomic variables and basic theoretical models of aggregate economic behavior. Focuses on the study of fluctuations in economic activity, long-run economic growth, and the role of monetary and fiscal policy in achieving macroeconomic goals. Students will develop their analytical problem-solving skills, hone their ability to think critically, gain experience in building and understanding theoretical models, and sharpen their capacity to understand and critique macroeconomic policy." },
-        { "text": "EC 223: Micro Theory", "popupText": "The theory of the pricing, distribution, and allocation of resources in a market economy. Emphasis placed on the various meanings of economic efficiency." },
-        { "text": "EC 224: Macro Theory", "popupText": "Devoted to the development and examination of various theoretical frameworks to explain fluctuations in output, interest rates, exchange rates, unemployment, inflation, and economic growth in a globally interdependent economy. Continued study of the theoretical development of macroeconomic models and further refinement of understanding the effectiveness and optimality of macroeconomic policy. Students gain an understanding of the importance of expectations, the determination of asset prices (e.g., bond and stock prices), the relationship between financial markets and the macroeconomy, and the implications and limitations of models and policies." },
-        { "text": "Methods / research course", "popupText": "Provides students with the fundamental ability to understand and carry out research in economics. Covers the use of basic statistical methods, probability, and regression analysis in the description and interpretation of economic data. Students practice the application of these techniques working with powerful statistical software." },
-        { "text": "Upper-level electives and seminar", "popupText": "Advanced economics topics and capstone seminar work." }
+        {
+          "text": "EC 133: Microeconomics",
+          "popupText": "Introduces the fundamental problem in economics: limited resources to satisfy unlimited needs and wants. Concentration on how markets allocate these scarce resources and when they fail to operate efficiently. After analyzing costs, students look at how firms in market structures ranging from perfectly competitive to monopolistic make decisions. Key principles are illustrated by applying them to current economic issues. Students will use standard economic models to describe market structures and the effects of policy interventions, solve problems using graphical or algebraic models of these markets, and choose an appropriate model to analyze economic events described in news articles."
+        },
+        {
+          "text": "EC 134: Macroeconomics",
+          "popupText": "Introduces the measurement of macroeconomic variables and basic theoretical models of aggregate economic behavior. Focuses on the study of fluctuations in economic activity, long-run economic growth, and the role of monetary and fiscal policy in achieving macroeconomic goals. Students will develop their analytical problem-solving skills, hone their ability to think critically, gain experience in building and understanding theoretical models, and sharpen their capacity to understand and critique macroeconomic policy."
+        },
+        {
+          "text": "EC 223: Micro Theory",
+          "popupText": "The theory of the pricing, distribution, and allocation of resources in a market economy. Emphasis placed on the various meanings of economic efficiency."
+        },
+        {
+          "text": "EC 224: Macro Theory",
+          "popupText": "Devoted to the development and examination of various theoretical frameworks to explain fluctuations in output, interest rates, exchange rates, unemployment, inflation, and economic growth in a globally interdependent economy. Continued study of the theoretical development of macroeconomic models and further refinement of understanding the effectiveness and optimality of macroeconomic policy. Students gain an understanding of the importance of expectations, the determination of asset prices (e.g., bond and stock prices), the relationship between financial markets and the macroeconomy, and the implications and limitations of models and policies."
+        },
+        {
+          "text": "Methods / research course",
+          "popupText": "Provides students with the fundamental ability to understand and carry out research in economics. Covers the use of basic statistical methods, probability, and regression analysis in the description and interpretation of economic data. Students practice the application of these techniques working with powerful statistical software."
+        },
+        {
+          "text": "Upper-level electives and seminar",
+          "popupText": "Advanced economics topics and capstone seminar work."
+        }
       ],
       "programs": [
-        { "text": "Freshman and sophomore exposure programs", "href": null, "popupText": "Programs introducing early college students to finance, consulting, or economics careers." },
-        { "text": "Junior summer internships", "href": null, "popupText": "Industry internships that often lead to full-time job offers." },
-        { "text": "Career center and alumni networking", "href": null, "popupText": "University resources for networking, resume help, and recruiting guidance." }
+        {
+          "text": "Freshman and sophomore exposure programs",
+          "href": null,
+          "popupText": "Programs introducing early college students to finance, consulting, or economics careers."
+        },
+        {
+          "text": "Junior summer internships",
+          "href": null,
+          "popupText": "Industry internships that often lead to full-time job offers."
+        },
+        {
+          "text": "Career center and alumni networking",
+          "href": null,
+          "popupText": "University resources for networking, resume help, and recruiting guidance."
+        }
       ],
       "resources": [
-        { "text": "Wall Street Prep", "popupText": "Financial modeling training used for investment banking preparation." },
-        { "text": "Paving the Road", "popupText": "Student resource and guide for breaking into finance careers." },
-        { "text": "Mergers and Acquisitions class with Mike McHale", "popupText": "Colby course focused on corporate mergers, acquisitions, and deal analysis." }
+        {
+          "text": "Wall Street Prep",
+          "popupText": "Financial modeling training used for investment banking preparation."
+        },
+        {
+          "text": "Paving the Road",
+          "popupText": "Student resource and guide for breaking into finance careers."
+        },
+        {
+          "text": "Mergers and Acquisitions class with Mike McHale",
+          "popupText": "Colby course focused on corporate mergers, acquisitions, and deal analysis."
+        }
       ]
     },
-
     "freshman": {
       "hero": "Freshman year is mainly about getting the intro sequence started and beginning to understand what the major looks like.",
       "highlight": "Best use of freshman year: complete EC133 and EC134, start building your foundation early, and get familiar with finance, policy, consulting, and research paths before recruiting ramps up later.",
-      "base":{
+      "base": {
         "classes": [
-          { "text": "EC 133: Microeconomics", "popupText": "Introduces the fundamental problem in economics: limited resources to satisfy unlimited needs and wants. Concentration on how markets allocate these scarce resources and when they fail to operate efficiently. After analyzing costs, students look at how firms in market structures ranging from perfectly competitive to monopolistic make decisions. Key principles are illustrated by applying them to current economic issues. Students will use standard economic models to describe market structures and the effects of policy interventions, solve problems using graphical or algebraic models of these markets, and choose an appropriate model to analyze economic events described in news articles." },
-          { "text": "EC 134: Macroeconomics-", "popupText": "Introduces the measurement of macroeconomic variables and basic theoretical models of aggregate economic behavior. Focuses on the study of fluctuations in economic activity, long-run economic growth, and the role of monetary and fiscal policy in achieving macroeconomic goals. Students will develop their analytical problem-solving skills, hone their ability to think critically, gain experience in building and understanding theoretical models, and sharpen their capacity to understand and critique macroeconomic policy." }
+          {
+            "text": "EC 133: Microeconomics",
+            "popupText": "Introduces the fundamental problem in economics: limited resources to satisfy unlimited needs and wants. Concentration on how markets allocate these scarce resources and when they fail to operate efficiently. After analyzing costs, students look at how firms in market structures ranging from perfectly competitive to monopolistic make decisions. Key principles are illustrated by applying them to current economic issues. Students will use standard economic models to describe market structures and the effects of policy interventions, solve problems using graphical or algebraic models of these markets, and choose an appropriate model to analyze economic events described in news articles."
+          },
+          {
+            "text": "EC 134: Macroeconomics-",
+            "popupText": "Introduces the measurement of macroeconomic variables and basic theoretical models of aggregate economic behavior. Focuses on the study of fluctuations in economic activity, long-run economic growth, and the role of monetary and fiscal policy in achieving macroeconomic goals. Students will develop their analytical problem-solving skills, hone their ability to think critically, gain experience in building and understanding theoretical models, and sharpen their capacity to understand and critique macroeconomic policy."
+          }
         ],
         "programs": [
-          { "text": "Citadel Discover", "href": "https://www.citadel.com/careers/students/discover-citadel/", "popupText": "Citadel's freshman discovery program introducing students to quantitative finance." },
-          { "text": "Goldman Sachs Possibilities Summit", "href": "https://www.goldmansachs.com/careers/students/programs/americas/possibilities-summit/", "popupText": "Goldman Sachs event connecting early undergraduates with finance careers." },
-          { "text": "J.P. Morgan Advancing Black Pathways", "href": "https://www.jpmorganchase.com/impact/people/advancing-black-pathways", "popupText": "J.P. Morgan program supporting Black students pursuing finance careers." },
-          { "text": "D.E. Shaw Fellowships", "href": "https://fellowships.deshaw.com/", "popupText": "D.E. Shaw's fellowship program for students interested in quantitative finance." },
-          { "text": "Jane Street FTTP", "href": "https://www.janestreet.com/join-jane-street/programs-and-events/fttp/", "popupText": "Jane Street's First-Year Trading and Technology Program." }
+          {
+            "text": "Citadel Discover",
+            "href": "https://www.citadel.com/careers/students/discover-citadel/",
+            "popupText": "Citadel's freshman discovery program introducing students to quantitative finance."
+          },
+          {
+            "text": "Goldman Sachs Possibilities Summit",
+            "href": "https://www.goldmansachs.com/careers/students/programs/americas/possibilities-summit/",
+            "popupText": "Goldman Sachs event connecting early undergraduates with finance careers."
+          },
+          {
+            "text": "J.P. Morgan Advancing Black Pathways",
+            "href": "https://www.jpmorganchase.com/impact/people/advancing-black-pathways",
+            "popupText": "J.P. Morgan program supporting Black students pursuing finance careers."
+          },
+          {
+            "text": "D.E. Shaw Fellowships",
+            "href": "https://fellowships.deshaw.com/",
+            "popupText": "D.E. Shaw's fellowship program for students interested in quantitative finance."
+          },
+          {
+            "text": "Jane Street FTTP",
+            "href": "https://www.janestreet.com/join-jane-street/programs-and-events/fttp/",
+            "popupText": "Jane Street's First-Year Trading and Technology Program."
+          }
         ],
         "resources": [
-          { "text": "Get the intro sequence moving early", "popupText": "Starting required courses in the first year to stay on track for upper-level work." },
-          { "text": "Start learning what finance, consulting, policy, and quant paths look like", "popupText": "Exploring different economics career paths before committing to a direction." },
-          { "text": "Use first-year events and networking to explore without overcommitting", "popupText": "Attending career events to build awareness without narrowing your options too early." },
-          { "text": "Keep options open by building strong study habits from the start", "popupText": "Developing consistent academic habits that support performance across all econ paths." }
+          {
+            "text": "Get the intro sequence moving early",
+            "popupText": "Starting required courses in the first year to stay on track for upper-level work."
+          },
+          {
+            "text": "Start learning what finance, consulting, policy, and quant paths look like",
+            "popupText": "Exploring different economics career paths before committing to a direction."
+          },
+          {
+            "text": "Use first-year events and networking to explore without overcommitting",
+            "popupText": "Attending career events to build awareness without narrowing your options too early."
+          },
+          {
+            "text": "Keep options open by building strong study habits from the start",
+            "popupText": "Developing consistent academic habits that support performance across all econ paths."
+          }
         ]
       },
-      "consulting":{
-        "extra_classes":[
-           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+      "consulting": {
+        "extra_classes": [
+          {
+            "text": "JP: Tuck Bridge Program",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
         ],
-        "extra_programs":[
-           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Freshamn year internship that focuses on Deloitte's service lines" }
+        "extra_programs": [
+          {
+            "text": "Deloitte Discovery Program",
+            "href": "https://www.deloitte.com/us/en/careers/internships.html",
+            "popupText": "Freshamn year internship that focuses on Deloitte's service lines"
+          }
         ]
       },
-      "finance":{
-        "extra_classes":[
-           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+      "finance": {
+        "extra_classes": [
+          {
+            "text": "JP: Tuck Bridge Program",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
         ],
-        "extra_programs":[
-           { "text": "Capital One","href": "https://www.capitalonecareers.com/early-internships-program", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        "extra_programs": [
+          {
+            "text": "Capital One",
+            "href": "https://www.capitalonecareers.com/early-internships-program",
+            "popupText": "Introductory course studying how individuals and firms make economic decisions."
+          }
         ]
       },
-      "exploring":{
-        "extra_classes":[
-           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+      "exploring": {
+        "extra_classes": [
+          {
+            "text": "JP: Tuck Bridge Program",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
         ],
-        "extra_programs":[
-           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        "extra_programs": [
+          {
+            "text": "Deloitte Discovery Program",
+            "href": "https://www.deloitte.com/us/en/careers/internships.html",
+            "popupText": "Introductory course studying how individuals and firms make economic decisions."
+          }
         ]
       },
-      "product_manager":{
-        "extra_classes":[
-           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+      "product_manager": {
+        "extra_classes": [
+          {
+            "text": "JP: Tuck Bridge Program",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
         ],
-        "extra_programs":[
-           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        "extra_programs": [
+          {
+            "text": "Deloitte Discovery Program",
+            "href": "https://www.deloitte.com/us/en/careers/internships.html",
+            "popupText": "Introductory course studying how individuals and firms make economic decisions."
+          }
         ]
       },
-      "no_internships":{
-        "extra_classes":[
-           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+      "no_internships": {
+        "extra_classes": [
+          {
+            "text": "IT WORKS!",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
         ]
       },
-      "applying":{
-        
-      },
-      "has_internships":{
-        
-      },
-      "has_offer":{
-
-      },
-      "classes":{
-
-      },
-      "internship":{
-
-      },
-      "projects":{
-
-      },
-      "networking":{
-        "extra_classes":[
-           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+      "applying": {},
+      "has_internships": {},
+      "has_offer": {},
+      "classes": {},
+      "internship": {},
+      "projects": {},
+      "networking": {
+        "extra_classes": [
+          {
+            "text": "IT WORKS!",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
         ]
       }
-
     },
-
     "sophomore": {
       "hero": "Sophomore year is where the major becomes more structured — theory, methods, and math become much more important.",
       "highlight": "Best use of sophomore year: finish the core theory and methods work so junior year can focus on stronger electives, technical development, and internship preparation.",
-      "base":{
+      "base": {
         "classes": [
-        { "text": "EC 224: Macro Theory", "popupText": "Devoted to the development and examination of various theoretical frameworks to explain fluctuations in output, interest rates, exchange rates, unemployment, inflation, and economic growth in a globally interdependent economy. Continued study of the theoretical development of macroeconomic models and further refinement of understanding the effectiveness and optimality of macroeconomic policy. Students gain an understanding of the importance of expectations, the determination of asset prices (e.g., bond and stock prices), the relationship between financial markets and the macroeconomy, and the implications and limitations of models and policies." },
-        { "text": "EC 223: Micro Theory", "popupText": "The theory of the pricing, distribution, and allocation of resources in a market economy. Emphasis placed on the various meanings of economic efficiency." },
-        { "text": "PS 214: Research Methods or EC 293: Econ Research Methods", "popupText": "Quantitative and qualitative methods courses that support rigorous economic analysis." },
-        { "text": "Any Math class between MA 125 to MA 160", "popupText": "Math courses that strengthen quantitative skills needed for upper-level econ." }
-      ],
-      "programs": [
-        { "text": "Citadel Launch", "href": "https://www.citadel.com/careers/students/launch/", "popupText": "Citadel's sophomore internship program in quantitative research and trading." },
-        { "text": "PwC Start", "href": "https://www.pwc.com/us/en/careers/while-you-work/student-opportunities/start.html", "popupText": "PwC's early university program introducing students to consulting." },
-        { "text": "Morgan Stanley Early Insights", "href": "https://www.morganstanley.com/careers/students-graduates/early-insights-program", "popupText": "Morgan Stanley program for early-career students exploring investment banking." },
-        { "text": "Point72 Academy Sophomore Summit", "href": "https://careers.point72.com/students", "popupText": "Point72's sophomore summit introducing students to hedge fund investing." },
-        { "text": "PJT Partners Sophomore Internship", "href": "https://www.pjtpartners.com/careers/students/", "popupText": "PJT Partners' internship for sophomores interested in restructuring and M&A." },
-        { "text": "BlackRock Founders Scholarship", "href": "https://www.blackrock.com/corporate/careers/students-and-graduates", "popupText": "BlackRock scholarship program for students pursuing careers in asset management." }
-      ],
-      "resources": [
-        { "text": "Become more intentional about recruiting direction", "popupText": "Narrowing focus toward finance, consulting, policy, or quantitative paths." },
-        { "text": "Methods and math support upper-level econ and more technical roles", "popupText": "Quantitative coursework that makes your profile stronger for selective roles." },
-        { "text": "Build spreadsheet, data, and interview skills alongside coursework", "popupText": "Practical skills like Excel and financial modeling that recruiters look for." },
-        { "text": "Start keeping a clear timeline for sophomore and junior recruiting windows", "popupText": "Understanding when applications open for competitive programs and internships." }
-      ]
-      },
-      "consulting":{
-        "extra_classes":[
-           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+          {
+            "text": "EC 224: Macro Theory",
+            "popupText": "Devoted to the development and examination of various theoretical frameworks to explain fluctuations in output, interest rates, exchange rates, unemployment, inflation, and economic growth in a globally interdependent economy. Continued study of the theoretical development of macroeconomic models and further refinement of understanding the effectiveness and optimality of macroeconomic policy. Students gain an understanding of the importance of expectations, the determination of asset prices (e.g., bond and stock prices), the relationship between financial markets and the macroeconomy, and the implications and limitations of models and policies."
+          },
+          {
+            "text": "EC 223: Micro Theory",
+            "popupText": "The theory of the pricing, distribution, and allocation of resources in a market economy. Emphasis placed on the various meanings of economic efficiency."
+          },
+          {
+            "text": "PS 214: Research Methods or EC 293: Econ Research Methods",
+            "popupText": "Quantitative and qualitative methods courses that support rigorous economic analysis."
+          },
+          {
+            "text": "Any Math class between MA 125 to MA 160",
+            "popupText": "Math courses that strengthen quantitative skills needed for upper-level econ."
+          }
         ],
-        "extra_programs":[
-           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Freshamn year internship that focuses on Deloitte's service lines" }
-        ]
-      },
-      "finance":{
-        "extra_classes":[
-           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+        "programs": [
+          {
+            "text": "Citadel Launch",
+            "href": "https://www.citadel.com/careers/students/launch/",
+            "popupText": "Citadel's sophomore internship program in quantitative research and trading."
+          },
+          {
+            "text": "PwC Start",
+            "href": "https://www.pwc.com/us/en/careers/while-you-work/student-opportunities/start.html",
+            "popupText": "PwC's early university program introducing students to consulting."
+          },
+          {
+            "text": "Morgan Stanley Early Insights",
+            "href": "https://www.morganstanley.com/careers/students-graduates/early-insights-program",
+            "popupText": "Morgan Stanley program for early-career students exploring investment banking."
+          },
+          {
+            "text": "Point72 Academy Sophomore Summit",
+            "href": "https://careers.point72.com/students",
+            "popupText": "Point72's sophomore summit introducing students to hedge fund investing."
+          },
+          {
+            "text": "PJT Partners Sophomore Internship",
+            "href": "https://www.pjtpartners.com/careers/students/",
+            "popupText": "PJT Partners' internship for sophomores interested in restructuring and M&A."
+          },
+          {
+            "text": "BlackRock Founders Scholarship",
+            "href": "https://www.blackrock.com/corporate/careers/students-and-graduates",
+            "popupText": "BlackRock scholarship program for students pursuing careers in asset management."
+          }
         ],
-        "extra_programs":[
-           { "text": "PwC Start Internship","href": "https://jobs.us.pwc.com/entry-level?utm_source=chatgpt.com", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        "resources": [
+          {
+            "text": "Become more intentional about recruiting direction",
+            "popupText": "Narrowing focus toward finance, consulting, policy, or quantitative paths."
+          },
+          {
+            "text": "Methods and math support upper-level econ and more technical roles",
+            "popupText": "Quantitative coursework that makes your profile stronger for selective roles."
+          },
+          {
+            "text": "Build spreadsheet, data, and interview skills alongside coursework",
+            "popupText": "Practical skills like Excel and financial modeling that recruiters look for."
+          },
+          {
+            "text": "Start keeping a clear timeline for sophomore and junior recruiting windows",
+            "popupText": "Understanding when applications open for competitive programs and internships."
+          }
         ]
       },
-      "exploring":{
-        "extra_classes":[
-           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+      "consulting": {
+        "extra_classes": [
+          {
+            "text": "JP: Tuck Bridge Program",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
         ],
-        "extra_programs":[
-           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Introductory course studying how individuals and firms make economic decisions." },
-           { "text": "PwC Start Internship","href": "https://jobs.us.pwc.com/entry-level?utm_source=chatgpt.com", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        "extra_programs": [
+          {
+            "text": "Deloitte Discovery Program",
+            "href": "https://www.deloitte.com/us/en/careers/internships.html",
+            "popupText": "Freshamn year internship that focuses on Deloitte's service lines"
+          }
         ]
       },
-      "product_manager":{
-        "extra_classes":[
-           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+      "finance": {
+        "extra_classes": [
+          {
+            "text": "JP: Tuck Bridge Program",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
         ],
-        "extra_programs":[
-           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        "extra_programs": [
+          {
+            "text": "PwC Start Internship",
+            "href": "https://jobs.us.pwc.com/entry-level?utm_source=chatgpt.com",
+            "popupText": "Introductory course studying how individuals and firms make economic decisions."
+          }
         ]
-      }, 
-      "no_internships":{
-        "extra_classes":[
-           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+      },
+      "exploring": {
+        "extra_classes": [
+          {
+            "text": "JP: Tuck Bridge Program",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
+        ],
+        "extra_programs": [
+          {
+            "text": "Deloitte Discovery Program",
+            "href": "https://www.deloitte.com/us/en/careers/internships.html",
+            "popupText": "Introductory course studying how individuals and firms make economic decisions."
+          },
+          {
+            "text": "PwC Start Internship",
+            "href": "https://jobs.us.pwc.com/entry-level?utm_source=chatgpt.com",
+            "popupText": "Introductory course studying how individuals and firms make economic decisions."
+          }
         ]
       },
-      "applying":{
-        
+      "product_manager": {
+        "extra_classes": [
+          {
+            "text": "JP: Tuck Bridge Program",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
+        ],
+        "extra_programs": [
+          {
+            "text": "Deloitte Discovery Program",
+            "href": "https://www.deloitte.com/us/en/careers/internships.html",
+            "popupText": "Introductory course studying how individuals and firms make economic decisions."
+          }
+        ]
       },
-      "has_internships":{
-        
+      "no_internships": {
+        "extra_classes": [
+          {
+            "text": "IT WORKS!",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
+        ]
       },
-      "has_offer":{
-
-      },
-      "classes":{
-
-      },
-      "internship":{
-
-      },
-      "projects":{
-
-      },
-      "networking":{
-        "extra_resources":[
-           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+      "applying": {},
+      "has_internships": {},
+      "has_offer": {},
+      "classes": {},
+      "internship": {},
+      "projects": {},
+      "networking": {
+        "extra_resources": [
+          {
+            "text": "IT WORKS!",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
         ]
       }
     },
-
     "junior": {
       "hero": "Junior year is usually the most important year for connecting coursework to internships, recruiting, and upper-level economics work.",
       "highlight": "Best use of junior year: pair upper-level econ classes with serious internship prep, stronger technical skill building, and a more focused recruiting strategy.",
-      "base":{
+      "base": {
         "classes": [
-          { "text": "Econ elective above 200", "popupText": "Upper-level economics course in a specialization of interest." },
-          { "text": "EC 393: Econometrics", "popupText": "An introduction to quantitative methods used for the analysis of economic phenomenon, covering the theoretical development of the ordinary least squares regression framework, tools for model specification and estimation, hypothesis testing, methods for correcting errors in parameter estimation, and the analysis of econometric results in the context of a wide range of empirical applications. Through lab exercises and a final empirical project, develops model-building skills, builds confidence in applying econometric methods to real-world data, deepens the understanding of statistical inference, and improves the capacity for communicating econometric results." }
+          {
+            "text": "Econ elective above 200",
+            "popupText": "Upper-level economics course in a specialization of interest."
+          },
+          {
+            "text": "EC 393: Econometrics",
+            "popupText": "An introduction to quantitative methods used for the analysis of economic phenomenon, covering the theoretical development of the ordinary least squares regression framework, tools for model specification and estimation, hypothesis testing, methods for correcting errors in parameter estimation, and the analysis of econometric results in the context of a wide range of empirical applications. Through lab exercises and a final empirical project, develops model-building skills, builds confidence in applying econometric methods to real-world data, deepens the understanding of statistical inference, and improves the capacity for communicating econometric results."
+          }
         ],
         "programs": [
-          { "text": "Goldman Sachs Summer Analyst Program", "href": "https://www.goldmansachs.com/careers/students/programs/", "popupText": "Goldman Sachs' flagship summer internship across investment banking and markets." },
-          { "text": "PwC Advance", "href": "https://www.pwc.com/us/en/careers/while-you-work/student-opportunities/advance.html", "popupText": "PwC's junior summer internship in consulting and advisory services." },
-          { "text": "Jane Street Quantitative Trader Internship", "href": "https://www.janestreet.com/join-jane-street/programs-and-events/quantitative-trader-internship/", "popupText": "Jane Street's internship for students interested in quantitative trading." },
-          { "text": "J.P. Morgan Quantitative Finance Internship", "href": "https://careers.jpmorgan.com/us/en/students/programs/quantitative-finance-analyst", "popupText": "J.P. Morgan's internship for quantitative finance and analyst roles." },
-          { "text": "SIG Quantitative Trading Intern", "href": "https://careers.sig.com/students/", "popupText": "SIG's trading and research internship for quantitatively strong students." },
-          { "text": "Bridgewater Investment Engineer Intern", "href": "https://www.bridgewater.com/campus", "popupText": "Bridgewater's internship combining investment research and systems work." },
-          { "text": "Evercore / Lazard / Centerview", "href": null, "popupText": "Elite boutique investment banks with competitive summer analyst programs." }
+          {
+            "text": "Goldman Sachs Summer Analyst Program",
+            "href": "https://www.goldmansachs.com/careers/students/programs/",
+            "popupText": "Goldman Sachs' flagship summer internship across investment banking and markets."
+          },
+          {
+            "text": "PwC Advance",
+            "href": "https://www.pwc.com/us/en/careers/while-you-work/student-opportunities/advance.html",
+            "popupText": "PwC's junior summer internship in consulting and advisory services."
+          },
+          {
+            "text": "Jane Street Quantitative Trader Internship",
+            "href": "https://www.janestreet.com/join-jane-street/programs-and-events/quantitative-trader-internship/",
+            "popupText": "Jane Street's internship for students interested in quantitative trading."
+          },
+          {
+            "text": "J.P. Morgan Quantitative Finance Internship",
+            "href": "https://careers.jpmorgan.com/us/en/students/programs/quantitative-finance-analyst",
+            "popupText": "J.P. Morgan's internship for quantitative finance and analyst roles."
+          },
+          {
+            "text": "SIG Quantitative Trading Intern",
+            "href": "https://careers.sig.com/students/",
+            "popupText": "SIG's trading and research internship for quantitatively strong students."
+          },
+          {
+            "text": "Bridgewater Investment Engineer Intern",
+            "href": "https://www.bridgewater.com/campus",
+            "popupText": "Bridgewater's internship combining investment research and systems work."
+          },
+          {
+            "text": "Evercore / Lazard / Centerview",
+            "href": null,
+            "popupText": "Elite boutique investment banks with competitive summer analyst programs."
+          }
         ],
         "resources": [
-          { "text": "Junior summer is often the most important internship summer", "popupText": "The junior internship is the primary path to full-time finance and consulting offers." },
-          { "text": "Econometrics makes your quantitative background more usable", "popupText": "Econometrics signals technical credibility for research and quantitative roles." },
-          { "text": "Use networking and alumni outreach more seriously this year", "popupText": "Connecting with alumni for referrals becomes much more important in junior year." },
-          { "text": "Tighten your resume and know what roles you are targeting", "popupText": "A focused, well-crafted resume targeting specific roles and firms is essential." }
+          {
+            "text": "Junior summer is often the most important internship summer",
+            "popupText": "The junior internship is the primary path to full-time finance and consulting offers."
+          },
+          {
+            "text": "Econometrics makes your quantitative background more usable",
+            "popupText": "Econometrics signals technical credibility for research and quantitative roles."
+          },
+          {
+            "text": "Use networking and alumni outreach more seriously this year",
+            "popupText": "Connecting with alumni for referrals becomes much more important in junior year."
+          },
+          {
+            "text": "Tighten your resume and know what roles you are targeting",
+            "popupText": "A focused, well-crafted resume targeting specific roles and firms is essential."
+          }
         ]
       },
-      "consulting":{
-        "extra_classes":[
-           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+      "consulting": {
+        "extra_classes": [
+          {
+            "text": "JP: Tuck Bridge Program",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
         ],
-        "extra_programs":[
-           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Freshamn year internship that focuses on Deloitte's service lines" }
+        "extra_programs": [
+          {
+            "text": "Deloitte Discovery Program",
+            "href": "https://www.deloitte.com/us/en/careers/internships.html",
+            "popupText": "Freshamn year internship that focuses on Deloitte's service lines"
+          }
         ]
       },
-      "finance":{
-        "extra_classes":[
-           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+      "finance": {
+        "extra_classes": [
+          {
+            "text": "JP: Tuck Bridge Program",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
         ],
-        "extra_programs":[
-           { "text": "Capital One","href": "https://www.capitalonecareers.com/early-internships-program", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        "extra_programs": [
+          {
+            "text": "Capital One",
+            "href": "https://www.capitalonecareers.com/early-internships-program",
+            "popupText": "Introductory course studying how individuals and firms make economic decisions."
+          }
         ]
       },
-      "exploring":{
-        "extra_classes":[
-           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+      "exploring": {
+        "extra_classes": [
+          {
+            "text": "JP: Tuck Bridge Program",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
         ],
-        "extra_programs":[
-           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        "extra_programs": [
+          {
+            "text": "Deloitte Discovery Program",
+            "href": "https://www.deloitte.com/us/en/careers/internships.html",
+            "popupText": "Introductory course studying how individuals and firms make economic decisions."
+          }
         ]
       },
-      "product_manager":{
-        "extra_classes":[
-           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+      "product_manager": {
+        "extra_classes": [
+          {
+            "text": "JP: Tuck Bridge Program",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
         ],
-        "extra_programs":[
-           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        "extra_programs": [
+          {
+            "text": "Deloitte Discovery Program",
+            "href": "https://www.deloitte.com/us/en/careers/internships.html",
+            "popupText": "Introductory course studying how individuals and firms make economic decisions."
+          }
         ]
       },
-
-      "no_internships":{
-        "extra_classes":[
-           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+      "no_internships": {
+        "extra_classes": [
+          {
+            "text": "IT WORKS!",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
         ]
       },
-      "applying":{
-        
-      },
-      "has_internships":{
-        
-      },
-      "has_offer":{
-
-      },
-      "classes":{
-
-      },
-      "internship":{
-
-      },
-      "projects":{
-
-      },
-      "networking":{
-        "extra_classes":[
-           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+      "applying": {},
+      "has_internships": {},
+      "has_offer": {},
+      "classes": {},
+      "internship": {},
+      "projects": {},
+      "networking": {
+        "extra_classes": [
+          {
+            "text": "IT WORKS!",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
         ]
       }
-
     },
-
     "senior": {
       "hero": "Senior year should be about finishing strong, completing the seminar requirement, and turning your experience into a clear next step.",
       "highlight": "Best use of senior year: finish upper-level work well, complete the seminar, and use the fall to convert your experience into full-time opportunities or a stronger post-grad plan.",
-      "base":{
+      "base": {
         "classes": [
-          { "text": "Econ elective in the 300 level", "popupText": "Advanced economics course in your area of interest." },
-          { "text": "Econ seminar", "popupText": "Capstone seminar completing the economics major requirement." }
+          {
+            "text": "Econ elective in the 300 level",
+            "popupText": "Advanced economics course in your area of interest."
+          },
+          {
+            "text": "Econ seminar",
+            "popupText": "Capstone seminar completing the economics major requirement."
+          }
         ],
         "programs": [
-          { "text": "Focus on full-time recruiting and late-cycle opportunities", "href": null, "popupText": "Senior recruiting cycles for banking, consulting, and research roles." },
-          { "text": "Use seminar and upper-level work to sharpen your interests", "href": null, "popupText": "Leveraging coursework to clarify your economics career direction." }
+          {
+            "text": "Focus on full-time recruiting and late-cycle opportunities",
+            "href": null,
+            "popupText": "Senior recruiting cycles for banking, consulting, and research roles."
+          },
+          {
+            "text": "Use seminar and upper-level work to sharpen your interests",
+            "href": null,
+            "popupText": "Leveraging coursework to clarify your economics career direction."
+          }
         ],
         "resources": [
-          { "text": "Wall Street Prep", "popupText": "Financial modeling training used for investment banking preparation." },
-          { "text": "Paving the Road", "popupText": "Student resource and guide for breaking into finance careers." },
-          { "text": "Mergers and Acquisitions class with Mike McHale", "popupText": "Colby course focused on corporate mergers, acquisitions, and deal analysis." },
-          { "text": "Senior year is about finishing the major well and making your next move concrete", "popupText": "Completing the major strong while locking in your first post-graduation step." }
+          {
+            "text": "Wall Street Prep",
+            "popupText": "Financial modeling training used for investment banking preparation."
+          },
+          {
+            "text": "Paving the Road",
+            "popupText": "Student resource and guide for breaking into finance careers."
+          },
+          {
+            "text": "Mergers and Acquisitions class with Mike McHale",
+            "popupText": "Colby course focused on corporate mergers, acquisitions, and deal analysis."
+          },
+          {
+            "text": "Senior year is about finishing the major well and making your next move concrete",
+            "popupText": "Completing the major strong while locking in your first post-graduation step."
+          }
         ]
       },
-      "consulting":{
-        "extra_classes":[
-           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+      "consulting": {
+        "extra_classes": [
+          {
+            "text": "JP: Tuck Bridge Program",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
         ],
-        "extra_programs":[
-           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Freshamn year internship that focuses on Deloitte's service lines" }
+        "extra_programs": [
+          {
+            "text": "Deloitte Discovery Program",
+            "href": "https://www.deloitte.com/us/en/careers/internships.html",
+            "popupText": "Freshamn year internship that focuses on Deloitte's service lines"
+          }
         ]
       },
-      "finance":{
-        "extra_classes":[
-           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+      "finance": {
+        "extra_classes": [
+          {
+            "text": "JP: Tuck Bridge Program",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
         ],
-        "extra_programs":[
-           { "text": "Capital One","href": "https://www.capitalonecareers.com/early-internships-program", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        "extra_programs": [
+          {
+            "text": "Capital One",
+            "href": "https://www.capitalonecareers.com/early-internships-program",
+            "popupText": "Introductory course studying how individuals and firms make economic decisions."
+          }
         ]
       },
-      "exploring":{
-        "extra_classes":[
-           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+      "exploring": {
+        "extra_classes": [
+          {
+            "text": "JP: Tuck Bridge Program",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
         ],
-        "extra_programs":[
-           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        "extra_programs": [
+          {
+            "text": "Deloitte Discovery Program",
+            "href": "https://www.deloitte.com/us/en/careers/internships.html",
+            "popupText": "Introductory course studying how individuals and firms make economic decisions."
+          }
         ]
       },
-      "product_manager":{
-        "extra_classes":[
-           { "text": "JP: Tuck Bridge Program", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+      "product_manager": {
+        "extra_classes": [
+          {
+            "text": "JP: Tuck Bridge Program",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
         ],
-        "extra_programs":[
-           { "text": "Deloitte Discovery Program","href": "https://www.deloitte.com/us/en/careers/internships.html", "popupText": "Introductory course studying how individuals and firms make economic decisions." }
+        "extra_programs": [
+          {
+            "text": "Deloitte Discovery Program",
+            "href": "https://www.deloitte.com/us/en/careers/internships.html",
+            "popupText": "Introductory course studying how individuals and firms make economic decisions."
+          }
         ]
       },
-
-      "no_internships":{
-        "extra_classes":[
-           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+      "no_internships": {
+        "extra_classes": [
+          {
+            "text": "IT WORKS!",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
         ]
       },
-      "applying":{
-        
-      },
-      "has_internships":{
-        
-      },
-      "has_offer":{
-
-      },
-
-      "classes":{
-
-      },
-      "internship":{
-
-      },
-      "projects":{
-
-      },
-      "networking":{
-        "extra_classes":[
-           { "text": "IT WORKS!", "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs." }
+      "applying": {},
+      "has_internships": {},
+      "has_offer": {},
+      "classes": {},
+      "internship": {},
+      "projects": {},
+      "networking": {
+        "extra_classes": [
+          {
+            "text": "IT WORKS!",
+            "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs."
+          }
         ]
       }
-
     }
   }
 }
