@@ -1,0 +1,1762 @@
+{
+  "schema_version": 1,
+  "schema": {
+    "description": "Per major and class year.",
+    "majors": [
+      "cs",
+      "econ"
+    ],
+    "years": [
+      "default",
+      "freshman",
+      "sophomore",
+      "junior",
+      "senior"
+    ],
+    "sections": [
+      "classes",
+      "programs",
+      "internships",
+      "full_time_roles",
+      "projects",
+      "networking",
+      "resources"
+    ],
+    "item_fields": {
+      "required": [
+        "id",
+        "text",
+        "popupText"
+      ],
+      "optional": [
+        "href",
+        "goals"
+      ]
+    }
+  },
+  "cs": {
+    "default": {
+      "hero": "A year-by-year guide connecting courses, internships, and technical skill-building for your path in Computer Science.",
+      "highlight": "This roadmap is a starting point — a guide to the classes, technical skills, and recruiting timelines worth thinking about as you navigate a career in software engineering, AI, systems, or data.",
+      "classes": [
+        {
+          "text": "CS 151X",
+          "popupText": "Introductory computer science course covering programming fundamentals.",
+          "id": "cs_default_classes_001"
+        },
+        {
+          "text": "CS 232: Computer Organization",
+          "popupText": "Course on how computers work at the hardware and systems level.",
+          "id": "cs_default_classes_002"
+        },
+        {
+          "text": "CS 231: Data Structures",
+          "popupText": "Core course covering algorithms and common data structures used in software engineering.",
+          "id": "cs_default_classes_003"
+        },
+        {
+          "text": "CS 251: Data Analysis and Visualization",
+          "popupText": "Course focused on analyzing datasets and building visualizations.",
+          "id": "cs_default_classes_004"
+        },
+        {
+          "text": "CS 333: Programming Languages",
+          "popupText": "Course studying how programming languages are designed and implemented.",
+          "id": "cs_default_classes_005"
+        },
+        {
+          "text": "CS 3XX: Theory course",
+          "popupText": "Upper-level theory class such as algorithms, complexity, or automata.",
+          "id": "cs_default_classes_006"
+        },
+        {
+          "text": "Upper-level CS electives",
+          "popupText": "Advanced courses in areas like AI, machine learning, systems, or networks.",
+          "id": "cs_default_classes_007"
+        }
+      ],
+      "programs": [
+        {
+          "text": "Freshman and sophomore engineering exposure programs",
+          "href": null,
+          "popupText": "Early-career programs that introduce students to engineering roles and recruiting.",
+          "id": "cs_default_programs_001"
+        },
+        {
+          "text": "Junior summer software engineering internships",
+          "href": null,
+          "popupText": "Traditional software engineering internships typically taken the summer before senior year.",
+          "id": "cs_default_programs_002"
+        },
+        {
+          "text": "Faculty research and independent study opportunities",
+          "href": "https://cs.colby.edu/",
+          "popupText": "Opportunities to work with professors on research projects or independent studies.",
+          "id": "cs_default_programs_003"
+        }
+      ],
+      "internships": [],
+      "full_time_roles": [],
+      "projects": [
+        {
+          "text": "Faculty research and independent study opportunities",
+          "href": "https://cs.colby.edu/",
+          "popupText": "Opportunities to work with professors on research projects or independent studies.",
+          "id": "cs_default_projects_001"
+        },
+        {
+          "text": "Colby CS research opportunities",
+          "popupText": "Research projects available through the Colby computer science department.",
+          "id": "cs_default_projects_002"
+        }
+      ],
+      "networking": [],
+      "resources": [
+        {
+          "text": "LeetCode",
+          "popupText": "Platform used to practice coding interview problems.",
+          "id": "cs_default_resources_001",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "NeetCode",
+          "popupText": "Curated roadmap and explanations for common coding interview problems.",
+          "id": "cs_default_resources_002",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "System Design Primer",
+          "popupText": "Open-source guide for learning large-scale system design.",
+          "id": "cs_default_resources_003",
+          "goals": [
+            "software_engineer"
+          ]
+        }
+      ]
+    },
+    "freshman": {
+      "hero": "Freshman year is about starting the CS sequence and learning the foundations of programming and computational thinking.",
+      "highlight": "Best use of freshman year: complete CS15X early, build strong programming fundamentals, and start exploring different areas of computer science such as software engineering, AI, systems, and data.",
+      "classes": [
+        {
+          "text": "CS 151X",
+          "popupText": "Introductory programming and computer science fundamentals course.",
+          "id": "cs_freshman_classes_001"
+        },
+        {
+          "text": "MA 125 / MA 130 / MA 160 (math foundation depending on placement)",
+          "popupText": "Mathematics courses that build the quantitative foundation for computer science.",
+          "id": "cs_freshman_classes_002"
+        }
+      ],
+      "programs": [
+        {
+          "text": "Meta University",
+          "href": "https://www.metacareers.com/careerprograms/students",
+          "popupText": "Meta program for early undergraduate students interested in engineering careers.",
+          "id": "cs_freshman_programs_001"
+        },
+        {
+          "text": "Uber STAR Program",
+          "href": "https://jobs.uber.com/en/teams/emerging-talent/",
+          "popupText": "Uber's internship program aimed at developing early-career software engineers.",
+          "id": "cs_freshman_programs_002"
+        },
+        {
+          "text": "Jane Street SEE Program",
+          "href": "https://www.janestreet.com/join-jane-street/programs-and-events/see/",
+          "popupText": "Jane Street program introducing students to trading and quantitative engineering.",
+          "id": "cs_freshman_programs_003"
+        },
+        {
+          "text": "Code2040",
+          "href": "https://www.code2040.org/",
+          "popupText": "Fellowship program connecting diverse students with tech internships.",
+          "id": "cs_freshman_programs_004"
+        },
+        {
+          "text": "CodePath Tech Launchpad",
+          "href": "https://codepath.org/launchpad",
+          "popupText": "Program helping students build practical software engineering skills.",
+          "id": "cs_freshman_programs_005"
+        },
+        {
+          "text": "MLH Fellowship",
+          "href": "https://fellowship.mlh.io/",
+          "popupText": "Remote fellowship where students contribute to open source and collaborative coding projects.",
+          "id": "cs_freshman_programs_006"
+        },
+        {
+          "text": "Tuck Business Bridge Program",
+          "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs.",
+          "href": null,
+          "id": "cs_freshman_programs_007"
+        }
+      ],
+      "internships": [
+        {
+          "text": "Google STEP Internship",
+          "href": "https://buildyourfuture.withgoogle.com/programs/step",
+          "popupText": "Google's freshman and sophomore internship focused on early software engineering development.",
+          "id": "cs_freshman_internships_001",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Microsoft Explore Internship",
+          "href": "https://careers.microsoft.com/students/us/en/usexploremicrosoftprogram",
+          "popupText": "Microsoft program designed for early college students exploring software engineering.",
+          "id": "cs_freshman_internships_002",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Capital One Data Analyst Intern",
+          "href": "https://www.capitalonecareers.com/early-internships-program",
+          "popupText": "Capital One offers paid data analyst internships for undergraduates — work on real customer data, learn SQL/Python, and explore analytics career paths.",
+          "id": "cs_freshman_internships_003",
+          "goals": [
+            "data_science"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "text": "15 Vanilla JavaScript UI Projects (full course)",
+          "popupText": "Guided series: color flipper, counter, navbar, modal, tabs, slider, and more—good for DOM practice and portfolio pieces.",
+          "href": "https://www.youtube.com/watch?v=3PHXvlpOkf4",
+          "id": "cs_freshman_projects_001",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Single-page HTML CV",
+          "popupText": "roadmap.sh spec: one-page résumé in semantic HTML—great first public GitHub Pages deploy.",
+          "href": "https://roadmap.sh/projects/single-page-cv",
+          "id": "cs_freshman_projects_002"
+        },
+        {
+          "text": "Personal portfolio website",
+          "popupText": "Extend a simple HTML site into a styled portfolio (responsive layout, typography, hosting options).",
+          "href": "https://roadmap.sh/projects/portfolio-website",
+          "id": "cs_freshman_projects_003"
+        },
+        {
+          "text": "CLI number guessing game",
+          "popupText": "Small game loop project: random number, user input, loops—fits any intro language (Python/Java/C).",
+          "href": "https://roadmap.sh/projects/number-guessing-game",
+          "id": "cs_freshman_projects_004",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "CLI expense tracker",
+          "popupText": "Track income/expenses in the terminal—practice file I/O or simple persistence.",
+          "href": "https://roadmap.sh/projects/expense-tracker",
+          "id": "cs_freshman_projects_005",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "CLI task tracker",
+          "popupText": "To-do list in the terminal—foundation for later REST APIs and databases.",
+          "href": "https://roadmap.sh/projects/task-tracker",
+          "id": "cs_freshman_projects_006",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Unit converter web app",
+          "popupText": "Simple UI + conversion logic—good bridge between HTML/CSS and light JavaScript.",
+          "href": "https://roadmap.sh/projects/unit-converter",
+          "id": "cs_freshman_projects_007",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "GitHub user activity (CLI + API)",
+          "popupText": "Fetch and display a user’s public events—first taste of JSON, HTTP, and an API key not required.",
+          "href": "https://roadmap.sh/projects/github-user-activity",
+          "id": "cs_freshman_projects_008",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "The Odin Project — Foundations path",
+          "popupText": "Full free curriculum with hands-on projects leading into HTML/CSS/JS and Git.",
+          "href": "https://www.theodinproject.com/paths/foundations/courses/foundations",
+          "id": "cs_freshman_projects_009",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Google Data Analytics Professional Certificate",
+          "popupText": "Free 6-month Coursera certificate covering spreadsheets, SQL, Python, Tableau, and data storytelling — strong foundational credential for data-curious freshmen.",
+          "href": "https://www.coursera.org/professional-certificates/google-data-analytics",
+          "id": "cs_freshman_projects_010",
+          "goals": [
+            "data_science"
+          ]
+        },
+        {
+          "text": "Kaggle Learn: Intro to Python + Pandas",
+          "popupText": "Free short courses on Python fundamentals and Pandas data manipulation — the building blocks for any data science work.",
+          "href": "https://www.kaggle.com/learn/python",
+          "id": "cs_freshman_projects_011",
+          "goals": [
+            "data_science"
+          ]
+        },
+        {
+          "text": "Product School Free Micro-Certifications",
+          "popupText": "Free bite-sized certifications in product prioritization, experimentation, and AI — a low-commitment way to explore product management early.",
+          "href": "https://productschool.com/free-product-management-resources",
+          "id": "cs_freshman_projects_012",
+          "goals": [
+            "product_manager"
+          ]
+        }
+      ],
+      "networking": [],
+      "resources": [
+        {
+          "text": "Learn Python or Java deeply",
+          "popupText": "Focus on mastering one programming language well.",
+          "id": "cs_freshman_resources_001"
+        },
+        {
+          "text": "Focus on strong study habits early",
+          "popupText": "Developing consistent study and time management practices.",
+          "id": "cs_freshman_resources_002"
+        }
+      ]
+    },
+    "sophomore": {
+      "hero": "Sophomore year introduces the core technical foundations of the CS major.",
+      "highlight": "Best use of sophomore year: complete the systems and data structures courses while starting technical interview preparation and applying for sophomore engineering programs.",
+      "classes": [
+        {
+          "text": "CS 232: Computer Organization",
+          "popupText": "Course on how computers work at the hardware and systems level.",
+          "id": "cs_sophomore_classes_001"
+        },
+        {
+          "text": "CS 231: Data Structures",
+          "popupText": "Core course covering algorithms and common data structures used in software engineering.",
+          "id": "cs_sophomore_classes_002"
+        },
+        {
+          "text": "CS 251: Data Analysis and Visualization",
+          "popupText": "Course focused on analyzing datasets and building visualizations.",
+          "id": "cs_sophomore_classes_003"
+        },
+        {
+          "text": "MA 2XX math course (Linear Algebra, Probability, or Discrete Math)",
+          "popupText": "Math courses that strengthen the quantitative foundation needed for upper-level CS.",
+          "id": "cs_sophomore_classes_004"
+        }
+      ],
+      "programs": [
+        {
+          "text": "Google Engineering Internships",
+          "href": "https://careers.google.com/students/",
+          "popupText": "Google's software engineering internship program for early undergraduate students.",
+          "id": "cs_sophomore_programs_001"
+        },
+        {
+          "text": "Duolingo Thrive",
+          "href": "https://careers.duolingo.com/thrive",
+          "popupText": "Duolingo's early engineering internship program for underrepresented students.",
+          "id": "cs_sophomore_programs_002"
+        },
+        {
+          "text": "Code2040",
+          "href": "https://www.code2040.org/",
+          "popupText": "Fellowship program connecting diverse students with tech internships.",
+          "id": "cs_sophomore_programs_003"
+        },
+        {
+          "text": "CodePath Tech Launchpad",
+          "href": "https://codepath.org/launchpad",
+          "popupText": "Program helping students build practical software engineering skills.",
+          "id": "cs_sophomore_programs_004"
+        },
+        {
+          "text": "MLH Fellowship",
+          "href": "https://fellowship.mlh.io/",
+          "popupText": "Remote fellowship where students contribute to open source and collaborative coding projects.",
+          "id": "cs_sophomore_programs_005"
+        },
+        {
+          "text": "Tuck Business Bridge Program",
+          "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs.",
+          "href": null,
+          "id": "cs_sophomore_programs_006"
+        }
+      ],
+      "internships": [
+        {
+          "text": "Microsoft Internship Programs",
+          "href": "https://careers.microsoft.com/students/us/en",
+          "popupText": "Microsoft's internship programs across software engineering and product roles.",
+          "id": "cs_sophomore_internships_001",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Amazon SDE Internship",
+          "href": "https://www.amazon.jobs/en/teams/internships-for-students",
+          "popupText": "Amazon's software development engineer internship program.",
+          "id": "cs_sophomore_internships_002",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Stripe Internship Program",
+          "href": "https://stripe.com/jobs/students-and-new-grads",
+          "popupText": "Stripe's engineering internship focused on payments and financial infrastructure.",
+          "id": "cs_sophomore_internships_003",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "HubSpot Software Engineering Internship",
+          "href": "https://www.hubspot.com/careers/students",
+          "popupText": "HubSpot's software engineering internship for undergraduate students.",
+          "id": "cs_sophomore_internships_004",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Capital One Data Analyst Internship",
+          "href": "https://www.capitalonecareers.com/",
+          "popupText": "10-week paid internship ($47-$52/hr) working on complex data problems, customer behavior analysis, and business decisions using SQL and Python.",
+          "id": "cs_sophomore_internships_005",
+          "goals": [
+            "data_science"
+          ]
+        },
+        {
+          "text": "Spotify Engineering & Data Science Internship",
+          "href": "https://www.lifeatspotify.com/students",
+          "popupText": "Work with large datasets to extract insights on user behavior and music trends, building dashboards and performing statistical analyses.",
+          "id": "cs_sophomore_internships_006",
+          "goals": [
+            "data_science"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "text": "Flask Mega-Tutorial (Microblog)",
+          "popupText": "Multi-chapter build: Flask, SQLAlchemy, auth, email, migrations—classic full-stack progression.",
+          "href": "https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world",
+          "id": "cs_sophomore_projects_001",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Microblog source (GitHub)",
+          "popupText": "Official companion repo for the Flask Mega-Tutorial—use to compare your implementation.",
+          "href": "https://github.com/miguelgrinberg/microblog",
+          "id": "cs_sophomore_projects_002",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "FastAPI tutorial app",
+          "popupText": "Build a modern Python API with automatic OpenAPI docs—great next step after Flask basics.",
+          "href": "https://fastapi.tiangolo.com/tutorial/",
+          "id": "cs_sophomore_projects_003",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Todo list REST API",
+          "popupText": "roadmap.sh spec for CRUD over HTTP—practice models, validation, and API design.",
+          "href": "https://roadmap.sh/projects/todo-list-api",
+          "id": "cs_sophomore_projects_004",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Weather API wrapper service",
+          "popupText": "Proxy/aggregate weather data behind your own API—practice env vars, HTTP client, JSON.",
+          "href": "https://roadmap.sh/projects/weather-api-wrapper-service",
+          "id": "cs_sophomore_projects_005",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Personal blog (web app)",
+          "popupText": "Structured project: posts, routing, styling—strong portfolio centerpiece for sophomores.",
+          "href": "https://roadmap.sh/projects/personal-blog",
+          "id": "cs_sophomore_projects_006",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Public APIs catalog (idea mine)",
+          "popupText": "Huge curated list of free APIs—pick one domain and build a small client or dashboard.",
+          "href": "https://github.com/public-apis/public-apis",
+          "id": "cs_sophomore_projects_007",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "GitHub Pages deployment (CI)",
+          "popupText": "Deploy a static site with GitHub Actions—professional practice for shipping frontend work.",
+          "href": "https://roadmap.sh/projects/github-actions-deployment-workflow",
+          "id": "cs_sophomore_projects_008",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "MIT Missing Semester (tools)",
+          "popupText": "Not a single app, but the shell, Git, debugging, and metadata skills that make every project faster.",
+          "href": "https://missing.csail.mit.edu/",
+          "id": "cs_sophomore_projects_009"
+        },
+        {
+          "text": "Kaggle: Titanic — Machine Learning from Disaster",
+          "popupText": "Classic beginner ML competition — predict survival using logistic regression and random forests. Great for learning data cleaning, EDA, and feature engineering.",
+          "href": "https://www.kaggle.com/c/titanic",
+          "id": "cs_sophomore_projects_010",
+          "goals": [
+            "data_science"
+          ]
+        },
+        {
+          "text": "Kaggle: House Prices — Regression Techniques",
+          "popupText": "Beginner regression competition practicing feature engineering, random forests, and gradient boosting on real housing data.",
+          "href": "https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques",
+          "id": "cs_sophomore_projects_011",
+          "goals": [
+            "data_science"
+          ]
+        },
+        {
+          "text": "Kaggle Learn: Data Visualization",
+          "popupText": "Free 4-hour course covering Seaborn — line charts, bar charts, heatmaps, scatter plots, and distributions. Earn a certificate.",
+          "href": "https://www.kaggle.com/learn/data-visualization",
+          "id": "cs_sophomore_projects_012",
+          "goals": [
+            "data_science"
+          ]
+        },
+        {
+          "text": "Build a Streamlit data dashboard",
+          "popupText": "Turn a Python analysis into an interactive web app in under an hour — impressive portfolio piece and no frontend skills required.",
+          "href": "https://streamlit.io/",
+          "id": "cs_sophomore_projects_013",
+          "goals": [
+            "data_science"
+          ]
+        },
+        {
+          "text": "Write a mock PRD (Product Requirements Document)",
+          "popupText": "Pick a product you use and write a PRD for a new feature — covers user research, problem framing, metrics, and wireframes. Core PM skill-builder.",
+          "href": "https://apmlist.com/guide",
+          "id": "cs_sophomore_projects_014",
+          "goals": [
+            "product_manager"
+          ]
+        }
+      ],
+      "networking": [],
+      "resources": [
+        {
+          "text": "Start regular LeetCode practice",
+          "popupText": "Consistent practice with coding problems to build interview readiness.",
+          "id": "cs_sophomore_resources_001",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Start tracking internship recruiting timelines",
+          "popupText": "Understanding when applications open and close for summer internships.",
+          "id": "cs_sophomore_resources_002"
+        }
+      ]
+    },
+    "junior": {
+      "hero": "Junior year is when advanced CS coursework connects directly with internship recruiting.",
+      "highlight": "Best use of junior year: take advanced CS courses, strengthen technical interview preparation, and secure a summer software engineering internship.",
+      "classes": [
+        {
+          "text": "CS 333: Programming Languages",
+          "popupText": "Course studying how programming languages are designed and implemented.",
+          "id": "cs_junior_classes_001"
+        },
+        {
+          "text": "CS 3XX: Theory course",
+          "popupText": "Upper-level theory class such as algorithms, complexity, or automata.",
+          "id": "cs_junior_classes_002"
+        },
+        {
+          "text": "CS 3XX electives (AI, Machine Learning, Databases, Distributed Systems, Networks)",
+          "popupText": "Advanced CS electives covering specialized engineering and computer science topics.",
+          "id": "cs_junior_classes_003"
+        }
+      ],
+      "programs": [
+        {
+          "text": "Bessemer Fellows",
+          "href": "https://www.bvp.com/bessemer-fellows",
+          "popupText": "Venture capital fellowship for students interested in startups and investing.",
+          "id": "cs_junior_programs_001"
+        },
+        {
+          "text": "Kleiner Perkins Fellows",
+          "href": "https://fellows.kleinerperkins.com/",
+          "popupText": "KP's fellowship connecting students with top technology companies.",
+          "id": "cs_junior_programs_002"
+        },
+        {
+          "text": "Thrive Capital Fellows",
+          "href": "https://www.thrivecapital.com/fellows",
+          "popupText": "Fellowship program for students interested in technology and venture capital.",
+          "id": "cs_junior_programs_003"
+        },
+        {
+          "text": "8VC Fellowships",
+          "href": "https://www.8vc.com/fellows",
+          "popupText": "Fellowship connecting students with 8VC portfolio companies.",
+          "id": "cs_junior_programs_004"
+        },
+        {
+          "text": "MLH Fellowship",
+          "href": "https://fellowship.mlh.io/",
+          "popupText": "Remote fellowship where students contribute to open source and collaborative coding projects.",
+          "id": "cs_junior_programs_005"
+        },
+        {
+          "text": "Tuck Business Bridge Program",
+          "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs.",
+          "href": null,
+          "id": "cs_junior_programs_006"
+        }
+      ],
+      "internships": [
+        {
+          "text": "Google Software Engineering Internship",
+          "href": "https://careers.google.com/students/",
+          "popupText": "Google's flagship summer software engineering internship.",
+          "id": "cs_junior_internships_001",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Meta Software Engineering Internship",
+          "href": "https://www.metacareers.com/careerprograms/students",
+          "popupText": "Meta's software engineering internship across products and infrastructure.",
+          "id": "cs_junior_internships_002",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Apple Software Engineering Internship",
+          "href": "https://jobs.apple.com/en-us/search?team=internships-STDNT-INTRN",
+          "popupText": "Apple's summer software engineering internship across hardware and software teams.",
+          "id": "cs_junior_internships_003",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Stripe Software Engineering Internship",
+          "href": "https://stripe.com/jobs/students-and-new-grads",
+          "popupText": "Stripe's engineering internship on payments infrastructure and developer tools.",
+          "id": "cs_junior_internships_004",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Jane Street Software Engineer Internship",
+          "href": "https://www.janestreet.com/join-jane-street/programs-and-events/software-engineer-internship/",
+          "popupText": "Jane Street's software engineering internship focused on trading systems.",
+          "id": "cs_junior_internships_005",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Citadel Software Engineering Internship",
+          "href": "https://www.citadel.com/careers/students/",
+          "popupText": "Citadel's engineering internship for quantitative finance and systems work.",
+          "id": "cs_junior_internships_006",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Google Associate Product Manager (APM) Internship",
+          "href": "https://careers.google.com/stories/apm-program-overview/",
+          "popupText": "Extremely selective 12-week PM internship for rising seniors — own a feature end-to-end through ideation, implementation, and metrics analysis. Pipeline to Google's full-time APM program.",
+          "id": "cs_junior_internships_007",
+          "goals": [
+            "product_manager"
+          ]
+        },
+        {
+          "text": "Databricks Product Management Internship",
+          "href": "https://www.databricks.com/company/careers",
+          "popupText": "12-week paid PM internship ($54-$56/hr) at a leading data/AI platform — requires CS background and SQL/Python experience.",
+          "id": "cs_junior_internships_008",
+          "goals": [
+            "product_manager"
+          ]
+        },
+        {
+          "text": "Databricks Data Science Internship",
+          "href": "https://www.databricks.com/company/careers",
+          "popupText": "12-week paid internship ($54-$60/hr) turning business data into insights for product design and customer acquisition using SQL, Python, and ML.",
+          "id": "cs_junior_internships_009",
+          "goals": [
+            "data_science"
+          ]
+        },
+        {
+          "text": "Spotify Data Science Internship",
+          "href": "https://www.lifeatspotify.com/students",
+          "popupText": "10-week internship working with large music and user behavior datasets — build dashboards, run A/B tests, and communicate data-driven insights.",
+          "id": "cs_junior_internships_010",
+          "goals": [
+            "data_science"
+          ]
+        },
+        {
+          "text": "Visa Data Science Internship",
+          "href": "https://usa.visa.com/careers.html",
+          "popupText": "12-week immersive internship building statistical models and analytics solutions for financial institutions, with mentorship and leadership presentations.",
+          "id": "cs_junior_internships_011",
+          "goals": [
+            "data_science"
+          ]
+        },
+        {
+          "text": "Amazon Product Manager Internship",
+          "href": "https://www.amazon.jobs/en/teams/internships-for-students",
+          "popupText": "PM internship at Amazon — work with engineering, design, and data science teams on customer-facing product challenges at massive scale.",
+          "id": "cs_junior_internships_012",
+          "goals": [
+            "product_manager"
+          ]
+        },
+        {
+          "text": "Capital One Data Analyst Internship",
+          "href": "https://www.capitalonecareers.com/",
+          "popupText": "10-week paid internship ($47-$52/hr) working on customer behavior analytics, ML models, and business decision support. Strong pipeline to full-time roles.",
+          "id": "cs_junior_internships_013",
+          "goals": [
+            "data_science"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "text": "URL shortening service",
+          "popupText": "Design URLs, persistence, and redirects—common interview-style system with clear extensions.",
+          "href": "https://roadmap.sh/projects/url-shortening-service",
+          "id": "cs_junior_projects_001",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "E-commerce REST API",
+          "popupText": "Cart, products, payments—forces relational modeling, transactions, and error handling.",
+          "href": "https://roadmap.sh/projects/ecommerce-api",
+          "id": "cs_junior_projects_002",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Caching proxy server",
+          "popupText": "HTTP cache in front of another origin—touches sockets, caching policy, and concurrency.",
+          "href": "https://roadmap.sh/projects/caching-server",
+          "id": "cs_junior_projects_003",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Markdown note-taking app",
+          "popupText": "Editor + storage + preview—shows full-stack polish and file or DB sync.",
+          "href": "https://roadmap.sh/projects/markdown-note-taking-app",
+          "id": "cs_junior_projects_004",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Reddit-style multi-column client",
+          "popupText": "API integration, async loading, and UI state—good React/Vue practice.",
+          "href": "https://roadmap.sh/projects/reddit-client",
+          "id": "cs_junior_projects_005",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Fitness / workout tracker API",
+          "popupText": "Users, sessions, progress—realistic domain modeling for health/fitness apps.",
+          "href": "https://roadmap.sh/projects/fitness-workout-tracker",
+          "id": "cs_junior_projects_006",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Intro to Machine Learning (Kaggle)",
+          "popupText": "Short course leading to a simple model—pair with a Kaggle competition or notebook portfolio.",
+          "href": "https://www.kaggle.com/learn/intro-to-machine-learning",
+          "id": "cs_junior_projects_007",
+          "goals": [
+            "software_engineer",
+            "data_science"
+          ]
+        },
+        {
+          "text": "Pandas (Kaggle Learn)",
+          "popupText": "Data cleaning and analysis—foundation for DS/ML projects and data-heavy SWE roles.",
+          "href": "https://www.kaggle.com/learn/pandas",
+          "id": "cs_junior_projects_008",
+          "goals": [
+            "software_engineer",
+            "data_science"
+          ]
+        },
+        {
+          "text": "OpenAI API in Python (roadmap.sh)",
+          "popupText": "Call models from code—build a small CLI or web tool; document costs and safety.",
+          "href": "https://roadmap.sh/projects/openai-api-python",
+          "id": "cs_junior_projects_009",
+          "goals": [
+            "software_engineer",
+            "data_science"
+          ]
+        },
+        {
+          "text": "Awesome for beginners (OSS issues)",
+          "popupText": "Curated OSS projects tagged for newcomers—pick one issue and ship a real PR.",
+          "href": "https://github.com/MunGell/awesome-for-beginners",
+          "id": "cs_junior_projects_010",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Kaggle Learn: Intermediate Machine Learning",
+          "popupText": "Free 10-hour course covering missing values, categorical variables, pipelines, cross-validation, XGBoost, and data leakage.",
+          "href": "https://www.kaggle.com/learn/intermediate-machine-learning",
+          "id": "cs_junior_projects_011",
+          "goals": [
+            "data_science"
+          ]
+        },
+        {
+          "text": "End-to-end ML project with deployment",
+          "popupText": "Train a model, build a Streamlit or Flask front-end, and deploy to the cloud — shows full-stack data science capability to recruiters.",
+          "href": "https://streamlit.io/",
+          "id": "cs_junior_projects_012",
+          "goals": [
+            "data_science"
+          ]
+        },
+        {
+          "text": "Product teardown case study",
+          "popupText": "Analyze a product you use — identify user pain points, propose improvements, define success metrics, and create wireframes. Core PM portfolio piece.",
+          "href": "https://craftuplearn.com/blog/product-manager-portfolio-projects-get-hired",
+          "id": "cs_junior_projects_013",
+          "goals": [
+            "product_manager"
+          ]
+        },
+        {
+          "text": "A/B testing simulation project",
+          "popupText": "Design and analyze a mock A/B test — define hypothesis, sample size, statistical significance, and business recommendation. Valued by both DS and PM roles.",
+          "href": "https://www.kaggle.com/learn/data-visualization",
+          "id": "cs_junior_projects_014",
+          "goals": [
+            "data_science",
+            "product_manager"
+          ]
+        },
+        {
+          "text": "roadmap.sh AI & Data Scientist projects",
+          "popupText": "Curated project list from beginner to advanced — job scraper, sentiment analysis, recommendation engine, and more.",
+          "href": "https://roadmap.sh/ai-data-scientist/projects",
+          "id": "cs_junior_projects_015",
+          "goals": [
+            "data_science"
+          ]
+        }
+      ],
+      "networking": [
+        {
+          "text": "Use networking and alumni outreach more seriously",
+          "popupText": "Connecting with alumni and professionals to access referrals and hidden opportunities.",
+          "id": "cs_junior_networking_001"
+        }
+      ],
+      "resources": [
+        {
+          "text": "Junior summer internship is the most important for full-time conversion",
+          "popupText": "The junior internship is often the deciding factor for full-time job offers.",
+          "id": "cs_junior_resources_001"
+        },
+        {
+          "text": "Practice algorithms and system design interviews",
+          "popupText": "Technical interview prep covering both coding problems and large-scale system design.",
+          "id": "cs_junior_resources_002",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "APM List — PM internship and role tracker",
+          "popupText": "Comprehensive tracker of Associate Product Manager internships and new-grad roles across top tech companies with application deadlines.",
+          "href": "https://apmlist.org/",
+          "id": "cs_junior_resources_003",
+          "goals": [
+            "product_manager"
+          ]
+        },
+        {
+          "text": "Cracking the PM Interview (book)",
+          "popupText": "Essential prep book by Gayle McDowell covering product design, strategy, estimation, and behavioral questions for PM interviews.",
+          "href": null,
+          "id": "cs_junior_resources_004",
+          "goals": [
+            "product_manager"
+          ]
+        }
+      ]
+    },
+    "senior": {
+      "hero": "Senior year focuses on advanced electives and converting internship experience into full-time opportunities.",
+      "highlight": "Best use of senior year: complete advanced CS electives, refine your technical portfolio, and use fall recruiting to secure a full-time engineering role.",
+      "classes": [
+        {
+          "text": "CS 3XX elective",
+          "popupText": "Upper-level CS elective in a specialization of interest.",
+          "id": "cs_senior_classes_001"
+        },
+        {
+          "text": "CS 4XX advanced elective",
+          "popupText": "Senior-level course in a specialized area of computer science.",
+          "id": "cs_senior_classes_002"
+        },
+        {
+          "text": "CS 3XX theory course (if not completed earlier)",
+          "popupText": "Theory course covering algorithms, complexity, or formal methods.",
+          "id": "cs_senior_classes_003"
+        }
+      ],
+      "programs": [
+        {
+          "text": "Engineering fellowships and research opportunities",
+          "href": "https://cs.colby.edu/",
+          "popupText": "Post-grad fellowships and faculty research options for continued technical growth.",
+          "id": "cs_senior_programs_001"
+        },
+        {
+          "text": "Tuck Business Bridge Program",
+          "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs.",
+          "href": null,
+          "id": "cs_senior_programs_002"
+        }
+      ],
+      "internships": [],
+      "full_time_roles": [
+        {
+          "text": "Full-time Software Engineering roles",
+          "href": "https://careers.google.com/",
+          "popupText": "Full-time engineering positions at technology companies after graduation.",
+          "id": "cs_senior_full_time_roles_001",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "YC Startup Jobs",
+          "href": "https://www.ycombinator.com/jobs",
+          "popupText": "Job board for roles at Y Combinator-backed startups.",
+          "id": "cs_senior_full_time_roles_002",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Google Associate Product Manager (APM) Program",
+          "href": "https://careers.google.com/stories/apm-program-overview/",
+          "popupText": "Two-year rotational PM program at Google (1-2% acceptance rate) — 2-3 rotations across products, $140K-$180K total comp.",
+          "id": "cs_senior_full_time_roles_003",
+          "goals": [
+            "product_manager"
+          ]
+        },
+        {
+          "text": "Meta Rotational Product Manager (RPM) Program",
+          "href": "https://www.metacareers.com/rpm",
+          "popupText": "18-month program with 3 rotations across Meta products, includes bootcamp and global research trip. $160K-$200K total comp. No CS degree required.",
+          "id": "cs_senior_full_time_roles_004",
+          "goals": [
+            "product_manager"
+          ]
+        },
+        {
+          "text": "Uber Associate Product Manager (APM) Program",
+          "href": "https://www.uber.com/qa/en/careers/apm/",
+          "popupText": "Three rotations across Uber product verticals — includes 2-week boot camp, global research trip, and mentorship from senior PMs.",
+          "id": "cs_senior_full_time_roles_005",
+          "goals": [
+            "product_manager"
+          ]
+        },
+        {
+          "text": "Stripe New Grad Product Manager Accelerator",
+          "href": "https://stripe.com/jobs/students-and-new-grads",
+          "popupText": "12-month intensive PM training at Stripe — requires CS or engineering degree, $120K-$180K base salary. Full-time PM role after completion.",
+          "id": "cs_senior_full_time_roles_006",
+          "goals": [
+            "product_manager"
+          ]
+        },
+        {
+          "text": "LinkedIn APM Program",
+          "href": "https://careers.linkedin.com/students",
+          "popupText": "Two-year rotational APM program at LinkedIn with mentorship and cross-functional product ownership experience.",
+          "id": "cs_senior_full_time_roles_007",
+          "goals": [
+            "product_manager"
+          ]
+        },
+        {
+          "text": "JPMorgan Chase Data Science Analyst Program",
+          "href": "https://careers.jpmorgan.com/",
+          "popupText": "Full-time analyst program focused on machine learning, business intelligence, data engineering, and visualization. Requires Python proficiency.",
+          "id": "cs_senior_full_time_roles_008",
+          "goals": [
+            "data_science"
+          ]
+        },
+        {
+          "text": "Databricks Data Scientist — New Grad",
+          "href": "https://www.databricks.com/company/careers",
+          "popupText": "New grad data scientist role at a leading data/AI company — $140K-$150K. Requires strong SQL, Python, and ML fundamentals.",
+          "id": "cs_senior_full_time_roles_009",
+          "goals": [
+            "data_science"
+          ]
+        },
+        {
+          "text": "Capital One Data Analyst (Full-Time Rotational)",
+          "href": "https://www.capitalonecareers.com/",
+          "popupText": "Full-time rotational program covering analytics, ML, and business strategy — values quantitative backgrounds and Python/SQL skills.",
+          "id": "cs_senior_full_time_roles_010",
+          "goals": [
+            "data_science"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "text": "Scalable e-commerce (microservices)",
+          "popupText": "roadmap.sh advanced track: services, boundaries, and scaling concerns—capstone-level.",
+          "href": "https://roadmap.sh/projects/scalable-ecommerce-platform",
+          "id": "cs_senior_projects_001",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Real-time leaderboard system",
+          "popupText": "Ranking, concurrency, and live updates—good WebSocket/event practice.",
+          "href": "https://roadmap.sh/projects/realtime-leaderboard-system",
+          "id": "cs_senior_projects_002",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Movie reservation system",
+          "popupText": "Seats, inventory, and contention—classic domain for transactions and race conditions.",
+          "href": "https://roadmap.sh/projects/movie-reservation-system",
+          "id": "cs_senior_projects_003",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Database backup utility (CLI)",
+          "popupText": "Backup/restore workflows—ops credibility and scripting depth.",
+          "href": "https://roadmap.sh/projects/database-backup-utility",
+          "id": "cs_senior_projects_004",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Prometheus + Grafana monitoring",
+          "popupText": "Metrics, dashboards, alerts—must-have for SRE/platform-minded portfolios.",
+          "href": "https://roadmap.sh/projects/monitoring",
+          "id": "cs_senior_projects_005",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Blue–green deployment",
+          "popupText": "Zero-downtime releases—pairs well with any web app you already built.",
+          "href": "https://roadmap.sh/projects/blue-green-deployment",
+          "id": "cs_senior_projects_006",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "Build Your Own X (curated tutorials)",
+          "popupText": "Step-by-step guides for shells, Git, databases, compilers—pick one deep dive for a standout story.",
+          "href": "https://github.com/codecrafters-io/build-your-own-x",
+          "id": "cs_senior_projects_007",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "CodeCrafters — Build your own Redis",
+          "popupText": "Incremental TCP server, protocol parsing—strong systems interview prep (check current pricing/terms).",
+          "href": "https://codecrafters.io/redis",
+          "id": "cs_senior_projects_008",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "CodeCrafters — Build your own Git",
+          "popupText": "Implement Git objects and plumbing—deepens understanding of version control internals.",
+          "href": "https://codecrafters.io/challenges/git",
+          "id": "cs_senior_projects_009",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "End-to-end ML project with deployment",
+          "popupText": "Train a production model, build an interactive Streamlit front-end, and deploy — capstone-level demonstration of full-stack data science capability.",
+          "href": "https://streamlit.io/",
+          "id": "cs_senior_projects_010",
+          "goals": [
+            "data_science"
+          ]
+        }
+      ],
+      "networking": [
+        {
+          "text": "Leverage internship experience for full-time roles",
+          "popupText": "Using past internship work and networks to convert to a full-time offer.",
+          "id": "cs_senior_networking_001"
+        },
+        {
+          "text": "Use alumni networking and referrals",
+          "popupText": "Reaching out to Colby alumni for referrals at companies you are targeting.",
+          "id": "cs_senior_networking_002"
+        }
+      ],
+      "resources": [
+        {
+          "text": "Practice system design interviews",
+          "popupText": "Senior-level technical interviews focused on architecting large-scale systems.",
+          "id": "cs_senior_resources_001",
+          "goals": [
+            "software_engineer"
+          ]
+        },
+        {
+          "text": "APM Season — application tracker and timeline",
+          "popupText": "Tracks APM program application windows (typically Aug–Sep) with deadlines, interview stages, and offer timelines across all major companies.",
+          "href": "https://www.apmseason.com/",
+          "id": "cs_senior_resources_002",
+          "goals": [
+            "product_manager"
+          ]
+        },
+        {
+          "text": "Google Advanced Data Analytics Certificate",
+          "popupText": "Free 7-course Coursera series covering statistical analysis, Python, regression models, and machine learning — strong credential for DS new-grad roles.",
+          "href": "https://www.coursera.org/google-certificates/advanced-data-analytics-certificate",
+          "id": "cs_senior_resources_003",
+          "goals": [
+            "data_science"
+          ]
+        }
+      ]
+    }
+  },
+  "econ": {
+    "default": {
+      "hero": "A year-by-year guide connecting courses, opportunities, and practical next steps for your path in Economics.",
+      "highlight": "This roadmap is a starting point — a guide to the classes, programs, and resources worth thinking about as you navigate a career in Economics.",
+      "classes": [
+        {
+          "text": "EC 133: Microeconomics",
+          "popupText": "Introduces the fundamental problem in economics: limited resources to satisfy unlimited needs and wants. Concentration on how markets allocate these scarce resources and when they fail to operate efficiently. After analyzing costs, students look at how firms in market structures ranging from perfectly competitive to monopolistic make decisions. Key principles are illustrated by applying them to current economic issues. Students will use standard economic models to describe market structures and the effects of policy interventions, solve problems using graphical or algebraic models of these markets, and choose an appropriate model to analyze economic events described in news articles.",
+          "id": "econ_default_classes_001"
+        },
+        {
+          "text": "EC 134: Macroeconomics",
+          "popupText": "Introduces the measurement of macroeconomic variables and basic theoretical models of aggregate economic behavior. Focuses on the study of fluctuations in economic activity, long-run economic growth, and the role of monetary and fiscal policy in achieving macroeconomic goals. Students will develop their analytical problem-solving skills, hone their ability to think critically, gain experience in building and understanding theoretical models, and sharpen their capacity to understand and critique macroeconomic policy.",
+          "id": "econ_default_classes_002"
+        },
+        {
+          "text": "EC 223: Micro Theory",
+          "popupText": "The theory of the pricing, distribution, and allocation of resources in a market economy. Emphasis placed on the various meanings of economic efficiency.",
+          "id": "econ_default_classes_003"
+        },
+        {
+          "text": "EC 224: Macro Theory",
+          "popupText": "Devoted to the development and examination of various theoretical frameworks to explain fluctuations in output, interest rates, exchange rates, unemployment, inflation, and economic growth in a globally interdependent economy. Continued study of the theoretical development of macroeconomic models and further refinement of understanding the effectiveness and optimality of macroeconomic policy. Students gain an understanding of the importance of expectations, the determination of asset prices (e.g., bond and stock prices), the relationship between financial markets and the macroeconomy, and the implications and limitations of models and policies.",
+          "id": "econ_default_classes_004"
+        },
+        {
+          "text": "Methods / research course",
+          "popupText": "Provides students with the fundamental ability to understand and carry out research in economics. Covers the use of basic statistical methods, probability, and regression analysis in the description and interpretation of economic data. Students practice the application of these techniques working with powerful statistical software.",
+          "id": "econ_default_classes_005"
+        },
+        {
+          "text": "Upper-level electives and seminar",
+          "popupText": "Advanced economics topics and capstone seminar work.",
+          "id": "econ_default_classes_006"
+        }
+      ],
+      "programs": [
+        {
+          "text": "Freshman and sophomore exposure programs",
+          "href": null,
+          "popupText": "Programs introducing early college students to finance, consulting, or economics careers.",
+          "id": "econ_default_programs_001"
+        },
+        {
+          "text": "Junior summer internships",
+          "href": null,
+          "popupText": "Industry internships that often lead to full-time job offers.",
+          "id": "econ_default_programs_002"
+        },
+        {
+          "text": "Career center and alumni networking",
+          "href": null,
+          "popupText": "University resources for networking, resume help, and recruiting guidance.",
+          "id": "econ_default_programs_003"
+        }
+      ],
+      "internships": [],
+      "full_time_roles": [],
+      "projects": [],
+      "networking": [],
+      "resources": [
+        {
+          "text": "Wall Street Prep",
+          "popupText": "Financial modeling training used for investment banking preparation.",
+          "id": "econ_default_resources_001",
+          "goals": [
+            "finance"
+          ]
+        },
+        {
+          "text": "Paving the Road",
+          "popupText": "Student resource and guide for breaking into finance careers.",
+          "id": "econ_default_resources_002",
+          "goals": [
+            "finance"
+          ]
+        },
+        {
+          "text": "Mergers and Acquisitions class with Mike McHale",
+          "popupText": "Colby course focused on corporate mergers, acquisitions, and deal analysis.",
+          "id": "econ_default_resources_003",
+          "goals": [
+            "finance"
+          ]
+        }
+      ]
+    },
+    "freshman": {
+      "hero": "Freshman year is mainly about getting the intro sequence started and beginning to understand what the major looks like.",
+      "highlight": "Best use of freshman year: complete EC133 and EC134, start building your foundation early, and get familiar with finance, policy, consulting, and research paths before recruiting ramps up later.",
+      "classes": [
+        {
+          "text": "EC 133: Microeconomics",
+          "popupText": "Introduces the fundamental problem in economics: limited resources to satisfy unlimited needs and wants. Concentration on how markets allocate these scarce resources and when they fail to operate efficiently. After analyzing costs, students look at how firms in market structures ranging from perfectly competitive to monopolistic make decisions. Key principles are illustrated by applying them to current economic issues. Students will use standard economic models to describe market structures and the effects of policy interventions, solve problems using graphical or algebraic models of these markets, and choose an appropriate model to analyze economic events described in news articles.",
+          "id": "econ_freshman_classes_001"
+        },
+        {
+          "text": "EC 134: Macroeconomics",
+          "popupText": "Introduces the measurement of macroeconomic variables and basic theoretical models of aggregate economic behavior. Focuses on the study of fluctuations in economic activity, long-run economic growth, and the role of monetary and fiscal policy in achieving macroeconomic goals. Students will develop their analytical problem-solving skills, hone their ability to think critically, gain experience in building and understanding theoretical models, and sharpen their capacity to understand and critique macroeconomic policy.",
+          "id": "econ_freshman_classes_002"
+        }
+      ],
+      "programs": [
+        {
+          "text": "Goldman Sachs Possibilities Summit",
+          "href": "https://www.goldmansachs.com/careers/students/programs/americas/possibilities-summit/",
+          "popupText": "Goldman Sachs event connecting early undergraduates with finance careers.",
+          "id": "econ_freshman_programs_001"
+        },
+        {
+          "text": "J.P. Morgan Advancing Black Pathways",
+          "href": "https://www.jpmorganchase.com/impact/people/advancing-black-pathways",
+          "popupText": "J.P. Morgan program supporting Black students pursuing finance careers.",
+          "id": "econ_freshman_programs_002"
+        },
+        {
+          "text": "D.E. Shaw Fellowships",
+          "href": "https://fellowships.deshaw.com/",
+          "popupText": "D.E. Shaw's fellowship program for students interested in quantitative finance.",
+          "id": "econ_freshman_programs_003"
+        },
+        {
+          "text": "Jane Street FTTP",
+          "href": "https://www.janestreet.com/join-jane-street/programs-and-events/fttp/",
+          "popupText": "Jane Street's First-Year Trading and Technology Program.",
+          "id": "econ_freshman_programs_004"
+        },
+        {
+          "text": "Deloitte Discovery Program",
+          "href": "https://www.deloitte.com/us/en/careers/internships.html",
+          "popupText": "Early undergraduate program focused on Deloitte's service lines and exposure to consulting.",
+          "id": "econ_freshman_programs_005"
+        },
+        {
+          "text": "Capital One",
+          "href": "https://www.capitalonecareers.com/early-internships-program",
+          "popupText": "Capital One early internships and programs for undergraduates exploring business and technology.",
+          "id": "econ_freshman_programs_006"
+        },
+        {
+          "text": "Deloitte Discovery Program",
+          "href": "https://www.deloitte.com/us/en/careers/internships.html",
+          "popupText": "Introductory course studying how individuals and firms make economic decisions.",
+          "id": "econ_freshman_programs_007"
+        },
+        {
+          "text": "Tuck Business Bridge Program",
+          "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs.",
+          "href": null,
+          "id": "econ_freshman_programs_008"
+        }
+      ],
+      "internships": [
+        {
+          "text": "Citadel Discover",
+          "href": "https://www.citadel.com/careers/students/discover-citadel/",
+          "popupText": "Citadel's freshman discovery program introducing students to quantitative finance.",
+          "id": "econ_freshman_internships_001",
+          "goals": [
+            "finance"
+          ]
+        }
+      ],
+      "projects": [],
+      "networking": [
+        {
+          "text": "Use first-year events and networking to explore without overcommitting",
+          "popupText": "Attending career events to build awareness without narrowing your options too early.",
+          "id": "econ_freshman_networking_001"
+        }
+      ],
+      "resources": [
+        {
+          "text": "Get the intro sequence moving early",
+          "popupText": "Starting required courses in the first year to stay on track for upper-level work.",
+          "id": "econ_freshman_resources_001"
+        },
+        {
+          "text": "Start learning what finance, consulting, policy, and quant paths look like",
+          "popupText": "Exploring different economics career paths before committing to a direction.",
+          "id": "econ_freshman_resources_002"
+        },
+        {
+          "text": "Keep options open by building strong study habits from the start",
+          "popupText": "Developing consistent academic habits that support performance across all econ paths.",
+          "id": "econ_freshman_resources_003"
+        }
+      ]
+    },
+    "sophomore": {
+      "hero": "Sophomore year is where the major becomes more structured — theory, methods, and math become much more important.",
+      "highlight": "Best use of sophomore year: finish the core theory and methods work so junior year can focus on stronger electives, technical development, and internship preparation.",
+      "classes": [
+        {
+          "text": "EC 224: Macro Theory",
+          "popupText": "Devoted to the development and examination of various theoretical frameworks to explain fluctuations in output, interest rates, exchange rates, unemployment, inflation, and economic growth in a globally interdependent economy. Continued study of the theoretical development of macroeconomic models and further refinement of understanding the effectiveness and optimality of macroeconomic policy. Students gain an understanding of the importance of expectations, the determination of asset prices (e.g., bond and stock prices), the relationship between financial markets and the macroeconomy, and the implications and limitations of models and policies.",
+          "id": "econ_sophomore_classes_001"
+        },
+        {
+          "text": "EC 223: Micro Theory",
+          "popupText": "The theory of the pricing, distribution, and allocation of resources in a market economy. Emphasis placed on the various meanings of economic efficiency.",
+          "id": "econ_sophomore_classes_002"
+        },
+        {
+          "text": "PS 214: Research Methods or EC 293: Econ Research Methods",
+          "popupText": "Quantitative and qualitative methods courses that support rigorous economic analysis.",
+          "id": "econ_sophomore_classes_003"
+        },
+        {
+          "text": "Any Math class between MA 125 to MA 160",
+          "popupText": "Math courses that strengthen quantitative skills needed for upper-level econ.",
+          "id": "econ_sophomore_classes_004"
+        }
+      ],
+      "programs": [
+        {
+          "text": "Citadel Launch",
+          "href": "https://www.citadel.com/careers/students/launch/",
+          "popupText": "Citadel's sophomore internship program in quantitative research and trading.",
+          "id": "econ_sophomore_programs_001"
+        },
+        {
+          "text": "PwC Start",
+          "href": "https://www.pwc.com/us/en/careers/while-you-work/student-opportunities/start.html",
+          "popupText": "PwC's early university program introducing students to consulting.",
+          "id": "econ_sophomore_programs_002"
+        },
+        {
+          "text": "Morgan Stanley Early Insights",
+          "href": "https://www.morganstanley.com/careers/students-graduates/early-insights-program",
+          "popupText": "Morgan Stanley program for early-career students exploring investment banking.",
+          "id": "econ_sophomore_programs_003"
+        },
+        {
+          "text": "Point72 Academy Sophomore Summit",
+          "href": "https://careers.point72.com/students",
+          "popupText": "Point72's sophomore summit introducing students to hedge fund investing.",
+          "id": "econ_sophomore_programs_004"
+        },
+        {
+          "text": "BlackRock Founders Scholarship",
+          "href": "https://www.blackrock.com/corporate/careers/students-and-graduates",
+          "popupText": "BlackRock scholarship program for students pursuing careers in asset management.",
+          "id": "econ_sophomore_programs_005"
+        },
+        {
+          "text": "Deloitte Discovery Program",
+          "href": "https://www.deloitte.com/us/en/careers/internships.html",
+          "popupText": "Early undergraduate program focused on Deloitte's service lines and exposure to consulting.",
+          "id": "econ_sophomore_programs_006"
+        },
+        {
+          "text": "Deloitte Discovery Program",
+          "href": "https://www.deloitte.com/us/en/careers/internships.html",
+          "popupText": "Introductory course studying how individuals and firms make economic decisions.",
+          "id": "econ_sophomore_programs_007"
+        },
+        {
+          "text": "Tuck Business Bridge Program",
+          "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs.",
+          "href": null,
+          "id": "econ_sophomore_programs_008"
+        }
+      ],
+      "internships": [
+        {
+          "text": "PJT Partners Sophomore Internship",
+          "href": "https://www.pjtpartners.com/careers/students/",
+          "popupText": "PJT Partners' internship for sophomores interested in restructuring and M&A.",
+          "id": "econ_sophomore_internships_001",
+          "goals": [
+            "finance"
+          ]
+        },
+        {
+          "text": "PwC Start Internship",
+          "href": "https://jobs.us.pwc.com/entry-level",
+          "popupText": "PwC's early-career program introducing students to professional services and advisory work.",
+          "id": "econ_sophomore_internships_002",
+          "goals": [
+            "consulting"
+          ]
+        }
+      ],
+      "projects": [],
+      "networking": [],
+      "resources": [
+        {
+          "text": "Become more intentional about recruiting direction",
+          "popupText": "Narrowing focus toward finance, consulting, policy, or quantitative paths.",
+          "id": "econ_sophomore_resources_001"
+        },
+        {
+          "text": "Methods and math support upper-level econ and more technical roles",
+          "popupText": "Quantitative coursework that makes your profile stronger for selective roles.",
+          "id": "econ_sophomore_resources_002"
+        },
+        {
+          "text": "Build spreadsheet, data, and interview skills alongside coursework",
+          "popupText": "Practical skills like Excel and financial modeling that recruiters look for.",
+          "id": "econ_sophomore_resources_003"
+        },
+        {
+          "text": "Start keeping a clear timeline for sophomore and junior recruiting windows",
+          "popupText": "Understanding when applications open for competitive programs and internships.",
+          "id": "econ_sophomore_resources_004"
+        },
+        {
+          "text": "Tuck Business Bridge Program",
+          "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs.",
+          "id": "econ_sophomore_resources_005"
+        }
+      ]
+    },
+    "junior": {
+      "hero": "Junior year is usually the most important year for connecting coursework to internships, recruiting, and upper-level economics work.",
+      "highlight": "Best use of junior year: pair upper-level econ classes with serious internship prep, stronger technical skill building, and a more focused recruiting strategy.",
+      "classes": [
+        {
+          "text": "Econ elective above 200",
+          "popupText": "Upper-level economics course in a specialization of interest.",
+          "id": "econ_junior_classes_001"
+        },
+        {
+          "text": "EC 393: Econometrics",
+          "popupText": "An introduction to quantitative methods used for the analysis of economic phenomenon, covering the theoretical development of the ordinary least squares regression framework, tools for model specification and estimation, hypothesis testing, methods for correcting errors in parameter estimation, and the analysis of econometric results in the context of a wide range of empirical applications. Through lab exercises and a final empirical project, develops model-building skills, builds confidence in applying econometric methods to real-world data, deepens the understanding of statistical inference, and improves the capacity for communicating econometric results.",
+          "id": "econ_junior_classes_002"
+        }
+      ],
+      "programs": [
+        {
+          "text": "Evercore / Lazard / Centerview",
+          "href": null,
+          "popupText": "Elite boutique investment banks with competitive summer analyst programs.",
+          "id": "econ_junior_programs_001"
+        },
+        {
+          "text": "Deloitte Discovery Program",
+          "href": "https://www.deloitte.com/us/en/careers/internships.html",
+          "popupText": "Early undergraduate program focused on Deloitte's service lines and exposure to consulting.",
+          "id": "econ_junior_programs_002"
+        },
+        {
+          "text": "Capital One",
+          "href": "https://www.capitalonecareers.com/early-internships-program",
+          "popupText": "Capital One early internships and programs for undergraduates exploring business and technology.",
+          "id": "econ_junior_programs_003"
+        },
+        {
+          "text": "Deloitte Discovery Program",
+          "href": "https://www.deloitte.com/us/en/careers/internships.html",
+          "popupText": "Introductory course studying how individuals and firms make economic decisions.",
+          "id": "econ_junior_programs_004"
+        },
+        {
+          "text": "Tuck Business Bridge Program",
+          "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs.",
+          "href": null,
+          "id": "econ_junior_programs_005"
+        }
+      ],
+      "internships": [
+        {
+          "text": "Goldman Sachs Summer Analyst Program",
+          "href": "https://www.goldmansachs.com/careers/students/programs/",
+          "popupText": "Goldman Sachs' flagship summer internship across investment banking and markets.",
+          "id": "econ_junior_internships_001",
+          "goals": [
+            "finance"
+          ]
+        },
+        {
+          "text": "PwC Advance",
+          "href": "https://www.pwc.com/us/en/careers/while-you-work/student-opportunities/advance.html",
+          "popupText": "PwC's junior summer internship in consulting and advisory services.",
+          "id": "econ_junior_internships_002",
+          "goals": [
+            "consulting"
+          ]
+        },
+        {
+          "text": "Jane Street Quantitative Trader Internship",
+          "href": "https://www.janestreet.com/join-jane-street/programs-and-events/quantitative-trader-internship/",
+          "popupText": "Jane Street's internship for students interested in quantitative trading.",
+          "id": "econ_junior_internships_003",
+          "goals": [
+            "finance"
+          ]
+        },
+        {
+          "text": "J.P. Morgan Quantitative Finance Internship",
+          "href": "https://careers.jpmorgan.com/us/en/students/programs/quantitative-finance-analyst",
+          "popupText": "J.P. Morgan's internship for quantitative finance and analyst roles.",
+          "id": "econ_junior_internships_004",
+          "goals": [
+            "finance"
+          ]
+        },
+        {
+          "text": "SIG Quantitative Trading Intern",
+          "href": "https://careers.sig.com/students/",
+          "popupText": "SIG's trading and research internship for quantitatively strong students.",
+          "id": "econ_junior_internships_005",
+          "goals": [
+            "finance"
+          ]
+        },
+        {
+          "text": "Bridgewater Investment Engineer Intern",
+          "href": "https://www.bridgewater.com/campus",
+          "popupText": "Bridgewater's internship combining investment research and systems work.",
+          "id": "econ_junior_internships_006",
+          "goals": [
+            "finance"
+          ]
+        }
+      ],
+      "projects": [],
+      "networking": [
+        {
+          "text": "Use networking and alumni outreach more seriously this year",
+          "popupText": "Connecting with alumni for referrals becomes much more important in junior year.",
+          "id": "econ_junior_networking_001"
+        }
+      ],
+      "resources": [
+        {
+          "text": "Junior summer is often the most important internship summer",
+          "popupText": "The junior internship is the primary path to full-time finance and consulting offers.",
+          "id": "econ_junior_resources_001"
+        },
+        {
+          "text": "Econometrics makes your quantitative background more usable",
+          "popupText": "Econometrics signals technical credibility for research and quantitative roles.",
+          "id": "econ_junior_resources_002"
+        },
+        {
+          "text": "Tighten your resume and know what roles you are targeting",
+          "popupText": "A focused, well-crafted resume targeting specific roles and firms is essential.",
+          "id": "econ_junior_resources_003"
+        }
+      ]
+    },
+    "senior": {
+      "hero": "Senior year should be about finishing strong, completing the seminar requirement, and turning your experience into a clear next step.",
+      "highlight": "Best use of senior year: finish upper-level work well, complete the seminar, and use the fall to convert your experience into full-time opportunities or a stronger post-grad plan.",
+      "classes": [
+        {
+          "text": "Econ elective in the 300 level",
+          "popupText": "Advanced economics course in your area of interest.",
+          "id": "econ_senior_classes_001"
+        },
+        {
+          "text": "Econ seminar",
+          "popupText": "Capstone seminar completing the economics major requirement.",
+          "id": "econ_senior_classes_002"
+        }
+      ],
+      "programs": [
+        {
+          "text": "Use seminar and upper-level work to sharpen your interests",
+          "href": null,
+          "popupText": "Leveraging coursework to clarify your economics career direction.",
+          "id": "econ_senior_programs_001"
+        },
+        {
+          "text": "Deloitte Discovery Program",
+          "href": "https://www.deloitte.com/us/en/careers/internships.html",
+          "popupText": "Early undergraduate program focused on Deloitte's service lines and exposure to consulting.",
+          "id": "econ_senior_programs_002"
+        },
+        {
+          "text": "Capital One",
+          "href": "https://www.capitalonecareers.com/early-internships-program",
+          "popupText": "Capital One early internships and programs for undergraduates exploring business and technology.",
+          "id": "econ_senior_programs_003"
+        },
+        {
+          "text": "Deloitte Discovery Program",
+          "href": "https://www.deloitte.com/us/en/careers/internships.html",
+          "popupText": "Introductory course studying how individuals and firms make economic decisions.",
+          "id": "econ_senior_programs_004"
+        },
+        {
+          "text": "Tuck Business Bridge Program",
+          "popupText": "Dartmouth’s Tuck Business Bridge Program, it is a short, intensive pre-MBA business program for undergraduates and recent graduates that teaches core business skills, includes a capstone project and career guidance, and is designed to help launch internships and jobs.",
+          "href": null,
+          "id": "econ_senior_programs_005"
+        }
+      ],
+      "internships": [],
+      "full_time_roles": [
+        {
+          "text": "Focus on full-time recruiting and late-cycle opportunities",
+          "href": null,
+          "popupText": "Senior recruiting cycles for banking, consulting, and research roles.",
+          "id": "econ_senior_full_time_roles_001"
+        }
+      ],
+      "projects": [],
+      "networking": [],
+      "resources": [
+        {
+          "text": "Wall Street Prep",
+          "popupText": "Financial modeling training used for investment banking preparation.",
+          "id": "econ_senior_resources_001",
+          "goals": [
+            "finance"
+          ]
+        },
+        {
+          "text": "Paving the Road",
+          "popupText": "Student resource and guide for breaking into finance careers.",
+          "id": "econ_senior_resources_002",
+          "goals": [
+            "finance"
+          ]
+        },
+        {
+          "text": "Mergers and Acquisitions class with Mike McHale",
+          "popupText": "Colby course focused on corporate mergers, acquisitions, and deal analysis.",
+          "id": "econ_senior_resources_003",
+          "goals": [
+            "finance"
+          ]
+        },
+        {
+          "text": "Senior year is about finishing the major well and making your next move concrete",
+          "popupText": "Completing the major strong while locking in your first post-graduation step.",
+          "id": "econ_senior_resources_004"
+        }
+      ]
+    }
+  }
+}

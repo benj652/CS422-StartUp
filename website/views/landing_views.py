@@ -1,10 +1,12 @@
-from flask import Blueprint, flash, jsonify, render_template
+from flask import (
+    Blueprint, flash, jsonify, make_response, redirect,
+    render_template, request, url_for,
+)
 
 from ..consts import HTML_EXTENSION, LANDING_DEFAULT_NAME, PREFIX
-from flask import Blueprint, render_template, request, make_response, redirect, url_for
-from ..models.tracking import User, Action, Feedback, db
+from ..models.tracking import Action, Feedback, User, db
+from ..onboarding_config import QUESTIONS
 from ..utils import log_visit
-from flask import request, make_response
 
 
 landing_blueprint = Blueprint(LANDING_DEFAULT_NAME, __name__)
@@ -38,7 +40,7 @@ def track_action():
 @landing_blueprint.route('/onboarding')
 def onboarding():
     log_visit(page="onboarding.html")
-    return render_template('onboarding.html')
+    return render_template('onboarding.html', questions=QUESTIONS)
 
 
 @landing_blueprint.route('/submit-info', methods=['POST'])
