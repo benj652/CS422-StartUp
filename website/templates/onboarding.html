@@ -33,10 +33,11 @@
 
     <main class="ob-main">
       <form method="POST" action="{{ url_for('homepage.submit_info') }}">
+        <input type="hidden" name="onboarding_variant" value="{{ onboarding_variant }}" />
         <div class="ob-intro">
           <h1 class="ob-page-title">Let's build your roadmap</h1>
           <p class="ob-page-sub">
-            Five quick questions to personalise your path.
+            {{ ob_intro_sub }}
           </p>
         </div>
 
