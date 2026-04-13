@@ -1,3 +1,5 @@
+import random
+
 from flask import (
     Blueprint, flash, jsonify, make_response, redirect,
     render_template, request, url_for,
@@ -5,8 +7,12 @@ from flask import (
 
 from ..consts import HTML_EXTENSION, LANDING_DEFAULT_NAME, PREFIX
 from ..models.tracking import Action, Feedback, User, db
-from ..onboarding_config import QUESTIONS
+from ..onboarding_config import QUESTIONS, QUESTIONS_SHORT
 from ..utils import log_visit
+
+# A/B: which onboarding length the user sees
+ONBOARDING_AB_COOKIE = "onboarding_ab"
+_ONBOARDING_AB_MAX_AGE = 30 * 24 * 60 * 60
 
 
 landing_blueprint = Blueprint(LANDING_DEFAULT_NAME, __name__)
@@ -37,19 +43,68 @@ def track_action():
             db.session.commit()
     return jsonify({"status": "success"}), 200
 
-@landing_blueprint.route('/onboarding')
+def _render_onboarding(*, questions, variant: str, ob_intro_sub: str):
+    return render_template(
+        "onboarding.html",
+        questions=questions,
+        onboarding_variant=variant,
+        ob_intro_sub=ob_intro_sub,
+    )
+
+
+@landing_blueprint.route("/onboarding")
 def onboarding():
-    log_visit(page="onboarding.html")
-    return render_template('onboarding.html', questions=QUESTIONS)
+    assigned = request.cookies.get(ONBOARDING_AB_COOKIE)
+    if assigned not in ("variantA", "variantB"):
+        assigned = random.choice(["variantA", "variantB"])
+        target = (
+            "homepage.onboarding_variant_a"
+            if assigned == "variantA"
+            else "homepage.onboarding_variant_b"
+        )
+        response = make_response(redirect(url_for(target)))
+        response.set_cookie(
+            ONBOARDING_AB_COOKIE, assigned, max_age=_ONBOARDING_AB_MAX_AGE
+        )
+        return response
+    if assigned == "variantA":
+        return redirect(url_for("homepage.onboarding_variant_a"))
+    return redirect(url_for("homepage.onboarding_variant_b"))
+
+
+@landing_blueprint.route("/onboarding/variantA")
+def onboarding_variant_a():
+    log_visit(page="onboarding_variant_a.html")
+    return _render_onboarding(
+        questions=QUESTIONS_SHORT,
+        variant="short",
+        ob_intro_sub="Two quick questions to get your roadmap.",
+    )
+
+
+@landing_blueprint.route("/onboarding/variantB")
+def onboarding_variant_b():
+    log_visit(page="onboarding_variant_b.html")
+    return _render_onboarding(
+        questions=QUESTIONS,
+        variant="full",
+        ob_intro_sub="Five quick questions to personalise your path.",
+    )
 
 
 @landing_blueprint.route('/submit-info', methods=['POST'])
 def submit_info():
     class_year = request.form.get('class_year')
     major = request.form.get('major')
-    career_goal = request.form.get('career_goal')
-    career_stage = request.form.get('career_stage')
-    priority = request.form.get('priority')
+    variant = (request.form.get('onboarding_variant') or 'full').lower()
+    if variant == 'short':
+        career_goal = None
+        career_stage = None
+        priority = None
+    else:
+        career_goal = request.form.get('career_goal')
+        career_stage = request.form.get('career_stage')
+        priority = request.form.get('priority')
     user_uuid = request.cookies.get('tracking_id')
 
     if user_uuid:
@@ -65,12 +120,13 @@ def submit_info():
             db.session.add(core_action)
             db.session.commit()
 
-            params = dict(
-                year=class_year,
-                career_goal=career_goal,
-                career_stage=career_stage,
-                priority=priority,
-            )
+            params: dict = {'year': class_year}
+            if career_goal:
+                params['career_goal'] = career_goal
+            if career_stage:
+                params['career_stage'] = career_stage
+            if priority:
+                params['priority'] = priority
             if major == 'cs':
                 return redirect(url_for('roadmap.cs', **params))
             elif major == 'econ':

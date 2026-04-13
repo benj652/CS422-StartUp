@@ -10,13 +10,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.body.appendChild(overlay);
 
-  var content  = overlay.querySelector("#popup-content");
+  var content = overlay.querySelector("#popup-content");
   var closeBtn = overlay.querySelector("#popup-close");
 
   document.addEventListener("click", function (e) {
     var el = e.target.closest("[data-popup]");
     if (el && el.dataset.popup) {
-      content.textContent = el.dataset.popup;
+      content.innerHTML = el.dataset.popup;
       overlay.style.display = "flex";
     }
   });

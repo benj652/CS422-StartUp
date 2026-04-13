@@ -135,6 +135,8 @@ QUESTIONS: list[dict] = [
     },
 ]
 
+QUESTIONS_SHORT: list[dict] = QUESTIONS[:2]
+
 def _question(name: str) -> dict:
     """Return the question dict whose ``name`` matches."""
     for q in QUESTIONS:

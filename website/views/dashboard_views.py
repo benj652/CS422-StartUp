@@ -76,7 +76,8 @@ def dashboard():
     # 3. Optimized Page Stats
     tracked_pages = [
         ('homepage.html', 'Home'),
-        ('onboarding.html', 'Onboarding'), # Ensure these match your log_visit strings
+        ('onboarding_variant_a.html', 'Onboarding (variant A)'),
+        ('onboarding_variant_b.html', 'Onboarding (variant B)'),
         ('cs', 'CS'),
         ('econ', 'Economics'),
         ('feedback.html', 'Feedback'),

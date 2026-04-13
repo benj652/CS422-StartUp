@@ -20,7 +20,10 @@
         <a href="{{ url_for('homepage.homepage') }}" class="rm-logo-link">
             <img src="{{ url_for('static', filename='img/BlueprintClearBg.png') }}" alt="Blueprint" class="rm-logo-img" />
         </a>
-        <a href="{{ url_for('homepage.feedback_page') }}" class="rm-feedback-btn">Feedback</a>
+        <div class="rm-header-actions">
+            <a href="{{ url_for('homepage.onboarding') }}" class="rm-secondary-link">Edit answers</a>
+            <a href="{{ url_for('homepage.feedback_page') }}" class="rm-feedback-btn">Feedback</a>
+        </div>
     </header>
 
     <main class="rm-main">
@@ -53,7 +56,12 @@
 
         <p class="rm-highlight">{{ highlight }}</p>
 
-        <p class="rm-section-label">Recommendations</p>
+        <div class="rm-section-head">
+            <p class="rm-section-label">Recommendations</p>
+            <p class="rm-section-sub">
+                A personalized mix of classes, opportunities, projects, and career steps based on your profile.
+            </p>
+        </div>
 
         <div class="rm-grid" id="rmGrid">
             <div class="rm-card" data-section="classes">
