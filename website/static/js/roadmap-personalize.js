@@ -107,6 +107,9 @@
           li.appendChild(spacer);
         }
 
+        li.setAttribute("data-rm-section", key);
+        li.setAttribute("data-rm-label", item.text || "");
+
         ul.appendChild(li);
 
         var storageKey = item.text;

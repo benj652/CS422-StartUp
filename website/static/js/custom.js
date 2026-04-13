@@ -13,14 +13,17 @@ document.addEventListener('DOMContentLoaded', function() {
 /**
  * Sends a POST request to the Flask backend to log an action
  * @param {string} actionType - The 'atype' string saved in the DB
+ * @param {object|Array|undefined} detail - Optional JSON-serializable payload
  */
-function trackAction(actionType) {
+function trackAction(actionType, detail) {
+    var body = { atype: actionType };
+    if (detail != null) body.detail = detail;
     fetch("/track-action", { 
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ atype: actionType })
+        body: JSON.stringify(body)
     })
     .then(response => response.json())
     .then(data => console.log('Action tracked:', actionType))

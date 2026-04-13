@@ -31,14 +31,26 @@ def homepage():
 
 @landing_blueprint.route('/track-action', methods=['POST'])
 def track_action():
-    """Logs non-form actions like button clicks."""
-    data = request.get_json()
-    user_uuid = request.cookies.get('tracking_id')
-    
+    """Logs non-form actions (clicks, roadmap metrics, etc.)."""
+    data = request.get_json(silent=True)
+    if not isinstance(data, dict):
+        return jsonify({"status": "error", "message": "JSON body required"}), 400
+
+    atype = data.get("atype")
+    if not atype or not isinstance(atype, str):
+        return jsonify({"status": "error", "message": "atype required"}), 400
+    atype = atype.strip()[:200]
+
+    detail = data.get("detail")
+    if detail is not None and not isinstance(detail, (dict, list)):
+        return jsonify({"status": "error", "message": "detail must be an object or array"}), 400
+
+    user_uuid = request.cookies.get("tracking_id")
+
     if user_uuid:
         user = User.query.filter_by(uuid=user_uuid).first()
         if user:
-            new_action = Action(atype=data['atype'], user_id=user.id)
+            new_action = Action(atype=atype, user_id=user.id, detail=detail)
             db.session.add(new_action)
             db.session.commit()
     return jsonify({"status": "success"}), 200
@@ -115,6 +127,7 @@ def submit_info():
             user.career_goal = career_goal
             user.career_stage = career_stage
             user.priority = priority
+            user.onboarding_variant = "short" if variant == "short" else "full"
 
             core_action = Action(atype='roadmap_submit', user_id=user.id)
             db.session.add(core_action)
