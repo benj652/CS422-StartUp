@@ -79,14 +79,12 @@ def _build_system_prompt(caps: dict[str, int]) -> str:
         '3. Each object must contain "id", "summary", and "whyRecommended".\n'
         '4. "id" must be an item id from the catalog.\n'
         '5. "summary" must be a short 6-14 word card preview.\n'
-        '6. "whyRecommended" must be 2-3 sentences and must explain:\n'
-        "   - why this specific item matters,\n"
-        "   - why it is a good next step right now,\n"
-        "   - how it connects to the student's stated goal/stage/priority.\n"
+        '6. "whyRecommended" must be ONE concise sentence (about 12-22 words) that ties '
+        "this item to the student's goal, stage, or priority — no filler openers.\n"
         "7. Do NOT reuse the same sentence structure across items.\n"
         "8. Avoid generic phrasing like 'this fits your roadmap because...'\n"
         "9. Mention the actual opportunity/class/resource by name or concrete function.\n"
-        "10. Explanations should sound specific to the item, not interchangeable.\n"
+        "10. Each line should sound specific to that item, not interchangeable.\n"
         f"11. Caps per section: {caps_desc}. Never exceed them.\n"
         "12. Only use ids present in the catalog. Do NOT invent ids.\n"
         "13. Return valid JSON only — no markdown fences, no commentary."
@@ -114,10 +112,8 @@ def _build_user_prompt(profile: dict, major: str, year_key: str) -> str:
         f"- Career goal: {goal}\n"
         f"- Career stage: {stage}\n"
         f"- Current priority: {priority}\n\n"
-        "Write explanations that do not repeat the same wording across items. "
-        "For opportunities, explain the strategic value of the program and why it is timely. "
-        "For classes, explain what foundation they build and why taking them now matters. "
-        "For networking/resources, explain the practical benefit and next-step logic.\n\n"
+        "Each whyRecommended: one tight sentence, varied wording across items, concrete "
+        "and specific to that catalog entry.\n\n"
         f"Catalog (JSON):\n{json.dumps(catalog, ensure_ascii=False)}"
     )
 
