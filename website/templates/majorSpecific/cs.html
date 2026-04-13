@@ -24,23 +24,25 @@
     </header>
 
     <main class="rm-main">
-        <!-- Profile header -->
-        <p class="rm-eyebrow">Computer Science</p>
+        <p class="rm-eyebrow">{{ major_label }}</p>
         <h1 class="rm-title">Your Roadmap</h1>
         <p class="rm-subtitle">{{ hero }}</p>
 
         <div class="rm-pills">
             {% if class_year %}
             <div class="rm-pill">{{ class_year }}</div>
-            {% endif %} {% if career_goal %}
+            {% endif %}
+            {% if career_goal %}
             <div class="rm-pill">
                 <span class="rm-pill-label">Goal&nbsp;</span>{{ career_goal }}
             </div>
-            {% endif %} {% if career_stage %}
+            {% endif %}
+            {% if career_stage %}
             <div class="rm-pill">
                 <span class="rm-pill-label">Stage&nbsp;</span>{{ career_stage }}
             </div>
-            {% endif %} {% if priority %}
+            {% endif %}
+            {% if priority %}
             <div class="rm-pill">
                 <span class="rm-pill-label">Focus&nbsp;</span>{{ priority }}
             </div>
@@ -53,53 +55,66 @@
 
         <p class="rm-section-label">Recommendations</p>
 
-        <div class="rm-grid">
-             <div class="rm-card">
+        <div class="rm-grid" id="rmGrid">
+            <div class="rm-card" data-section="classes">
                 <p class="rm-card-eyebrow">01</p>
                 <h2 class="rm-card-title">Recommended Classes</h2>
-                <ul class="roadmap-list">
-                    {% for item in classes %}
-                    <li>
-                        <input type="checkbox" class="program-checker">
-                        <span data-popup="{{ item.popupText }}" class="clickable item-text"> {{ item.text }} </span>
-                    </li>
-                    {% endfor %}
-                </ul>
+                <ul class="roadmap-list"></ul>
             </div>
 
-            <div class="rm-card">
+            <div class="rm-card" data-section="programs">
                 <p class="rm-card-eyebrow">02</p>
                 <h2 class="rm-card-title">Programs &amp; Opportunities</h2>
-                <ul class = "roadmap-list">
-                    {% for item in programs %} 
-                    <li>
-                        <input type="checkbox" class="program-checker">
-                        {% if item.href %}
-                            <a href="{{ item.href }}" target="_blank" rel="noopener noreferrer" class = "item-text">{{ item.text }}</a>
-                        {% else %}
-                            <span class="clickable item-text" data-popup="{{ item.popupText }}">{{ item.text }}</span>
-                        {% endif %} 
-                    </li>
-                    {% endfor %}
-                </ul>
+                <ul class="roadmap-list"></ul>
             </div>
 
-            <div class="rm-card">
+            <div class="rm-card" data-section="internships">
                 <p class="rm-card-eyebrow">03</p>
+                <h2 class="rm-card-title">Internships</h2>
+                <ul class="roadmap-list"></ul>
+            </div>
+
+            <div class="rm-card" data-section="full_time_roles">
+                <p class="rm-card-eyebrow">04</p>
+                <h2 class="rm-card-title">Full-Time Roles</h2>
+                <ul class="roadmap-list"></ul>
+            </div>
+
+            <div class="rm-card" data-section="projects">
+                <p class="rm-card-eyebrow">05</p>
+                <h2 class="rm-card-title">Projects</h2>
+                <ul class="roadmap-list"></ul>
+            </div>
+
+            <div class="rm-card" data-section="networking">
+                <p class="rm-card-eyebrow">06</p>
+                <h2 class="rm-card-title">Networking</h2>
+                <ul class="roadmap-list"></ul>
+            </div>
+
+            <div class="rm-card" data-section="resources">
+                <p class="rm-card-eyebrow">07</p>
                 <h2 class="rm-card-title">Resources</h2>
-                <ul>
-                    {% for item in resources %}
-                    <li class="clickable" data-popup="{{ item.popupText }}">
-                        {{ item.text }}
-                    </li>
-                    {% endfor %}
-                </ul>
+                <ul class="roadmap-list"></ul>
             </div>
         </div>
     </main>
 
+    <div class="rm-loading" id="rmLoading">
+        <div class="rm-loading-inner">
+            <div class="rm-loading-logo">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Blueprint" />
+            </div>
+            <div class="rm-loading-spinner"><span></span><span></span><span></span></div>
+            <p class="rm-loading-msg" id="rmLoadingMsg">Building your personalized roadmap…</p>
+        </div>
+    </div>
+
+    <script>window.__RM_MAJOR = "{{ major }}";</script>
+    <script src="{{ url_for('static', filename='js/roadmap-personalize.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/popup.js') }}" defer></script>
+
     {% include 'footer.html' %}
 </body>
-<script src="{{ url_for('static', filename='js/popup.js') }}"></script>
 
 </html>
