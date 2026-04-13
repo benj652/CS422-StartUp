@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Econ Roadmap · Blueprint</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/BlueprintClearBgSquare.png') }}" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,7 +19,7 @@
 <body>
     <header class="rm-header">
         <a href="{{ url_for('homepage.homepage') }}" class="rm-logo-link">
-            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Blueprint" class="rm-logo-img" />
+            <img src="{{ url_for('static', filename='img/BlueprintClearBg.png') }}" alt="Blueprint" class="rm-logo-img" />
         </a>
         <div class="rm-header-actions">
             <a href="{{ url_for('homepage.onboarding') }}" class="rm-secondary-link">Edit answers</a>
@@ -111,7 +112,7 @@
     <div class="rm-loading" id="rmLoading">
         <div class="rm-loading-inner">
             <div class="rm-loading-logo">
-                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Blueprint" />
+                <img src="{{ url_for('static', filename='img/BlueprintClearBg.png') }}" alt="Blueprint" />
             </div>
             <div class="rm-loading-spinner"><span></span><span></span><span></span></div>
             <p class="rm-loading-msg" id="rmLoadingMsg">Building your personalized roadmap…</p>
