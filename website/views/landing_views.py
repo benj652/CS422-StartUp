@@ -185,3 +185,7 @@ def submit_feedback():
 
     flash('Thank you for your feedback! We really appreciate it.')
     return redirect(url_for('homepage.feedback_page'))
+
+@landing_blueprint.route('/roadmap_dashboard')
+def onboarding_tracker():
+    return render_template('roadmap_dashboard.html')

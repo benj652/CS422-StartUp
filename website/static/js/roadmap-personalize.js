@@ -1,16 +1,16 @@
 (function () {
   const overlay = document.getElementById("rmLoading");
-  const msgEl   = document.getElementById("rmLoadingMsg");
-  const grid    = document.getElementById("rmGrid");
+  const msgEl = document.getElementById("rmLoadingMsg");
+  const grid = document.getElementById("rmGrid");
   if (!grid) return;
 
   const params = new URLSearchParams(window.location.search);
   const profile = {
-    major:        window.__RM_MAJOR || "cs",
-    year:         params.get("year")         || "",
-    career_goal:  params.get("career_goal")  || "",
+    major: window.__RM_MAJOR || "cs",
+    year: params.get("year") || "",
+    career_goal: params.get("career_goal") || "",
     career_stage: params.get("career_stage") || "",
-    priority:     params.get("priority")     || "",
+    priority: params.get("priority") || "",
   };
 
   const MESSAGES = [
@@ -31,10 +31,16 @@
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(profile),
   })
-    .then(function (res) { return res.json(); })
-    .then(function (data) { render(data.sections || {}); })
-    .catch(function ()    { render({}); })
-    .finally(function ()  {
+    .then(function (res) {
+      return res.json();
+    })
+    .then(function (data) {
+      render(data.sections || {});
+    })
+    .catch(function () {
+      render({});
+    })
+    .finally(function () {
       clearInterval(msgTimer);
       hideOverlay();
     });
@@ -42,9 +48,9 @@
   function render(sections) {
     var cards = grid.querySelectorAll(".rm-card[data-section]");
     cards.forEach(function (card) {
-      var key   = card.getAttribute("data-section");
+      var key = card.getAttribute("data-section");
       var items = sections[key] || [];
-      var ul    = card.querySelector("ul");
+      var ul = card.querySelector("ul");
       if (!ul) return;
 
       ul.innerHTML = "";
@@ -78,29 +84,45 @@
           mainEl.textContent = item.text;
         }
 
+        mainEl.className = "item-title";
         textWrap.appendChild(mainEl);
 
-        if (item.popupText) {
+        if (item.summary) {
           var meta = document.createElement("span");
           meta.className = "item-meta";
-
-          var preview = item.popupText.length > 110
-            ? item.popupText.slice(0, 110).trim() + "…"
-            : item.popupText;
-
-          meta.textContent = preview;
+          meta.textContent = item.summary;
           textWrap.appendChild(meta);
         }
 
         li.appendChild(textWrap);
 
-        if (item.popupText) {
+        if (item.popupText || item.whyRecommended) {
           var info = document.createElement("button");
           info.type = "button";
           info.className = "info-btn";
-          info.setAttribute("data-popup", item.popupText);
+
+          var popupParts = [];
+
+          if (item.popupText) {
+            popupParts.push(
+              "<div class='popup-section'><strong>About this recommendation</strong><p>" +
+                item.popupText +
+                "</p></div>"
+            );
+          }
+
+          if (item.whyRecommended) {
+            popupParts.push(
+              "<div class='popup-section'><strong>Why it fits your roadmap</strong><p>" +
+                item.whyRecommended +
+                "</p></div>"
+            );
+          }
+
+          info.setAttribute("data-popup", popupParts.join(""));
           info.setAttribute("aria-label", "More info about " + item.text);
-          info.innerHTML = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M8 7v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="5" r="0.75" fill="currentColor"/></svg>';
+          info.innerHTML =
+            '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M8 7v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="5" r="0.75" fill="currentColor"/></svg>';
           li.appendChild(info);
         } else {
           var spacer = document.createElement("span");
@@ -126,7 +148,9 @@
   }
 
   function renumberCards() {
-    var visible = grid.querySelectorAll(".rm-card[data-section]:not(.rm-card--empty)");
+    var visible = grid.querySelectorAll(
+      ".rm-card[data-section]:not(.rm-card--empty)"
+    );
     var n = 1;
     visible.forEach(function (card) {
       var eyebrow = card.querySelector(".rm-card-eyebrow");
@@ -140,6 +164,8 @@
   function hideOverlay() {
     if (!overlay) return;
     overlay.classList.add("rm-loading--hidden");
-    setTimeout(function () { overlay.style.display = "none"; }, 400);
+    setTimeout(function () {
+      overlay.style.display = "none";
+    }, 400);
   }
 })();
