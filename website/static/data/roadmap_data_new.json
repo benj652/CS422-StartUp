@@ -42,37 +42,44 @@
         {
           "text": "CS 151X",
           "popupText": "Introductory computer science course covering programming fundamentals.",
-          "id": "cs_default_classes_001"
+          "id": "cs_default_classes_001",
+          "href": "https://cs.colby.edu/courses/F25/cs151a/"
         },
         {
           "text": "CS 232: Computer Organization",
           "popupText": "Course on how computers work at the hardware and systems level.",
-          "id": "cs_default_classes_002"
+          "id": "cs_default_classes_002",
+          "href": "https://cs.colby.edu/courses/F24/cs232/"
         },
         {
           "text": "CS 231: Data Structures",
           "popupText": "Core course covering algorithms and common data structures used in software engineering.",
-          "id": "cs_default_classes_003"
+          "id": "cs_default_classes_003",
+          "href": "https://cs.colby.edu/courses/F24/cs231/"
         },
         {
           "text": "CS 251: Data Analysis and Visualization",
           "popupText": "Course focused on analyzing datasets and building visualizations.",
-          "id": "cs_default_classes_004"
+          "id": "cs_default_classes_004",
+          "href": "https://cs.colby.edu/courses.php"
         },
         {
           "text": "CS 333: Programming Languages",
           "popupText": "Course studying how programming languages are designed and implemented.",
-          "id": "cs_default_classes_005"
+          "id": "cs_default_classes_005",
+          "href": "https://cs.colby.edu/courses.php"
         },
         {
           "text": "CS 3XX: Theory course",
           "popupText": "Upper-level theory class such as algorithms, complexity, or automata.",
-          "id": "cs_default_classes_006"
+          "id": "cs_default_classes_006",
+          "href": "https://cs.colby.edu/courses.php"
         },
         {
           "text": "Upper-level CS electives",
           "popupText": "Advanced courses in areas like AI, machine learning, systems, or networks.",
-          "id": "cs_default_classes_007"
+          "id": "cs_default_classes_007",
+          "href": "https://cs.colby.edu/courses.php"
         }
       ],
       "programs": [
@@ -145,7 +152,8 @@
         {
           "text": "CS 151X",
           "popupText": "Introductory programming and computer science fundamentals course.",
-          "id": "cs_freshman_classes_001"
+          "id": "cs_freshman_classes_001",
+          "href": "https://cs.colby.edu/courses/F25/cs151a/"
         },
         {
           "text": "MA 125 / MA 130 / MA 160 (math foundation depending on placement)",
@@ -351,17 +359,20 @@
         {
           "text": "CS 232: Computer Organization",
           "popupText": "Course on how computers work at the hardware and systems level.",
-          "id": "cs_sophomore_classes_001"
+          "id": "cs_sophomore_classes_001",
+          "href": "https://cs.colby.edu/courses/F24/cs232/"
         },
         {
           "text": "CS 231: Data Structures",
           "popupText": "Core course covering algorithms and common data structures used in software engineering.",
-          "id": "cs_sophomore_classes_002"
+          "id": "cs_sophomore_classes_002",
+          "href": "https://cs.colby.edu/courses/F24/cs231/"
         },
         {
           "text": "CS 251: Data Analysis and Visualization",
           "popupText": "Course focused on analyzing datasets and building visualizations.",
-          "id": "cs_sophomore_classes_003"
+          "id": "cs_sophomore_classes_003",
+          "href": "https://cs.colby.edu/courses.php"
         },
         {
           "text": "MA 2XX math course (Linear Algebra, Probability, or Discrete Math)",
@@ -612,17 +623,20 @@
         {
           "text": "CS 333: Programming Languages",
           "popupText": "Course studying how programming languages are designed and implemented.",
-          "id": "cs_junior_classes_001"
+          "id": "cs_junior_classes_001",
+          "href": "https://cs.colby.edu/courses.php"
         },
         {
           "text": "CS 3XX: Theory course",
           "popupText": "Upper-level theory class such as algorithms, complexity, or automata.",
-          "id": "cs_junior_classes_002"
+          "id": "cs_junior_classes_002",
+          "href": "https://cs.colby.edu/courses.php"
         },
         {
           "text": "CS 3XX electives (AI, Machine Learning, Databases, Distributed Systems, Networks)",
           "popupText": "Advanced CS electives covering specialized engineering and computer science topics.",
-          "id": "cs_junior_classes_003"
+          "id": "cs_junior_classes_003",
+          "href": "https://cs.colby.edu/courses.php"
         }
       ],
       "programs": [
@@ -971,17 +985,20 @@
         {
           "text": "CS 3XX elective",
           "popupText": "Upper-level CS elective in a specialization of interest.",
-          "id": "cs_senior_classes_001"
+          "id": "cs_senior_classes_001",
+          "href": "https://cs.colby.edu/courses.php"
         },
         {
           "text": "CS 4XX advanced elective",
           "popupText": "Senior-level course in a specialized area of computer science.",
-          "id": "cs_senior_classes_002"
+          "id": "cs_senior_classes_002",
+          "href": "https://cs.colby.edu/courses.php"
         },
         {
           "text": "CS 3XX theory course (if not completed earlier)",
           "popupText": "Theory course covering algorithms, complexity, or formal methods.",
-          "id": "cs_senior_classes_003"
+          "id": "cs_senior_classes_003",
+          "href": "https://cs.colby.edu/courses.php"
         }
       ],
       "programs": [
