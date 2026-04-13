@@ -24,11 +24,16 @@ body {
 
 /* ── Header ─────────────────────────────────────────────── */
 .rm-header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 40px;
+  padding: 18px 40px;
   border-bottom: 1px solid var(--border);
+  background: rgba(248, 247, 243, 0.94);
+  backdrop-filter: blur(10px);
 }
 
 .rm-logo-link {
@@ -37,8 +42,26 @@ body {
 }
 
 .rm-logo-img {
-  height: 40px;
+  height: 58px;
   width: auto;
+  display: block;
+}
+
+.rm-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rm-secondary-link {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.rm-secondary-link:hover {
+  color: var(--accent);
 }
 
 .rm-feedback-btn {
@@ -141,13 +164,25 @@ body {
   margin-bottom: 32px;
 }
 
-/* ── Section label ──────────────────────────────────────── */
+/* ── Section heading ────────────────────────────────────── */
+.rm-section-head {
+  margin-bottom: 18px;
+}
+
 .rm-section-label {
   font-family: "Poppins", sans-serif;
   font-weight: 700;
   font-size: 1.05rem;
   color: var(--text);
-  margin-bottom: 16px;
+  margin-bottom: 8px;
+}
+
+.rm-section-sub {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 720px;
+  margin-bottom: 6px;
 }
 
 /* ── Card grid ──────────────────────────────────────────── */
@@ -166,8 +201,9 @@ body {
 .rm-card {
   background: white;
   border: 1.5px solid var(--border);
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 24px 22px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
 }
 
 .rm-card-eyebrow {
@@ -182,9 +218,9 @@ body {
 .rm-card-title {
   font-family: "Poppins", sans-serif;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.08rem;
   color: var(--text);
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .rm-card ul {
@@ -194,13 +230,14 @@ body {
 }
 
 .rm-card ul li {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  font-size: 0.9rem;
+  display: grid;
+  grid-template-columns: 18px 1fr auto;
+  align-items: start;
+  gap: 10px;
+  font-size: 0.94rem;
   color: var(--muted);
   line-height: 1.6;
-  padding: 7px 0;
+  padding: 12px 0;
   border-bottom: 1px solid var(--border);
 }
 
@@ -211,34 +248,17 @@ body {
 .rm-card ul li a {
   color: var(--accent);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .rm-card ul li a:hover {
   text-decoration: underline;
 }
 
-/* ── Responsive ─────────────────────────────────────────── */
-@media (max-width: 860px) {
-  .rm-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 640px) {
-  .rm-header {
-    padding: 18px 24px;
-  }
-
-  .rm-main {
-    padding: 36px 20px 60px;
-  }
-}
-
 .program-checker {
   cursor: pointer;
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   flex-shrink: 0;
   margin-top: 4px;
 }
@@ -246,6 +266,16 @@ body {
 .item-text {
   flex: 1;
   min-width: 0;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.item-meta {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.5;
 }
 
 .info-btn {
@@ -253,21 +283,22 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 22px;
-  height: 22px;
+  width: 28px;
+  height: 28px;
   padding: 0;
-  margin-top: 1px;
+  margin-top: 0;
   border: none;
   border-radius: 50%;
   background: transparent;
   color: var(--muted);
   cursor: pointer;
-  transition: color 0.15s, background 0.15s;
+  transition: color 0.15s, background 0.15s, transform 0.15s;
 }
 
 .info-btn:hover {
   color: var(--accent);
   background: rgba(18, 123, 228, 0.08);
+  transform: translateY(-1px);
 }
 
 /* ── Roadmap loading overlay ───────────────────────────── */
@@ -327,4 +358,37 @@ body {
   font-size: 1rem;
   font-weight: 500;
   color: var(--muted);
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .rm-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .rm-header {
+    padding: 16px 20px;
+  }
+
+  .rm-main {
+    padding: 32px 20px 60px;
+  }
+
+  .rm-logo-img {
+    height: 50px;
+  }
+
+  .rm-header-actions {
+    gap: 8px;
+  }
+
+  .rm-secondary-link {
+    font-size: 0.82rem;
+  }
+
+  .rm-feedback-btn {
+    padding: 8px 16px;
+  }
 }

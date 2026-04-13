@@ -24,8 +24,22 @@ body {
 }
 
 .ob-header {
-  padding: 20px 40px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 40px;
   border-bottom: 1px solid var(--border);
+  background: rgba(248, 247, 243, 0.94);
+  backdrop-filter: blur(10px);
+}
+
+.ob-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .ob-logo-link {
@@ -34,8 +48,9 @@ body {
 }
 
 .ob-logo-img {
-  height: 40px;
+  height: 58px;
   width: auto;
+  display: block;
 }
 
 .ob-main {
@@ -161,7 +176,7 @@ body {
 
 @media (max-width: 640px) {
   .ob-header {
-    padding: 18px 24px;
+    padding: 16px 20px;
   }
   .ob-main {
     padding: 36px 20px 72px;
@@ -171,6 +186,9 @@ body {
   .ob-options--3col,
   .ob-options--4col {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .ob-logo-img {
+    height: 50px;
   }
 }
 
