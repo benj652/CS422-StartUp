@@ -47,6 +47,8 @@
       var ul    = card.querySelector("ul");
       if (!ul) return;
 
+      ul.innerHTML = "";
+
       if (items.length === 0) {
         card.classList.add("rm-card--empty");
         return;
@@ -54,27 +56,43 @@
       card.classList.remove("rm-card--empty");
 
       items.forEach(function (item) {
-        var li    = document.createElement("li");
-        var cb    = document.createElement("input");
-        cb.type   = "checkbox";
+        var li = document.createElement("li");
+
+        var cb = document.createElement("input");
+        cb.type = "checkbox";
         cb.className = "program-checker";
         li.appendChild(cb);
 
-        var el;
+        var textWrap = document.createElement("div");
+        textWrap.className = "item-text";
+
+        var mainEl;
         if (item.href) {
-          el = document.createElement("a");
-          el.href = item.href;
-          el.target = "_blank";
-          el.rel = "noopener noreferrer";
-          el.className = "item-text";
-          el.textContent = item.text;
+          mainEl = document.createElement("a");
+          mainEl.href = item.href;
+          mainEl.target = "_blank";
+          mainEl.rel = "noopener noreferrer";
+          mainEl.textContent = item.text;
         } else {
-          el = document.createElement("span");
-          el.className = "item-text";
-          el.textContent = item.text;
+          mainEl = document.createElement("span");
+          mainEl.textContent = item.text;
         }
 
-        li.appendChild(el);
+        textWrap.appendChild(mainEl);
+
+        if (item.popupText) {
+          var meta = document.createElement("span");
+          meta.className = "item-meta";
+
+          var preview = item.popupText.length > 110
+            ? item.popupText.slice(0, 110).trim() + "…"
+            : item.popupText;
+
+          meta.textContent = preview;
+          textWrap.appendChild(meta);
+        }
+
+        li.appendChild(textWrap);
 
         if (item.popupText) {
           var info = document.createElement("button");
@@ -84,6 +102,9 @@
           info.setAttribute("aria-label", "More info about " + item.text);
           info.innerHTML = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M8 7v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="5" r="0.75" fill="currentColor"/></svg>';
           li.appendChild(info);
+        } else {
+          var spacer = document.createElement("span");
+          li.appendChild(spacer);
         }
 
         ul.appendChild(li);
