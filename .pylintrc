@@ -1,0 +1,25 @@
+[MASTER]
+ignore=material-kit-master
+
+[MESSAGES CONTROL]
+disable=
+    missing-module-docstring,
+    missing-function-docstring,
+    missing-class-docstring,
+    too-few-public-methods,
+    too-many-locals,
+    broad-exception-caught,
+    cyclic-import,
+    import-outside-toplevel,
+    wrong-import-order,
+    line-too-long,
+    trailing-whitespace,
+    trailing-newlines,
+    missing-final-newline,
+    pointless-string-statement,
+    no-else-return,
+    invalid-name,
+    not-callable
+
+[FORMAT]
+max-line-length=100

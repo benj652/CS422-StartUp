@@ -1,7 +1,7 @@
+import hashlib
 import json
-import os
 
-from flask import Blueprint, redirect, render_template, request, url_for
+from flask import Blueprint, jsonify, redirect, render_template, request, session, url_for
 
 from website.consts import (
     CS_DEFAULT_NAME,
@@ -12,37 +12,17 @@ from website.consts import (
     PREFIX,
     ROADMAP_DEFAULT_NAME,
 )
+from website.onboarding_config import (
+    CAREER_GOAL_LABELS,
+    CAREER_STAGE_LABELS,
+    MAJOR_LABELS,
+    PRIORITY_LABELS,
+)
+from website.roadmap_catalog import get_year_block, normalize_year
+from website.services.roadmap_openai import personalize
 from website.utils import log_visit
 
 roadmap_blueprint = Blueprint(ROADMAP_DEFAULT_NAME, __name__)
-
-_DATA_PATH = os.path.join(os.path.dirname(__file__), '..', 'static', 'data', 'roadmap_data.json')
-
-with open(_DATA_PATH) as _f:
-    ROADMAP_DATA = json.load(_f)
-
-CAREER_GOAL_LABELS = {
-    'software_engineer': 'Software Engineer',
-    'data_science': 'Data Scientist / Analyst',
-    'product_manager': 'Product Manager',
-    'finance': 'Finance / Banking',
-    'consulting': 'Consulting',
-    'exploring': 'Still Exploring',
-}
-
-CAREER_STAGE_LABELS = {
-    'no_internships': 'No internships yet',
-    'applying': 'Currently applying',
-    'has_internship': 'Had 1+ internship',
-    'has_offer': 'Have a full-time offer',
-}
-
-PRIORITY_LABELS = {
-    'classes': 'Finding the right classes',
-    'internship': 'Landing an internship',
-    'projects': 'Building projects',
-    'networking': 'Networking & recruiting',
-}
 
 
 def _profile_context():
@@ -54,6 +34,20 @@ def _profile_context():
     }
 
 
+def _render_roadmap_shell(major: str):
+    year_key = normalize_year(request.args.get('year', ''))
+    block = get_year_block(major, year_key)
+    major_label = MAJOR_LABELS.get(major, major.upper())
+    return render_template(
+        MAJOR_SPECIFIC_FOLDER_NAME + major + HTML_EXTENSION,
+        **_profile_context(),
+        major=major,
+        major_label=major_label,
+        hero=block.get('hero', ''),
+        highlight=block.get('highlight', ''),
+    )
+
+
 @roadmap_blueprint.route(PREFIX)
 def roadmap():
     return redirect(url_for(LANDING_DEFAULT_NAME + '.onboarding'))
@@ -62,32 +56,41 @@ def roadmap():
 @roadmap_blueprint.route(CS_DEFAULT_NAME)
 def cs():
     log_visit(page="cs")
-    year_key = request.args.get('year', '').lower()
-    cs_data = ROADMAP_DATA['cs']
-    year_data = cs_data.get(year_key, cs_data['default'])
-    return render_template(
-        MAJOR_SPECIFIC_FOLDER_NAME + CS_DEFAULT_NAME + HTML_EXTENSION,
-        **_profile_context(),
-        hero=year_data['hero'],
-        highlight=year_data['highlight'],
-        classes=year_data['classes'],
-        programs=year_data['programs'],
-        resources=year_data['resources'],
-    )
+    return _render_roadmap_shell("cs")
 
 
 @roadmap_blueprint.route(ECON_DEFAULT_NAME)
 def econ():
     log_visit(page="econ")
-    year_key = request.args.get('year', '').lower()
-    econ_data = ROADMAP_DATA['econ']
-    year_data = econ_data.get(year_key, econ_data['default'])
-    return render_template(
-        MAJOR_SPECIFIC_FOLDER_NAME + ECON_DEFAULT_NAME + HTML_EXTENSION,
-        **_profile_context(),
-        hero=year_data['hero'],
-        highlight=year_data['highlight'],
-        classes=year_data['classes'],
-        programs=year_data['programs'],
-        resources=year_data['resources'],
-    )
+    return _render_roadmap_shell("econ")
+
+
+def _cache_key(profile: dict) -> str:
+    raw = json.dumps(profile, sort_keys=True)
+    return "roadmap_" + hashlib.sha256(raw.encode()).hexdigest()[:16]
+
+
+@roadmap_blueprint.route("personalize", methods=["POST"])
+def personalize_roadmap():
+    data = request.get_json(silent=True) or {}
+    major = data.get("major", "cs").lower()
+    if major not in ("cs", "econ"):
+        major = "cs"
+
+    year_key = normalize_year(data.get("year", ""))
+    profile = {
+        "major": major,
+        "year": year_key,
+        "career_goal": data.get("career_goal", ""),
+        "career_stage": data.get("career_stage", ""),
+        "priority": data.get("priority", ""),
+    }
+
+    ck = _cache_key(profile)
+    cached = session.get(ck)
+    if cached:
+        return jsonify(cached)
+
+    result = personalize(profile, major, year_key)
+    session[ck] = result
+    return jsonify(result)

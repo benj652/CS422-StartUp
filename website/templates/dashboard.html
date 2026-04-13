@@ -22,8 +22,7 @@
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
   <meta name="author" content="Creative Tim">
   <title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
-  <!-- Favicon -->
-  <link rel="icon" href="../static/img/brand/favicon.png" type="image/png">
+  <link rel="icon" href="{{ url_for('static', filename='img/BlueprintClearBgSquare.png') }}" type="image/png">
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <!-- Icons -->
@@ -71,8 +70,8 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Total Visits</h5>
-                      <span class="h2 font-weight-bold mb-0">{{total_visits}}</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Engagement Rate</h5>
+                      <span class="h2 font-weight-bold mb-0">{{engagement_rate}}%</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
@@ -93,8 +92,8 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Core Action Completion</h5>
-                      <span class="h2 font-weight-bold mb-0">{{core_actions}}%</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Activation Rate</h5>
+                      <span class="h2 font-weight-bold mb-0">{{activation_rate}}%</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
@@ -115,8 +114,8 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Activation Rate</h5>
-                      <span class="h2 font-weight-bold mb-0">{{activation_rate}} %</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Retention Rate</h5>
+                      <span class="h2 font-weight-bold mb-0">{{retention_rate}} %</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
