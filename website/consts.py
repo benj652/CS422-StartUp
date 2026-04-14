@@ -49,6 +49,12 @@ Dashboard Values
 """
 DASHBOARD_DEFAULT_NAME = "dashboard"
 
+"""
+Onboarding values
+"""
+
+ONBOARDING_BASE = "onboarding"
+
 
 """
 Roadmap Values

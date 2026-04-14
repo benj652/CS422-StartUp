@@ -8,10 +8,9 @@ from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 from flask_login import LoginManager
 
-from .consts import (
-    AUTH_BASE,
 
 from .consts import (
+    AUTH_BASE,
     CLOUD,
     DASHBOARD_DEFAULT_NAME,
     DATABASE_URL,
@@ -24,7 +23,6 @@ from .consts import (
     SQLALCHEMY_DATABASE_URI,
     SQLALCHEMY_TRACK_MODIFICATIONS,
     FALLBACK_SECRET_KEY,
-    FALLBACK_SQLALCHEMY_DATABASE_URI,
     CLOUD,
     DATABASE_URL,
     POSTGRES_SQL,
@@ -33,13 +31,6 @@ from .consts import (
 
 db = SQLAlchemy()
 
-
-from .views import (
-    dashboard_blueprint,
-    landing_blueprint,
-    roadmap_blueprint,
-    auth_blueprint,
-)
 
 
 load_dotenv()
@@ -65,8 +56,6 @@ def create_app():
 
     if not app.config[SQLALCHEMY_DATABASE_URI]:
         print(
-            "Warning: SQLALCHEMY_DATABASE_URI not set in environment. Using fallback value."
-        )
         # Build an absolute path to the local SQLite database to avoid
         # "unable to open database file" errors that can happen when the
         # working directory is different from the project root.
@@ -107,9 +96,8 @@ def create_app():
 
     db.init_app(app)
 
-    app.register_blueprint(
-        dashboard_blueprint, url_prefix=PREFIX + DASHBOARD_DEFAULT_NAME
-    )
+    from .views import auth_blueprint, dashboard_blueprint, landing_blueprint, roadmap_blueprint
+    app.register_blueprint(dashboard_blueprint, url_prefix=PREFIX + DASHBOARD_DEFAULT_NAME)
     app.register_blueprint(landing_blueprint, url_prefix=PREFIX)
     app.register_blueprint(roadmap_blueprint, url_prefix=PREFIX + ROADMAP_DEFAULT_NAME)
     app.register_blueprint(auth_blueprint, url_prefix=PREFIX + AUTH_BASE)
@@ -119,19 +107,16 @@ def create_app():
     from website.views.auth_views import init_oauth
 
     init_oauth(app)
-        import website.models.tracking  # pylint: disable=unused-import
-        from .views import dashboard_blueprint, landing_blueprint, roadmap_blueprint
 
-        app.register_blueprint(
-            dashboard_blueprint,
-            url_prefix=PREFIX + DASHBOARD_DEFAULT_NAME,
-        )
-        app.register_blueprint(landing_blueprint, url_prefix=PREFIX)
-        app.register_blueprint(
-            roadmap_blueprint,
-            url_prefix=PREFIX + ROADMAP_DEFAULT_NAME,
-        )
+    # app.register_blueprint(
+    #     dashboard_blueprint,
+    #     url_prefix=PREFIX + DASHBOARD_DEFAULT_NAME,
+    # )
+    # app.register_blueprint(landing_blueprint, url_prefix=PREFIX)
+    # app.register_blueprint(
+    #     roadmap_blueprint,
+    #     url_prefix=PREFIX + ROADMAP_DEFAULT_NAME,
+    # )
 
-        db.create_all()
 
     return app

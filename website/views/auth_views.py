@@ -13,6 +13,7 @@ from website.consts import (
     GOOGLE_USER_INFO_API,
     LOGIN_BASE,
     LOGOUT_BASE,
+    ONBOARDING_BASE,
     PREFIX,
     OAUTH_NAME,
     SERVER_METADATA_URL,
@@ -78,7 +79,7 @@ def authorize():
     )
 
     login_user(user)
-    return redirect(PREFIX)
+    return redirect(PREFIX + ONBOARDING_BASE)
 
 
 @auth_blueprint.route(PREFIX + LOGOUT_BASE)

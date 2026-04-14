@@ -45,10 +45,11 @@ def track_action():
     return jsonify({"status": "success"}), 200
 
 
-@landing_blueprint.route("/onboarding")
-def onboarding():
-    log_visit(page="onboarding.html")
-    return render_template("onboarding.html")
+# @landing_blueprint.route("/onboarding")
+# def onboarding():
+#     log_visit(page="onboarding.html")
+#     return render_template("onboarding.html")
+
 def _render_onboarding(*, questions, variant: str, ob_intro_sub: str):
     return render_template(
         "onboarding.html",
