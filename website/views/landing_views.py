@@ -1,9 +1,16 @@
 import random
 
 from flask import (
-    Blueprint, flash, jsonify, make_response, redirect,
-    render_template, request, url_for, session
+    Blueprint,
+    flash,
+    jsonify,
+    make_response,
+    redirect,
+    render_template,
+    request,
+    url_for,
 )
+from flask_login import login_required
 
 from ..consts import HTML_EXTENSION, LANDING_DEFAULT_NAME, PREFIX
 from ..models.tracking import Action, Feedback, User, db
@@ -31,6 +38,7 @@ def homepage():
 
 
 @landing_blueprint.route("/track-action", methods=["POST"])
+@login_required
 def track_action():
     """Logs non-form actions like button clicks."""
     data = request.get_json()
@@ -50,6 +58,7 @@ def track_action():
 #     log_visit(page="onboarding.html")
 #     return render_template("onboarding.html")
 
+
 def _render_onboarding(*, questions, variant: str, ob_intro_sub: str):
     return render_template(
         "onboarding.html",
@@ -60,6 +69,7 @@ def _render_onboarding(*, questions, variant: str, ob_intro_sub: str):
 
 
 @landing_blueprint.route("/onboarding")
+@login_required
 def onboarding():
     assigned = request.cookies.get(ONBOARDING_AB_COOKIE)
     if assigned not in ("variantA", "variantB"):
@@ -80,6 +90,7 @@ def onboarding():
 
 
 @landing_blueprint.route("/onboarding/variantA")
+@login_required
 def onboarding_variant_a():
     log_visit(page="onboarding_variant_a.html")
     return _render_onboarding(
@@ -90,6 +101,7 @@ def onboarding_variant_a():
 
 
 @landing_blueprint.route("/onboarding/variantB")
+@login_required
 def onboarding_variant_b():
     log_visit(page="onboarding_variant_b.html")
     return _render_onboarding(
@@ -100,19 +112,20 @@ def onboarding_variant_b():
 
 
 @landing_blueprint.route("/submit-info", methods=["POST"])
+@login_required
 def submit_info():
-    class_year = request.form.get('class_year')
-    major = request.form.get('major')
-    variant = (request.form.get('onboarding_variant') or 'full').lower()
-    if variant == 'short':
+    class_year = request.form.get("class_year")
+    major = request.form.get("major")
+    variant = (request.form.get("onboarding_variant") or "full").lower()
+    if variant == "short":
         career_goal = None
         career_stage = None
         priority = None
     else:
-        career_goal = request.form.get('career_goal')
-        career_stage = request.form.get('career_stage')
-        priority = request.form.get('priority')
-    user_uuid = request.cookies.get('tracking_id')
+        career_goal = request.form.get("career_goal")
+        career_stage = request.form.get("career_stage")
+        priority = request.form.get("priority")
+    user_uuid = request.cookies.get("tracking_id")
 
     if user_uuid:
         user = User.query.filter_by(uuid=user_uuid).first()
@@ -127,17 +140,17 @@ def submit_info():
             db.session.add(core_action)
             db.session.commit()
 
-            params: dict = {'year': class_year}
+            params: dict = {"year": class_year}
             if career_goal:
-                params['career_goal'] = career_goal
+                params["career_goal"] = career_goal
             if career_stage:
-                params['career_stage'] = career_stage
+                params["career_stage"] = career_stage
             if priority:
-                params['priority'] = priority
-            if major == 'cs':
-                return redirect(url_for('roadmap.cs', **params))
-            elif major == 'econ':
-                return redirect(url_for('roadmap.econ', **params))
+                params["priority"] = priority
+            if major == "cs":
+                return redirect(url_for("roadmap.cs", **params))
+            elif major == "econ":
+                return redirect(url_for("roadmap.econ", **params))
 
     return redirect(url_for("homepage.homepage"))
 
@@ -176,9 +189,10 @@ def submit_feedback():
     db.session.add(feedback)
     db.session.commit()
     print("Feedback ID:", feedback.id)
-    flash('Thank you for your feedback! We really appreciate it.')
-    return redirect(url_for('homepage.feedback_page'))
+    flash("Thank you for your feedback! We really appreciate it.")
+    return redirect(url_for("homepage.feedback_page"))
 
-@landing_blueprint.route('/roadmap_dashboard')
+
+@landing_blueprint.route("/roadmap_dashboard")
 def onboarding_tracker():
-    return render_template('roadmap_dashboard.html')
+    return render_template("roadmap_dashboard.html")

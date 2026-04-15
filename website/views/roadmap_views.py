@@ -2,6 +2,7 @@ import hashlib
 import json
 
 from flask import Blueprint, jsonify, redirect, render_template, request, session, url_for
+from flask_login import login_required
 
 from website.consts import (
     CS_DEFAULT_NAME,
@@ -49,17 +50,20 @@ def _render_roadmap_shell(major: str):
 
 
 @roadmap_blueprint.route(PREFIX)
+@login_required
 def roadmap():
     return redirect(url_for(LANDING_DEFAULT_NAME + '.onboarding'))
 
 
 @roadmap_blueprint.route(CS_DEFAULT_NAME)
+@login_required
 def cs():
     log_visit(page="cs")
     return _render_roadmap_shell("cs")
 
 
 @roadmap_blueprint.route(ECON_DEFAULT_NAME)
+@login_required
 def econ():
     log_visit(page="econ")
     return _render_roadmap_shell("econ")
@@ -71,6 +75,7 @@ def _cache_key(profile: dict) -> str:
 
 
 @roadmap_blueprint.route("personalize", methods=["POST"])
+@login_required
 def personalize_roadmap():
     data = request.get_json(silent=True) or {}
     major = data.get("major", "cs").lower()

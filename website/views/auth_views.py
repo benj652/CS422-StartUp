@@ -2,8 +2,8 @@ from flask import Blueprint, redirect, session, url_for
 
 from authlib.integrations.flask_client import OAuth
 from flask_login import login_required, login_user, logout_user
-from website.models.temp_user import TempUser
 import os
+from website import db
 
 
 from website.consts import (
@@ -22,6 +22,7 @@ from website.consts import (
     GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET,
 )
+from website.models.tracking import User
 
 
 oauth = OAuth()
@@ -74,9 +75,7 @@ def authorize():
     google_user = resp.json()
 
     # Create a TempUser instance from the Google user info
-    user = TempUser(
-        user_id=google_user["id"], email=google_user["email"], name=google_user["name"]
-    )
+    user = get_or_create_user(google_user)
 
     login_user(user)
     return redirect(PREFIX + ONBOARDING_BASE)
@@ -87,3 +86,29 @@ def authorize():
 def logout():
     logout_user()
     return redirect(PREFIX)
+
+
+def get_or_create_user(google_user):
+    """
+    Given a Google user info dict, get or create a corresponding TempUser.
+
+    This function is a placeholder for where you would implement logic to
+    check if the user already exists in your database and create them if not.
+    Since we're using TempUser which is not persisted, this will just create
+    a new TempUser every time.
+    """
+    user = User.query.filter_by(uuid=google_user["id"]).first()
+    if user:
+        return user
+    else:
+        new_user = User(
+            uuid=google_user["id"],
+            class_year=None,
+            major=None,
+            career_goal=None,
+            career_stage=None,
+            priority=None,
+        )
+        db.session.add(new_user)
+        db.session.commit()
+        return new_user
