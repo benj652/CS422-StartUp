@@ -1,6 +1,8 @@
+from flask_login import UserMixin
 from website import db
 
-class User(db.Model):
+
+class User(UserMixin, db.Model):
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
     # This stores the UUID for anonymous tracking until they "sign up" or identify
@@ -14,29 +16,31 @@ class User(db.Model):
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
 
     # Relationship to see user actions and visits easily
-    visits = db.relationship('Visit', backref='visitor', lazy=True)
-    actions = db.relationship('Action', backref='actor', lazy=True)
+    visits = db.relationship("Visit", backref="visitor", lazy=True)
+    actions = db.relationship("Action", backref="actor", lazy=True)
 
 
 class Visit(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     page = db.Column(db.String(200), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
     timestamp = db.Column(db.DateTime, default=db.func.current_timestamp())
 
     def __repr__(self):
         return f"<Visit id={self.id} page='{self.page}' timestamp={self.timestamp}>"
 
+
 class Action(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     atype = db.Column(db.String(200), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
     timestamp = db.Column(db.DateTime, default=db.func.current_timestamp())
+
 
 class Feedback(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
 
     def __repr__(self):
@@ -51,4 +55,6 @@ class Error(db.Model):
     timestamp = db.Column(db.DateTime, default=db.func.current_timestamp())
 
     def __repr__(self):
-        return f"<Error id={self.id} type='{self.error_type}' timestamp={self.timestamp}>"
+        return (
+            f"<Error id={self.id} type='{self.error_type}' timestamp={self.timestamp}>"
+        )

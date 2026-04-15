@@ -213,3 +213,37 @@ body {
   padding: 10px 24px;
   cursor: pointer;
 }
+
+.oauth-container {
+  margin-top: 16px;
+}
+
+.btn-oauth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  width: 100%;
+  max-width: 280px;
+
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+
+  background: white;
+  color: #333;
+  font-weight: 500;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.btn-oauth:hover {
+  background: #f5f5f5;
+}
+
+.oauth-icon {
+  width: 18px;
+  height: 18px;
+}

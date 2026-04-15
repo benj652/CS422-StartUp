@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+from flask_login import login_required
 from website import db
 from ..models import User, Visit, Action, Feedback
 from ..consts import DASHBOARD_DEFAULT_NAME, PREFIX, HTML_EXTENSION
@@ -9,6 +10,7 @@ from datetime import datetime, timedelta
 dashboard_blueprint = Blueprint(DASHBOARD_DEFAULT_NAME, __name__)
 
 @dashboard_blueprint.route(PREFIX)
+@login_required
 def dashboard():
     # 1. Top Card Metrics
     total_users = User.query.count()
