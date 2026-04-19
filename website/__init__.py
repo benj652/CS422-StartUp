@@ -5,6 +5,7 @@ import os
 from dotenv import load_dotenv
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 from .consts import (
     CLOUD,
@@ -61,7 +62,7 @@ def create_app():
     )
 
     db.init_app(app)
-
+    migrate = Migrate(app, db)
     with app.app_context():
         import website.models.tracking  # pylint: disable=unused-import
         from .views import dashboard_blueprint, landing_blueprint, roadmap_blueprint
