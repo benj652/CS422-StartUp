@@ -11,6 +11,8 @@ class User(db.Model):
     career_goal = db.Column(db.String(100))
     career_stage = db.Column(db.String(100))
     priority = db.Column(db.String(100))
+    # Persisted once at onboarding submit for A/B analysis (short vs full)
+    onboarding_variant = db.Column(db.String(32))
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
 
     # Relationship to see user actions and visits easily
@@ -31,6 +33,7 @@ class Action(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     atype = db.Column(db.String(200), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
+    detail = db.Column(db.JSON, nullable=True)
     timestamp = db.Column(db.DateTime, default=db.func.current_timestamp())
 
 class Feedback(db.Model):
