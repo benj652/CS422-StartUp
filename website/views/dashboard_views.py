@@ -1,12 +1,93 @@
-from flask import Blueprint, render_template
-from website import db
-from ..models import User, Visit, Action, Feedback
-from ..consts import DASHBOARD_DEFAULT_NAME, PREFIX, HTML_EXTENSION
+import csv
+from datetime import datetime, timedelta
+from io import StringIO
+
+from flask import Blueprint, Response, render_template
 from sqlalchemy import func
 from sqlalchemy.orm import aliased
-from datetime import datetime, timedelta
+
+from website import db
+from ..consts import DASHBOARD_DEFAULT_NAME, HTML_EXTENSION, PREFIX
+from ..models import Action, Feedback, User, Visit
+
+VARIANT_ROWS = (
+    ("Variant A (short onboarding)", "short"),
+    ("Variant B (full onboarding)", "full"),
+)
+
+
+def _count_roadmap_actions(onboarding_variant: str, atype: str) -> int:
+    n = (
+        db.session.query(func.count(Action.id))
+        .join(User, Action.user_id == User.id)
+        .filter(
+            User.onboarding_variant == onboarding_variant,
+            Action.atype == atype,
+        )
+        .scalar()
+    )
+    return int(n or 0)
+
+
+def _sum_roadmap_time_seconds(onboarding_variant: str) -> int:
+    rows = (
+        db.session.query(Action)
+        .join(User, Action.user_id == User.id)
+        .filter(
+            User.onboarding_variant == onboarding_variant,
+            Action.atype == "roadmap_time_on_page",
+        )
+        .all()
+    )
+    total = 0
+    for action in rows:
+        detail = action.detail
+        if not isinstance(detail, dict):
+            continue
+        sec = detail.get("seconds")
+        if sec is None:
+            continue
+        try:
+            total += int(sec)
+        except (TypeError, ValueError):
+            continue
+    return total
+
 
 dashboard_blueprint = Blueprint(DASHBOARD_DEFAULT_NAME, __name__)
+
+
+@dashboard_blueprint.route("/export-roadmap-metrics.csv")
+def export_roadmap_metrics_csv():
+    """CSV: one row per onboarding variant (A=short, B=full), roadmap interaction counts."""
+    buf = StringIO()
+    writer = csv.writer(buf)
+    writer.writerow(
+        [
+            "Variant",
+            "roadmap_checkbox",
+            "roadmap_link_click",
+            "roadmap_time_on_page_seconds_total",
+        ]
+    )
+    for label, variant_key in VARIANT_ROWS:
+        writer.writerow(
+            [
+                label,
+                _count_roadmap_actions(variant_key, "roadmap_checkbox"),
+                _count_roadmap_actions(variant_key, "roadmap_link_click"),
+                _sum_roadmap_time_seconds(variant_key),
+            ]
+        )
+    data = buf.getvalue()
+    return Response(
+        data,
+        mimetype="text/csv; charset=utf-8",
+        headers={
+            "Content-Disposition": "attachment; filename=roadmap_metrics_by_variant.csv",
+        },
+    )
+
 
 @dashboard_blueprint.route(PREFIX)
 def dashboard():
