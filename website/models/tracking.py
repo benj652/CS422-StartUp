@@ -1,5 +1,6 @@
 from website import db
 
+
 class User(db.Model):
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
@@ -11,6 +12,7 @@ class User(db.Model):
     career_goal = db.Column(db.String(100))
     career_stage = db.Column(db.String(100))
     priority = db.Column(db.String(100))
+    onboarding_variant = db.Column(db.String(50))
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
 
     # Relationship to see user actions and visits easily
@@ -27,11 +29,13 @@ class Visit(db.Model):
     def __repr__(self):
         return f"<Visit id={self.id} page='{self.page}' timestamp={self.timestamp}>"
 
+
 class Action(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     atype = db.Column(db.String(200), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
     timestamp = db.Column(db.DateTime, default=db.func.current_timestamp())
+
 
 class Feedback(db.Model):
     id = db.Column(db.Integer, primary_key=True)
