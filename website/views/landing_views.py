@@ -1,13 +1,15 @@
 import random
+from datetime import datetime, timedelta
 
 from flask import (
     Blueprint, flash, jsonify, make_response, redirect,
     render_template, request, url_for,
 )
+from sqlalchemy import func
 
 from ..consts import HTML_EXTENSION, LANDING_DEFAULT_NAME, PREFIX
 from ..models.tracking import Action, Feedback, User, db
-from ..onboarding_config import QUESTIONS, QUESTIONS_SHORT
+from ..onboarding_config import PRIORITY_LABELS, QUESTIONS, QUESTIONS_SHORT
 from ..utils import log_visit
 
 # A/B: which onboarding length the user sees
@@ -186,6 +188,97 @@ def submit_feedback():
     flash('Thank you for your feedback! We really appreciate it.')
     return redirect(url_for('homepage.feedback_page'))
 
+def variant_metrics(variant_key: str) -> dict:
+    """Return checkbox count, link-click count, and total time for one variant."""
+    checkboxes = int(
+        db.session.query(func.count(Action.id))
+        .join(User, Action.user_id == User.id)
+        .filter(User.onboarding_variant == variant_key, Action.atype == "roadmap_checkbox")
+        .scalar() or 0
+    )
+    clicks = int(
+        db.session.query(func.count(Action.id))
+        .join(User, Action.user_id == User.id)
+        .filter(User.onboarding_variant == variant_key, Action.atype == "roadmap_link_click")
+        .scalar() or 0
+    )
+    total_seconds = 0
+    for (detail,) in (
+        db.session.query(Action.detail)
+        .join(User, Action.user_id == User.id)
+        .filter(User.onboarding_variant == variant_key, Action.atype == "roadmap_time_on_page")
+        .all()
+    ):
+        if isinstance(detail, dict):
+            try:
+                total_seconds += int(detail.get("seconds", 0))
+            except (TypeError, ValueError):
+                pass
+    return {
+        "checkboxes": checkboxes,
+        "clicks": clicks,
+        "time_minutes": round(total_seconds / 60, 1),
+    }
+
+
+def _daily_time_minutes(variant_key: str, day) -> float:
+    """Sum roadmap_time_on_page seconds for one variant on one date, return minutes."""
+    total = 0
+    for (detail,) in (
+        db.session.query(Action.detail)
+        .join(User, Action.user_id == User.id)
+        .filter(
+            User.onboarding_variant == variant_key,
+            Action.atype == "roadmap_time_on_page",
+            func.date(Action.timestamp) == day,
+        )
+        .all()
+    ):
+        if isinstance(detail, dict):
+            try:
+                total += int(detail.get("seconds", 0))
+            except (TypeError, ValueError):
+                pass
+    return round(total / 60, 1)
+
+
 @landing_blueprint.route('/roadmap_dashboard')
 def onboarding_tracker():
-    return render_template('roadmap_dashboard.html')
+    variant_a = variant_metrics("short")
+    variant_b = variant_metrics("full")
+
+    priority_data = [
+        {"label": label, "count": User.query.filter_by(priority=key).count()}
+        for key, label in PRIORITY_LABELS.items()
+    ]
+
+    class_years = ["Freshman", "Sophomore", "Junior", "Senior"]
+    class_year_values = [User.query.filter_by(class_year=y).count() for y in class_years]
+
+    major_labels = ["Computer Science", "Economics"]
+    major_values = [
+        User.query.filter_by(major="cs").count(),
+        User.query.filter_by(major="econ").count(),
+    ]
+
+    today = datetime.utcnow().date()
+    chart_labels, daily_a, daily_b = [], [], []
+    for i in range(6, -1, -1):
+        day = today - timedelta(days=i)
+        chart_labels.append(day.strftime("%a %d"))
+        daily_a.append(_daily_time_minutes("short", day))
+        daily_b.append(_daily_time_minutes("full", day))
+
+    return render_template(
+        "roadmap_dashboard.html",
+        priority_data=priority_data,
+        variant_a=variant_a,
+        variant_b=variant_b,
+        class_year_labels=class_years,
+        class_year_values=class_year_values,
+        major_labels=major_labels,
+        major_values=major_values,
+        chart_labels=chart_labels,
+        daily_a=daily_a,
+        daily_b=daily_b,
+    )
