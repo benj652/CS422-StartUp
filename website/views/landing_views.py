@@ -1,17 +1,18 @@
-<<<<<<< HEAD
-from flask import Blueprint, flash, jsonify, render_template, session
-
-from flask_login import login_required
-=======
 import random
 from datetime import datetime, timedelta
 
 from flask import (
-    Blueprint, flash, jsonify, make_response, redirect,
-    render_template, request, url_for,
+    Blueprint,
+    flash,
+    jsonify,
+    make_response,
+    redirect,
+    render_template,
+    request,
+    url_for,
 )
+from flask_login import login_required
 from sqlalchemy import func
->>>>>>> e61db801b82aa9c1cd3d2ac4a65d6b4a7607613a
 
 from ..consts import HTML_EXTENSION, LANDING_DEFAULT_NAME, PREFIX
 from ..models.tracking import Action, Feedback, User, db
@@ -40,10 +41,6 @@ def homepage():
 
 @landing_blueprint.route("/track-action", methods=["POST"])
 def track_action():
-<<<<<<< HEAD
-    """Logs non-form actions like button clicks."""
-    data = request.get_json()
-=======
     """Logs non-form actions (clicks, roadmap metrics, etc.)."""
     data = request.get_json(silent=True)
     if not isinstance(data, dict):
@@ -58,28 +55,17 @@ def track_action():
     if detail is not None and not isinstance(detail, (dict, list)):
         return jsonify({"status": "error", "message": "detail must be an object or array"}), 400
 
->>>>>>> e61db801b82aa9c1cd3d2ac4a65d6b4a7607613a
     user_uuid = request.cookies.get("tracking_id")
 
     if user_uuid:
         user = User.query.filter_by(uuid=user_uuid).first()
         if user:
-<<<<<<< HEAD
-            new_action = Action(atype=data["atype"], user_id=user.id)
-=======
             new_action = Action(atype=atype, user_id=user.id, detail=detail)
->>>>>>> e61db801b82aa9c1cd3d2ac4a65d6b4a7607613a
             db.session.add(new_action)
             db.session.commit()
     return jsonify({"status": "success"}), 200
 
-<<<<<<< HEAD
 
-@landing_blueprint.route("/onboarding")
-def onboarding():
-    log_visit(page="onboarding.html")
-    return render_template("onboarding.html")
-=======
 def _render_onboarding(*, questions, variant: str, ob_intro_sub: str):
     return render_template(
         "onboarding.html",
@@ -127,32 +113,22 @@ def onboarding_variant_b():
         variant="full",
         ob_intro_sub="Five quick questions to personalise your path.",
     )
->>>>>>> e61db801b82aa9c1cd3d2ac4a65d6b4a7607613a
 
 
 @landing_blueprint.route("/submit-info", methods=["POST"])
 def submit_info():
-<<<<<<< HEAD
     class_year = request.form.get("class_year")
     major = request.form.get("major")
-    career_goal = request.form.get("career_goal")
-    career_stage = request.form.get("career_stage")
-    priority = request.form.get("priority")
-    user_uuid = request.cookies.get("tracking_id")
-=======
-    class_year = request.form.get('class_year')
-    major = request.form.get('major')
-    variant = (request.form.get('onboarding_variant') or 'full').lower()
-    if variant == 'short':
+    variant = (request.form.get("onboarding_variant") or "full").lower()
+    if variant == "short":
         career_goal = None
         career_stage = None
         priority = None
     else:
-        career_goal = request.form.get('career_goal')
-        career_stage = request.form.get('career_stage')
-        priority = request.form.get('priority')
-    user_uuid = request.cookies.get('tracking_id')
->>>>>>> e61db801b82aa9c1cd3d2ac4a65d6b4a7607613a
+        career_goal = request.form.get("career_goal")
+        career_stage = request.form.get("career_stage")
+        priority = request.form.get("priority")
+    user_uuid = request.cookies.get("tracking_id")
 
     if user_uuid:
         user = User.query.filter_by(uuid=user_uuid).first()
@@ -168,30 +144,17 @@ def submit_info():
             db.session.add(core_action)
             db.session.commit()
 
-<<<<<<< HEAD
-            params = dict(
-                year=class_year,
-                career_goal=career_goal,
-                career_stage=career_stage,
-                priority=priority,
-            )
+            params: dict = {"year": class_year}
+            if career_goal:
+                params["career_goal"] = career_goal
+            if career_stage:
+                params["career_stage"] = career_stage
+            if priority:
+                params["priority"] = priority
             if major == "cs":
                 return redirect(url_for("roadmap.cs", **params))
             elif major == "econ":
                 return redirect(url_for("roadmap.econ", **params))
-=======
-            params: dict = {'year': class_year}
-            if career_goal:
-                params['career_goal'] = career_goal
-            if career_stage:
-                params['career_stage'] = career_stage
-            if priority:
-                params['priority'] = priority
-            if major == 'cs':
-                return redirect(url_for('roadmap.cs', **params))
-            elif major == 'econ':
-                return redirect(url_for('roadmap.econ', **params))
->>>>>>> e61db801b82aa9c1cd3d2ac4a65d6b4a7607613a
 
     return redirect(url_for("homepage.homepage"))
 
@@ -201,12 +164,14 @@ def feedback_page():
     log_visit(page="feedback.html")
     return render_template("feedback.html")
 
+
 @landing_blueprint.route("/mentor")
 @login_required
 def mentor_page():
     """Serves the AI Mentor chat page (Google sign-in required)."""
     log_visit(page="mentor.html")
     return render_template("mentor.html")
+
 
 @landing_blueprint.route("/privacy")
 def privacy():
@@ -237,12 +202,9 @@ def submit_feedback():
     db.session.commit()
     print("Feedback ID:", feedback.id)
 
-<<<<<<< HEAD
     flash("Thank you for your feedback! We really appreciate it.")
     return redirect(url_for("homepage.feedback_page"))
-=======
-    flash('Thank you for your feedback! We really appreciate it.')
-    return redirect(url_for('homepage.feedback_page'))
+
 
 def variant_metrics(variant_key: str) -> dict:
     """Return checkbox count, link-click count, and total time for one variant."""
@@ -298,7 +260,7 @@ def _daily_time_minutes(variant_key: str, day) -> float:
     return round(total / 60, 1)
 
 
-@landing_blueprint.route('/roadmap_dashboard')
+@landing_blueprint.route("/roadmap_dashboard")
 def onboarding_tracker():
     variant_a = variant_metrics("short")
     variant_b = variant_metrics("full")
@@ -338,4 +300,3 @@ def onboarding_tracker():
         daily_a=daily_a,
         daily_b=daily_b,
     )
->>>>>>> e61db801b82aa9c1cd3d2ac4a65d6b4a7607613a
