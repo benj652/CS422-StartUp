@@ -96,7 +96,12 @@ def create_app():
     migrate = Migrate(app, db)
     with app.app_context():
         import website.models.tracking  # pylint: disable=unused-import
-        from .views import dashboard_blueprint, landing_blueprint, roadmap_blueprint
+        from .views import (
+            auth_blueprint,
+            dashboard_blueprint,
+            landing_blueprint,
+            roadmap_blueprint,
+        )
 
         app.register_blueprint(
             dashboard_blueprint,
@@ -107,6 +112,8 @@ def create_app():
             roadmap_blueprint,
             url_prefix=PREFIX + ROADMAP_DEFAULT_NAME,
         )
+        # Auth routes already include PREFIX in @route paths; no extra url_prefix.
+        app.register_blueprint(auth_blueprint)
 
         db.create_all()
 
