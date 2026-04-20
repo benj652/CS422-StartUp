@@ -11,7 +11,6 @@ from flask import (
     request,
     url_for,
 )
-from flask_login import login_required
 from sqlalchemy import func
 
 from ..consts import HTML_EXTENSION, LANDING_DEFAULT_NAME, PREFIX
@@ -233,9 +232,8 @@ def feedback_page():
 
 
 @landing_blueprint.route("/mentor")
-@login_required
 def mentor_page():
-    """Serves the AI Mentor chat page (Google sign-in required)."""
+    """Serves the AI Mentor chat page (open to all visitors)."""
     log_visit(page="mentor.html")
     user_uuid = request.cookies.get("tracking_id")
     tracker_user = (
