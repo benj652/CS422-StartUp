@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>AI Mentor | Blueprint.edu</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/BlueprintClearBgSquare.png') }}" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -21,7 +22,7 @@
 
     <header class="site-header mentor-header">
       <a class="logo" href="{{ url_for('homepage.homepage') }}">
-        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Blueprint Career Roadmaps" class="logo-img" />
+        <img src="{{ url_for('static', filename='img/BlueprintClearBg.png') }}" alt="Blueprint Career Roadmaps" class="logo-img" />
       </a>
       <div class="site-header-actions">
         <a class="btn-ai-mentor" href="{{ url_for('homepage.mentor_page') }}" aria-current="page">AI Mentor</a>
