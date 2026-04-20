@@ -66,7 +66,7 @@ body.mentor-page {
   display: grid;
   grid-template-columns: 280px 1fr;
   gap: 24px;
-  padding: 24px;
+  padding-top: 5px;
   position: relative;
   z-index: 1;
 }
