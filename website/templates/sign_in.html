@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign in | Blueprint.edu</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/BlueprintClearBgSquare.png') }}" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sign_in.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}" />
+  </head>
+  <body class="sign-in-page">
+    <header class="site-header">
+      <a class="logo" href="{{ url_for('homepage.homepage') }}">
+        <img
+          src="{{ url_for('static', filename='img/BlueprintClearBg.png') }}"
+          alt="Blueprint Career Roadmaps"
+          class="logo-img"
+        />
+      </a>
+    </header>
+
+    <main class="sign-in-main">
+      <div class="sign-in-wrap">
+        <p class="eyebrow">Account</p>
+        <h1 class="sign-in-title">Sign in with Google</h1>
+        <p class="sign-in-subtitle">
+          Continue to access this feature. You can return to the home page anytime if you prefer not to sign in.
+        </p>
+
+        <div class="sign-in-card">
+          <a class="btn-sign-in-google" href="{{ url_for('auth.google_login') }}">
+            <img
+              src="https://developers.google.com/identity/images/g-logo.png"
+              alt=""
+              width="20"
+              height="20"
+              class="sign-in-google-icon"
+            />
+            Continue with Google
+          </a>
+          <a class="sign-in-back-home" href="{{ url_for('auth.cancel_login') }}">Back to home</a>
+        </div>
+      </div>
+    </main>
+
+    {% include "footer.html" %}
+  </body>
+</html>

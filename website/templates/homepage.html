@@ -27,7 +27,10 @@
       <a class="logo" href="#">
         <img src="{{ url_for('static', filename='img/BlueprintClearBg.png') }}" alt="Blueprint Career Roadmaps" class="logo-img" />
       </a>
-      <a class="btn-feedback" href="{{ url_for('homepage.feedback_page') }}">Feedback</a>
+      <div class="site-header-actions">
+        <a class="btn-ai-mentor" href="{{ url_for('homepage.mentor_page') }}">AI Mentor</a>
+        <a class="btn-feedback" href="{{ url_for('homepage.feedback_page') }}">Feedback</a>
+      </div>
     </header>
 
     <!-- Hero -->
@@ -40,6 +43,17 @@
           you want — tailored to your major and year.
         </p>
         <a id="get-started-btn" class="btn-cta" href="{{ url_for('homepage.onboarding') }}">Get Started</a>
+
+<div class="oauth-container">
+  <button class="btn-oauth" id="google-oauth-btn">
+    <img
+      src="https://developers.google.com/identity/images/g-logo.png"
+      alt="Google logo"
+      class="oauth-icon"
+    />
+    Continue with Google
+  </button>
+</div>
       </div>
 
       <div class="hero-visual">

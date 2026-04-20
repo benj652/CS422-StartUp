@@ -2,14 +2,27 @@ import random
 from datetime import datetime, timedelta
 
 from flask import (
-    Blueprint, flash, jsonify, make_response, redirect,
-    render_template, request, url_for,
+    Blueprint,
+    flash,
+    jsonify,
+    make_response,
+    redirect,
+    render_template,
+    request,
+    url_for,
 )
 from sqlalchemy import func
 
 from ..consts import HTML_EXTENSION, LANDING_DEFAULT_NAME, PREFIX
 from ..models.tracking import Action, Feedback, User, db
-from ..onboarding_config import PRIORITY_LABELS, QUESTIONS, QUESTIONS_SHORT
+from ..onboarding_config import (
+    CAREER_GOAL_LABELS,
+    CAREER_STAGE_LABELS,
+    MAJOR_LABELS,
+    PRIORITY_LABELS,
+    QUESTIONS,
+    QUESTIONS_SHORT,
+)
 from ..utils import log_visit
 
 # A/B: which onboarding length the user sees
@@ -19,19 +32,80 @@ _ONBOARDING_AB_MAX_AGE = 30 * 24 * 60 * 60
 
 landing_blueprint = Blueprint(LANDING_DEFAULT_NAME, __name__)
 
+_PROFILE_MISSING = "Not set yet"
+_PROFILE_SHORT_CAREER = (
+    "Complete the full onboarding path to see your career goal and stage here."
+)
+
+
+def _mentor_profile_context(tracker_user):
+    """
+    Sidebar labels from the tracking User row (onboarding submit).
+
+    Class year and major exist for both A/B variants; career goal and stage
+    are only stored for the full (variant B) flow.
+    """
+    if not tracker_user:
+        return {
+            "profile_class_year": _PROFILE_MISSING,
+            "profile_major": _PROFILE_MISSING,
+            "profile_career_path": _PROFILE_MISSING,
+        }
+
+    class_year = tracker_user.class_year or _PROFILE_MISSING
+
+    major_raw = tracker_user.major
+    if major_raw:
+        major_display = MAJOR_LABELS.get(
+            major_raw, major_raw.replace("_", " ").title()
+        )
+    else:
+        major_display = _PROFILE_MISSING
+
+    variant = (tracker_user.onboarding_variant or "").lower()
+    has_career_fields = bool(
+        tracker_user.career_goal or tracker_user.career_stage
+    )
+    if variant == "full" or has_career_fields:
+        parts = []
+        if tracker_user.career_goal:
+            parts.append(
+                CAREER_GOAL_LABELS.get(
+                    tracker_user.career_goal,
+                    tracker_user.career_goal.replace("_", " ").title(),
+                )
+            )
+        if tracker_user.career_stage:
+            parts.append(
+                CAREER_STAGE_LABELS.get(
+                    tracker_user.career_stage,
+                    tracker_user.career_stage.replace("_", " ").title(),
+                )
+            )
+        career_path = " — ".join(parts) if parts else _PROFILE_MISSING
+    else:
+        career_path = _PROFILE_SHORT_CAREER
+
+    return {
+        "profile_class_year": class_year,
+        "profile_major": major_display,
+        "profile_career_path": career_path,
+    }
+
 
 @landing_blueprint.route(PREFIX)
 def homepage():
     new_uuid = log_visit(page="homepage.html")
     response = make_response(render_template(LANDING_DEFAULT_NAME + HTML_EXTENSION))
-    
+
     if new_uuid:
         # Set cookie to expire in 30 days
-        response.set_cookie('tracking_id', new_uuid, max_age=30*24*60*60)
-    
+        response.set_cookie("tracking_id", new_uuid, max_age=30 * 24 * 60 * 60)
+
     return response
 
-@landing_blueprint.route('/track-action', methods=['POST'])
+
+@landing_blueprint.route("/track-action", methods=["POST"])
 def track_action():
     """Logs non-form actions (clicks, roadmap metrics, etc.)."""
     data = request.get_json(silent=True)
@@ -56,6 +130,7 @@ def track_action():
             db.session.add(new_action)
             db.session.commit()
     return jsonify({"status": "success"}), 200
+
 
 def _render_onboarding(*, questions, variant: str, ob_intro_sub: str):
     return render_template(
@@ -106,20 +181,20 @@ def onboarding_variant_b():
     )
 
 
-@landing_blueprint.route('/submit-info', methods=['POST'])
+@landing_blueprint.route("/submit-info", methods=["POST"])
 def submit_info():
-    class_year = request.form.get('class_year')
-    major = request.form.get('major')
-    variant = (request.form.get('onboarding_variant') or 'full').lower()
-    if variant == 'short':
+    class_year = request.form.get("class_year")
+    major = request.form.get("major")
+    variant = (request.form.get("onboarding_variant") or "full").lower()
+    if variant == "short":
         career_goal = None
         career_stage = None
         priority = None
     else:
-        career_goal = request.form.get('career_goal')
-        career_stage = request.form.get('career_stage')
-        priority = request.form.get('priority')
-    user_uuid = request.cookies.get('tracking_id')
+        career_goal = request.form.get("career_goal")
+        career_stage = request.form.get("career_stage")
+        priority = request.form.get("priority")
+    user_uuid = request.cookies.get("tracking_id")
 
     if user_uuid:
         user = User.query.filter_by(uuid=user_uuid).first()
@@ -131,50 +206,62 @@ def submit_info():
             user.priority = priority
             user.onboarding_variant = "short" if variant == "short" else "full"
 
-            core_action = Action(atype='roadmap_submit', user_id=user.id)
+            core_action = Action(atype="roadmap_submit", user_id=user.id)
             db.session.add(core_action)
             db.session.commit()
 
-            params: dict = {'year': class_year}
+            params: dict = {"year": class_year}
             if career_goal:
-                params['career_goal'] = career_goal
+                params["career_goal"] = career_goal
             if career_stage:
-                params['career_stage'] = career_stage
+                params["career_stage"] = career_stage
             if priority:
-                params['priority'] = priority
-            if major == 'cs':
-                return redirect(url_for('roadmap.cs', **params))
-            elif major == 'econ':
-                return redirect(url_for('roadmap.econ', **params))
+                params["priority"] = priority
+            if major == "cs":
+                return redirect(url_for("roadmap.cs", **params))
+            elif major == "econ":
+                return redirect(url_for("roadmap.econ", **params))
 
-    return redirect(url_for('homepage.homepage'))
+    return redirect(url_for("homepage.homepage"))
 
 
-@landing_blueprint.route('/feedback')
+@landing_blueprint.route("/feedback")
 def feedback_page():
     log_visit(page="feedback.html")
-    return render_template('feedback.html')
+    return render_template("feedback.html")
 
 
-@landing_blueprint.route('/privacy')
+@landing_blueprint.route("/mentor")
+def mentor_page():
+    """Serves the AI Mentor chat page (open to all visitors)."""
+    log_visit(page="mentor.html")
+    user_uuid = request.cookies.get("tracking_id")
+    tracker_user = (
+        User.query.filter_by(uuid=user_uuid).first() if user_uuid else None
+    )
+    profile = _mentor_profile_context(tracker_user)
+    return render_template("mentor.html", **profile)
+
+
+@landing_blueprint.route("/privacy")
 def privacy():
-    return render_template('privacy.html')
+    return render_template("privacy.html")
 
 
-@landing_blueprint.route('/cookies')
+@landing_blueprint.route("/cookies")
 def cookie_policy():
-    return render_template('cookies.html')
+    return render_template("cookies.html")
 
 
-@landing_blueprint.route('/feedback', methods=['POST'])
+@landing_blueprint.route("/feedback", methods=["POST"])
 def submit_feedback():
-    content = request.form.get('feedback_content', '').strip()
+    content = request.form.get("feedback_content", "").strip()
     if not content:
-        flash('Please enter your feedback before submitting.')
-        return redirect(url_for('homepage.feedback_page'))
+        flash("Please enter your feedback before submitting.")
+        return redirect(url_for("homepage.feedback_page"))
 
     user_id = None
-    user_uuid = request.cookies.get('tracking_id')
+    user_uuid = request.cookies.get("tracking_id")
     if user_uuid:
         user = User.query.filter_by(uuid=user_uuid).first()
         if user:
@@ -185,8 +272,9 @@ def submit_feedback():
     db.session.commit()
     print("Feedback ID:", feedback.id)
 
-    flash('Thank you for your feedback! We really appreciate it.')
-    return redirect(url_for('homepage.feedback_page'))
+    flash("Thank you for your feedback! We really appreciate it.")
+    return redirect(url_for("homepage.feedback_page"))
+
 
 def variant_metrics(variant_key: str) -> dict:
     """Return checkbox count, link-click count, and total time for one variant."""
@@ -242,7 +330,7 @@ def _daily_time_minutes(variant_key: str, day) -> float:
     return round(total / 60, 1)
 
 
-@landing_blueprint.route('/roadmap_dashboard')
+@landing_blueprint.route("/roadmap_dashboard")
 def onboarding_tracker():
     variant_a = variant_metrics("short")
     variant_b = variant_metrics("full")

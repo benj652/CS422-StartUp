@@ -4,10 +4,12 @@ import os
 
 from dotenv import load_dotenv
 from flask import Flask
+from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
 from .consts import (
+    AUTH_BASE,
     CLOUD,
     DASHBOARD_DEFAULT_NAME,
     DATABASE_URL,
@@ -22,6 +24,15 @@ from .consts import (
 )
 
 db = SQLAlchemy()
+
+
+from .views import (
+    dashboard_blueprint,
+    landing_blueprint,
+    roadmap_blueprint,
+    auth_blueprint,
+)
+
 
 load_dotenv()
 
@@ -61,11 +72,36 @@ def create_app():
         SQLALCHEMY_TRACK_MODIFICATIONS
     )
 
+    # Initialize the LoginManager
+    login_manager = LoginManager()
+    login_manager.init_app(app)
+    login_manager.login_view = f"{AUTH_BASE}.login"
+    login_manager.login_message = None
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        """
+        Load a user by ID for Flask-Login.
+
+        Since we are not persisting users in the database, this function
+        will create a temporary user object with the given user_id.
+        """
+        from website.models.temp_user import (
+            TempUser,
+        )
+
+        return TempUser(user_id=user_id, email=None, name=None)
+
     db.init_app(app)
     migrate = Migrate(app, db)
     with app.app_context():
         import website.models.tracking  # pylint: disable=unused-import
-        from .views import dashboard_blueprint, landing_blueprint, roadmap_blueprint
+        from .views import (
+            auth_blueprint,
+            dashboard_blueprint,
+            landing_blueprint,
+            roadmap_blueprint,
+        )
 
         app.register_blueprint(
             dashboard_blueprint,
@@ -76,7 +112,13 @@ def create_app():
             roadmap_blueprint,
             url_prefix=PREFIX + ROADMAP_DEFAULT_NAME,
         )
+        # Auth routes already include PREFIX in @route paths; no extra url_prefix.
+        app.register_blueprint(auth_blueprint)
 
         db.create_all()
+
+    from website.views.auth_views import init_oauth
+
+    init_oauth(app)
 
     return app
