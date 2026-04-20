@@ -16,7 +16,14 @@ from sqlalchemy import func
 
 from ..consts import HTML_EXTENSION, LANDING_DEFAULT_NAME, PREFIX
 from ..models.tracking import Action, Feedback, User, db
-from ..onboarding_config import PRIORITY_LABELS, QUESTIONS, QUESTIONS_SHORT
+from ..onboarding_config import (
+    CAREER_GOAL_LABELS,
+    CAREER_STAGE_LABELS,
+    MAJOR_LABELS,
+    PRIORITY_LABELS,
+    QUESTIONS,
+    QUESTIONS_SHORT,
+)
 from ..utils import log_visit
 
 # A/B: which onboarding length the user sees
@@ -25,6 +32,66 @@ _ONBOARDING_AB_MAX_AGE = 30 * 24 * 60 * 60
 
 
 landing_blueprint = Blueprint(LANDING_DEFAULT_NAME, __name__)
+
+_PROFILE_MISSING = "Not set yet"
+_PROFILE_SHORT_CAREER = (
+    "Complete the full onboarding path to see your career goal and stage here."
+)
+
+
+def _mentor_profile_context(tracker_user):
+    """
+    Sidebar labels from the tracking User row (onboarding submit).
+
+    Class year and major exist for both A/B variants; career goal and stage
+    are only stored for the full (variant B) flow.
+    """
+    if not tracker_user:
+        return {
+            "profile_class_year": _PROFILE_MISSING,
+            "profile_major": _PROFILE_MISSING,
+            "profile_career_path": _PROFILE_MISSING,
+        }
+
+    class_year = tracker_user.class_year or _PROFILE_MISSING
+
+    major_raw = tracker_user.major
+    if major_raw:
+        major_display = MAJOR_LABELS.get(
+            major_raw, major_raw.replace("_", " ").title()
+        )
+    else:
+        major_display = _PROFILE_MISSING
+
+    variant = (tracker_user.onboarding_variant or "").lower()
+    has_career_fields = bool(
+        tracker_user.career_goal or tracker_user.career_stage
+    )
+    if variant == "full" or has_career_fields:
+        parts = []
+        if tracker_user.career_goal:
+            parts.append(
+                CAREER_GOAL_LABELS.get(
+                    tracker_user.career_goal,
+                    tracker_user.career_goal.replace("_", " ").title(),
+                )
+            )
+        if tracker_user.career_stage:
+            parts.append(
+                CAREER_STAGE_LABELS.get(
+                    tracker_user.career_stage,
+                    tracker_user.career_stage.replace("_", " ").title(),
+                )
+            )
+        career_path = " — ".join(parts) if parts else _PROFILE_MISSING
+    else:
+        career_path = _PROFILE_SHORT_CAREER
+
+    return {
+        "profile_class_year": class_year,
+        "profile_major": major_display,
+        "profile_career_path": career_path,
+    }
 
 
 @landing_blueprint.route(PREFIX)
@@ -170,7 +237,12 @@ def feedback_page():
 def mentor_page():
     """Serves the AI Mentor chat page (Google sign-in required)."""
     log_visit(page="mentor.html")
-    return render_template("mentor.html")
+    user_uuid = request.cookies.get("tracking_id")
+    tracker_user = (
+        User.query.filter_by(uuid=user_uuid).first() if user_uuid else None
+    )
+    profile = _mentor_profile_context(tracker_user)
+    return render_template("mentor.html", **profile)
 
 
 @landing_blueprint.route("/privacy")
