@@ -1,0 +1,728 @@
+<!--
+=========================================================
+* Argon Dashboard - v1.2.0
+=========================================================
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
+  <meta name="author" content="Creative Tim">
+  <title>Onboarding Tracker</title>
+
+  <link rel="icon" href="../static/img/brand/favicon.png" type="image/png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <link rel="stylesheet" href="../static/css/nucleo.css" type="text/css">
+  <link rel="stylesheet" href="../static/css/all.min.css" type="text/css">
+  <link rel="stylesheet" href="../static/css/argon.css?v=1.2.0" type="text/css">
+  <link rel="stylesheet" href="../static/css/roadmap_dashboard.css" type="text/css">
+</head>
+
+<body>
+  <div class="main-content" id="panel" style="margin-left: 0;">
+    <div class="header bg-dark pb-6">
+      <div class="container-fluid">
+        <div class="header-body">
+          <!-- <h1 class="pt-4 text-white">What year are you?</h1>
+          <div class="row pt-2 justify-content-center">
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Freshman</h5>
+                      <span class="h2 font-weight-bold mb-0">842 clicks</span>
+                    </div>
+                    
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Sophmore</h5>
+                      <span class="h2 font-weight-bold mb-0">300 clicks</span>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 4.21%</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Junior</h5>
+                      <span class="h2 font-weight-bold mb-0">281 clicks</span>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 2.64%</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Senior</h5>
+                      <span class="h2 font-weight-bold mb-0">300 clicks</span>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 1.92%</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div> 
+
+          <h1 class="pt-4 text-white">What's your major?<h1>
+          <div class="row pt-2 justify-content-center">
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Computer Science</h5>
+                      <span class="h2 font-weight-bold mb-0">134 clicks</span>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 2.64%</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Economics </h5>
+                      <span class="h2 font-weight-bold mb-0">189 clicks</span>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 1.92%</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>  
+
+          <h1 class="pt-4 text-white">Layout A </h1>
+          <div class="row pt-2 justify-content-center">
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0"> Number of Checkboxes Ticked</h5>
+                      <span class="h2 font-weight-bold mb-0">842 clicks</span>
+                    </div>
+                    
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Number of Links Clicked</h5>
+                      <span class="h2 font-weight-bold mb-0">300 clicks</span>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 4.21%</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Total amount of time spent</h5>
+                      <span class="h2 font-weight-bold mb-0">281 minutes</span>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 2.64%</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h1 class="pt-4 text-white">Layout B </h1>
+          <div class="row pt-2 justify-content-center">
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0"> Number of Checkboxes Ticked</h5>
+                      <span class="h2 font-weight-bold mb-0">842 clicks</span>
+                    </div>
+                    
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Number of Links Clicked</h5>
+                      <span class="h2 font-weight-bold mb-0">300 clicks</span>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 4.21%</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Total amount of time spent</h5>
+                      <span class="h2 font-weight-bold mb-0">281 minutes</span>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 2.64%</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h1 class="pt-2 text-white">What's your career goal?</h1>
+          <div class="row pt-2 justify-content-center">
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Software Engineer</h5>
+                      <span class="h2 font-weight-bold mb-0">842 clicks</span>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Data Scientist/ Analyst</h5>
+                      <span class="h2 font-weight-bold mb-0">842 clicks</span>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Product Manager</h5>
+                      <span class="h2 font-weight-bold mb-0">842 clicks</span>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div> 
+          
+          <div class="row pt-2 justify-content-center">
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Finance/Banking</h5>
+                      <span class="h2 font-weight-bold mb-0">842 clicks</span>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 4.21%</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Consulting</h5>
+                      <span class="h2 font-weight-bold mb-0">842 clicks</span>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 2.64%</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Still Exploring</h5>
+                      <span class="h2 font-weight-bold mb-0">842 clicks</span>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 1.92%</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h1 class="pt-2 text-white">Where are you in your career journey?</h1>
+          <div class="row pt-2 justify-content-center">
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">No internship yet</h5>
+                      <span class="h2 font-weight-bold mb-0">842 clicks</span>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Currently Applying</h5>
+                      <span class="h2 font-weight-bold mb-0">842 clicks</span>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0"> Had 1+ Internships</h5>
+                      <span class="h2 font-weight-bold mb-0">842 clicks</span>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Have a fulltime offer</h5>
+                      <span class="h2 font-weight-bold mb-0">842 clicks</span>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 1.92%</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <h1 class="pt-2 text-white">What matters most to you right now?</h1>
+          <div class="row pt-2 justify-content-center">
+            {% for p in priority_data %}
+            <div class="col-xl-3 col-md-6">
+              <div class="card card-stats">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">{{ p.label }}</h5>
+                      <span class="h2 font-weight-bold mb-0">{{ p.count }} users</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="d-flex justify-content-end">
+            <a
+              href="{{ url_for('dashboard.export_roadmap_metrics_csv') }}"
+              class="btn btn-light mb-0"
+            >Download CSV</a>
+          </div>
+           
+        </div>
+      </div>
+    </div>
+  
+    <div class="container-fluid mt--6 pt-5">
+      <div class="row">
+        <div class="col-xl-8">
+          <div class="card bg-white">
+            <div class="card-header bg-transparent">
+              <div class="row align-items-center">
+                 <table class="table text-black">
+                  <thead>
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col">Link Clicks</th>
+                      <th scope="col">Checkboxes</th>
+                      <th scope="col">Time Spent</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Variant A (short onboarding)</th>
+                      <td>{{ variant_a.clicks }}</td>
+                      <td>{{ variant_a.checkboxes }}</td>
+                      <td>{{ variant_a.time_minutes }} min</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Variant B (full onboarding)</th>
+                      <td>{{ variant_b.clicks }}</td>
+                      <td>{{ variant_b.checkboxes }}</td>
+                      <td>{{ variant_b.time_minutes }} min</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-4">
+          <div class="card">
+            <div class="card-header bg-transparent">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h6 class="text-uppercase text-muted ls-1 mb-1">Student Breakdown</h6>
+                  <h5 class="h3 mb-0">Class Year</h5>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="chart">
+                <canvas id="chart-bars" class="chart-canvas"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-8">
+          <div class="card bg-dark">
+            <div class="card-header bg-transparent">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h6 class="text-light text-uppercase ls-1 mb-1">Overview</h6>
+                  <h5 class="h3 text-white mb-0">Time Spent — Variant A vs Variant B</h5>
+                </div>
+                <div class="col">
+                  <ul class="nav nav-pills justify-content-end">
+                    <li class="nav-item mr-2 mr-md-0">
+                      <a href="#" class="nav-link py-2 px-3 active">
+                        <span class="d-none d-md-block">3 Week Comparison</span>
+                        <span class="d-md-none">3W</span>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link py-2 px-3">
+                        <span class="d-none d-md-block">This Week</span>
+                        <span class="d-md-none">1W</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="chart">
+                <canvas id="chart-clicks" class="chart-canvas"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+         <div class="col-xl-4">
+          <div class="card">
+            <div class="card-header bg-transparent">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h6 class="text-uppercase text-muted ls-1 mb-1">Student Breakdown</h6>
+                  <h5 class="h3 mb-0">Major</h5>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="chart">
+                <canvas id="chart2" class="chart-canvas"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="../static/js/jquery.min.js"></script>
+  <script src="../static/js/bootstrap.bundle.min.js"></script>
+  <script src="../static/js/js.cookie.js"></script>
+  <script src="../static/js/jquery.scrollbar.min.js"></script>
+  <script src="../static/js/jquery-scrollLock.min.js"></script>
+  <script src="../static/js/Chart.min.js"></script>
+  <script src="../static/js/Chart.extension.js"></script>
+  <script src="../static/js/argon.js?v=1.2.0"></script>
+
+  <script>
+    // // Line chart dummy data
+    // var ctx1 = document.getElementById('chart-sales-dark').getContext('2d');
+    // new Chart(ctx1, {
+    //   type: 'line',
+    //   data: {
+    //     labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    //     datasets: [
+    //       {
+    //         label: 'Total',
+    //         data: [32, 41, 37, 48, 59, 55, 64],
+    //         borderColor: '#5e72e4',
+    //         backgroundColor: 'transparent',
+    //         borderWidth: 3
+    //       },
+    //       {
+    //         label: 'Layout A ',
+    //         data: [18, 22, 20, 27, 31, 30, 35],
+    //         borderColor: '#2dce89',
+    //         backgroundColor: 'transparent',
+    //         borderWidth: 3
+    //       },
+    //       {
+    //         label: 'Layout B',
+    //         data: [14, 19, 17, 21, 28, 25, 29],
+    //         borderColor: '#fb6340',
+    //         backgroundColor: 'transparent',
+    //         borderWidth: 3
+    //       }
+    //     ]
+    //   },
+    //   options: {
+    //     responsive: true,
+    //     maintainAspectRatio: false,
+    //     legend: {
+    //       labels: {
+    //         fontColor: '#ffffff'
+    //       }
+    //     },
+    //     scales: {
+    //       yAxes: [{
+    //         ticks: {
+    //           beginAtZero: true,
+    //           fontColor: '#ffffff'
+    //         },
+    //         gridLines: {
+    //           color: 'rgba(255,255,255,0.1)'
+    //         }
+    //       }],
+    //       xAxes: [{
+    //         ticks: {
+    //           fontColor: '#ffffff'
+    //         },
+    //         gridLines: {
+    //           color: 'rgba(255,255,255,0.05)'
+    //         }
+    //       }]
+    //     }
+    //   }
+    // });
+
+    var dailyA = {{ daily_a | tojson }};
+    var dailyB = {{ daily_b | tojson }};
+    var dailyTotal = dailyA.map(function(v, i) { return +(v + dailyB[i]).toFixed(1); });
+
+    var ctx1 = document.getElementById('chart-clicks').getContext('2d');
+    new Chart(ctx1, {
+      type: 'line',
+      data: {
+        labels: {{ chart_labels | tojson }},
+        datasets: [
+          {
+            label: 'Total',
+            data: dailyTotal,
+            borderColor: '#5e72e4',
+            backgroundColor: 'transparent',
+            borderWidth: 3
+          },
+          {
+            label: 'Variant A (short)',
+            data: dailyA,
+            borderColor: '#2dce89',
+            backgroundColor: 'transparent',
+            borderWidth: 3
+          },
+          {
+            label: 'Variant B (full)',
+            data: dailyB,
+            borderColor: '#fb6340',
+            backgroundColor: 'transparent',
+            borderWidth: 3
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+          labels: { fontColor: '#ffffff' }
+        },
+        scales: {
+          yAxes: [{
+            ticks: { beginAtZero: true, fontColor: '#ffffff' },
+            gridLines: { color: 'rgba(255,255,255,0.1)' },
+            scaleLabel: { display: true, labelString: 'Minutes', fontColor: '#ffffff' }
+          }],
+          xAxes: [{
+            ticks: { fontColor: '#ffffff' },
+            gridLines: { color: 'rgba(255,255,255,0.05)' }
+          }]
+        }
+      }
+    });
+
+    var ctx2 = document.getElementById('chart-bars').getContext('2d');
+    new Chart(ctx2, {
+      type: 'bar',
+      data: {
+        labels: {{ class_year_labels | tojson }},
+        datasets: [{
+          label: 'Students',
+          data: {{ class_year_values | tojson }},
+          backgroundColor: ['#5e72e4', '#2dce89', '#fb6340', '#11cdef']
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: { display: false },
+        scales: {
+          yAxes: [{ ticks: { beginAtZero: true } }]
+        }
+      }
+    });
+
+    var ctx3 = document.getElementById('chart2').getContext('2d');
+    new Chart(ctx3, {
+      type: 'bar',
+      data: {
+        labels: {{ major_labels | tojson }},
+        datasets: [{
+          label: 'Students',
+          data: {{ major_values | tojson }},
+          backgroundColor: ['#5e72e4', '#2dce89']
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: { display: false },
+        scales: {
+          yAxes: [{ ticks: { beginAtZero: true } }]
+        }
+      }
+    });
+  </script>
+</body>
+</html>

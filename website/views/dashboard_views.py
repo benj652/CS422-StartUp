@@ -1,11 +1,93 @@
-from flask import Blueprint, render_template
-from website import db
-from ..models import User, Visit, Action, Feedback
-from ..consts import DASHBOARD_DEFAULT_NAME, PREFIX, HTML_EXTENSION
-from sqlalchemy import func
+import csv
 from datetime import datetime, timedelta
+from io import StringIO
+
+from flask import Blueprint, Response, render_template
+from sqlalchemy import func
+from sqlalchemy.orm import aliased
+
+from website import db
+from ..consts import DASHBOARD_DEFAULT_NAME, HTML_EXTENSION, PREFIX
+from ..models import Action, Feedback, User, Visit
+
+VARIANT_ROWS = (
+    ("Variant A (short onboarding)", "short"),
+    ("Variant B (full onboarding)", "full"),
+)
+
+
+def _count_roadmap_actions(onboarding_variant: str, atype: str) -> int:
+    n = (
+        db.session.query(func.count(Action.id))
+        .join(User, Action.user_id == User.id)
+        .filter(
+            User.onboarding_variant == onboarding_variant,
+            Action.atype == atype,
+        )
+        .scalar()
+    )
+    return int(n or 0)
+
+
+def _sum_roadmap_time_seconds(onboarding_variant: str) -> int:
+    rows = (
+        db.session.query(Action)
+        .join(User, Action.user_id == User.id)
+        .filter(
+            User.onboarding_variant == onboarding_variant,
+            Action.atype == "roadmap_time_on_page",
+        )
+        .all()
+    )
+    total = 0
+    for action in rows:
+        detail = action.detail
+        if not isinstance(detail, dict):
+            continue
+        sec = detail.get("seconds")
+        if sec is None:
+            continue
+        try:
+            total += int(sec)
+        except (TypeError, ValueError):
+            continue
+    return total
+
 
 dashboard_blueprint = Blueprint(DASHBOARD_DEFAULT_NAME, __name__)
+
+
+@dashboard_blueprint.route("/export-roadmap-metrics.csv")
+def export_roadmap_metrics_csv():
+    """CSV: one row per onboarding variant (A=short, B=full), roadmap interaction counts."""
+    buf = StringIO()
+    writer = csv.writer(buf)
+    writer.writerow(
+        [
+            "Variant",
+            "roadmap_checkbox",
+            "roadmap_link_click",
+            "roadmap_time_on_page_seconds_total",
+        ]
+    )
+    for label, variant_key in VARIANT_ROWS:
+        writer.writerow(
+            [
+                label,
+                _count_roadmap_actions(variant_key, "roadmap_checkbox"),
+                _count_roadmap_actions(variant_key, "roadmap_link_click"),
+                _sum_roadmap_time_seconds(variant_key),
+            ]
+        )
+    data = buf.getvalue()
+    return Response(
+        data,
+        mimetype="text/csv; charset=utf-8",
+        headers={
+            "Content-Disposition": "attachment; filename=roadmap_metrics_by_variant.csv",
+        },
+    )
+
 
 @dashboard_blueprint.route(PREFIX)
 def dashboard():
@@ -15,10 +97,10 @@ def dashboard():
     total_visits = Visit.query.count()
     users_who_complete_core_action = db.session.query(func.count(Action.user_id.distinct())).filter_by(atype='roadmap_submit').scalar()
     
-    activation_rate = round((users_who_activated / total_users * 100), 2) if total_users > 0 else 0
+    engagement_rate = round((users_who_activated / total_users * 100), 2) if total_users > 0 else 0
     core_action_rate = round((users_who_complete_core_action / total_users * 100), 2) if total_users > 0 else 0
 
-    # 2. Time-Series Logic (Defined outside the loop)
+    # 2. Time-Series Logic
     def get_rate_for_date(d):
         u_count = User.query.filter(func.date(User.created_at) <= d).count()
         a_count = db.session.query(func.count(Action.user_id.distinct())).filter(
@@ -50,10 +132,33 @@ def dashboard():
     class_year_labels = list(year_counts.keys())
     class_year_values = list(year_counts.values())
 
+    # --- 14-Day Bounded Retention (Core Action: roadmap_submit) ---
+
+    # Create an alias of the Action table so we can join it to itself
+    Action1 = aliased(Action)
+    Action2 = aliased(Action)
+
+    # This query finds unique users (Action1) who have a SECOND action (Action2) 
+    # that happened between 1 second and 14 days AFTER the first one.
+    retained_users_count = db.session.query(func.count(Action1.user_id.distinct())).join(
+        Action2, Action1.user_id == Action2.user_id
+    ).filter(
+        Action1.atype == 'roadmap_submit',
+        Action2.atype == 'roadmap_submit',
+        Action2.timestamp > Action1.timestamp,
+        Action2.timestamp <= Action1.timestamp + timedelta(days=14)
+    ).scalar()
+
+    # Calculate rate against total users who have ever done the core action
+    total_core_users = db.session.query(func.count(Action.user_id.distinct())).filter_by(atype='roadmap_submit').scalar()
+
+    retention_rate = round((retained_users_count / total_core_users * 100), 1) if total_core_users > 0 else 0
+
     # 3. Optimized Page Stats
     tracked_pages = [
         ('homepage.html', 'Home'),
-        ('onboarding.html', 'Onboarding'), # Ensure these match your log_visit strings
+        ('onboarding_variant_a.html', 'Onboarding (variant A)'),
+        ('onboarding_variant_b.html', 'Onboarding (variant B)'),
         ('cs', 'CS'),
         ('econ', 'Economics'),
         ('feedback.html', 'Feedback'),
@@ -103,8 +208,9 @@ def dashboard():
         DASHBOARD_DEFAULT_NAME + HTML_EXTENSION,
         total_users=total_users,
         total_visits=total_visits,
-        core_actions=core_action_rate,
-        activation_rate=activation_rate,
+        retention_rate=retention_rate,
+        engagement_rate=engagement_rate,
+        activation_rate=core_action_rate,
         chart_labels=labels,
         week_0_data=week_0_data,
         week_1_data=week_1_data,

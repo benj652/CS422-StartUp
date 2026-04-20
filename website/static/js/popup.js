@@ -1,37 +1,33 @@
-document.addEventListener("DOMContentLoaded", () => {
-
-  const overlay = document.createElement("div");
+document.addEventListener("DOMContentLoaded", function () {
+  var overlay = document.createElement("div");
   overlay.id = "popup-overlay";
 
-  overlay.innerHTML = `
-    <div id="popup-modal">
-      <span id="popup-close">&times;</span>
-      <div id="popup-content"></div>
-    </div>
-  `;
+  overlay.innerHTML =
+    '<div id="popup-modal">' +
+    '<span id="popup-close">&times;</span>' +
+    '<div id="popup-content"></div>' +
+    '</div>';
 
   document.body.appendChild(overlay);
 
-  const content = overlay.querySelector("#popup-content");
-  const closeBtn = overlay.querySelector("#popup-close");
+  var content = overlay.querySelector("#popup-content");
+  var closeBtn = overlay.querySelector("#popup-close");
 
-  document.querySelectorAll("[data-popup]").forEach(el => {
-
-    el.addEventListener("click", () => {
-      content.textContent = el.dataset.popup;
+  document.addEventListener("click", function (e) {
+    var el = e.target.closest("[data-popup]");
+    if (el && el.dataset.popup) {
+      content.innerHTML = el.dataset.popup;
       overlay.style.display = "flex";
-    });
-
+    }
   });
 
-  closeBtn.addEventListener("click", () => {
+  closeBtn.addEventListener("click", function () {
     overlay.style.display = "none";
   });
 
-  overlay.addEventListener("click", (e) => {
+  overlay.addEventListener("click", function (e) {
     if (e.target === overlay) {
       overlay.style.display = "none";
     }
   });
-
 });
