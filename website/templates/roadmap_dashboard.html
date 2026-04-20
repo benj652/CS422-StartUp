@@ -424,73 +424,20 @@
 
           <h1 class="pt-2 text-white">What matters most to you right now?</h1>
           <div class="row pt-2 justify-content-center">
+            {% for p in priority_data %}
             <div class="col-xl-3 col-md-6">
               <div class="card card-stats">
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Finding the right classes</h5>
-                      <span class="h2 font-weight-bold mb-0">842 clicks</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">{{ p.label }}</h5>
+                      <span class="h2 font-weight-bold mb-0">{{ p.count }} users</span>
                     </div>
                   </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
-                  </p>
                 </div>
               </div>
             </div>
-
-            <div class="col-xl-3 col-md-6">
-              <div class="card card-stats">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Landing an Internship</h5>
-                      <span class="h2 font-weight-bold mb-0">842 clicks</span>
-                    </div>
-                  </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-xl-3 col-md-6">
-              <div class="card card-stats">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Bulding Projects</h5>
-                      <span class="h2 font-weight-bold mb-0">842 clicks</span>
-                    </div>
-                  </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-xl-3 col-md-6">
-              <div class="card card-stats">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Networking & recruiting </h5>
-                      <span class="h2 font-weight-bold mb-0">842 clicks</span>
-                    </div>
-                  </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 4.21%</span>
-                    <span class="text-nowrap">Since last month</span>
-                  </p>
-                </div>
-              </div>
-            </div>
+            {% endfor %}
           </div>
           <div class="d-flex justify-content-end">
             <a
@@ -513,23 +460,23 @@
                   <thead>
                     <tr>
                       <th scope="col"></th>
-                      <th scope="col">Clicks</th>
+                      <th scope="col">Link Clicks</th>
                       <th scope="col">Checkboxes</th>
-                      <th scope="col">Time Spent </th>
+                      <th scope="col">Time Spent</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <th scope="row">Layout A</th>
-                      <td>190 clicks</td>
-                      <td>120 checkboxes</td>
-                      <td>57 minutes</td>
+                      <th scope="row">Variant A (short onboarding)</th>
+                      <td>{{ variant_a.clicks }}</td>
+                      <td>{{ variant_a.checkboxes }}</td>
+                      <td>{{ variant_a.time_minutes }} min</td>
                     </tr>
                     <tr>
-                      <th scope="row">Layout B</th>
-                      <td>190 clicks</td>
-                      <td>120 checkboxes</td>
-                      <td>145 minutes</td>
+                      <th scope="row">Variant B (full onboarding)</th>
+                      <td>{{ variant_b.clicks }}</td>
+                      <td>{{ variant_b.checkboxes }}</td>
+                      <td>{{ variant_b.time_minutes }} min</td>
                     </tr>
                   </tbody>
                 </table>
@@ -562,7 +509,7 @@
               <div class="row align-items-center">
                 <div class="col">
                   <h6 class="text-light text-uppercase ls-1 mb-1">Overview</h6>
-                  <h5 class="h3 text-white mb-0">Time Spent  Layout A vs Layout B</h5>
+                  <h5 class="h3 text-white mb-0">Time Spent — Variant A vs Variant B</h5>
                 </div>
                 <div class="col">
                   <ul class="nav nav-pills justify-content-end">
@@ -682,29 +629,33 @@
     //   }
     // });
 
+    var dailyA = {{ daily_a | tojson }};
+    var dailyB = {{ daily_b | tojson }};
+    var dailyTotal = dailyA.map(function(v, i) { return +(v + dailyB[i]).toFixed(1); });
+
     var ctx1 = document.getElementById('chart-clicks').getContext('2d');
     new Chart(ctx1, {
       type: 'line',
       data: {
-        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        labels: {{ chart_labels | tojson }},
         datasets: [
           {
             label: 'Total',
-            data: [32, 41, 37, 48, 59, 55, 64],
+            data: dailyTotal,
             borderColor: '#5e72e4',
             backgroundColor: 'transparent',
             borderWidth: 3
           },
           {
-            label: 'Layout A ',
-            data: [18, 22, 20, 27, 31, 30, 35],
+            label: 'Variant A (short)',
+            data: dailyA,
             borderColor: '#2dce89',
             backgroundColor: 'transparent',
             borderWidth: 3
           },
           {
-            label: 'Layout B',
-            data: [14, 19, 17, 21, 28, 25, 29],
+            label: 'Variant B (full)',
+            data: dailyB,
             borderColor: '#fb6340',
             backgroundColor: 'transparent',
             borderWidth: 3
@@ -715,83 +666,60 @@
         responsive: true,
         maintainAspectRatio: false,
         legend: {
-          labels: {
-            fontColor: '#ffffff'
-          }
+          labels: { fontColor: '#ffffff' }
         },
         scales: {
           yAxes: [{
-            ticks: {
-              beginAtZero: true,
-              fontColor: '#ffffff'
-            },
-            gridLines: {
-              color: 'rgba(255,255,255,0.1)'
-            }
+            ticks: { beginAtZero: true, fontColor: '#ffffff' },
+            gridLines: { color: 'rgba(255,255,255,0.1)' },
+            scaleLabel: { display: true, labelString: 'Minutes', fontColor: '#ffffff' }
           }],
           xAxes: [{
-            ticks: {
-              fontColor: '#ffffff'
-            },
-            gridLines: {
-              color: 'rgba(255,255,255,0.05)'
-            }
+            ticks: { fontColor: '#ffffff' },
+            gridLines: { color: 'rgba(255,255,255,0.05)' }
           }]
         }
       }
     });
-
 
     var ctx2 = document.getElementById('chart-bars').getContext('2d');
     new Chart(ctx2, {
       type: 'bar',
       data: {
-        labels: ['Freshman', 'Sophomore', 'Junior', 'Senior'],
+        labels: {{ class_year_labels | tojson }},
         datasets: [{
           label: 'Students',
-          data: [120, 80, 33, 75],
+          data: {{ class_year_values | tojson }},
           backgroundColor: ['#5e72e4', '#2dce89', '#fb6340', '#11cdef']
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        legend: {
-          display: false
-        },
+        legend: { display: false },
         scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
+          yAxes: [{ ticks: { beginAtZero: true } }]
         }
       }
     });
 
-    var ctx2 = document.getElementById('chart2').getContext('2d');
-    new Chart(ctx2, {
+    var ctx3 = document.getElementById('chart2').getContext('2d');
+    new Chart(ctx3, {
       type: 'bar',
       data: {
-        labels: ['Computer Science', 'Economics'],
+        labels: {{ major_labels | tojson }},
         datasets: [{
           label: 'Students',
-          data: [120, 80, 33, 75],
-          backgroundColor: ['#5e72e4', '#2dce89', '#fb6340', '#11cdef']
+          data: {{ major_values | tojson }},
+          backgroundColor: ['#5e72e4', '#2dce89']
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        legend: {
-          display: false
-        },
+        legend: { display: false },
         scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
+          yAxes: [{ ticks: { beginAtZero: true } }]
         }
       }
     });
