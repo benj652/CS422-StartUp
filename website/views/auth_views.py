@@ -70,6 +70,7 @@ auth_blueprint = Blueprint(AUTH_BASE, __name__)
 
 
 @auth_blueprint.route(PREFIX + LOGIN_BASE)
+@auth_blueprint.route("/auth/login")
 def login():
     """Sign-in page: choose Google or return home without signing in."""
     session.pop(POST_OAUTH_NEXT_KEY, None)
@@ -82,6 +83,7 @@ def login():
 @auth_blueprint.route(PREFIX + LOGIN_GOOGLE_START)
 def google_login():
     """Redirect to Google's OAuth consent screen."""
+    # Must match an "Authorized redirect URI" in Google Cloud (e.g. http://127.0.0.1:5000/authorize).
     redirect_uri = url_for(AUTH_BASE + DOT_PREFIX + AUTHORIZE_BASE, _external=True)
     return google.authorize_redirect(redirect_uri)
 

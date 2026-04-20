@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (googleBtn) {
     googleBtn.addEventListener("click", function () {
       // Redirect to your backend OAuth route
-      window.location.href = "/auth/login";
+      window.location.href = "/login";
     });
   }
 });
