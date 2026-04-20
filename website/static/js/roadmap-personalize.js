@@ -63,81 +63,65 @@
 
       items.forEach(function (item) {
         var li = document.createElement("li");
+        var isSpecialSection = (key === "internships" || key === "programs");
 
         var cb = document.createElement("input");
         cb.type = "checkbox";
         cb.className = "program-checker";
         li.appendChild(cb);
 
-        var textWrap = document.createElement("div");
-        textWrap.className = "item-text";
+        var contentWrap = document.createElement("div");
+        contentWrap.className = isSpecialSection ? "item-spreadsheet-wrapper" : "item-text";
 
-        var mainEl;
-        if (item.href) {
-          mainEl = document.createElement("a");
-          mainEl.href = item.href;
-          mainEl.target = "_blank";
-          mainEl.rel = "noopener noreferrer";
-          mainEl.textContent = item.text;
+        if (isSpecialSection) {
+          contentWrap.innerHTML = `
+            <div class="ss-header" onclick="this.parentElement.classList.toggle('is-open')">
+              <span class="ss-title">${item.text}</span>
+              
+              <select class="ss-status-select" onclick="event.stopPropagation()" data-item="${item.text}">
+                <option value="not-applied">Not Applied</option>
+                <option value="applied">Interviewing</option>
+                <option value="interviewing"> Applied</option>
+              </select>
+
+              <span class="ss-arrow">▼</span>
+            </div>
+            <div class="ss-details">
+              <div class="ss-details-inner">
+                <p><strong>About:</strong> ${item.popupText || 'No details provided.'}</p>
+                <p><strong>Why Recommended:</strong> ${item.whyRecommended || 'Fits your profile.'}</p>
+                ${item.href ? `<a href="${item.href}" target="_blank" class="ss-link">View Opportunity</a>` : ''}
+              </div>
+            </div>
+          `;
         } else {
-          mainEl = document.createElement("span");
+          var mainEl = item.href ? document.createElement("a") : document.createElement("span");
+          if (item.href) { mainEl.href = item.href; mainEl.target = "_blank"; }
           mainEl.textContent = item.text;
+          mainEl.className = "item-title";
+          contentWrap.appendChild(mainEl);
+
+          if (item.summary) {
+            var meta = document.createElement("span");
+            meta.className = "item-meta";
+            meta.textContent = item.summary;
+            contentWrap.appendChild(meta);
+          }
         }
 
-        mainEl.className = "item-title";
-        textWrap.appendChild(mainEl);
+        li.appendChild(contentWrap);
 
-        if (item.summary) {
-          var meta = document.createElement("span");
-          meta.className = "item-meta";
-          meta.textContent = item.summary;
-          textWrap.appendChild(meta);
-        }
-
-        li.appendChild(textWrap);
-
-        if (item.popupText || item.whyRecommended) {
-          var info = document.createElement("button");
-          info.type = "button";
-          info.className = "info-btn";
-
-          var popupParts = [];
-
-          if (item.popupText) {
-            popupParts.push(
-              "<div class='popup-section'><strong>About this recommendation</strong><p>" +
-                item.popupText +
-                "</p></div>"
-            );
-          }
-
-          if (item.whyRecommended) {
-            popupParts.push(
-              "<div class='popup-section'><strong>Why it fits your roadmap</strong><p>" +
-                item.whyRecommended +
-                "</p></div>"
-            );
-          }
-
-          info.setAttribute("data-popup", popupParts.join(""));
-          info.setAttribute("aria-label", "More info about " + item.text);
-          info.innerHTML =
-            '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M8 7v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="5" r="0.75" fill="currentColor"/></svg>';
-          li.appendChild(info);
-        } else {
-          var spacer = document.createElement("span");
-          li.appendChild(spacer);
+        if (!isSpecialSection && (item.popupText || item.whyRecommended)) {
+            var info = document.createElement("button");
+            info.className = "info-btn";
+            li.appendChild(info);
         }
 
         li.setAttribute("data-rm-section", key);
-        li.setAttribute("data-rm-label", item.text || "");
-
         ul.appendChild(li);
 
         var storageKey = item.text;
-        if (localStorage.getItem(storageKey) === "true") {
-          cb.checked = true;
-        }
+        if (localStorage.getItem(storageKey) === "true") cb.checked = true;
         cb.addEventListener("change", function () {
           localStorage.setItem(storageKey, cb.checked ? "true" : "false");
         });
