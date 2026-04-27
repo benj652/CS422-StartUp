@@ -68,7 +68,7 @@ dashboard_blueprint = Blueprint(DASHBOARD_DEFAULT_NAME, __name__)
 
 @dashboard_blueprint.route("/export-roadmap-metrics.csv")
 def export_roadmap_metrics_csv():
-    """CSV: one row per onboarding variant (A=short, B=full), roadmap interaction counts."""
+    """CSV: one row per onboarding variant with normalized A/B metrics."""
     buf = StringIO()
     writer = csv.writer(buf)
     writer.writerow(
@@ -79,10 +79,6 @@ def export_roadmap_metrics_csv():
             "avg_roadmap_checkbox_per_user",
             "avg_roadmap_status_change_per_user",
             "avg_roadmap_time_spent_seconds_per_user",
-            "roadmap_checkbox",
-            "roadmap_link_click",
-            "roadmap_status_change",
-            "roadmap_time_spent_seconds_total",
         ]
     )
     for label, variant_key in VARIANT_ROWS:
@@ -111,10 +107,6 @@ def export_roadmap_metrics_csv():
                 avg_checkbox_per_user,
                 avg_status_change_per_user,
                 avg_time_spent_seconds_per_user,
-                checkbox_total,
-                link_click_total,
-                status_change_total,
-                time_seconds_total,
             ]
         )
     data = buf.getvalue()
