@@ -67,7 +67,8 @@ def export_roadmap_metrics_csv():
             "Variant",
             "roadmap_checkbox",
             "roadmap_link_click",
-            "roadmap_time_on_page_seconds_total",
+            "roadmap_status_change",
+            "roadmap_time_spent_seconds_total",
         ]
     )
     for label, variant_key in VARIANT_ROWS:
@@ -76,6 +77,7 @@ def export_roadmap_metrics_csv():
                 label,
                 _count_roadmap_actions(variant_key, "roadmap_checkbox"),
                 _count_roadmap_actions(variant_key, "roadmap_link_click"),
+                _count_roadmap_actions(variant_key, "roadmap_status_change"),
                 _sum_roadmap_time_seconds(variant_key),
             ]
         )

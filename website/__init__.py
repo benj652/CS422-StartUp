@@ -34,7 +34,9 @@ from .views import (
 )
 
 
-load_dotenv()
+# Project root: parent of the `website` package
+_PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+load_dotenv(os.path.join(_PROJECT_ROOT, ".env"))
 
 
 def create_app():
