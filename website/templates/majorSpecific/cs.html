@@ -2,129 +2,215 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CS Roadmap · Blueprint</title>
-    <link rel="icon" href="{{ url_for('static', filename='img/BlueprintClearBgSquare.png') }}" type="image/png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/roadmap-specific.css') }}" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/popup.css') }}" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>CS Roadmap · Blueprint</title>
+
+  <link rel="icon" href="{{ url_for('static', filename='img/BlueprintClearBgSquare.png') }}" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/roadmap-specific.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}" />
 </head>
 
 <body>
-    <header class="rm-header">
-        <a href="{{ url_for('homepage.homepage') }}" class="rm-logo-link">
-            <img src="{{ url_for('static', filename='img/BlueprintClearBg.png') }}" alt="Blueprint" class="rm-logo-img" />
-        </a>
-        <div class="rm-header-actions">
-            <a href="{{ url_for('homepage.onboarding') }}" class="rm-secondary-link">Edit answers</a>
-            <a href="{{ url_for('homepage.feedback_page') }}" class="rm-feedback-btn">Feedback</a>
-        </div>
-    </header>
+  <header class="rm-header">
+    <a href="{{ url_for('homepage.homepage') }}" class="rm-logo-link">
+      <img
+        src="{{ url_for('static', filename='img/BlueprintClearBg.png') }}"
+        alt="Blueprint"
+        class="rm-logo-img"
+      />
+    </a>
 
-    <main class="rm-main">
+    <div class="rm-header-actions">
+      <a href="{{ url_for('homepage.onboarding') }}" class="rm-secondary-link">Edit answers</a>
+      <a href="{{ url_for('homepage.feedback_page') }}" class="rm-feedback-btn">Feedback</a>
+    </div>
+  </header>
+
+  <main class="rm-main">
+    <section class="rm-hero">
+      <div class="rm-hero-copy">
         <p class="rm-eyebrow">{{ major_label }}</p>
-        <h1 class="rm-title">Your Roadmap</h1>
+        <h1 class="rm-title">Your personalized roadmap</h1>
         <p class="rm-subtitle">{{ hero }}</p>
 
         <div class="rm-pills">
-            {% if class_year %}
-            <div class="rm-pill">{{ class_year }}</div>
-            {% endif %}
-            {% if career_goal %}
-            <div class="rm-pill">
-                <span class="rm-pill-label">Goal&nbsp;</span>{{ career_goal }}
-            </div>
-            {% endif %}
-            {% if career_stage %}
-            <div class="rm-pill">
-                <span class="rm-pill-label">Stage&nbsp;</span>{{ career_stage }}
-            </div>
-            {% endif %}
-            {% if priority %}
-            <div class="rm-pill">
-                <span class="rm-pill-label">Focus&nbsp;</span>{{ priority }}
-            </div>
-            {% endif %}
+          {% if class_year %}
+          <div class="rm-pill">{{ class_year }}</div>
+          {% endif %}
+
+          {% if career_goal %}
+          <div class="rm-pill">
+            <span class="rm-pill-label">Goal&nbsp;</span>{{ career_goal }}
+          </div>
+          {% endif %}
+
+          {% if career_stage %}
+          <div class="rm-pill">
+            <span class="rm-pill-label">Stage&nbsp;</span>{{ career_stage }}
+          </div>
+          {% endif %}
+
+          {% if priority %}
+          <div class="rm-pill">
+            <span class="rm-pill-label">Focus&nbsp;</span>{{ priority }}
+          </div>
+          {% endif %}
         </div>
+      </div>
 
-        <hr class="rm-divider" />
+      <aside class="rm-hero-card">
+        <p class="rm-hero-card-label">How to use this</p>
+        <p class="rm-hero-card-text">
+          Move through the path from top to bottom. Track classes, applications,
+          projects, and resources as you build your CS plan.
+        </p>
+      </aside>
+    </section>
 
-        <p class="rm-highlight">{{ highlight }}</p>
+    <section class="rm-highlight">
+      <span class="rm-highlight-mark">Blueprint note</span>
+      <p>{{ highlight }}</p>
+    </section>
 
-        <div class="rm-section-head">
-            <p class="rm-section-label">Recommendations</p>
-            <p class="rm-section-sub">
-                A personalized mix of classes, opportunities, projects, and career steps based on your profile.
+    <section class="rm-section-head">
+      <p class="rm-section-label">Recommended path</p>
+      <p class="rm-section-sub">
+        Hover over any node to see what it is and why it matters for your profile.
+        Use the dropdowns to track your progress.
+      </p>
+    </section>
+
+    <section class="rm-path-wrap" aria-label="Personalized roadmap path">
+      <div class="rm-path-line" aria-hidden="true"></div>
+
+      <div class="rm-grid" id="rmGrid">
+        <article class="rm-card" data-section="classes">
+          <div class="rm-stage-marker">
+            <span class="rm-stage-number">01</span>
+          </div>
+          <div class="rm-card-shell">
+            <p class="rm-card-eyebrow">Start here</p>
+            <h2 class="rm-card-title">Classes to Prioritize</h2>
+            <p class="rm-card-subtitle">
+              Course steps that strengthen your academic foundation.
             </p>
-        </div>
+            <ul class="roadmap-list"></ul>
+          </div>
+        </article>
 
-        <div class="rm-grid" id="rmGrid">
-            <div class="rm-card" data-section="classes">
-                <p class="rm-card-eyebrow">01</p>
-                <h2 class="rm-card-title">Recommended Classes</h2>
-                <ul class="roadmap-list"></ul>
-            </div>
+        <article class="rm-card" data-section="programs">
+          <div class="rm-stage-marker">
+            <span class="rm-stage-number">02</span>
+          </div>
+          <div class="rm-card-shell">
+            <p class="rm-card-eyebrow">Explore early</p>
+            <h2 class="rm-card-title">Programs &amp; Opportunities</h2>
+            <p class="rm-card-subtitle">
+              Exposure programs, fellowships, and structured opportunities.
+            </p>
+            <ul class="roadmap-list"></ul>
+          </div>
+        </article>
 
-            <div class="rm-card" data-section="programs">
-                <p class="rm-card-eyebrow">02</p>
-                <h2 class="rm-card-title">Programs &amp; Opportunities</h2>
-                <ul class="roadmap-list"></ul>
-            </div>
+        <article class="rm-card" data-section="internships">
+          <div class="rm-stage-marker">
+            <span class="rm-stage-number">03</span>
+          </div>
+          <div class="rm-card-shell">
+            <p class="rm-card-eyebrow">Apply experience</p>
+            <h2 class="rm-card-title">Internships</h2>
+            <p class="rm-card-subtitle">
+              Roles that turn coursework and projects into real experience.
+            </p>
+            <ul class="roadmap-list"></ul>
+          </div>
+        </article>
 
-            <div class="rm-card" data-section="internships">
-                <p class="rm-card-eyebrow">03</p>
-                <h2 class="rm-card-title">Internships</h2>
-                <ul class="roadmap-list"></ul>
-            </div>
+        <article class="rm-card" data-section="full_time_roles">
+          <div class="rm-stage-marker">
+            <span class="rm-stage-number">04</span>
+          </div>
+          <div class="rm-card-shell">
+            <p class="rm-card-eyebrow">Post-grad path</p>
+            <h2 class="rm-card-title">Full-Time Roles</h2>
+            <p class="rm-card-subtitle">
+              New-grad roles and long-term outcomes to keep in view.
+            </p>
+            <ul class="roadmap-list"></ul>
+          </div>
+        </article>
 
-            <div class="rm-card" data-section="full_time_roles">
-                <p class="rm-card-eyebrow">04</p>
-                <h2 class="rm-card-title">Full-Time Roles</h2>
-                <ul class="roadmap-list"></ul>
-            </div>
+        <article class="rm-card" data-section="projects">
+          <div class="rm-stage-marker">
+            <span class="rm-stage-number">05</span>
+          </div>
+          <div class="rm-card-shell">
+            <p class="rm-card-eyebrow">Build proof</p>
+            <h2 class="rm-card-title">Projects</h2>
+            <p class="rm-card-subtitle">
+              Portfolio work that shows skill beyond class requirements.
+            </p>
+            <ul class="roadmap-list"></ul>
+          </div>
+        </article>
 
-            <div class="rm-card" data-section="projects">
-                <p class="rm-card-eyebrow">05</p>
-                <h2 class="rm-card-title">Projects</h2>
-                <ul class="roadmap-list"></ul>
-            </div>
+        <article class="rm-card" data-section="networking">
+          <div class="rm-stage-marker">
+            <span class="rm-stage-number">06</span>
+          </div>
+          <div class="rm-card-shell">
+            <p class="rm-card-eyebrow">Find people</p>
+            <h2 class="rm-card-title">Networking</h2>
+            <p class="rm-card-subtitle">
+              Relationship-building steps that make recruiting less random.
+            </p>
+            <ul class="roadmap-list"></ul>
+          </div>
+        </article>
 
-            <div class="rm-card" data-section="networking">
-                <p class="rm-card-eyebrow">06</p>
-                <h2 class="rm-card-title">Networking</h2>
-                <ul class="roadmap-list"></ul>
-            </div>
+        <article class="rm-card" data-section="resources">
+          <div class="rm-stage-marker">
+            <span class="rm-stage-number">07</span>
+          </div>
+          <div class="rm-card-shell">
+            <p class="rm-card-eyebrow">Keep improving</p>
+            <h2 class="rm-card-title">Resources &amp; Notes</h2>
+            <p class="rm-card-subtitle">
+              Prep tools, guides, and reminders to support your next move.
+            </p>
+            <ul class="roadmap-list"></ul>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
 
-            <div class="rm-card" data-section="resources">
-                <p class="rm-card-eyebrow">07</p>
-                <h2 class="rm-card-title">Resources</h2>
-                <ul class="roadmap-list"></ul>
-            </div>
-        </div>
-    </main>
-
-    <div class="rm-loading" id="rmLoading">
-        <div class="rm-loading-inner">
-            <div class="rm-loading-logo">
-                <img src="{{ url_for('static', filename='img/BlueprintClearBg.png') }}" alt="Blueprint" />
-            </div>
-            <div class="rm-loading-spinner"><span></span><span></span><span></span></div>
-            <p class="rm-loading-msg" id="rmLoadingMsg">Building your personalized roadmap…</p>
-        </div>
+  <div class="rm-loading" id="rmLoading">
+    <div class="rm-loading-inner">
+      <div class="rm-loading-logo">
+        <img src="{{ url_for('static', filename='img/BlueprintClearBg.png') }}" alt="Blueprint" />
+      </div>
+      <div class="rm-loading-spinner"><span></span><span></span><span></span></div>
+      <p class="rm-loading-msg" id="rmLoadingMsg">Building your personalized roadmap…</p>
     </div>
+  </div>
 
-    <script>window.__RM_MAJOR = "{{ major }}";</script>
-    <script src="{{ url_for('static', filename='js/roadmap-personalize.js') }}" defer></script>
-    <script src="{{ url_for('static', filename='js/popup.js') }}" defer></script>
-    <script src="{{ url_for('static', filename='js/roadmap-tracking.js') }}" defer></script>
+  <script>
+    window.__RM_MAJOR = "{{ major }}";
+  </script>
+  <script src="{{ url_for('static', filename='js/roadmap-personalize.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='js/roadmap-tracking.js') }}" defer></script>
 
-    {% include 'footer.html' %}
+  {% include 'footer.html' %}
 </body>
 
 </html>
