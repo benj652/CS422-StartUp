@@ -1,3 +1,151 @@
-body{
-    background-color: grey !important;
+/* Match homepage + roadmap: Inter, cream bg, #127be4 accent (see homepage.css / roadmap-specific.css) */
+:root {
+  --app-bg: #f8f7f3;
+  --app-text: #0f172a;
+  --app-muted: #64748b;
+  --app-accent: #127be4;
+  --app-accent-dark: #0f6bcc;
+  --app-accent-soft: #eaf4ff;
+  --app-border: #e2ded6;
+  --shadow: 0 14px 34px rgba(15, 23, 42, 0.07);
+}
+
+body.roadmap-dashboard-app {
+  font-family: "Inter", "Open Sans", system-ui, sans-serif;
+  color: var(--app-text);
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(18, 123, 228, 0.08),
+      transparent 34rem
+    ),
+    var(--app-bg) !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Logged-in top bar: app blue (not default Argon / gray header) */
+.rd-dashboard-header {
+  background: linear-gradient(135deg, #127be4 0%, #0b5db5 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 20px rgba(18, 123, 228, 0.22);
+}
+
+.rd-header-sub {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+
+/* Admin login: full-viewport center */
+.roadmap-admin-login {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.25rem;
+  background: transparent;
+}
+
+.roadmap-admin-login .roadmap-admin-login__card {
+  width: 100%;
+  max-width: 28rem;
+}
+
+.roadmap-admin-login .roadmap-admin-login__head {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.roadmap-admin-login .roadmap-admin-login__title {
+  color: var(--app-text);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.rd-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--app-accent) !important;
+  margin-bottom: 0.25rem;
+}
+
+.roadmap-admin-login .roadmap-admin-login__sub {
+  color: var(--app-muted);
+  font-size: 0.875rem;
+  margin-bottom: 0;
+  max-width: 22rem;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+}
+
+.roadmap-admin-login .card {
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(226, 222, 214, 0.6);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.roadmap-admin-login .card-header {
+  background: #fff;
+  border-bottom: 1px solid var(--app-border);
+  padding: 1.25rem 1.5rem;
+}
+
+.roadmap-admin-login .card-header h3 {
+  color: var(--app-text);
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.roadmap-admin-login .btn-admin-signin {
+  color: #fff;
+  background-color: var(--app-accent);
+  border: 1.5px solid var(--app-accent);
+  width: 100%;
+  font-weight: 600;
+  padding: 0.65rem 1rem;
+  border-radius: 100px;
+  transition: background 0.18s, border-color 0.18s, box-shadow 0.18s;
+}
+
+.roadmap-admin-login .btn-admin-signin:hover {
+  color: #fff;
+  background-color: var(--app-accent-dark);
+  border-color: var(--app-accent-dark);
+  box-shadow: 0 2px 8px rgba(18, 123, 228, 0.35);
+}
+
+.dashboard-body {
+  padding-bottom: 2rem;
+}
+
+.dashboard-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Chart cards: Argon defaults (match pre-theme dashboard) */
+.roadmap-dashboard-app .dashboard-body .card {
+  box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15);
+}
+
+.chart {
+  min-height: 280px;
+}
+
+@media (max-width: 767px) {
+  .dashboard-actions {
+    margin-top: 1rem;
+  }
+
+  .chart {
+    min-height: 230px;
+  }
 }

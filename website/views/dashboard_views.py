@@ -16,7 +16,7 @@ VARIANT_ROWS = (
 )
 
 
-def _count_roadmap_actions(onboarding_variant: str, atype: str) -> int:
+def count_roadmap_actions(onboarding_variant: str, atype: str) -> int:
     n = (
         db.session.query(func.count(Action.id))
         .join(User, Action.user_id == User.id)
@@ -29,7 +29,7 @@ def _count_roadmap_actions(onboarding_variant: str, atype: str) -> int:
     return int(n or 0)
 
 
-def _sum_roadmap_time_seconds(onboarding_variant: str) -> int:
+def sum_roadmap_time_seconds(onboarding_variant: str) -> int:
     rows = (
         db.session.query(Action)
         .join(User, Action.user_id == User.id)
@@ -54,29 +54,59 @@ def _sum_roadmap_time_seconds(onboarding_variant: str) -> int:
     return total
 
 
+def count_variant_users(onboarding_variant: str) -> int:
+    n = (
+        db.session.query(func.count(User.id))
+        .filter(User.onboarding_variant == onboarding_variant)
+        .scalar()
+    )
+    return int(n or 0)
+
+
 dashboard_blueprint = Blueprint(DASHBOARD_DEFAULT_NAME, __name__)
 
 
 @dashboard_blueprint.route("/export-roadmap-metrics.csv")
 def export_roadmap_metrics_csv():
-    """CSV: one row per onboarding variant (A=short, B=full), roadmap interaction counts."""
+    """CSV: one row per onboarding variant with normalized A/B metrics."""
     buf = StringIO()
     writer = csv.writer(buf)
     writer.writerow(
         [
             "Variant",
-            "roadmap_checkbox",
-            "roadmap_link_click",
-            "roadmap_time_on_page_seconds_total",
+            "users_n",
+            "avg_roadmap_link_click_per_user",
+            "avg_roadmap_checkbox_per_user",
+            "avg_roadmap_status_change_per_user",
+            "avg_roadmap_time_spent_seconds_per_user",
         ]
     )
     for label, variant_key in VARIANT_ROWS:
+        users_n = count_variant_users(variant_key)
+        checkbox_total = count_roadmap_actions(variant_key, "roadmap_checkbox")
+        link_click_total = count_roadmap_actions(variant_key, "roadmap_link_click")
+        status_change_total = count_roadmap_actions(variant_key, "roadmap_status_change")
+        time_seconds_total = sum_roadmap_time_seconds(variant_key)
+
+        if users_n > 0:
+            avg_link_click_per_user = round(link_click_total / users_n, 2)
+            avg_checkbox_per_user = round(checkbox_total / users_n, 2)
+            avg_status_change_per_user = round(status_change_total / users_n, 2)
+            avg_time_spent_seconds_per_user = round(time_seconds_total / users_n, 2)
+        else:
+            avg_link_click_per_user = 0.0
+            avg_checkbox_per_user = 0.0
+            avg_status_change_per_user = 0.0
+            avg_time_spent_seconds_per_user = 0.0
+
         writer.writerow(
             [
                 label,
-                _count_roadmap_actions(variant_key, "roadmap_checkbox"),
-                _count_roadmap_actions(variant_key, "roadmap_link_click"),
-                _sum_roadmap_time_seconds(variant_key),
+                users_n,
+                avg_link_click_per_user,
+                avg_checkbox_per_user,
+                avg_status_change_per_user,
+                avg_time_spent_seconds_per_user,
             ]
         )
     data = buf.getvalue()

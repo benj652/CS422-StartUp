@@ -1,3 +1,6 @@
+import hashlib
+import hmac
+import os
 import random
 from datetime import datetime, timedelta
 
@@ -9,12 +12,13 @@ from flask import (
     redirect,
     render_template,
     request,
+    session,
     url_for,
 )
 from sqlalchemy import func
 
 from ..consts import HTML_EXTENSION, LANDING_DEFAULT_NAME, PREFIX
-from ..models.tracking import Action, Feedback, User, db
+from ..models.tracking import Action, Feedback, User, Visit, db
 from ..onboarding_config import (
     CAREER_GOAL_LABELS,
     CAREER_STAGE_LABELS,
@@ -28,6 +32,7 @@ from ..utils import log_visit
 # A/B: which onboarding length the user sees
 ONBOARDING_AB_COOKIE = "onboarding_ab"
 _ONBOARDING_AB_MAX_AGE = 30 * 24 * 60 * 60
+_DASHBOARD_ADMIN_SESSION_KEY = "roadmap_dashboard_admin"
 
 
 landing_blueprint = Blueprint(LANDING_DEFAULT_NAME, __name__)
@@ -277,7 +282,12 @@ def submit_feedback():
 
 
 def variant_metrics(variant_key: str) -> dict:
-    """Return checkbox count, link-click count, and total time for one variant."""
+    """Return per-variant totals and normalized per-user averages."""
+    users_count = int(
+        db.session.query(func.count(User.id))
+        .filter(User.onboarding_variant == variant_key)
+        .scalar() or 0
+    )
     checkboxes = int(
         db.session.query(func.count(Action.id))
         .join(User, Action.user_id == User.id)
@@ -288,6 +298,15 @@ def variant_metrics(variant_key: str) -> dict:
         db.session.query(func.count(Action.id))
         .join(User, Action.user_id == User.id)
         .filter(User.onboarding_variant == variant_key, Action.atype == "roadmap_link_click")
+        .scalar() or 0
+    )
+    status_changes = int(
+        db.session.query(func.count(Action.id))
+        .join(User, Action.user_id == User.id)
+        .filter(
+            User.onboarding_variant == variant_key,
+            Action.atype == "roadmap_status_change",
+        )
         .scalar() or 0
     )
     total_seconds = 0
@@ -302,15 +321,27 @@ def variant_metrics(variant_key: str) -> dict:
                 total_seconds += int(detail.get("seconds", 0))
             except (TypeError, ValueError):
                 pass
+
+    def _avg(value: int) -> float:
+        if users_count <= 0:
+            return 0.0
+        return round(value / users_count, 2)
+
     return {
+        "users": users_count,
         "checkboxes": checkboxes,
         "clicks": clicks,
-        "time_minutes": round(total_seconds / 60, 1),
+        "status_changes": status_changes,
+        "time_seconds": total_seconds,
+        "avg_clicks_per_user": _avg(clicks),
+        "avg_checkboxes_per_user": _avg(checkboxes),
+        "avg_status_changes_per_user": _avg(status_changes),
+        "avg_time_seconds_per_user": _avg(total_seconds),
     }
 
 
-def _daily_time_minutes(variant_key: str, day) -> float:
-    """Sum roadmap_time_on_page seconds for one variant on one date, return minutes."""
+def _daily_time_seconds(variant_key: str, day) -> int:
+    """Sum roadmap_time_on_page seconds for one variant on one date."""
     total = 0
     for (detail,) in (
         db.session.query(Action.detail)
@@ -327,18 +358,116 @@ def _daily_time_minutes(variant_key: str, day) -> float:
                 total += int(detail.get("seconds", 0))
             except (TypeError, ValueError):
                 pass
-    return round(total / 60, 1)
+    return total
+
+
+@landing_blueprint.route("/roadmap_dashboard/reset-tracking", methods=["POST"])
+def reset_roadmap_tracking():
+    if not session.get(_DASHBOARD_ADMIN_SESSION_KEY):
+        flash("Please log in as dashboard admin first.", "danger")
+        return redirect(url_for("homepage.onboarding_tracker"))
+
+    try:
+        Action.query.delete(synchronize_session=False)
+        Visit.query.delete(synchronize_session=False)
+        Feedback.query.delete(synchronize_session=False)
+        User.query.delete(synchronize_session=False)
+        db.session.commit()
+        flash("Tracking data reset successfully.", "success")
+    except Exception:
+        db.session.rollback()
+        flash("Could not reset tracking data. Please try again.", "danger")
+    return redirect(url_for("homepage.onboarding_tracker"))
+
+
+def _admin_password_is_valid(*, provided: str, expected: str) -> bool:
+    if not provided or not expected:
+        return False
+    # Compare digests so lengths can differ and comparison stays constant-time.
+    digest = hashlib.sha256
+    p_hash = digest(provided.encode("utf-8")).digest()
+    e_hash = digest(expected.encode("utf-8")).digest()
+    return hmac.compare_digest(p_hash, e_hash)
+
+
+@landing_blueprint.route("/roadmap_dashboard/login", methods=["POST"])
+def roadmap_dashboard_login():
+    expected_email = (os.getenv("ADMIN_EMAIL") or "").strip().lower()
+    expected_password = (os.getenv("ADMIN_PASSWORD") or "").strip()
+    provided_email = (request.form.get("admin_email") or "").strip().lower()
+    provided_password = (request.form.get("admin_password") or "")
+
+    if not expected_email or not expected_password:
+        flash("ADMIN_EMAIL/ADMIN_PASSWORD are not configured on the server.", "danger")
+        return redirect(url_for("homepage.onboarding_tracker"))
+
+    email_ok = provided_email == expected_email
+    password_ok = _admin_password_is_valid(
+        provided=provided_password, expected=expected_password
+    )
+
+    if email_ok and password_ok:
+        session[_DASHBOARD_ADMIN_SESSION_KEY] = True
+        session.modified = True
+        flash("Admin login successful.", "success")
+        return redirect(url_for("homepage.onboarding_tracker"))
+
+    flash("Invalid admin email or password.", "danger")
+    return redirect(url_for("homepage.onboarding_tracker"))
+
+
+@landing_blueprint.route("/roadmap_dashboard/logout", methods=["POST"])
+def roadmap_dashboard_logout():
+    session.pop(_DASHBOARD_ADMIN_SESSION_KEY, None)
+    flash("Logged out of dashboard admin.", "success")
+    return redirect(url_for("homepage.onboarding_tracker"))
 
 
 @landing_blueprint.route("/roadmap_dashboard")
 def onboarding_tracker():
+    is_dashboard_admin = bool(session.get(_DASHBOARD_ADMIN_SESSION_KEY))
+    if not is_dashboard_admin:
+        return render_template(
+            "roadmap_dashboard.html",
+            is_dashboard_admin=False,
+            daily_a=[],
+            daily_b=[],
+            chart_labels=[],
+            career_goal_labels=[],
+            career_goal_values=[],
+            priority_labels=[],
+            priority_values=[],
+            class_year_labels=[],
+            class_year_values=[],
+            major_labels=[],
+            major_values=[],
+            variant_a={
+                "clicks": 0,
+                "checkboxes": 0,
+                "status_changes": 0,
+                "time_seconds": 0,
+            },
+            variant_b={
+                "clicks": 0,
+                "checkboxes": 0,
+                "status_changes": 0,
+                "time_seconds": 0,
+            },
+        )
+
     variant_a = variant_metrics("short")
     variant_b = variant_metrics("full")
 
-    priority_data = [
-        {"label": label, "count": User.query.filter_by(priority=key).count()}
-        for key, label in PRIORITY_LABELS.items()
-    ]
+
+    priority_labels, priority_values = [], []
+    for key, label in PRIORITY_LABELS.items():
+        priority_labels.append(label)
+        priority_values.append(User.query.filter_by(priority=key).count())
+
+    career_goal_labels, career_goal_values = [], []
+    for key, label in CAREER_GOAL_LABELS.items():
+        career_goal_labels.append(label)
+        career_goal_values.append(User.query.filter_by(career_goal=key).count())
 
     class_years = ["Freshman", "Sophomore", "Junior", "Senior"]
     class_year_values = [User.query.filter_by(class_year=y).count() for y in class_years]
@@ -354,12 +483,15 @@ def onboarding_tracker():
     for i in range(6, -1, -1):
         day = today - timedelta(days=i)
         chart_labels.append(day.strftime("%a %d"))
-        daily_a.append(_daily_time_minutes("short", day))
-        daily_b.append(_daily_time_minutes("full", day))
+        daily_a.append(_daily_time_seconds("short", day))
+        daily_b.append(_daily_time_seconds("full", day))
 
     return render_template(
         "roadmap_dashboard.html",
-        priority_data=priority_data,
+        priority_labels=priority_labels,
+        priority_values=priority_values,
+        career_goal_labels=career_goal_labels,
+        career_goal_values=career_goal_values,
         variant_a=variant_a,
         variant_b=variant_b,
         class_year_labels=class_years,
@@ -369,4 +501,5 @@ def onboarding_tracker():
         chart_labels=chart_labels,
         daily_a=daily_a,
         daily_b=daily_b,
+        is_dashboard_admin=True,
     )
