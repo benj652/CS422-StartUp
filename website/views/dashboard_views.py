@@ -13,10 +13,6 @@ from ..models import Action, Feedback, User, Visit
 
 _ONBOARDING_COHORT = ("short", "full")
 _VARIANT_KEY_TO_LETTER = {"short": "A", "full": "B"}
-_VARIANT_KEY_TO_LABEL = {
-    "short": "Variant A (short onboarding)",
-    "full": "Variant B (full onboarding)",
-}
 
 
 def _sum_roadmap_time_seconds_from_details(actions: list) -> int:
@@ -60,16 +56,9 @@ def export_roadmap_metrics_csv():
     writer.writerow(
         [
             "user_id",
-            "uuid",
             "variant_letter",
-            "variant_label",
-            "onboarding_variant",
             "class_year",
             "major",
-            "career_goal",
-            "career_stage",
-            "priority",
-            "user_created_at_utc",
             "roadmap_link_clicks",
             "roadmap_checkboxes",
             "roadmap_status_changes",
@@ -84,23 +73,13 @@ def export_roadmap_metrics_csv():
         n_status = sum(1 for a in actions if a.atype == "roadmap_status_change")
         t_sec = _sum_roadmap_time_seconds_from_details(actions)
         letter = _VARIANT_KEY_TO_LETTER.get(key, "")
-        label = _VARIANT_KEY_TO_LABEL.get(key, key or "")
-        created = u.created_at
-        created_s = created.isoformat() if isinstance(created, datetime) else ""
 
         writer.writerow(
             [
                 u.id,
-                u.uuid,
                 letter,
-                label,
-                key,
                 u.class_year or "",
                 u.major or "",
-                u.career_goal or "",
-                u.career_stage or "",
-                u.priority or "",
-                created_s,
                 n_link,
                 n_check,
                 n_status,
