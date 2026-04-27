@@ -27,7 +27,7 @@ from ..onboarding_config import (
     QUESTIONS,
     QUESTIONS_SHORT,
 )
-from ..utils import count_distinct_users_who_visited_onboarding_variant, log_visit
+from ..utils import log_visit
 
 # A/B: which onboarding length the user sees
 ONBOARDING_AB_COOKIE = "onboarding_ab"
@@ -282,13 +282,12 @@ def submit_feedback():
 
 
 def variant_metrics(variant_key: str) -> dict:
-    """Return per-variant totals and normalized per-user averages.
-
-    users_count is distinct users who visited that variant's onboarding page
-    (Visit), not User.onboarding_variant from form submit. Averages divide by
-    that visit-based headcount while action totals still use submitted variant.
-    """
-    users_count = count_distinct_users_who_visited_onboarding_variant(variant_key)
+    """Return per-variant totals and normalized per-user averages. """
+    users_count = int(
+        db.session.query(func.count(User.id))
+        .filter(User.onboarding_variant == variant_key)
+        .scalar() or 0
+    )
     checkboxes = int(
         db.session.query(func.count(Action.id))
         .join(User, Action.user_id == User.id)

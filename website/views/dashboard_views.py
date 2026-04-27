@@ -9,7 +9,6 @@ from sqlalchemy.orm import aliased
 from website import db
 from ..consts import DASHBOARD_DEFAULT_NAME, HTML_EXTENSION, PREFIX
 from ..models import Action, Feedback, User, Visit
-from ..utils import count_distinct_users_who_visited_onboarding_variant
 
 VARIANT_ROWS = (
     ("Variant A (short onboarding)", "short"),
@@ -56,8 +55,13 @@ def sum_roadmap_time_seconds(onboarding_variant: str) -> int:
 
 
 def count_variant_users(onboarding_variant: str) -> int:
-    """Distinct users who visited this variant's onboarding page (not submit cohort)."""
-    return count_distinct_users_who_visited_onboarding_variant(onboarding_variant)
+    """Users who submitted onboarding with this variant"""
+    n = (
+        db.session.query(func.count(User.id))
+        .filter(User.onboarding_variant == onboarding_variant)
+        .scalar()
+    )
+    return int(n or 0)
 
 
 dashboard_blueprint = Blueprint(DASHBOARD_DEFAULT_NAME, __name__)
@@ -67,7 +71,7 @@ dashboard_blueprint = Blueprint(DASHBOARD_DEFAULT_NAME, __name__)
 def export_roadmap_metrics_csv():
     """CSV: one row per onboarding variant with normalized A/B metrics.
 
-    users_n counts distinct visitors who loaded that variant's onboarding page.
+    users_n counts users with User.onboarding_variant set to that arm (submit cohort).
     """
     buf = StringIO()
     writer = csv.writer(buf)
