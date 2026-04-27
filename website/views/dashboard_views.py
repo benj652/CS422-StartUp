@@ -1,4 +1,5 @@
 import csv
+from collections import defaultdict
 from datetime import datetime, timedelta
 from io import StringIO
 
@@ -10,37 +11,19 @@ from website import db
 from ..consts import DASHBOARD_DEFAULT_NAME, HTML_EXTENSION, PREFIX
 from ..models import Action, Feedback, User, Visit
 
-VARIANT_ROWS = (
-    ("Variant A (short onboarding)", "short"),
-    ("Variant B (full onboarding)", "full"),
-)
+_ONBOARDING_COHORT = ("short", "full")
+_VARIANT_KEY_TO_LETTER = {"short": "A", "full": "B"}
+_VARIANT_KEY_TO_LABEL = {
+    "short": "Variant A (short onboarding)",
+    "full": "Variant B (full onboarding)",
+}
 
 
-def count_roadmap_actions(onboarding_variant: str, atype: str) -> int:
-    n = (
-        db.session.query(func.count(Action.id))
-        .join(User, Action.user_id == User.id)
-        .filter(
-            User.onboarding_variant == onboarding_variant,
-            Action.atype == atype,
-        )
-        .scalar()
-    )
-    return int(n or 0)
-
-
-def sum_roadmap_time_seconds(onboarding_variant: str) -> int:
-    rows = (
-        db.session.query(Action)
-        .join(User, Action.user_id == User.id)
-        .filter(
-            User.onboarding_variant == onboarding_variant,
-            Action.atype == "roadmap_time_on_page",
-        )
-        .all()
-    )
+def _sum_roadmap_time_seconds_from_details(actions: list) -> int:
     total = 0
-    for action in rows:
+    for action in actions:
+        if action.atype != "roadmap_time_on_page":
+            continue
         detail = action.detail
         if not isinstance(detail, dict):
             continue
@@ -54,63 +37,74 @@ def sum_roadmap_time_seconds(onboarding_variant: str) -> int:
     return total
 
 
-def count_variant_users(onboarding_variant: str) -> int:
-    """Users who submitted onboarding with this variant"""
-    n = (
-        db.session.query(func.count(User.id))
-        .filter(User.onboarding_variant == onboarding_variant)
-        .scalar()
-    )
-    return int(n or 0)
-
-
 dashboard_blueprint = Blueprint(DASHBOARD_DEFAULT_NAME, __name__)
 
 
 @dashboard_blueprint.route("/export-roadmap-metrics.csv")
 def export_roadmap_metrics_csv():
-    """CSV: one row per onboarding variant with normalized A/B metrics.
+    """CSV: one row per user in the A/B submit cohort (onboarding_variant short or full)."""
+    users = (
+        User.query.filter(User.onboarding_variant.in_(_ONBOARDING_COHORT))
+        .order_by(User.id)
+        .all()
+    )
+    user_ids = [u.id for u in users]
+    by_uid: dict[int, list] = defaultdict(list)
+    if user_ids:
+        for a in Action.query.filter(Action.user_id.in_(user_ids)).all():
+            if a.user_id is not None:
+                by_uid[a.user_id].append(a)
 
-    users_n counts users with User.onboarding_variant set to that arm (submit cohort).
-    """
     buf = StringIO()
     writer = csv.writer(buf)
     writer.writerow(
         [
-            "Variant",
-            "users_n",
-            "avg_roadmap_link_click_per_user",
-            "avg_roadmap_checkbox_per_user",
-            "avg_roadmap_status_change_per_user",
-            "avg_roadmap_time_spent_seconds_per_user",
+            "user_id",
+            "uuid",
+            "variant_letter",
+            "variant_label",
+            "onboarding_variant",
+            "class_year",
+            "major",
+            "career_goal",
+            "career_stage",
+            "priority",
+            "user_created_at_utc",
+            "roadmap_link_clicks",
+            "roadmap_checkboxes",
+            "roadmap_status_changes",
+            "roadmap_time_on_page_seconds_sum",
         ]
     )
-    for label, variant_key in VARIANT_ROWS:
-        users_n = count_variant_users(variant_key)
-        checkbox_total = count_roadmap_actions(variant_key, "roadmap_checkbox")
-        link_click_total = count_roadmap_actions(variant_key, "roadmap_link_click")
-        status_change_total = count_roadmap_actions(variant_key, "roadmap_status_change")
-        time_seconds_total = sum_roadmap_time_seconds(variant_key)
-
-        if users_n > 0:
-            avg_link_click_per_user = round(link_click_total / users_n, 2)
-            avg_checkbox_per_user = round(checkbox_total / users_n, 2)
-            avg_status_change_per_user = round(status_change_total / users_n, 2)
-            avg_time_spent_seconds_per_user = round(time_seconds_total / users_n, 2)
-        else:
-            avg_link_click_per_user = 0.0
-            avg_checkbox_per_user = 0.0
-            avg_status_change_per_user = 0.0
-            avg_time_spent_seconds_per_user = 0.0
+    for u in users:
+        key = u.onboarding_variant or ""
+        actions = by_uid.get(u.id, [])
+        n_link = sum(1 for a in actions if a.atype == "roadmap_link_click")
+        n_check = sum(1 for a in actions if a.atype == "roadmap_checkbox")
+        n_status = sum(1 for a in actions if a.atype == "roadmap_status_change")
+        t_sec = _sum_roadmap_time_seconds_from_details(actions)
+        letter = _VARIANT_KEY_TO_LETTER.get(key, "")
+        label = _VARIANT_KEY_TO_LABEL.get(key, key or "")
+        created = u.created_at
+        created_s = created.isoformat() if isinstance(created, datetime) else ""
 
         writer.writerow(
             [
+                u.id,
+                u.uuid,
+                letter,
                 label,
-                users_n,
-                avg_link_click_per_user,
-                avg_checkbox_per_user,
-                avg_status_change_per_user,
-                avg_time_spent_seconds_per_user,
+                key,
+                u.class_year or "",
+                u.major or "",
+                u.career_goal or "",
+                u.career_stage or "",
+                u.priority or "",
+                created_s,
+                n_link,
+                n_check,
+                n_status,
+                t_sec,
             ]
         )
     data = buf.getvalue()
@@ -118,7 +112,7 @@ def export_roadmap_metrics_csv():
         data,
         mimetype="text/csv; charset=utf-8",
         headers={
-            "Content-Disposition": "attachment; filename=roadmap_metrics_by_variant.csv",
+            "Content-Disposition": "attachment; filename=roadmap_metrics_per_user.csv",
         },
     )
 
