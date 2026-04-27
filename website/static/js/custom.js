@@ -29,3 +29,14 @@ function trackAction(actionType, detail) {
     .then(data => console.log('Action tracked:', actionType))
     .catch((error) => console.error('Error tracking action:', error));
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const googleBtn = document.getElementById("google-oauth-btn");
+
+  if (googleBtn) {
+    googleBtn.addEventListener("click", function () {
+      // Redirect to your backend OAuth route
+      window.location.href = "/login";
+    });
+  }
+});

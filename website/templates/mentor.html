@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Mentor | Blueprint.edu</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/BlueprintClearBgSquare.png') }}" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mentor.css') }}" />
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  </head>
+  <body class="mentor-page">
+    <div class="mentor-blob mentor-blob-1" aria-hidden="true"></div>
+    <div class="mentor-blob mentor-blob-2" aria-hidden="true"></div>
+
+    <header class="site-header mentor-header">
+      <a class="logo" href="{{ url_for('homepage.homepage') }}">
+        <img src="{{ url_for('static', filename='img/BlueprintClearBg.png') }}" alt="Blueprint Career Roadmaps" class="logo-img" />
+      </a>
+      <div class="site-header-actions">
+        <a class="btn-ai-mentor" href="{{ url_for('homepage.mentor_page') }}" aria-current="page">AI Mentor</a>
+        <a class="btn-feedback" href="{{ url_for('homepage.feedback_page') }}">Feedback</a>
+      </div>
+    </header>
+
+    <div class="mentor-layout">
+      <aside class="mentor-sidebar">
+        <h1 class="mentor-logo">Blueprint<span>.edu</span></h1>
+
+        <div class="profile-data-item">
+          <label>Class Year</label>
+          <p>{{ profile_class_year }}</p>
+        </div>
+
+        <div class="profile-data-item">
+          <label>Major</label>
+          <p>{{ profile_major }}</p>
+        </div>
+
+        <div class="profile-data-item">
+          <label>Career Path</label>
+          <p>{{ profile_career_path }}</p>
+        </div>
+
+        <div class="mentor-sidebar-footer">
+          <div class="upgrade-card">
+            <p>Need more detail?</p>
+            <button class="btn-primary-soft" type="button">View Full Roadmap</button>
+          </div>
+        </div>
+      </aside>
+
+      <main class="mentor-main">
+        <div class="mentor-topbar">
+          <a href="{{ url_for('homepage.onboarding') }}" class="btn-back">Explore Pathways</a>
+          <div class="user-profile-small">
+            <div class="user-meta">
+              <p class="user-name">Guest</p>
+              <p class="user-major">{{ profile_major }} · {{ profile_class_year }}</p>
+            </div>
+          </div>
+        </div>
+
+        <section class="mentor-content" id="chat-container">
+          <div>
+            <h2 class="welcome-text">Hey there!</h2>
+            <p class="welcome-subtext">How can I guide you today?</p>
+          </div>
+
+          <div class="action-grid">
+            <div class="action-card">
+              <div class="icon-box icon-box-purple" aria-hidden="true">
+                <svg class="action-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <path d="M3 12h18"></path>
+                  <path d="M12 3c2.5 2.6 2.5 15.4 0 18"></path>
+                  <path d="M12 3c-2.5 2.6-2.5 15.4 0 18"></path>
+                </svg>
+              </div>
+              <h6>What's happening?</h6>
+              <p>Tell me a little bit about yourself so we can figure out what is next.</p>
+            </div>
+            <div class="action-card">
+              <div class="icon-box icon-box-blue" aria-hidden="true">
+                <svg class="action-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 19h16"></path>
+                  <path d="M6 15l4-4 3 2 5-6"></path>
+                  <path d="M18 7h-3"></path>
+                </svg>
+              </div>
+              <h6>Roadmap Discovery</h6>
+              <p>Already decided on a major? Let us map out your path to that goal.</p>
+            </div>
+            <div class="action-card">
+              <div class="icon-box icon-box-gold" aria-hidden="true">
+                <svg class="action-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M8 3h6l4 4v14H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"></path>
+                  <path d="M14 3v4h4"></path>
+                  <path d="M10 12h6"></path>
+                  <path d="M10 16h6"></path>
+                </svg>
+              </div>
+              <h6>Beyond the Classroom</h6>
+              <p>Get curated resources from experts to help you grow outside class.</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="mentor-input-wrap">
+          <div class="floating-input-container">
+            <input type="text" class="mentor-input" placeholder="Ask something..." />
+            <button class="send-icon-btn" type="button" aria-label="Send question">
+              <span class="send-glyph" aria-hidden="true">&#8593;</span>
+            </button>
+          </div>
+          <p class="mentor-footnote">
+            Join the Blueprint community for more insights
+            <a href="#">Join Discord</a>
+          </p>
+        </div>
+      </main>
+    </div>
+
+    {% include 'footer.html' %}
+  </body>
+</html>

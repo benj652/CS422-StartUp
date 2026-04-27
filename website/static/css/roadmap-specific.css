@@ -77,6 +77,34 @@ body {
   color: var(--accent);
 }
 
+.rm-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.rm-ai-mentor-btn {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  border: 1.5px solid var(--accent);
+  padding: 9px 22px;
+  border-radius: 100px;
+  background: var(--accent);
+  transition: background 0.18s, border-color 0.18s, box-shadow 0.18s;
+  white-space: nowrap;
+}
+
+.rm-ai-mentor-btn:hover {
+  background: #0f6bcc;
+  border-color: #0f6bcc;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(18, 123, 228, 0.35);
+}
+
 .rm-feedback-btn {
   font-size: 0.8125rem;
   font-weight: 600;
@@ -678,7 +706,6 @@ body {
   .rm-feedback-btn {
     padding: 8px 16px;
   }
-
   .rm-path-line {
     left: 22px;
   }
