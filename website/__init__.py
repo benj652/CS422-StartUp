@@ -88,11 +88,11 @@ def create_app():
         Since we are not persisting users in the database, this function
         will create a temporary user object with the given user_id.
         """
-        from website.models.temp_user import (
-            TempUser,
+        from website.models.user import (
+            User,
         )
 
-        return TempUser(user_id=user_id, email=None, name=None)
+        return User.query.get(int(user_id))
 
     db.init_app(app)
     migrate = Migrate(app, db)

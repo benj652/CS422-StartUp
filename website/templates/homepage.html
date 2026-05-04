@@ -30,6 +30,31 @@
       <div class="site-header-actions">
         <a class="btn-ai-mentor" href="{{ url_for('homepage.mentor_page') }}">AI Mentor</a>
         <a class="btn-feedback" href="{{ url_for('homepage.feedback_page') }}">Feedback</a>
+                {% if current_user.is_authenticated %}
+                <div class="user-info">
+
+                    <img 
+                        src="{{ current_user.profile_picture or url_for('static', filename='default.png') }}" 
+                        alt="Profile"
+                        class="profile-pic"
+                        crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+                    >
+
+                    <span class="user-name">
+                        {{ current_user.first_name }} {{ current_user.last_name }}
+                    </span>
+
+                    <a href="{{ url_for('auth.logout') }}" class="logout-link">
+                        Logout
+                    </a>
+
+                </div>
+                {% else %}
+                <a href="{{ url_for('auth.login') }}" class="login-link">
+                    Login
+                </a>
+                {% endif %}
       </div>
     </header>
 
@@ -43,7 +68,7 @@
           you want — tailored to your major and year.
         </p>
         <a id="get-started-btn" class="btn-cta" href="{{ url_for('homepage.onboarding') }}">Get Started</a>
-
+{% if not current_user.is_authenticated %}
 <div class="oauth-container">
   <button class="btn-oauth" id="google-oauth-btn">
     <img
@@ -54,6 +79,7 @@
     Continue with Google
   </button>
 </div>
+{% endif %}
       </div>
 
       <div class="hero-visual">
