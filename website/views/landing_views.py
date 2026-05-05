@@ -15,6 +15,7 @@ from flask import (
     session,
     url_for,
 )
+from flask_login import current_user
 from sqlalchemy import func
 
 from ..consts import HTML_EXTENSION, LANDING_DEFAULT_NAME, PREFIX
@@ -61,16 +62,12 @@ def _mentor_profile_context(tracker_user):
 
     major_raw = tracker_user.major
     if major_raw:
-        major_display = MAJOR_LABELS.get(
-            major_raw, major_raw.replace("_", " ").title()
-        )
+        major_display = MAJOR_LABELS.get(major_raw, major_raw.replace("_", " ").title())
     else:
         major_display = _PROFILE_MISSING
 
     variant = (tracker_user.onboarding_variant or "").lower()
-    has_career_fields = bool(
-        tracker_user.career_goal or tracker_user.career_stage
-    )
+    has_career_fields = bool(tracker_user.career_goal or tracker_user.career_stage)
     if variant == "full" or has_career_fields:
         parts = []
         if tracker_user.career_goal:
@@ -124,7 +121,12 @@ def track_action():
 
     detail = data.get("detail")
     if detail is not None and not isinstance(detail, (dict, list)):
-        return jsonify({"status": "error", "message": "detail must be an object or array"}), 400
+        return (
+            jsonify(
+                {"status": "error", "message": "detail must be an object or array"}
+            ),
+            400,
+        )
 
     user_uuid = request.cookies.get("tracking_id")
 
@@ -148,6 +150,25 @@ def _render_onboarding(*, questions, variant: str, ob_intro_sub: str):
 
 @landing_blueprint.route("/onboarding")
 def onboarding():
+    editing = request.args.get("editing") == "1"
+    if (
+        not editing
+        and current_user.is_authenticated
+        and current_user.major
+        and current_user.year
+    ):
+        major = current_user.major.lower()
+        params = {
+            "year": current_user.year,
+            "career_goal": current_user.career_goal,
+            "career_stage": current_user.career_stage,
+            "priority": current_user.priority,
+        }
+        if major == "cs":
+            return redirect(url_for("roadmap.cs", **params))
+        elif major == "econ":
+            return redirect(url_for("roadmap.econ", **params))
+
     assigned = request.cookies.get(ONBOARDING_AB_COOKIE)
     if assigned not in ("variantA", "variantB"):
         assigned = random.choice(["variantA", "variantB"])
@@ -241,9 +262,7 @@ def mentor_page():
     """Serves the AI Mentor chat page (open to all visitors)."""
     log_visit(page="mentor.html")
     user_uuid = request.cookies.get("tracking_id")
-    tracker_user = (
-        User.query.filter_by(uuid=user_uuid).first() if user_uuid else None
-    )
+    tracker_user = User.query.filter_by(uuid=user_uuid).first() if user_uuid else None
     profile = _mentor_profile_context(tracker_user)
     return render_template("mentor.html", **profile)
 
@@ -282,23 +301,30 @@ def submit_feedback():
 
 
 def variant_metrics(variant_key: str) -> dict:
-    """Return per-variant totals and normalized per-user averages. """
+    """Return per-variant totals and normalized per-user averages."""
     users_count = int(
         db.session.query(func.count(User.id))
         .filter(User.onboarding_variant == variant_key)
-        .scalar() or 0
+        .scalar()
+        or 0
     )
     checkboxes = int(
         db.session.query(func.count(Action.id))
         .join(User, Action.user_id == User.id)
-        .filter(User.onboarding_variant == variant_key, Action.atype == "roadmap_checkbox")
-        .scalar() or 0
+        .filter(
+            User.onboarding_variant == variant_key, Action.atype == "roadmap_checkbox"
+        )
+        .scalar()
+        or 0
     )
     clicks = int(
         db.session.query(func.count(Action.id))
         .join(User, Action.user_id == User.id)
-        .filter(User.onboarding_variant == variant_key, Action.atype == "roadmap_link_click")
-        .scalar() or 0
+        .filter(
+            User.onboarding_variant == variant_key, Action.atype == "roadmap_link_click"
+        )
+        .scalar()
+        or 0
     )
     status_changes = int(
         db.session.query(func.count(Action.id))
@@ -307,13 +333,17 @@ def variant_metrics(variant_key: str) -> dict:
             User.onboarding_variant == variant_key,
             Action.atype == "roadmap_status_change",
         )
-        .scalar() or 0
+        .scalar()
+        or 0
     )
     total_seconds = 0
     for (detail,) in (
         db.session.query(Action.detail)
         .join(User, Action.user_id == User.id)
-        .filter(User.onboarding_variant == variant_key, Action.atype == "roadmap_time_on_page")
+        .filter(
+            User.onboarding_variant == variant_key,
+            Action.atype == "roadmap_time_on_page",
+        )
         .all()
     ):
         if isinstance(detail, dict):
@@ -395,7 +425,7 @@ def roadmap_dashboard_login():
     expected_email = (os.getenv("ADMIN_EMAIL") or "").strip().lower()
     expected_password = (os.getenv("ADMIN_PASSWORD") or "").strip()
     provided_email = (request.form.get("admin_email") or "").strip().lower()
-    provided_password = (request.form.get("admin_password") or "")
+    provided_password = request.form.get("admin_password") or ""
 
     if not expected_email or not expected_password:
         flash("ADMIN_EMAIL/ADMIN_PASSWORD are not configured on the server.", "danger")
@@ -458,7 +488,6 @@ def onboarding_tracker():
     variant_a = variant_metrics("short")
     variant_b = variant_metrics("full")
 
-
     priority_labels, priority_values = [], []
     for key, label in PRIORITY_LABELS.items():
         priority_labels.append(label)
@@ -470,7 +499,9 @@ def onboarding_tracker():
         career_goal_values.append(User.query.filter_by(career_goal=key).count())
 
     class_years = ["Freshman", "Sophomore", "Junior", "Senior"]
-    class_year_values = [User.query.filter_by(class_year=y).count() for y in class_years]
+    class_year_values = [
+        User.query.filter_by(class_year=y).count() for y in class_years
+    ]
 
     major_labels = ["Computer Science", "Economics"]
     major_values = [

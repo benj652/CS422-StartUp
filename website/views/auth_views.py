@@ -129,16 +129,18 @@ def authorize():
     if not app_user:
         app_user = create_new_user(google_user)
 
-    print(app_user)
+    # print(app_user)
 
     login_user(app_user)
     session["user"] = app_user.id
+
+    # print(f"User {app_user} logged in successfully.")
 
 
     next_path = session.pop(POST_OAUTH_NEXT_KEY, None)
     if next_path:
         return redirect(next_path)
-    return redirect(PREFIX)
+    return redirect(PREFIX + "onboarding")
 
 
 @auth_blueprint.route(PREFIX + LOGOUT_BASE)
