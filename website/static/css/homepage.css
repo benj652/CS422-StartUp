@@ -275,3 +275,45 @@ body {
   width: 18px;
   height: 18px;
 }
+
+
+/* User container */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Profile picture */
+.profile-pic {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #555;
+}
+
+/* User name */
+.user-name {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Links */
+.login-link,
+.logout-link {
+    margin-left: 10px;
+    font-size: 14px;
+    color: #4ea1ff;
+    text-decoration: none;
+}
+
+.login-link:hover,
+.logout-link:hover {
+    text-decoration: underline;
+}
+
+/* Optional: subtle hover effect on user block */
+.user-info:hover {
+    opacity: 0.9;
+}

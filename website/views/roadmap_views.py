@@ -1,7 +1,16 @@
 import hashlib
 import json
 
-from flask import Blueprint, jsonify, redirect, render_template, request, session, url_for
+from flask import (
+    Blueprint,
+    jsonify,
+    redirect,
+    render_template,
+    request,
+    session,
+    url_for,
+)
+from flask_login import current_user
 
 from website.consts import (
     CS_DEFAULT_NAME,
@@ -27,15 +36,17 @@ roadmap_blueprint = Blueprint(ROADMAP_DEFAULT_NAME, __name__)
 
 def _profile_context():
     return {
-        'class_year': request.args.get('year', ''),
-        'career_goal': CAREER_GOAL_LABELS.get(request.args.get('career_goal', ''), ''),
-        'career_stage': CAREER_STAGE_LABELS.get(request.args.get('career_stage', ''), ''),
-        'priority': PRIORITY_LABELS.get(request.args.get('priority', ''), ''),
+        "class_year": request.args.get("year", ""),
+        "career_goal": CAREER_GOAL_LABELS.get(request.args.get("career_goal", ""), ""),
+        "career_stage": CAREER_STAGE_LABELS.get(
+            request.args.get("career_stage", ""), ""
+        ),
+        "priority": PRIORITY_LABELS.get(request.args.get("priority", ""), ""),
     }
 
 
 def _render_roadmap_shell(major: str):
-    year_key = normalize_year(request.args.get('year', ''))
+    year_key = normalize_year(request.args.get("year", ""))
     block = get_year_block(major, year_key)
     major_label = MAJOR_LABELS.get(major, major.upper())
     return render_template(
@@ -43,14 +54,14 @@ def _render_roadmap_shell(major: str):
         **_profile_context(),
         major=major,
         major_label=major_label,
-        hero=block.get('hero', ''),
-        highlight=block.get('highlight', ''),
+        hero=block.get("hero", ""),
+        highlight=block.get("highlight", ""),
     )
 
 
 @roadmap_blueprint.route(PREFIX)
 def roadmap():
-    return redirect(url_for(LANDING_DEFAULT_NAME + '.onboarding'))
+    return redirect(url_for(LANDING_DEFAULT_NAME + ".onboarding"))
 
 
 @roadmap_blueprint.route(CS_DEFAULT_NAME)
@@ -72,19 +83,39 @@ def _cache_key(profile: dict) -> str:
 
 @roadmap_blueprint.route("personalize", methods=["POST"])
 def personalize_roadmap():
+    print("Personalization request received with data:", request.get_json())
     data = request.get_json(silent=True) or {}
     major = data.get("major", "cs").lower()
     if major not in ("cs", "econ"):
         major = "cs"
 
+    profile = None
+
     year_key = normalize_year(data.get("year", ""))
-    profile = {
+
+
+    if current_user.is_authenticated:
+        profile = {
         "major": major,
         "year": year_key,
         "career_goal": data.get("career_goal", ""),
         "career_stage": data.get("career_stage", ""),
         "priority": data.get("priority", ""),
-    }
+        }
+        current_user.major = major
+        current_user.year = year_key
+        current_user.career_goal = data.get("career_goal", "")
+        current_user.career_stage = data.get("career_stage", "")
+        current_user.priority = data.get("priority", "")
+        current_user.save()
+    else:
+        profile = {
+            "major": major,
+            "year": year_key,
+            "career_goal": data.get("career_goal", ""),
+            "career_stage": data.get("career_stage", ""),
+            "priority": data.get("priority", ""),
+        }
 
     ck = _cache_key(profile)
     cached = session.get(ck)
