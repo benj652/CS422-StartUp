@@ -276,6 +276,10 @@ def privacy():
 def cookie_policy():
     return render_template("cookies.html")
 
+@landing_blueprint.route("/wishlist")
+def wishlist():
+    return render_template("wishlist.html")
+
 
 @landing_blueprint.route("/feedback", methods=["POST"])
 def submit_feedback():
