@@ -1,22 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap");
 
 :root {
-  --bp-bg: #f8f7f3;
+  --bp-bg: #15243a;
+  --bp-bg-deep: #101b2d;
+  --bp-bg-soft: #1d304a;
+
   --bp-card: rgba(255, 255, 255, 0.96);
-  --bp-text: #0f172a;
+  --bp-card-muted: #f4f7fa;
+
+  --bp-text: #101827;
   --bp-muted: #64748b;
-  --bp-border: #e2ded6;
-  --bp-accent: #127be4;
-  --bp-navy: #10213a;
+  --bp-border: #d7e0ea;
 
-  /* mature Blueprint palette */
-  --bp-blue: #7da8c7;
-  --bp-sage: #8f9f88;
-  --bp-clay: #aa7a63;
-  --bp-sand: #c3b58a;
-  --bp-slate: #7b8794;
+  --bp-accent: #527da8;
+  --bp-accent-hover: #406b96;
 
-  --bp-shadow: 0 8px 22px rgba(15, 23, 42, 0.055);
+  --bp-navy: #0b1628;
+
+  --bp-blue: #86a9c7;
+  --bp-sage: #97a891;
+  --bp-clay: #b08a75;
+  --bp-sand: #c3b98f;
+  --bp-slate: #8996a5;
+
+  --bp-shadow: 0 10px 26px rgba(4, 12, 24, 0.18);
   --bp-radius: 15px;
 }
 
@@ -27,8 +34,9 @@ html {
 body {
   font-family: "Inter", sans-serif !important;
   background:
-    radial-gradient(circle at top left, rgba(18, 123, 228, 0.055), transparent 28rem),
-    var(--bp-bg) !important;
+    radial-gradient(circle at top left, rgba(134, 169, 199, 0.18), transparent 32rem),
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.06), transparent 26rem),
+    linear-gradient(180deg, var(--bp-bg) 0%, var(--bp-bg-deep) 100%) !important;
   color: var(--bp-text);
   -webkit-font-smoothing: antialiased;
 }
@@ -37,17 +45,17 @@ body {
   background: transparent !important;
 }
 
-/* much shorter header */
+/* Header */
 
 .header,
 .header.bg-primary,
 .header.bg-gradient-primary,
 .header.bg-dark {
   background:
-    linear-gradient(135deg, rgba(248, 247, 243, 0.98), rgba(234, 244, 255, 0.72)) !important;
-  border-bottom: 1px solid rgba(226, 222, 214, 0.85);
+    linear-gradient(135deg, rgba(21, 36, 58, 0.98), rgba(29, 48, 74, 0.95)) !important;
+  border-bottom: 1px solid rgba(134, 169, 199, 0.16);
   box-shadow: none !important;
-  padding-bottom: 2.75rem !important;
+  padding-bottom: 2.7rem !important;
 }
 
 .header-body {
@@ -64,7 +72,7 @@ body {
 .header h2,
 .header h6.h2 {
   font-family: "Poppins", sans-serif !important;
-  color: var(--bp-text) !important;
+  color: #f8fafc !important;
   font-weight: 800;
   letter-spacing: -0.045em;
   font-size: 1.28rem !important;
@@ -72,16 +80,16 @@ body {
 
 .header p,
 .text-white-50 {
-  color: var(--bp-muted) !important;
+  color: rgba(226, 232, 240, 0.72) !important;
   font-size: 0.86rem !important;
 }
 
 .header .text-white,
 .header .text-light {
-  color: var(--bp-text) !important;
+  color: #f8fafc !important;
 }
 
-/* wider + tighter page */
+/* Layout */
 
 .container-fluid {
   max-width: 1540px;
@@ -90,17 +98,17 @@ body {
 }
 
 .mt--6 {
-  margin-top: -2.25rem !important;
+  margin-top: -2.2rem !important;
 }
 
 .row {
   row-gap: 0.7rem;
 }
 
-/* cards */
+/* Cards */
 
 .card {
-  border: 1px solid rgba(226, 222, 214, 0.95) !important;
+  border: 1px solid rgba(215, 224, 234, 0.92) !important;
   border-radius: var(--bp-radius) !important;
   background: var(--bp-card) !important;
   box-shadow: var(--bp-shadow) !important;
@@ -109,16 +117,14 @@ body {
 }
 
 .card-header {
-  background: rgba(255, 255, 255, 0.5) !important;
-  border-bottom: 1px solid rgba(226, 222, 214, 0.68) !important;
+  background: rgba(244, 247, 250, 0.72) !important;
+  border-bottom: 1px solid rgba(215, 224, 234, 0.78) !important;
   padding: 0.58rem 0.9rem !important;
 }
 
 .card-body {
   padding: 0.72rem 0.9rem !important;
 }
-
-/* top KPI cards */
 
 .card-stats {
   min-height: 86px !important;
@@ -168,18 +174,18 @@ body {
   color: var(--bp-muted) !important;
 }
 
-/* dark hero chart */
+/* Dark graph cards */
 
 .card.bg-default,
 .card.bg-dark {
   background: var(--bp-navy) !important;
-  border-color: rgba(16, 33, 58, 0.95) !important;
-  box-shadow: 0 12px 30px rgba(16, 33, 58, 0.14) !important;
+  border-color: rgba(134, 169, 199, 0.14) !important;
+  box-shadow: 0 14px 34px rgba(3, 9, 20, 0.32) !important;
 }
 
 .card.bg-default .card-header,
 .card.bg-dark .card-header {
-  background: rgba(255, 255, 255, 0.03) !important;
+  background: rgba(255, 255, 255, 0.035) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.075) !important;
 }
 
@@ -195,7 +201,7 @@ body {
   color: rgba(255, 255, 255, 0.62) !important;
 }
 
-/* icons */
+/* Icons */
 
 .icon-shape {
   width: 34px !important;
@@ -216,7 +222,7 @@ body {
   background: var(--bp-accent) !important;
 }
 
-/* buttons */
+/* Buttons */
 
 .btn,
 .nav-pills .nav-link {
@@ -229,16 +235,16 @@ body {
 .btn-light {
   background: #ffffff !important;
   color: var(--bp-text) !important;
-  border: 1.5px solid var(--bp-border) !important;
-  box-shadow: 0 5px 14px rgba(15, 23, 42, 0.045) !important;
+  border: 1.5px solid rgba(215, 224, 234, 0.85) !important;
+  box-shadow: 0 5px 14px rgba(4, 12, 24, 0.12) !important;
   padding: 0.35rem 0.75rem !important;
   font-size: 0.78rem !important;
 }
 
 .btn-neutral:hover,
 .btn-light:hover {
-  color: var(--bp-accent) !important;
-  border-color: rgba(18, 123, 228, 0.38) !important;
+  color: var(--bp-accent-hover) !important;
+  border-color: rgba(82, 125, 168, 0.5) !important;
 }
 
 .nav-link.active,
@@ -253,7 +259,7 @@ body {
   font-size: 0.78rem !important;
 }
 
-/* CHART HEIGHTS: this is the big change */
+/* Charts */
 
 .chart {
   min-height: 145px !important;
@@ -286,7 +292,7 @@ body {
   padding-bottom: 0.52rem !important;
 }
 
-/* tables */
+/* Tables */
 
 .table {
   color: var(--bp-text) !important;
@@ -294,9 +300,9 @@ body {
 }
 
 .table thead th {
-  background: #f8fafc !important;
+  background: #f3f6f9 !important;
   color: var(--bp-muted) !important;
-  border-bottom: 1px solid rgba(226, 222, 214, 0.95) !important;
+  border-bottom: 1px solid rgba(215, 224, 234, 0.95) !important;
   font-size: 0.58rem !important;
   font-weight: 800 !important;
   letter-spacing: 0.12em !important;
@@ -307,7 +313,7 @@ body {
 .table td,
 .table th {
   vertical-align: middle !important;
-  border-top: 1px solid rgba(226, 222, 214, 0.68) !important;
+  border-top: 1px solid rgba(215, 224, 234, 0.72) !important;
   font-size: 0.74rem !important;
   padding-top: 0.42rem !important;
   padding-bottom: 0.42rem !important;
@@ -322,7 +328,7 @@ body {
   border-radius: 0 0 var(--bp-radius) var(--bp-radius);
 }
 
-/* text */
+/* Text */
 
 .text-sm {
   line-height: 1.42;
@@ -344,7 +350,7 @@ body {
   line-height: 1.38 !important;
 }
 
-/* layout helpers */
+/* Layout helpers */
 
 .dashboard-top-card-row {
   margin-bottom: 0.35rem;
@@ -361,8 +367,6 @@ body {
 .dashboard-compact-row {
   align-items: stretch;
 }
-
-/* make the hero section shorter and wider */
 
 @media (min-width: 1200px) {
   .dashboard-hero-chart {
@@ -386,8 +390,6 @@ body {
   }
 }
 
-/* make the top card row fit tighter on large screens */
-
 @media (min-width: 1400px) {
   .card-stats {
     min-height: 82px !important;
@@ -398,8 +400,6 @@ body {
     min-height: 210px !important;
   }
 }
-
-/* responsive */
 
 @media (max-width: 992px) {
   .mt--6 {
