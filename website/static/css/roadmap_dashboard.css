@@ -131,13 +131,25 @@ body.roadmap-dashboard-app {
   flex-wrap: wrap;
 }
 
-/* Chart cards: Argon defaults (match pre-theme dashboard) */
+/* Chart cards: Argon defaults when dashboard_theme.css is not present */
 .roadmap-dashboard-app .dashboard-body .card {
   box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15);
 }
 
 .chart {
   min-height: 280px;
+}
+
+/* Small helpers used by the updated experiment dashboard */
+.experiment-note {
+  color: #64748b;
+  line-height: 1.65;
+}
+
+.variant-rate {
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.04em;
 }
 
 @media (max-width: 767px) {
@@ -147,5 +159,9 @@ body.roadmap-dashboard-app {
 
   .chart {
     min-height: 230px;
+  }
+
+  .variant-rate {
+    font-size: 1.1rem;
   }
 }

@@ -2,7 +2,6 @@ import hashlib
 import hmac
 import os
 import random
-from datetime import datetime, timedelta
 
 from flask import (
     Blueprint,
@@ -16,15 +15,14 @@ from flask import (
     url_for,
 )
 from flask_login import current_user
-from sqlalchemy import func
 
+from .dashboard_views import build_roadmap_dashboard_context
 from ..consts import HTML_EXTENSION, LANDING_DEFAULT_NAME, PREFIX
 from ..models.tracking import Action, Feedback, User, Visit, db
 from ..onboarding_config import (
     CAREER_GOAL_LABELS,
     CAREER_STAGE_LABELS,
     MAJOR_LABELS,
-    PRIORITY_LABELS,
     QUESTIONS,
     QUESTIONS_SHORT,
 )
@@ -46,10 +44,10 @@ _PROFILE_SHORT_CAREER = (
 
 def _mentor_profile_context(tracker_user):
     """
-    Sidebar labels from the tracking User row (onboarding submit).
+    Sidebar labels from the tracking User row after onboarding submit.
 
-    Class year and major exist for both A/B variants; career goal and stage
-    are only stored for the full (variant B) flow.
+    Class year and major exist for both A/B variants. Career goal and stage
+    are only stored for the full Variant B flow.
     """
     if not tracker_user:
         return {
@@ -62,14 +60,21 @@ def _mentor_profile_context(tracker_user):
 
     major_raw = tracker_user.major
     if major_raw:
-        major_display = MAJOR_LABELS.get(major_raw, major_raw.replace("_", " ").title())
+        major_display = MAJOR_LABELS.get(
+            major_raw,
+            major_raw.replace("_", " ").title(),
+        )
     else:
         major_display = _PROFILE_MISSING
 
     variant = (tracker_user.onboarding_variant or "").lower()
-    has_career_fields = bool(tracker_user.career_goal or tracker_user.career_stage)
+    has_career_fields = bool(
+        tracker_user.career_goal or tracker_user.career_stage
+    )
+
     if variant == "full" or has_career_fields:
         parts = []
+
         if tracker_user.career_goal:
             parts.append(
                 CAREER_GOAL_LABELS.get(
@@ -77,6 +82,7 @@ def _mentor_profile_context(tracker_user):
                     tracker_user.career_goal.replace("_", " ").title(),
                 )
             )
+
         if tracker_user.career_stage:
             parts.append(
                 CAREER_STAGE_LABELS.get(
@@ -84,6 +90,7 @@ def _mentor_profile_context(tracker_user):
                     tracker_user.career_stage.replace("_", " ").title(),
                 )
             )
+
         career_path = " — ".join(parts) if parts else _PROFILE_MISSING
     else:
         career_path = _PROFILE_SHORT_CAREER
@@ -101,7 +108,6 @@ def homepage():
     response = make_response(render_template(LANDING_DEFAULT_NAME + HTML_EXTENSION))
 
     if new_uuid:
-        # Set cookie to expire in 30 days
         response.set_cookie("tracking_id", new_uuid, max_age=30 * 24 * 60 * 60)
 
     return response
@@ -109,14 +115,16 @@ def homepage():
 
 @landing_blueprint.route("/track-action", methods=["POST"])
 def track_action():
-    """Logs non-form actions (clicks, roadmap metrics, etc.)."""
+    """Logs non-form actions such as clicks, roadmap metrics, and time-on-page."""
     data = request.get_json(silent=True)
+
     if not isinstance(data, dict):
         return jsonify({"status": "error", "message": "JSON body required"}), 400
 
     atype = data.get("atype")
     if not atype or not isinstance(atype, str):
         return jsonify({"status": "error", "message": "atype required"}), 400
+
     atype = atype.strip()[:200]
 
     detail = data.get("detail")
@@ -136,6 +144,7 @@ def track_action():
             new_action = Action(atype=atype, user_id=user.id, detail=detail)
             db.session.add(new_action)
             db.session.commit()
+
     return jsonify({"status": "success"}), 200
 
 
@@ -151,6 +160,7 @@ def _render_onboarding(*, questions, variant: str, ob_intro_sub: str):
 @landing_blueprint.route("/onboarding")
 def onboarding():
     editing = request.args.get("editing") == "1"
+
     if (
         not editing
         and current_user.is_authenticated
@@ -164,12 +174,14 @@ def onboarding():
             "career_stage": current_user.career_stage,
             "priority": current_user.priority,
         }
+
         if major == "cs":
             return redirect(url_for("roadmap.cs", **params))
-        elif major == "econ":
+        if major == "econ":
             return redirect(url_for("roadmap.econ", **params))
 
     assigned = request.cookies.get(ONBOARDING_AB_COOKIE)
+
     if assigned not in ("variantA", "variantB"):
         assigned = random.choice(["variantA", "variantB"])
         target = (
@@ -177,13 +189,18 @@ def onboarding():
             if assigned == "variantA"
             else "homepage.onboarding_variant_b"
         )
+
         response = make_response(redirect(url_for(target)))
         response.set_cookie(
-            ONBOARDING_AB_COOKIE, assigned, max_age=_ONBOARDING_AB_MAX_AGE
+            ONBOARDING_AB_COOKIE,
+            assigned,
+            max_age=_ONBOARDING_AB_MAX_AGE,
         )
         return response
+
     if assigned == "variantA":
         return redirect(url_for("homepage.onboarding_variant_a"))
+
     return redirect(url_for("homepage.onboarding_variant_b"))
 
 
@@ -212,6 +229,7 @@ def submit_info():
     class_year = request.form.get("class_year")
     major = request.form.get("major")
     variant = (request.form.get("onboarding_variant") or "full").lower()
+
     if variant == "short":
         career_goal = None
         career_stage = None
@@ -220,6 +238,7 @@ def submit_info():
         career_goal = request.form.get("career_goal")
         career_stage = request.form.get("career_stage")
         priority = request.form.get("priority")
+
     user_uuid = request.cookies.get("tracking_id")
 
     if user_uuid:
@@ -236,16 +255,18 @@ def submit_info():
             db.session.add(core_action)
             db.session.commit()
 
-            params: dict = {"year": class_year}
+            params = {"year": class_year}
+
             if career_goal:
                 params["career_goal"] = career_goal
             if career_stage:
                 params["career_stage"] = career_stage
             if priority:
                 params["priority"] = priority
+
             if major == "cs":
                 return redirect(url_for("roadmap.cs", **params))
-            elif major == "econ":
+            if major == "econ":
                 return redirect(url_for("roadmap.econ", **params))
 
     return redirect(url_for("homepage.homepage"))
@@ -259,11 +280,13 @@ def feedback_page():
 
 @landing_blueprint.route("/mentor")
 def mentor_page():
-    """Serves the AI Mentor chat page (open to all visitors)."""
+    """Serves the AI Mentor chat page."""
     log_visit(page="mentor.html")
+
     user_uuid = request.cookies.get("tracking_id")
     tracker_user = User.query.filter_by(uuid=user_uuid).first() if user_uuid else None
     profile = _mentor_profile_context(tracker_user)
+
     return render_template("mentor.html", **profile)
 
 
@@ -280,12 +303,14 @@ def cookie_policy():
 @landing_blueprint.route("/feedback", methods=["POST"])
 def submit_feedback():
     content = request.form.get("feedback_content", "").strip()
+
     if not content:
         flash("Please enter your feedback before submitting.")
         return redirect(url_for("homepage.feedback_page"))
 
     user_id = None
     user_uuid = request.cookies.get("tracking_id")
+
     if user_uuid:
         user = User.query.filter_by(uuid=user_uuid).first()
         if user:
@@ -294,101 +319,11 @@ def submit_feedback():
     feedback = Feedback(content=content, user_id=user_id)
     db.session.add(feedback)
     db.session.commit()
+
     print("Feedback ID:", feedback.id)
 
     flash("Thank you for your feedback! We really appreciate it.")
     return redirect(url_for("homepage.feedback_page"))
-
-
-def variant_metrics(variant_key: str) -> dict:
-    """Return per-variant totals and normalized per-user averages."""
-    users_count = int(
-        db.session.query(func.count(User.id))
-        .filter(User.onboarding_variant == variant_key)
-        .scalar()
-        or 0
-    )
-    checkboxes = int(
-        db.session.query(func.count(Action.id))
-        .join(User, Action.user_id == User.id)
-        .filter(
-            User.onboarding_variant == variant_key, Action.atype == "roadmap_checkbox"
-        )
-        .scalar()
-        or 0
-    )
-    clicks = int(
-        db.session.query(func.count(Action.id))
-        .join(User, Action.user_id == User.id)
-        .filter(
-            User.onboarding_variant == variant_key, Action.atype == "roadmap_link_click"
-        )
-        .scalar()
-        or 0
-    )
-    status_changes = int(
-        db.session.query(func.count(Action.id))
-        .join(User, Action.user_id == User.id)
-        .filter(
-            User.onboarding_variant == variant_key,
-            Action.atype == "roadmap_status_change",
-        )
-        .scalar()
-        or 0
-    )
-    total_seconds = 0
-    for (detail,) in (
-        db.session.query(Action.detail)
-        .join(User, Action.user_id == User.id)
-        .filter(
-            User.onboarding_variant == variant_key,
-            Action.atype == "roadmap_time_on_page",
-        )
-        .all()
-    ):
-        if isinstance(detail, dict):
-            try:
-                total_seconds += int(detail.get("seconds", 0))
-            except (TypeError, ValueError):
-                pass
-
-    def _avg(value: int) -> float:
-        if users_count <= 0:
-            return 0.0
-        return round(value / users_count, 2)
-
-    return {
-        "users": users_count,
-        "checkboxes": checkboxes,
-        "clicks": clicks,
-        "status_changes": status_changes,
-        "time_seconds": total_seconds,
-        "avg_clicks_per_user": _avg(clicks),
-        "avg_checkboxes_per_user": _avg(checkboxes),
-        "avg_status_changes_per_user": _avg(status_changes),
-        "avg_time_seconds_per_user": _avg(total_seconds),
-    }
-
-
-def _daily_time_seconds(variant_key: str, day) -> int:
-    """Sum roadmap_time_on_page seconds for one variant on one date."""
-    total = 0
-    for (detail,) in (
-        db.session.query(Action.detail)
-        .join(User, Action.user_id == User.id)
-        .filter(
-            User.onboarding_variant == variant_key,
-            Action.atype == "roadmap_time_on_page",
-            func.date(Action.timestamp) == day,
-        )
-        .all()
-    ):
-        if isinstance(detail, dict):
-            try:
-                total += int(detail.get("seconds", 0))
-            except (TypeError, ValueError):
-                pass
-    return total
 
 
 @landing_blueprint.route("/roadmap_dashboard/reset-tracking", methods=["POST"])
@@ -407,16 +342,18 @@ def reset_roadmap_tracking():
     except Exception:
         db.session.rollback()
         flash("Could not reset tracking data. Please try again.", "danger")
+
     return redirect(url_for("homepage.onboarding_tracker"))
 
 
 def _admin_password_is_valid(*, provided: str, expected: str) -> bool:
     if not provided or not expected:
         return False
-    # Compare digests so lengths can differ and comparison stays constant-time.
+
     digest = hashlib.sha256
     p_hash = digest(provided.encode("utf-8")).digest()
     e_hash = digest(expected.encode("utf-8")).digest()
+
     return hmac.compare_digest(p_hash, e_hash)
 
 
@@ -433,7 +370,8 @@ def roadmap_dashboard_login():
 
     email_ok = provided_email == expected_email
     password_ok = _admin_password_is_valid(
-        provided=provided_password, expected=expected_password
+        provided=provided_password,
+        expected=expected_password,
     )
 
     if email_ok and password_ok:
@@ -456,81 +394,15 @@ def roadmap_dashboard_logout():
 @landing_blueprint.route("/roadmap_dashboard")
 def onboarding_tracker():
     is_dashboard_admin = bool(session.get(_DASHBOARD_ADMIN_SESSION_KEY))
+
     if not is_dashboard_admin:
         return render_template(
             "roadmap_dashboard.html",
             is_dashboard_admin=False,
-            daily_a=[],
-            daily_b=[],
-            chart_labels=[],
-            career_goal_labels=[],
-            career_goal_values=[],
-            priority_labels=[],
-            priority_values=[],
-            class_year_labels=[],
-            class_year_values=[],
-            major_labels=[],
-            major_values=[],
-            variant_a={
-                "clicks": 0,
-                "checkboxes": 0,
-                "status_changes": 0,
-                "time_seconds": 0,
-            },
-            variant_b={
-                "clicks": 0,
-                "checkboxes": 0,
-                "status_changes": 0,
-                "time_seconds": 0,
-            },
         )
-
-    variant_a = variant_metrics("short")
-    variant_b = variant_metrics("full")
-
-    priority_labels, priority_values = [], []
-    for key, label in PRIORITY_LABELS.items():
-        priority_labels.append(label)
-        priority_values.append(User.query.filter_by(priority=key).count())
-
-    career_goal_labels, career_goal_values = [], []
-    for key, label in CAREER_GOAL_LABELS.items():
-        career_goal_labels.append(label)
-        career_goal_values.append(User.query.filter_by(career_goal=key).count())
-
-    class_years = ["Freshman", "Sophomore", "Junior", "Senior"]
-    class_year_values = [
-        User.query.filter_by(class_year=y).count() for y in class_years
-    ]
-
-    major_labels = ["Computer Science", "Economics"]
-    major_values = [
-        User.query.filter_by(major="cs").count(),
-        User.query.filter_by(major="econ").count(),
-    ]
-
-    today = datetime.utcnow().date()
-    chart_labels, daily_a, daily_b = [], [], []
-    for i in range(6, -1, -1):
-        day = today - timedelta(days=i)
-        chart_labels.append(day.strftime("%a %d"))
-        daily_a.append(_daily_time_seconds("short", day))
-        daily_b.append(_daily_time_seconds("full", day))
 
     return render_template(
         "roadmap_dashboard.html",
-        priority_labels=priority_labels,
-        priority_values=priority_values,
-        career_goal_labels=career_goal_labels,
-        career_goal_values=career_goal_values,
-        variant_a=variant_a,
-        variant_b=variant_b,
-        class_year_labels=class_years,
-        class_year_values=class_year_values,
-        major_labels=major_labels,
-        major_values=major_values,
-        chart_labels=chart_labels,
-        daily_a=daily_a,
-        daily_b=daily_b,
         is_dashboard_admin=True,
+        **build_roadmap_dashboard_context(),
     )
