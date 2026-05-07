@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>CS Roadmap · Blueprint</title>
+
+  <link rel="icon" href="/static/img/BlueprintClearBgSquare.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="/static/css/roadmap-specific.css" />
+  <link rel="stylesheet" href="/static/css/footer.css" />
+</head>
+
+<body>
+  <header class="rm-header">
+    <a href="/" class="rm-logo-link">
+      <img src="/static/img/BlueprintClearBg.png" alt="Blueprint" class="rm-logo-img" />
+    </a>
+
+    <div class="rm-header-actions">
+      <a href="{{ url_for('homepage.mentor_page') }}" class="rm-ai-mentor-btn">AI Mentor</a>
+      <a href="{{ url_for('homepage.feedback_page') }}" class="rm-feedback-btn">Feedback</a>
+    </div>
+  </header>
+
+  <main class="rm-main">
+    <section class="rm-hero">
+      <div class="rm-hero-copy">
+        <h1 class="rm-title">Your Wishlist</h1>
+        <p class="rm-subtitle">All your checked courses are saved in one place!</p>
+
+       <div class="rm-pills">
+          {% if class_year %}
+          <div class="rm-pill">{{ class_year }}</div>
+          {% endif %}
+
+          {% if career_goal %}
+          <div class="rm-pill">
+            <span class="rm-pill-label">Goal&nbsp;</span>{{ career_goal }}
+          </div>
+          {% endif %}
+
+          {% if career_stage %}
+          <div class="rm-pill">
+            <span class="rm-pill-label">Stage&nbsp;</span>{{ career_stage }}
+          </div>
+          {% endif %}
+
+          {% if priority %}
+          <div class="rm-pill">
+            <span class="rm-pill-label">Focus&nbsp;</span>{{ priority }}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <aside class="rm-hero-card">
+        <p class="rm-hero-card-label">How to use this</p>
+        <p class="rm-hero-card-text">
+          Drag and drop your saved items to your personal priority
+        </p>
+      </aside>
+    </section>
+
+    <section class="rm-path-wrap">
+        <div class="rm-three-column-grid">
+            <div class="rm-priority-col" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <h2 class="rm-col-header">High Priority</h2>
+                <ul class="rm-checklist" id="high-priority">
+                    <li draggable="true" ondragstart="drag(event)" id="item-1">Review Data Structures</li>
+                    <li draggable="true" ondragstart="drag(event)" id="item-2">LeetCode 75 Challenge</li>
+                </ul>
+            </div>
+
+            <div class="rm-priority-col" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <h2 class="rm-col-header">Medium Priority</h2>
+                <ul class="rm-checklist" id="medium-priority">
+                    <li draggable="true" ondragstart="drag(event)" id="item-3">Personal Project</li>
+                </ul>
+            </div>
+
+            <div class="rm-priority-col" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <h2 class="rm-col-header">Low Priority</h2>
+                <ul class="rm-checklist" id="low-priority">
+                    <li draggable="true" ondragstart="drag(event)" id="item-4">Network</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/roadmap-personalize.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='js/roadmap-tracking.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='js/wishlist.js') }}" defer></script>
+
+</body>
+
+</html>
