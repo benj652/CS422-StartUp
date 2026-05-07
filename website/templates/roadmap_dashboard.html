@@ -14,13 +14,13 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/nucleo.css') }}" type="text/css">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/all.min.css') }}" type="text/css">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/argon.css?v=1.2.0') }}" type="text/css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/argon.css') }}" type="text/css">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/roadmap_dashboard.css') }}" type="text/css">
 </head>
 
 <body>
   <div class="main-content" id="panel" style="margin-left: 0;">
-    <div class="header bg-gradient-primary pb-7">
+    <div class="header bg-primary pb-7">
       <div class="container-fluid">
         <div class="header-body">
           <div class="row align-items-center py-4">
@@ -146,43 +146,10 @@
                 </div>
                 <div class="col">
                   <ul class="nav nav-pills justify-content-end">
-                    <li class="nav-item mr-2 mr-md-0"
-                        data-toggle="chart"
-                        data-target="#activation-rate-chart"
-                        data-update='{
-                          "data":{
-                            "labels": {{ chart_labels|tojson }},
-                            "datasets":[
-                              {"label": "This Week", "data": {{ week_0_data|tojson }}, "borderColor": "#5e72e4"},
-                              {"label": "Last Week", "data": {{ week_1_data|tojson }}, "borderColor": "#2dce89"},
-                              {"label": "2 Weeks Ago", "data": {{ week_2_data|tojson }}, "borderColor": "#fb6340"}
-                            ]
-                          }
-                        }'
-                        data-prefix=""
-                        data-suffix="%">
-                      <a href="#" class="nav-link py-2 px-3 active" data-toggle="tab">
+                    <li class="nav-item mr-2 mr-md-0">
+                      <a href="#" class="nav-link py-2 px-3 active">
                         <span class="d-none d-md-block">3 Week Comparison</span>
                         <span class="d-md-none">3W</span>
-                      </a>
-                    </li>
-
-                    <li class="nav-item"
-                        data-toggle="chart"
-                        data-target="#activation-rate-chart"
-                        data-update='{
-                          "data":{
-                            "labels": {{ chart_labels|tojson }},
-                            "datasets":[
-                              {"label": "This Week", "data": {{ week_0_data|tojson }}, "borderColor": "#5e72e4"}
-                            ]
-                          }
-                        }'
-                        data-prefix=""
-                        data-suffix="%">
-                      <a href="#" class="nav-link py-2 px-3" data-toggle="tab">
-                        <span class="d-none d-md-block">This Week</span>
-                        <span class="d-md-none">1W</span>
                       </a>
                     </li>
                   </ul>
@@ -215,7 +182,7 @@
                 Variant A uses a shorter onboarding flow. Variant B asks more questions so the roadmap can be more personalized.
               </p>
               <p class="text-sm text-muted mb-0">
-                This dashboard compares whether the extra personalization increases roadmap generation, clicks, checkbox usage, and time spent.
+                This dashboard compares whether extra personalization increases roadmap generation, clicks, checkbox usage, and time spent.
               </p>
             </div>
           </div>
@@ -396,7 +363,7 @@
   <script src="{{ url_for('static', filename='js/jquery-scrollLock.min.js') }}"></script>
   <script src="{{ url_for('static', filename='js/Chart.min.js') }}"></script>
   <script src="{{ url_for('static', filename='js/Chart.extension.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/argon.js?v=1.2.0') }}"></script>
+  <script src="{{ url_for('static', filename='js/argon.js') }}"></script>
 
   <script>
     function getChartData(id) {
@@ -405,8 +372,8 @@
 
       return {
         el: el,
-        labels: JSON.parse(el.dataset.labels || "[]"),
-        values: JSON.parse(el.dataset.values || "[]")
+        labels: JSON.parse(el.getAttribute("data-labels") || "[]"),
+        values: JSON.parse(el.getAttribute("data-values") || "[]")
       };
     }
 
@@ -478,25 +445,25 @@
       new Chart(activationEl.getContext("2d"), {
         type: "line",
         data: {
-          labels: JSON.parse(activationEl.dataset.initialLabels || "[]"),
+          labels: JSON.parse(activationEl.getAttribute("data-initial-labels") || "[]"),
           datasets: [
             {
               label: "This Week",
-              data: JSON.parse(activationEl.dataset.initialData-0 || "[]"),
+              data: JSON.parse(activationEl.getAttribute("data-initial-data-0") || "[]"),
               borderColor: "#5e72e4",
               backgroundColor: "transparent",
               borderWidth: 3
             },
             {
               label: "Last Week",
-              data: JSON.parse(activationEl.dataset.initialData-1 || "[]"),
+              data: JSON.parse(activationEl.getAttribute("data-initial-data-1") || "[]"),
               borderColor: "#2dce89",
               backgroundColor: "transparent",
               borderWidth: 3
             },
             {
               label: "2 Weeks Ago",
-              data: JSON.parse(activationEl.dataset.initialData-2 || "[]"),
+              data: JSON.parse(activationEl.getAttribute("data-initial-data-2") || "[]"),
               borderColor: "#fb6340",
               backgroundColor: "transparent",
               borderWidth: 3

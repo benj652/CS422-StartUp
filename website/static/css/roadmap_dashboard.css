@@ -1,3 +1,49 @@
-body{
-    background-color: grey !important;
+body {
+  background: #f6f8fb;
+}
+
+.header {
+  border-bottom: 0;
+}
+
+.card {
+  border-radius: 0.9rem;
+  overflow: hidden;
+}
+
+.card-header h5,
+.card-header h3 {
+  letter-spacing: -0.02em;
+}
+
+.chart {
+  min-height: 260px;
+}
+
+.card.bg-default .chart {
+  min-height: 360px;
+}
+
+.table td,
+.table th {
+  vertical-align: middle;
+}
+
+.text-white-50 {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.card-stats .h2 {
+  line-height: 1.25;
+}
+
+@media (max-width: 768px) {
+  .header .text-right {
+    text-align: left !important;
+    margin-top: 1rem;
+  }
+
+  .card.bg-default .chart {
+    min-height: 300px;
+  }
 }
