@@ -30,8 +30,14 @@
               <p class="text-white-50 mb-0 mt-2">
                 Compare onboarding variants, roadmap engagement, and student profile trends.
               </p>
+              <p class="text-white-50 mb-0 mt-1 dashboard-updated">
+                Last updated from live tracking data
+              </p>
             </div>
             <div class="col-lg-4 col-12 text-right">
+              <a href="{{ url_for('dashboard.dashboard') }}" class="btn btn-sm btn-neutral mr-2">
+                View KPI Dashboard
+              </a>
               <a href="{{ url_for('dashboard.export_roadmap_metrics_csv') }}" class="btn btn-sm btn-neutral">
                 Download CSV
               </a>
@@ -363,12 +369,12 @@
 
   <script>
     var blueprintPalette = {
-      blue: "#7da8c7",
-      sage: "#8f9f88",
-      clay: "#aa7a63",
-      sand: "#c3b58a",
-      slate: "#7b8794",
-      navy: "#10213a"
+      blue: "#86a9c7",
+      sage: "#97a891",
+      clay: "#b08a75",
+      sand: "#c3b58f",
+      slate: "#8996a5",
+      navy: "#0b1628"
     };
 
     function getChartData(id) {
