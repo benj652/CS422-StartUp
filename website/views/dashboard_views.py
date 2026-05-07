@@ -357,6 +357,12 @@ def build_roadmap_dashboard_context():
         PRIORITY_LABELS,
     )
 
+    chart_labels, week_0_data = _activation_rate_by_day(days=7, offset_days=0)
+    _labels_last_week, week_1_data = _activation_rate_by_day(days=7, offset_days=7)
+    _labels_two_weeks, week_2_data = _activation_rate_by_day(days=7, offset_days=14)
+
+    roadmap_labels, roadmap_values = _roadmap_submits_by_day(days=7)
+
     return {
         "variant_rows": variant_rows,
         "variant_labels": variant_labels,
@@ -377,6 +383,12 @@ def build_roadmap_dashboard_context():
         "career_stage_values": career_stage_values,
         "priority_labels": priority_labels,
         "priority_values": priority_values,
+        "chart_labels": chart_labels,
+        "week_0_data": week_0_data,
+        "week_1_data": week_1_data,
+        "week_2_data": week_2_data,
+        "roadmap_labels": roadmap_labels,
+        "roadmap_values": roadmap_values,
     }
 
 
