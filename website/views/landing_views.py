@@ -1,3 +1,6 @@
+import hashlib
+import hmac
+import os
 import random
 
 from flask import (
@@ -8,12 +11,14 @@ from flask import (
     redirect,
     render_template,
     request,
+    session,
     url_for,
 )
+from flask_login import current_user
 
 from .dashboard_views import build_roadmap_dashboard_context
 from ..consts import HTML_EXTENSION, LANDING_DEFAULT_NAME, PREFIX
-from ..models.tracking import Action, Feedback, User, db
+from ..models.tracking import Action, Feedback, User, Visit, db
 from ..onboarding_config import (
     CAREER_GOAL_LABELS,
     CAREER_STAGE_LABELS,
@@ -26,6 +31,7 @@ from ..utils import log_visit
 # A/B: which onboarding length the user sees
 ONBOARDING_AB_COOKIE = "onboarding_ab"
 _ONBOARDING_AB_MAX_AGE = 30 * 24 * 60 * 60
+_DASHBOARD_ADMIN_SESSION_KEY = "roadmap_dashboard_admin"
 
 
 landing_blueprint = Blueprint(LANDING_DEFAULT_NAME, __name__)
@@ -123,7 +129,12 @@ def track_action():
 
     detail = data.get("detail")
     if detail is not None and not isinstance(detail, (dict, list)):
-        return jsonify({"status": "error", "message": "detail must be an object or array"}), 400
+        return (
+            jsonify(
+                {"status": "error", "message": "detail must be an object or array"}
+            ),
+            400,
+        )
 
     user_uuid = request.cookies.get("tracking_id")
 
@@ -148,6 +159,27 @@ def _render_onboarding(*, questions, variant: str, ob_intro_sub: str):
 
 @landing_blueprint.route("/onboarding")
 def onboarding():
+    editing = request.args.get("editing") == "1"
+
+    if (
+        not editing
+        and current_user.is_authenticated
+        and current_user.major
+        and current_user.year
+    ):
+        major = current_user.major.lower()
+        params = {
+            "year": current_user.year,
+            "career_goal": current_user.career_goal,
+            "career_stage": current_user.career_stage,
+            "priority": current_user.priority,
+        }
+
+        if major == "cs":
+            return redirect(url_for("roadmap.cs", **params))
+        if major == "econ":
+            return redirect(url_for("roadmap.econ", **params))
+
     assigned = request.cookies.get(ONBOARDING_AB_COOKIE)
 
     if assigned not in ("variantA", "variantB"):
@@ -294,9 +326,83 @@ def submit_feedback():
     return redirect(url_for("homepage.feedback_page"))
 
 
+@landing_blueprint.route("/roadmap_dashboard/reset-tracking", methods=["POST"])
+def reset_roadmap_tracking():
+    if not session.get(_DASHBOARD_ADMIN_SESSION_KEY):
+        flash("Please log in as dashboard admin first.", "danger")
+        return redirect(url_for("homepage.onboarding_tracker"))
+
+    try:
+        Action.query.delete(synchronize_session=False)
+        Visit.query.delete(synchronize_session=False)
+        Feedback.query.delete(synchronize_session=False)
+        User.query.delete(synchronize_session=False)
+        db.session.commit()
+        flash("Tracking data reset successfully.", "success")
+    except Exception:
+        db.session.rollback()
+        flash("Could not reset tracking data. Please try again.", "danger")
+
+    return redirect(url_for("homepage.onboarding_tracker"))
+
+
+def _admin_password_is_valid(*, provided: str, expected: str) -> bool:
+    if not provided or not expected:
+        return False
+
+    digest = hashlib.sha256
+    p_hash = digest(provided.encode("utf-8")).digest()
+    e_hash = digest(expected.encode("utf-8")).digest()
+
+    return hmac.compare_digest(p_hash, e_hash)
+
+
+@landing_blueprint.route("/roadmap_dashboard/login", methods=["POST"])
+def roadmap_dashboard_login():
+    expected_email = (os.getenv("ADMIN_EMAIL") or "").strip().lower()
+    expected_password = (os.getenv("ADMIN_PASSWORD") or "").strip()
+    provided_email = (request.form.get("admin_email") or "").strip().lower()
+    provided_password = request.form.get("admin_password") or ""
+
+    if not expected_email or not expected_password:
+        flash("ADMIN_EMAIL/ADMIN_PASSWORD are not configured on the server.", "danger")
+        return redirect(url_for("homepage.onboarding_tracker"))
+
+    email_ok = provided_email == expected_email
+    password_ok = _admin_password_is_valid(
+        provided=provided_password,
+        expected=expected_password,
+    )
+
+    if email_ok and password_ok:
+        session[_DASHBOARD_ADMIN_SESSION_KEY] = True
+        session.modified = True
+        flash("Admin login successful.", "success")
+        return redirect(url_for("homepage.onboarding_tracker"))
+
+    flash("Invalid admin email or password.", "danger")
+    return redirect(url_for("homepage.onboarding_tracker"))
+
+
+@landing_blueprint.route("/roadmap_dashboard/logout", methods=["POST"])
+def roadmap_dashboard_logout():
+    session.pop(_DASHBOARD_ADMIN_SESSION_KEY, None)
+    flash("Logged out of dashboard admin.", "success")
+    return redirect(url_for("homepage.onboarding_tracker"))
+
+
 @landing_blueprint.route("/roadmap_dashboard")
 def onboarding_tracker():
+    is_dashboard_admin = bool(session.get(_DASHBOARD_ADMIN_SESSION_KEY))
+
+    if not is_dashboard_admin:
+        return render_template(
+            "roadmap_dashboard.html",
+            is_dashboard_admin=False,
+        )
+
     return render_template(
         "roadmap_dashboard.html",
+        is_dashboard_admin=True,
         **build_roadmap_dashboard_context(),
     )

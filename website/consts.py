@@ -17,6 +17,16 @@ CLIENT_KWARGS_KEY = "scope"
 CLIENT_KWARGS_ITEMS = "openid email profile"
 GOOGLE_USER_INFO_API = "https://www.googleapis.com/oauth2/v1/userinfo"
 
+GOOGLE_USER_ID = "id"
+GOOGLE_USER_EMAIL = "email"
+GOOGLE_USER_VERIFIED_EMAIL = "verified_email"
+GOOGLE_USER_NAME = "name"
+GOOGLE_USER_GIVEN_NAME = "given_name"
+GOOGLE_USER_FAMILY_NAME = "family_name"
+GOOGLE_USER_PICTURE = "picture"
+GOOGLE_USER_HD = "hd"
+
+
 """
 fallbacks
 """

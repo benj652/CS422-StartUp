@@ -20,6 +20,7 @@ def get_or_create_user_id():
     
     return new_user.id, new_uuid # Return new ID and the UUID to be set as cookie
 
+
 def log_visit(page):
     """Logs the visit and returns the user_id and potential new cookie."""
     user_id, new_uuid = get_or_create_user_id()

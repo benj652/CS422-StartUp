@@ -1,4 +1,5 @@
 import csv
+from collections import defaultdict
 from datetime import datetime, timedelta
 from io import StringIO
 
@@ -15,6 +16,9 @@ from ..onboarding_config import (
     MAJOR_LABELS,
     PRIORITY_LABELS,
 )
+
+_ONBOARDING_COHORT = ("short", "full")
+_VARIANT_KEY_TO_LETTER = {"short": "A", "full": "B"}
 
 VARIANT_ROWS = (
     ("Variant A (short onboarding)", "short"),
@@ -90,8 +94,16 @@ def _sum_roadmap_time_seconds(onboarding_variant: str) -> int:
         .all()
     )
 
+    return _sum_roadmap_time_seconds_from_details(rows)
+
+
+def _sum_roadmap_time_seconds_from_details(actions: list) -> int:
     total = 0
-    for action in rows:
+
+    for action in actions:
+        if action.atype != "roadmap_time_on_page":
+            continue
+
         detail = action.detail
         if not isinstance(detail, dict):
             continue
@@ -397,25 +409,56 @@ dashboard_blueprint = Blueprint(DASHBOARD_DEFAULT_NAME, __name__)
 
 @dashboard_blueprint.route("/export-roadmap-metrics.csv")
 def export_roadmap_metrics_csv():
-    """CSV: one row per onboarding variant, roadmap interaction counts."""
+    """CSV: one row per user in the A/B submit cohort."""
+    users = (
+        User.query.filter(User.onboarding_variant.in_(_ONBOARDING_COHORT))
+        .order_by(User.id)
+        .all()
+    )
+
+    user_ids = [u.id for u in users]
+    by_uid: dict[int, list] = defaultdict(list)
+
+    if user_ids:
+        for action in Action.query.filter(Action.user_id.in_(user_ids)).all():
+            if action.user_id is not None:
+                by_uid[action.user_id].append(action)
+
     buf = StringIO()
     writer = csv.writer(buf)
     writer.writerow(
         [
-            "Variant",
-            "roadmap_checkbox",
-            "roadmap_link_click",
-            "roadmap_time_on_page_seconds_total",
+            "user_id",
+            "variant_letter",
+            "class_year",
+            "major",
+            "roadmap_link_clicks",
+            "roadmap_checkboxes",
+            "roadmap_status_changes",
+            "roadmap_time_on_page_seconds_sum",
         ]
     )
 
-    for label, variant_key in VARIANT_ROWS:
+    for user in users:
+        key = user.onboarding_variant or ""
+        actions = by_uid.get(user.id, [])
+
+        n_link = sum(1 for action in actions if action.atype == "roadmap_link_click")
+        n_check = sum(1 for action in actions if action.atype == "roadmap_checkbox")
+        n_status = sum(1 for action in actions if action.atype == "roadmap_status_change")
+        t_sec = _sum_roadmap_time_seconds_from_details(actions)
+        letter = _VARIANT_KEY_TO_LETTER.get(key, "")
+
         writer.writerow(
             [
-                label,
-                _count_roadmap_actions(variant_key, "roadmap_checkbox"),
-                _count_roadmap_actions(variant_key, "roadmap_link_click"),
-                _sum_roadmap_time_seconds(variant_key),
+                user.id,
+                letter,
+                user.class_year or "",
+                user.major or "",
+                n_link,
+                n_check,
+                n_status,
+                t_sec,
             ]
         )
 
@@ -424,14 +467,13 @@ def export_roadmap_metrics_csv():
         data,
         mimetype="text/csv; charset=utf-8",
         headers={
-            "Content-Disposition": "attachment; filename=roadmap_metrics_by_variant.csv",
+            "Content-Disposition": "attachment; filename=roadmap_metrics_per_user.csv",
         },
     )
 
 
 @dashboard_blueprint.route(PREFIX)
 def dashboard():
-    # Top card metrics
     total_users = _active_user_count()
     total_visits = Visit.query.count()
 
@@ -441,12 +483,10 @@ def dashboard():
     engagement_rate = _safe_percent(users_who_activated, total_users, 2)
     core_action_rate = _safe_percent(users_who_complete_core_action, total_users, 2)
 
-    # Activation rate chart
     chart_labels, week_0_data = _activation_rate_by_day(days=7, offset_days=0)
     _labels_last_week, week_1_data = _activation_rate_by_day(days=7, offset_days=7)
     _labels_two_weeks, week_2_data = _activation_rate_by_day(days=7, offset_days=14)
 
-    # Profile breakdown charts
     class_year_labels, class_year_values = _group_user_field("class_year")
     major_labels, major_values = _group_user_field("major", MAJOR_LABELS)
     career_goal_labels, career_goal_values = _group_user_field(
@@ -459,7 +499,6 @@ def dashboard():
     )
     roadmap_labels, roadmap_values = _roadmap_submits_by_day(days=7)
 
-    # 14-day bounded retention: did a user submit roadmap again within 14 days?
     Action1 = aliased(Action)
     Action2 = aliased(Action)
 
