@@ -1,0 +1,364 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  --bp-bg: #f8f7f3;
+  --bp-card: rgba(255, 255, 255, 0.9);
+  --bp-card-solid: #ffffff;
+  --bp-text: #0f172a;
+  --bp-muted: #64748b;
+  --bp-border: #e2ded6;
+  --bp-accent: #127be4;
+  --bp-accent-dark: #0f6bcc;
+  --bp-accent-soft: #eaf4ff;
+  --bp-navy: #10213a;
+  --bp-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+  --bp-shadow-soft: 0 10px 28px rgba(15, 23, 42, 0.06);
+  --bp-radius: 20px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif !important;
+  background:
+    radial-gradient(circle at top left, rgba(18, 123, 228, 0.1), transparent 34rem),
+    radial-gradient(circle at top right, rgba(16, 33, 58, 0.07), transparent 28rem),
+    var(--bp-bg) !important;
+  color: var(--bp-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.main-content {
+  background: transparent !important;
+}
+
+/* Header / hero area */
+
+.header {
+  background:
+    linear-gradient(135deg, rgba(248, 247, 243, 0.98), rgba(234, 244, 255, 0.92)) !important;
+  border-bottom: 1px solid rgba(226, 222, 214, 0.92);
+  box-shadow: none !important;
+}
+
+.header.bg-primary,
+.header.bg-gradient-primary,
+.header.bg-dark {
+  background:
+    radial-gradient(circle at top left, rgba(18, 123, 228, 0.16), transparent 30rem),
+    linear-gradient(135deg, #f8f7f3 0%, #eef6ff 100%) !important;
+}
+
+.header .h2,
+.header h1,
+.header h2,
+.header h6.h2 {
+  font-family: "Poppins", sans-serif !important;
+  color: var(--bp-text) !important;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.header p,
+.text-white-50 {
+  color: var(--bp-muted) !important;
+}
+
+.header .text-white,
+.header .text-light {
+  color: var(--bp-text) !important;
+}
+
+/* Layout */
+
+.container-fluid {
+  max-width: 1480px;
+}
+
+.mt--6 {
+  margin-top: -4.25rem !important;
+}
+
+.row {
+  row-gap: 1.35rem;
+}
+
+/* Cards */
+
+.card {
+  border: 1px solid rgba(226, 222, 214, 0.95) !important;
+  border-radius: var(--bp-radius) !important;
+  background: var(--bp-card) !important;
+  box-shadow: var(--bp-shadow-soft) !important;
+  overflow: hidden;
+}
+
+.card:hover {
+  box-shadow: var(--bp-shadow) !important;
+}
+
+.card-header {
+  background: rgba(255, 255, 255, 0.58) !important;
+  border-bottom: 1px solid rgba(226, 222, 214, 0.75) !important;
+  padding: 1.25rem 1.45rem !important;
+}
+
+.card-body {
+  padding: 1.45rem !important;
+}
+
+.card-stats {
+  min-height: 158px;
+}
+
+.card-stats .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-title {
+  font-family: "Inter", sans-serif !important;
+  color: var(--bp-muted) !important;
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+}
+
+.card .h2,
+.card .h3,
+.card h3,
+.card h5 {
+  font-family: "Poppins", sans-serif !important;
+  color: var(--bp-text) !important;
+  letter-spacing: -0.035em;
+}
+
+.card .h2 {
+  font-size: 1.85rem;
+}
+
+.card .h3 {
+  font-size: 1.18rem;
+}
+
+.text-muted {
+  color: var(--bp-muted) !important;
+}
+
+/* Dark chart cards */
+
+.card.bg-default,
+.card.bg-dark {
+  background: var(--bp-navy) !important;
+  border-color: rgba(16, 33, 58, 0.9) !important;
+  box-shadow: 0 22px 55px rgba(16, 33, 58, 0.2) !important;
+}
+
+.card.bg-default .card-header,
+.card.bg-dark .card-header {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.card.bg-default .h3,
+.card.bg-dark .h3,
+.card.bg-default h5,
+.card.bg-dark h5 {
+  color: #ffffff !important;
+}
+
+.card.bg-default .text-light,
+.card.bg-dark .text-light {
+  color: rgba(255, 255, 255, 0.66) !important;
+}
+
+/* Icons */
+
+.icon-shape {
+  width: 52px !important;
+  height: 52px !important;
+  box-shadow: none !important;
+}
+
+.bg-gradient-red,
+.bg-gradient-orange,
+.bg-gradient-green,
+.bg-gradient-info,
+.bg-gradient-blue {
+  background: var(--bp-accent) !important;
+}
+
+.icon-shape i {
+  color: white !important;
+}
+
+/* Buttons / nav pills */
+
+.btn,
+.nav-pills .nav-link {
+  border-radius: 999px !important;
+  font-family: "Inter", sans-serif !important;
+  font-weight: 700 !important;
+}
+
+.btn-neutral,
+.btn-light {
+  background: #ffffff !important;
+  color: var(--bp-text) !important;
+  border: 1.5px solid var(--bp-border) !important;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06) !important;
+}
+
+.btn-neutral:hover,
+.btn-light:hover {
+  color: var(--bp-accent) !important;
+  border-color: rgba(18, 123, 228, 0.38) !important;
+  transform: translateY(-1px);
+}
+
+.nav-pills .nav-link {
+  color: var(--bp-accent) !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(18, 123, 228, 0.16);
+}
+
+.nav-pills .nav-link.active {
+  color: #ffffff !important;
+  background: var(--bp-accent) !important;
+}
+
+/* Charts */
+
+.chart {
+  min-height: 280px;
+}
+
+.card.bg-default .chart,
+.card.bg-dark .chart {
+  min-height: 355px;
+}
+
+.chart-canvas {
+  max-height: 390px;
+}
+
+/* Tables */
+
+.table {
+  color: var(--bp-text) !important;
+}
+
+.table thead th {
+  background: #f8fafc !important;
+  color: var(--bp-muted) !important;
+  border-bottom: 1px solid rgba(226, 222, 214, 0.95) !important;
+  font-size: 0.68rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+}
+
+.table td,
+.table th {
+  vertical-align: middle !important;
+  border-top: 1px solid rgba(226, 222, 214, 0.7) !important;
+  font-size: 0.92rem;
+}
+
+.table th[scope="row"] {
+  color: var(--bp-text);
+  font-weight: 700;
+}
+
+.table-responsive {
+  border-radius: 0 0 var(--bp-radius) var(--bp-radius);
+}
+
+/* Feedback table */
+
+td {
+  color: #475569;
+}
+
+/* Small labels and descriptions */
+
+.text-sm {
+  line-height: 1.65;
+}
+
+.text-primary,
+.text-success,
+.text-warning,
+.text-danger {
+  color: var(--bp-accent) !important;
+}
+
+.text-nowrap {
+  color: var(--bp-muted);
+}
+
+/* Cleaner spacing on top KPI section */
+
+.header .row.pt-4 {
+  padding-top: 1.2rem !important;
+}
+
+.header .card {
+  backdrop-filter: blur(8px);
+}
+
+/* Make dashboards feel like product analytics pages */
+
+.dashboard-section-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--bp-text);
+  letter-spacing: -0.03em;
+  margin-bottom: 0.35rem;
+}
+
+.dashboard-section-subtitle {
+  color: var(--bp-muted);
+  font-size: 0.92rem;
+  margin-bottom: 1rem;
+}
+
+/* Responsive */
+
+@media (max-width: 992px) {
+  .mt--6 {
+    margin-top: -3rem !important;
+  }
+
+  .header .text-right {
+    text-align: left !important;
+    margin-top: 1rem;
+  }
+
+  .card.bg-default .chart,
+  .card.bg-dark .chart {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 640px) {
+  .container-fluid {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .card-body {
+    padding: 1.15rem !important;
+  }
+
+  .card-header {
+    padding: 1.15rem !important;
+  }
+
+  .card .h2 {
+    font-size: 1.45rem;
+  }
+}
