@@ -26,14 +26,6 @@ from .consts import (
 db = SQLAlchemy()
 
 
-from .views import (
-    dashboard_blueprint,
-    landing_blueprint,
-    roadmap_blueprint,
-    auth_blueprint,
-)
-
-
 # Project root: parent of the `website` package
 _PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 load_dotenv(os.path.join(_PROJECT_ROOT, ".env"))
@@ -95,7 +87,7 @@ def create_app():
         return User.query.get(int(user_id))
 
     db.init_app(app)
-    migrate = Migrate(app, db)
+    Migrate(app, db)
     with app.app_context():
         import website.models.tracking  # pylint: disable=unused-import
         from .views import (

@@ -5,6 +5,7 @@ Revises: 1c96ddd37bf6
 Create Date: 2026-05-07 14:00:00.000000
 
 """
+# pylint: disable=no-member,duplicate-code
 from alembic import op
 import sqlalchemy as sa
 from sqlalchemy import inspect
