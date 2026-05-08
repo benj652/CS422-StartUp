@@ -26,6 +26,7 @@ from ..onboarding_config import (
     CAREER_GOAL_LABELS,
     CAREER_STAGE_LABELS,
     MAJOR_LABELS,
+    PRIORITY_LABELS,
     QUESTIONS,
     QUESTIONS_SHORT,
 )
