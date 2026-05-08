@@ -1,4 +1,3 @@
-
 """Pytest fixtures for the test suite.
 
 These fixtures are intentionally simple and used only in tests; test
@@ -21,7 +20,6 @@ from website import db
 flask_app = create_app()
 
 
-
 @pytest.fixture(scope="module")
 def app():
     """Provide Flask app object for tests (module scope)."""
@@ -36,7 +34,7 @@ def app_ctx(app):
 
 
 @pytest.fixture(autouse=True)
-def cleanup_db(_app_ctx):
+def cleanup_db(app_ctx):
     """Automatically clean up database before and after each test."""
     table_names = set(db.metadata.tables.keys())
 
