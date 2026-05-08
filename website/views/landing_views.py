@@ -2,6 +2,7 @@ import hashlib
 import hmac
 import os
 import random
+from ..services.mentor_openai import get_mentor_reply
 
 from flask import (
     Blueprint,
@@ -43,6 +44,22 @@ _PROFILE_SHORT_CAREER = (
     "Complete the full onboarding path to see your career goal and stage here."
 )
 
+def _mentor_llm_profile(tracker_user):
+    """Compact profile payload for mentor prompts."""
+    if not tracker_user:
+        return {
+            "class_year": "",
+            "major": "",
+            "career_goal": "",
+            "career_stage": "",
+        }
+
+    return {
+        "class_year": tracker_user.class_year or "",
+        "major": tracker_user.major or "",
+        "career_goal": tracker_user.career_goal or "",
+        "career_stage": tracker_user.career_stage or "",
+    }
 
 def _mentor_profile_context(tracker_user):
     """
@@ -281,6 +298,7 @@ def feedback_page():
 
 
 @landing_blueprint.route("/mentor")
+@login_required
 def mentor_page():
     """Serves the AI Mentor chat page."""
     log_visit(page="mentor.html")
@@ -289,8 +307,51 @@ def mentor_page():
     tracker_user = User.query.filter_by(uuid=user_uuid).first() if user_uuid else None
     profile = _mentor_profile_context(tracker_user)
 
-    return render_template("mentor.html", **profile)
+    display_name = "Guest"
+    if current_user.is_authenticated:
+        first = (current_user.first_name or "").strip()
+        last = (current_user.last_name or "").strip()
+        full = f"{first} {last}".strip()
+        if full:
+            display_name = full
 
+    return render_template("mentor.html", mentor_user_name=display_name, **profile)
+
+@landing_blueprint.route("/mentor/chat", methods=["POST"])
+@login_required
+def mentor_chat():
+    data = request.get_json(silent=True)
+    if not isinstance(data, dict):
+        return jsonify({"status": "error", "message": "JSON body required"}), 400
+
+    user_message = (data.get("message") or "").strip()
+    if not user_message:
+        return jsonify({"status": "error", "message": "message is required"}), 400
+
+    if len(user_message) > 1200:
+        return jsonify({"status": "error", "message": "message too long (max 1200 chars)"}), 400
+
+    history = data.get("history")
+    if history is not None and not isinstance(history, list):
+        return jsonify({"status": "error", "message": "history must be an array"}), 400
+
+    user_uuid = request.cookies.get("tracking_id")
+    tracker_user = User.query.filter_by(uuid=user_uuid).first() if user_uuid else None
+    profile = _mentor_llm_profile(tracker_user)
+
+    result = get_mentor_reply(
+        user_message=user_message,
+        profile=profile,
+        history=history,
+    )
+
+    return jsonify(
+        {
+            "status": "success",
+            "reply": result["reply"],
+            "source": result["source"],
+        }
+    ), 200
 
 @landing_blueprint.route("/privacy")
 def privacy():
