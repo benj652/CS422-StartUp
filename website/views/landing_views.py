@@ -15,7 +15,7 @@ from flask import (
     session,
     url_for,
 )
-from flask_login import current_user
+from flask_login import current_user, login_required
 
 from .dashboard_views import build_roadmap_dashboard_context
 from ..consts import HTML_EXTENSION, LANDING_DEFAULT_NAME, PREFIX
@@ -296,6 +296,7 @@ def feedback_page():
 
 
 @landing_blueprint.route("/mentor")
+@login_required
 def mentor_page():
     """Serves the AI Mentor chat page."""
     log_visit(page="mentor.html")
@@ -315,6 +316,7 @@ def mentor_page():
     return render_template("mentor.html", mentor_user_name=display_name, **profile)
 
 @landing_blueprint.route("/mentor/chat", methods=["POST"])
+@login_required
 def mentor_chat():
     data = request.get_json(silent=True)
     if not isinstance(data, dict):
