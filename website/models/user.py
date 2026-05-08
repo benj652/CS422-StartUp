@@ -28,6 +28,12 @@ class User(db.Model, UserMixin):
     career_goal = db.Column(db.String(50))
     career_stage = db.Column(db.String(50))
     priority = db.Column(db.String(50))
+    wishlist_items = db.relationship(
+        "WishlistItem",
+        backref="user",
+        lazy=True,
+        cascade="all, delete-orphan",
+    )
 
     def __repr__(self):
         """Return a concise representation for debugging."""
@@ -47,8 +53,42 @@ class User(db.Model, UserMixin):
         """Save the user to the database"""
         db.session.add(self)
         db.session.commit()
-        
 
 
+class WishlistItem(db.Model):
+    """Wishlist item saved from roadmap interactions for an authenticated user."""
 
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    roadmap_item_id = db.Column(db.String(255), nullable=False)
+    label = db.Column(db.String(255), nullable=True)
+    title = db.Column(db.String(255), nullable=False)
+    section = db.Column(db.String(100), nullable=True)
+    summary = db.Column(db.Text, nullable=True)
+    href = db.Column(db.String(500), nullable=True)
+    priority = db.Column(db.String(20), nullable=False, default="low")
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+    updated_at = db.Column(
+        db.DateTime,
+        default=db.func.current_timestamp(),
+        onupdate=db.func.current_timestamp(),
+    )
 
+    __table_args__ = (
+        db.UniqueConstraint(
+            "user_id", "roadmap_item_id", name="uq_wishlist_user_roadmap_item"
+        ),
+    )
+
+    def to_dict(self):
+        """Return a JSON-serializable representation of the wishlist item."""
+        return {
+            "id": self.id,
+            "roadmap_item_id": self.roadmap_item_id,
+            "label": self.label or self.title,
+            "title": self.title,
+            "section": self.section,
+            "summary": self.summary,
+            "href": self.href,
+            "priority": self.priority,
+        }

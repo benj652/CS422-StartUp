@@ -15,11 +15,12 @@ from flask import (
     session,
     url_for,
 )
-from flask_login import current_user
+from flask_login import current_user, login_required
 from sqlalchemy import func
 
 from ..consts import HTML_EXTENSION, LANDING_DEFAULT_NAME, PREFIX
 from ..models.tracking import Action, Feedback, User, Visit, db
+from ..models.user import WishlistItem
 from ..onboarding_config import (
     CAREER_GOAL_LABELS,
     CAREER_STAGE_LABELS,
@@ -277,8 +278,93 @@ def cookie_policy():
     return render_template("cookies.html")
 
 @landing_blueprint.route("/wishlist")
+@login_required
 def wishlist():
-    return render_template("wishlist.html")
+    grouped_items = {"high": [], "medium": [], "low": []}
+
+    items = (
+        WishlistItem.query.filter_by(user_id=current_user.id)
+        .order_by(WishlistItem.created_at.asc(), WishlistItem.id.asc())
+        .all()
+    )
+
+    for item in items:
+        priority_key = (item.priority or "low").lower()
+        if priority_key not in grouped_items:
+            priority_key = "low"
+        grouped_items[priority_key].append(item)
+
+    return render_template(
+        "wishlist.html",
+        class_year=current_user.year or "",
+        career_goal=CAREER_GOAL_LABELS.get(current_user.career_goal or "", ""),
+        career_stage=CAREER_STAGE_LABELS.get(current_user.career_stage or "", ""),
+        priority=PRIORITY_LABELS.get(current_user.priority or "", ""),
+        wishlist_items=grouped_items,
+        wishlist_total=len(items),
+    )
+
+
+@landing_blueprint.route("/wishlist/items/from-roadmap", methods=["POST"])
+def save_wishlist_item_from_roadmap():
+    if not current_user.is_authenticated:
+        return jsonify({"status": "unauthorized"}), 401
+
+    data = request.get_json(silent=True) or {}
+    roadmap_item_id = (data.get("roadmap_item_id") or "").strip()[:255]
+    title = (data.get("title") or "").strip()[:255]
+
+    if not roadmap_item_id or not title:
+        return (
+            jsonify(
+                {"status": "error", "message": "roadmap_item_id and title required"}
+            ),
+            400,
+        )
+
+    item = WishlistItem.query.filter_by(
+        user_id=current_user.id,
+        roadmap_item_id=roadmap_item_id,
+    ).first()
+
+    if item is None:
+        item = WishlistItem(
+            user_id=current_user.id,
+            roadmap_item_id=roadmap_item_id,
+            label=title,
+            title=title,
+            priority="low",
+        )
+        db.session.add(item)
+
+    item.label = title
+    item.title = title
+    item.section = (data.get("section") or "").strip()[:100] or None
+    item.summary = (data.get("summary") or "").strip() or None
+    item.href = (data.get("href") or "").strip()[:500] or None
+
+    db.session.commit()
+    return jsonify({"status": "success", "item": item.to_dict()}), 200
+
+
+@landing_blueprint.route("/wishlist/items/<int:item_id>/priority", methods=["POST"])
+def update_wishlist_item_priority(item_id: int):
+    if not current_user.is_authenticated:
+        return jsonify({"status": "unauthorized"}), 401
+
+    item = WishlistItem.query.filter_by(id=item_id, user_id=current_user.id).first()
+    if item is None:
+        return jsonify({"status": "error", "message": "Item not found"}), 404
+
+    data = request.get_json(silent=True) or {}
+    priority_value = (data.get("priority") or "").strip().lower()
+    if priority_value not in {"high", "medium", "low"}:
+        return jsonify({"status": "error", "message": "Invalid priority"}), 400
+
+    item.priority = priority_value
+    db.session.commit()
+
+    return jsonify({"status": "success"}), 200
 
 
 @landing_blueprint.route("/feedback", methods=["POST"])

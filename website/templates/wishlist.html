@@ -5,9 +5,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>CS Roadmap · Blueprint</title>
+  <title>Wishlist · Blueprint</title>
 
-  <link rel="icon" href="/static/img/BlueprintClearBgSquare.png" type="image/png" />
+  <link rel="icon" href="{{ url_for('static', filename='img/BlueprintClearBgSquare.png') }}" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -15,17 +15,18 @@
     rel="stylesheet"
   />
 
-  <link rel="stylesheet" href="/static/css/roadmap-specific.css" />
-  <link rel="stylesheet" href="/static/css/footer.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/roadmap-specific.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}" />
 </head>
 
 <body>
   <header class="rm-header">
-    <a href="/" class="rm-logo-link">
-      <img src="/static/img/BlueprintClearBg.png" alt="Blueprint" class="rm-logo-img" />
+    <a href="{{ url_for('homepage.homepage') }}" class="rm-logo-link">
+      <img src="{{ url_for('static', filename='img/BlueprintClearBg.png') }}" alt="Blueprint" class="rm-logo-img" />
     </a>
 
     <div class="rm-header-actions">
+      <a href="{{ url_for('homepage.onboarding', editing=1) }}" class="rm-secondary-link">Edit answers</a>
       <a href="{{ url_for('homepage.mentor_page') }}" class="rm-ai-mentor-btn">AI Mentor</a>
       <a href="{{ url_for('homepage.feedback_page') }}" class="rm-feedback-btn">Feedback</a>
     </div>
@@ -34,10 +35,11 @@
   <main class="rm-main">
     <section class="rm-hero">
       <div class="rm-hero-copy">
+        <p class="rm-eyebrow">Saved roadmap items</p>
         <h1 class="rm-title">Your Wishlist</h1>
-        <p class="rm-subtitle">All your checked courses are saved in one place!</p>
+        <p class="rm-subtitle">Checked roadmap items land in low priority first, then you can move them where they belong.</p>
 
-       <div class="rm-pills">
+        <div class="rm-pills">
           {% if class_year %}
           <div class="rm-pill">{{ class_year }}</div>
           {% endif %}
@@ -65,42 +67,112 @@
       <aside class="rm-hero-card">
         <p class="rm-hero-card-label">How to use this</p>
         <p class="rm-hero-card-text">
-          Drag and drop your saved items to your personal priority
+          Drag items across priority columns to organize what matters most right now.
         </p>
       </aside>
     </section>
 
+    {% set has_items = wishlist_total > 0 %}
     <section class="rm-path-wrap">
-        <div class="rm-three-column-grid">
-            <div class="rm-priority-col" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <h2 class="rm-col-header">High Priority</h2>
-                <ul class="rm-checklist" id="high-priority">
-                    <li draggable="true" ondragstart="drag(event)" id="item-1">Review Data Structures</li>
-                    <li draggable="true" ondragstart="drag(event)" id="item-2">LeetCode 75 Challenge</li>
-                </ul>
-            </div>
+      {% if has_items %}
+      <div class="rm-three-column-grid rm-three-column-grid--wishlist" id="wishlistBoard">
+        <section class="rm-priority-col" data-priority="high" ondrop="drop(event)" ondragover="allowDrop(event)">
+          <h2 class="rm-col-header">
+            <span class="rm-priority-dot rm-priority-dot--high" aria-hidden="true"></span>
+            High Priority
+          </h2>
+          <ul class="rm-checklist rm-checklist--wishlist" id="high-priority">
+            {% for item in wishlist_items.high %}
+            <li
+              class="rm-wishlist-item"
+              draggable="true"
+              ondragstart="drag(event)"
+              id="wishlist-item-{{ item.id }}"
+              data-item-id="{{ item.id }}"
+            >
+              {% if item.href %}
+              <a href="{{ item.href }}" target="_blank" rel="noopener noreferrer" class="rm-wishlist-item-title rm-wishlist-item-title-link">{{ item.title }}</a>
+              {% else %}
+              <span class="rm-wishlist-item-title">{{ item.title }}</span>
+              {% endif %}
+              {% if item.href %}
+              {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+        </section>
 
-            <div class="rm-priority-col" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <h2 class="rm-col-header">Medium Priority</h2>
-                <ul class="rm-checklist" id="medium-priority">
-                    <li draggable="true" ondragstart="drag(event)" id="item-3">Personal Project</li>
-                </ul>
-            </div>
+        <section class="rm-priority-col" data-priority="medium" ondrop="drop(event)" ondragover="allowDrop(event)">
+          <h2 class="rm-col-header">
+            <span class="rm-priority-dot rm-priority-dot--medium" aria-hidden="true"></span>
+            Medium Priority
+          </h2>
+          <ul class="rm-checklist rm-checklist--wishlist" id="medium-priority">
+            {% for item in wishlist_items.medium %}
+            <li
+              class="rm-wishlist-item"
+              draggable="true"
+              ondragstart="drag(event)"
+              id="wishlist-item-{{ item.id }}"
+              data-item-id="{{ item.id }}"
+            >
+              {% if item.href %}
+              <a href="{{ item.href }}" target="_blank" rel="noopener noreferrer" class="rm-wishlist-item-title rm-wishlist-item-title-link">{{ item.title }}</a>
+              {% else %}
+              <span class="rm-wishlist-item-title">{{ item.title }}</span>
+              {% endif %}
+              {% if item.href %}
+              {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+        </section>
 
-            <div class="rm-priority-col" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <h2 class="rm-col-header">Low Priority</h2>
-                <ul class="rm-checklist" id="low-priority">
-                    <li draggable="true" ondragstart="drag(event)" id="item-4">Network</li>
-                </ul>
-            </div>
-        </div>
+        <section class="rm-priority-col" data-priority="low" ondrop="drop(event)" ondragover="allowDrop(event)">
+          <h2 class="rm-col-header">
+            <span class="rm-priority-dot rm-priority-dot--low" aria-hidden="true"></span>
+            Low Priority
+          </h2>
+          <ul class="rm-checklist rm-checklist--wishlist" id="low-priority">
+            {% for item in wishlist_items.low %}
+            <li
+              class="rm-wishlist-item"
+              draggable="true"
+              ondragstart="drag(event)"
+              id="wishlist-item-{{ item.id }}"
+              data-item-id="{{ item.id }}"
+            >
+              {% if item.href %}
+              <a href="{{ item.href }}" target="_blank" rel="noopener noreferrer" class="rm-wishlist-item-title rm-wishlist-item-title-link">{{ item.title }}</a>
+              {% else %}
+              <span class="rm-wishlist-item-title">{{ item.title }}</span>
+              {% endif %}
+              {% if item.href %}
+              {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+        </section>
+      </div>
+      {% else %}
+      <section class="rm-wishlist-empty" aria-live="polite">
+        <img
+          src="{{ url_for('static', filename='img/wishlist-empty-state.svg') }}"
+          alt="Wishlist empty state illustration"
+          class="rm-wishlist-empty-art"
+        />
+        <h2 class="rm-wishlist-empty-title">No wishlist items yet</h2>
+        <p class="rm-wishlist-empty-copy">
+          Check a roadmap item to save it here automatically in low priority.
+        </p>
+      </section>
+      {% endif %}
     </section>
   </main>
 
-  <script src="{{ url_for('static', filename='js/roadmap-personalize.js') }}" defer></script>
-  <script src="{{ url_for('static', filename='js/roadmap-tracking.js') }}" defer></script>
   <script src="{{ url_for('static', filename='js/wishlist.js') }}" defer></script>
 
+  {% include 'footer.html' %}
 </body>
 
 </html>

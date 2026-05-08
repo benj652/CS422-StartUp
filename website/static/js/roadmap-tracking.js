@@ -19,6 +19,26 @@
     }).catch(function () {});
   }
 
+  function saveWishlistItem(detail, node) {
+    if (!detail || !node || !detail.checked) return;
+
+    var titleNode = node.querySelector(".item-title-link, .item-title");
+    var summaryNode = node.querySelector(".item-meta");
+    var linkNode = node.querySelector(".item-title-link");
+
+    fetch("/wishlist/items/from-roadmap", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        roadmap_item_id: detail.item_id || "",
+        title: titleNode ? (titleNode.textContent || "").trim() : detail.label || "",
+        section: detail.section || "",
+        summary: summaryNode ? (summaryNode.textContent || "").trim() : "",
+        href: linkNode ? linkNode.href || "" : "",
+      }),
+    }).catch(function () {});
+  }
+
   function reportRoadmapTime() {
     if (hasReportedRoadmapTime) return;
 
@@ -56,12 +76,15 @@
         var li = t.closest(".roadmap-node");
         if (!li || !grid.contains(li)) return;
 
-        postTrack("roadmap_checkbox", {
+        var checkboxDetail = {
           section: li.getAttribute("data-rm-section") || "",
           label: li.getAttribute("data-rm-label") || "",
           item_id: li.getAttribute("data-rm-id") || "",
           checked: !!t.checked,
-        });
+        };
+
+        postTrack("roadmap_checkbox", checkboxDetail);
+        saveWishlistItem(checkboxDetail, li);
       }
 
       if (t.classList.contains("rm-status-select")) {
