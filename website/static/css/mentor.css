@@ -262,7 +262,7 @@ body.mentor-page {
 
 .chat-msg-assistant {
   align-self: flex-start;
-  background: #fff;
+  background: #91b9eb;
   border: 1px solid var(--border);
   color: var(--text);
   box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);

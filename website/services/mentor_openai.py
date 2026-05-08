@@ -2,6 +2,7 @@
 
 import logging
 import os
+import re
 
 from openai import OpenAI
 
@@ -16,6 +17,44 @@ log = logging.getLogger(__name__)
 _MAX_REPLY_TOKENS = 700
 _DEFAULT_MODEL = "gpt-4o-mini"
 
+
+
+def _strip_light_markdown(text: str) -> str:
+    """Turn common Markdown into plain text for the chat UI."""
+    if not text:
+        return text
+
+    # Fenced code blocks: drop fences, keep inner text
+    text = re.sub(r"```(\w*)\n?", "", text)
+    text = text.replace("```", "")
+
+    # Inline `code` -> code
+    text = re.sub(r"`([^`]+)`", r"\1", text)
+
+    # **bold** and __underline__
+    text = re.sub(r"\*\*([^*]+)\*\*", r"\1", text)
+    text = re.sub(r"__([^_]+)__", r"\1", text)
+
+    # *italic* / _italic_ (single delimiters; conservative)
+    text = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", r"\1", text)
+    text = re.sub(r"(?<!_)_([^_]+)_(?!_)", r"\1", text)
+
+    # ATX headings: "### Title" -> "Title"
+    text = re.sub(r"(?m)^#{1,6}\s*(.+)$", r"\1", text)
+
+    # Setext-style underlines (rare)
+    text = re.sub(r"(?m)^=+\s*$", "", text)
+    text = re.sub(r"(?m)^-+\s*$", "", text)
+
+    # [label](url) -> label
+    text = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", text)
+
+    # Horizontal rules
+    text = re.sub(r"(?m)^(?:-{3,}|\*{3,}|_{3,})\s*$", "", text)
+
+    # Tidy excessive blank lines
+    text = re.sub(r"\n{3,}", "\n\n", text)
+    return text.strip()
 
 def _mentor_system_prompt() -> str:
     return (
@@ -97,6 +136,7 @@ def get_mentor_reply(*, user_message: str, profile: dict, history: list | None =
             messages=messages,
         )
         reply = (resp.choices[0].message.content or "").strip()
+        reply = _strip_light_markdown(reply)
         if not reply:
             raise ValueError("Empty mentor response from model.")
         return {"reply": reply, "source": "llm"}
