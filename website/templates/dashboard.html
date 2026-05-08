@@ -2,16 +2,6 @@
 =========================================================
 * Argon Dashboard - v1.2.0
 =========================================================
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
-
-
-* Copyright  Creative Tim (http://www.creative-tim.com)
-* Coded by www.creative-tim.com
-
-
-
-=========================================================
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
 <!DOCTYPE html>
 <html>
@@ -19,125 +9,137 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
-  <meta name="author" content="Creative Tim">
-  <title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
+  <title>Blueprint Analytics Dashboard</title>
+
   <link rel="icon" href="{{ url_for('static', filename='img/BlueprintClearBgSquare.png') }}" type="image/png">
-  <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
-  <!-- Icons -->
-  <link rel="stylesheet" href="../static/css/nucleo.css" type="text/css">
-  <link rel="stylesheet" href="../static/css/all.min.css" type="text/css">
-  <!-- Page plugins -->
-  <!-- Argon CSS -->
-  <link rel="stylesheet" href="../static/css/argon.css?v=1.2.0" type="text/css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/nucleo.css') }}" type="text/css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/all.min.css') }}" type="text/css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/argon.css') }}" type="text/css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard_theme.css') }}" type="text/css">
 </head>
 
 <body>
-  <!-- Main content (sidenav removed) -->
   <div class="main-content" id="panel" style="margin-left: 0;">
-    <!-- Header -->
     <div class="header bg-primary pb-6">
       <div class="container-fluid">
         <div class="header-body">
-          <!-- Card stats -->
-          <div class="row pt-4">
+
+          <div class="row align-items-center py-4">
+            <div class="col-lg-8 col-12">
+              <h6 class="h2 text-white d-inline-block mb-0">Analytics Dashboard</h6>
+              <p class="text-white-50 mb-0 mt-2">
+                Track user activity, activation, retention, and page-level behavior.
+              </p>
+              <p class="text-white-50 mb-0 mt-1 dashboard-updated">
+                Last updated from live tracking data
+              </p>
+            </div>
+            <div class="col-lg-4 col-12 text-right">
+              <a href="{{ url_for('homepage.onboarding_tracker') }}" class="btn btn-sm btn-neutral">
+                View Experiment Dashboard
+              </a>
+            </div>
+          </div>
+
+          <div class="row dashboard-top-card-row">
             <div class="col-xl-3 col-md-6">
               <div class="card card-stats">
-                <!-- Card body -->
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Total Users</h5>
-                      <span class="h2 font-weight-bold mb-0">{{total_users}}</span>
+                      <span class="h2 font-weight-bold mb-0">{{ total_users }}</span>
                     </div>
                     <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
+                      <div class="icon icon-shape bg-gradient-blue text-white rounded-circle">
                         <i class="ni ni-active-40"></i>
                       </div>
                     </div>
                   </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
+                  <p class="mb-0 text-sm">
+                    <span class="text-primary mr-2"><i class="fa fa-user"></i></span>
+                    <span class="text-nowrap">Unique users with tracked activity</span>
                   </p>
                 </div>
               </div>
             </div>
+
             <div class="col-xl-3 col-md-6">
               <div class="card card-stats">
-                <!-- Card body -->
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Engagement Rate</h5>
-                      <span class="h2 font-weight-bold mb-0">{{engagement_rate}}%</span>
+                      <span class="h2 font-weight-bold mb-0">{{ engagement_rate }}%</span>
                     </div>
                     <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
+                      <div class="icon icon-shape bg-gradient-blue text-white rounded-circle">
                         <i class="ni ni-chart-pie-35"></i>
                       </div>
                     </div>
                   </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
+                  <p class="mb-0 text-sm">
+                    <span class="text-primary mr-2"><i class="fa fa-mouse-pointer"></i></span>
+                    <span class="text-nowrap">Clicked Get Started</span>
                   </p>
                 </div>
               </div>
             </div>
+
             <div class="col-xl-3 col-md-6">
               <div class="card card-stats">
-                <!-- Card body -->
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Activation Rate</h5>
-                      <span class="h2 font-weight-bold mb-0">{{activation_rate}}%</span>
+                      <span class="h2 font-weight-bold mb-0">{{ activation_rate }}%</span>
                     </div>
                     <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
+                      <div class="icon icon-shape bg-gradient-blue text-white rounded-circle">
                         <i class="ni ni-money-coins"></i>
                       </div>
                     </div>
                   </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
+                  <p class="mb-0 text-sm">
+                    <span class="text-primary mr-2"><i class="fa fa-map"></i></span>
+                    <span class="text-nowrap">Generated a roadmap</span>
                   </p>
                 </div>
               </div>
             </div>
+
             <div class="col-xl-3 col-md-6">
               <div class="card card-stats">
-                <!-- Card body -->
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Retention Rate</h5>
-                      <span class="h2 font-weight-bold mb-0">{{retention_rate}} %</span>
+                      <span class="h2 font-weight-bold mb-0">{{ retention_rate }}%</span>
                     </div>
                     <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+                      <div class="icon icon-shape bg-gradient-blue text-white rounded-circle">
                         <i class="ni ni-spaceship"></i>
                       </div>
                     </div>
                   </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
+                  <p class="mb-0 text-sm">
+                    <span class="text-primary mr-2"><i class="fa fa-redo"></i></span>
+                    <span class="text-nowrap">Returned within 14 days</span>
                   </p>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
-    <!-- Page content -->
+
     <div class="container-fluid mt--6">
-      <div class="row">
-        <div class="col-xl-8">
+
+      <div class="row dashboard-compact-row">
+        <div class="col-xl-8 dashboard-hero-chart">
           <div class="card bg-default">
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
@@ -145,40 +147,40 @@
                   <h6 class="text-light text-uppercase ls-1 mb-1">Overview</h6>
                   <h5 class="h3 text-white mb-0">Activation Rate Stats</h5>
                 </div>
-                <div class="col">
+                <div class="col text-right">
                   <ul class="nav nav-pills justify-content-end">
-                    <li class="nav-item mr-2 mr-md-0" 
-                        data-toggle="chart" 
-                        data-target="#chart-sales-dark" 
+                    <li class="nav-item mr-2 mr-md-0"
+                        data-toggle="chart"
+                        data-target="#chart-sales-dark"
                         data-update='{
                           "data":{
                             "labels": {{ chart_labels|tojson }},
                             "datasets":[
-                              {"label": "This Week", "data": {{ week_0_data|tojson }}, "borderColor": "#5e72e4"},
-                              {"label": "Last Week", "data": {{ week_1_data|tojson }}, "borderColor": "#2dce89"},
-                              {"label": "2 Weeks Ago", "data": {{ week_2_data|tojson }}, "borderColor": "#fb6340"}
+                              {"label": "This Week", "data": {{ week_0_data|tojson }}, "borderColor": "#86a9c7"},
+                              {"label": "Last Week", "data": {{ week_1_data|tojson }}, "borderColor": "#97a891"},
+                              {"label": "2 Weeks Ago", "data": {{ week_2_data|tojson }}, "borderColor": "#b08a75"}
                             ]
                           }
-                        }' 
-                        data-prefix="" 
+                        }'
+                        data-prefix=""
                         data-suffix="%">
                       <a href="#" class="nav-link py-2 px-3 active" data-toggle="tab">
                         <span class="d-none d-md-block">3 Week Comparison</span>
                         <span class="d-md-none">3W</span>
                       </a>
                     </li>
-                    <li class="nav-item" 
-                        data-toggle="chart" 
-                        data-target="#chart-sales-dark" 
+                    <li class="nav-item"
+                        data-toggle="chart"
+                        data-target="#chart-sales-dark"
                         data-update='{
                           "data":{
                             "labels": {{ chart_labels|tojson }},
                             "datasets":[
-                              {"label": "This Week", "data": {{ week_0_data|tojson }}, "borderColor": "#5e72e4"}
+                              {"label": "This Week", "data": {{ week_0_data|tojson }}, "borderColor": "#86a9c7"}
                             ]
                           }
-                        }' 
-                        data-prefix="" 
+                        }'
+                        data-prefix=""
                         data-suffix="%">
                       <a href="#" class="nav-link py-2 px-3" data-toggle="tab">
                         <span class="d-none d-md-block">This Week</span>
@@ -189,10 +191,11 @@
                 </div>
               </div>
             </div>
+
             <div class="card-body">
               <div class="chart">
-                <canvas id="chart-sales-dark" 
-                  class="chart-canvas" 
+                <canvas id="chart-sales-dark"
+                  class="chart-canvas"
                   data-initial-labels='{{ chart_labels|tojson }}'
                   data-initial-data-0='{{ week_0_data|tojson }}'
                   data-initial-data-1='{{ week_1_data|tojson }}'
@@ -202,86 +205,29 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-4">
-          <div class="card">
+
+        <div class="col-xl-4 dashboard-hero-side">
+          <div class="card dashboard-card-compact">
             <div class="card-header bg-transparent">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h6 class="text-uppercase text-muted ls-1 mb-1">Student Breakdown</h6>
-                  <h5 class="h3 mb-0">Class Year</h5>
-                </div>
-              </div>
+              <h6 class="text-uppercase text-muted ls-1 mb-1">Student Breakdown</h6>
+              <h5 class="h3 mb-0">Class Year</h5>
             </div>
             <div class="card-body">
-              <!-- Chart -->
               <div class="chart">
-                <canvas id="chart-bars" class="chart-canvas" data-initial-labels='{{ class_year_labels|tojson }}'
-                data-initial-counts='{{ class_year_values|tojson }}'></canvas>
+                <canvas id="chart-bars"
+                  class="chart-canvas"
+                  data-initial-labels='{{ class_year_labels|tojson }}'
+                  data-initial-counts='{{ class_year_values|tojson }}'>
+                </canvas>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xl-8">
-          <div class="card">
+
+          <div class="card dashboard-card-compact">
             <div class="card-header border-0">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h3 class="mb-0">Page visits</h3>
-                </div>
-              </div>
+              <h3 class="mb-0">User Feedback</h3>
             </div>
             <div class="table-responsive">
-              <!-- Projects table -->
-              <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col">Page name</th>
-                    <th scope="col">Visitors</th>
-                    <th scope="col">Unique users</th>
-                    <th scope="col">Bounce rate</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for page in page_stats %}
-                  <tr>
-                    <th scope="row">
-                      {{ page.name }}
-                    </th>
-                    <td>
-                      {{ "{:,}".format(page.visitors) }}
-                    </td>
-                    <td>
-                      {{ "{:,}".format(page.unique) }}
-                    </td>
-                    <td>
-                      {% if page.bounce_rate > 70 %}
-                        <i class="fas fa-arrow-up text-danger mr-3"></i> {{ page.bounce_rate }}%
-                      {% elif page.bounce_rate > 40 %}
-                        <i class="fas fa-arrow-right text-warning mr-3"></i> {{ page.bounce_rate }}%
-                      {% else %}
-                        <i class="fas fa-arrow-down text-success mr-3"></i> {{ page.bounce_rate }}%
-                      {% endif %}
-                    </td>
-                  </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-4">
-          <div class="card">
-            <div class="card-header border-0">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h3 class="mb-0">User Feedback</h3>
-                </div>
-              </div>
-            </div>
-            <div class="table-responsive">
-              <!-- Feedback table -->
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
@@ -293,22 +239,16 @@
                 <tbody>
                   {% if feedback_list %}
                     {% for feedback in feedback_list %}
-                  <tr>
-                    <th scope="row">
-                      {{ feedback.user_id }}
-                    </th>
-                    <td>
-                      {{ feedback.content }}
-                    </td>
-                    <td>
-                      {{ feedback.created_at.strftime("%Y-%m-%d")}}
-                    </td>
-                  </tr>
+                    <tr>
+                      <th scope="row">{{ feedback.user_id }}</th>
+                      <td>{{ feedback.content }}</td>
+                      <td>{{ feedback.created_at.strftime("%Y-%m-%d") }}</td>
+                    </tr>
                     {% endfor %}
                   {% else %}
-                  <tr>
-                    <td colspan="3" class="text-center"> Currently no feedback </td>
-                  </tr>
+                    <tr>
+                      <td colspan="3" class="text-center">Currently no feedback</td>
+                    </tr>
                   {% endif %}
                 </tbody>
               </table>
@@ -316,21 +256,125 @@
           </div>
         </div>
       </div>
-      
+
+      <div class="row">
+        <div class="col-xl-8">
+          <div class="card dashboard-card-compact">
+            <div class="card-header border-0">
+              <h3 class="mb-0">Page visits</h3>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Page name</th>
+                    <th scope="col">Visitors</th>
+                    <th scope="col">Unique users</th>
+                    <th scope="col">Bounce rate</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for page in page_stats %}
+                    <tr>
+                      <th scope="row">{{ page.name }}</th>
+                      <td>{{ "{:,}".format(page.visitors) }}</td>
+                      <td>{{ "{:,}".format(page.unique) }}</td>
+                      <td>
+                        {% if page.bounce_rate > 70 %}
+                          <i class="fas fa-arrow-up text-danger mr-3"></i> {{ page.bounce_rate }}%
+                        {% elif page.bounce_rate > 40 %}
+                          <i class="fas fa-arrow-right text-warning mr-3"></i> {{ page.bounce_rate }}%
+                        {% else %}
+                          <i class="fas fa-arrow-down text-success mr-3"></i> {{ page.bounce_rate }}%
+                        {% endif %}
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-4">
+          <div class="card dashboard-card-compact">
+            <div class="card-header bg-transparent">
+              <h6 class="text-uppercase text-muted ls-1 mb-1">Core Outcome</h6>
+              <h5 class="h3 mb-0">Roadmaps Generated</h5>
+            </div>
+            <div class="card-body">
+              {% if not roadmap_values or roadmap_values|sum == 0 %}
+                <p class="text-muted text-sm mb-2">No roadmap submissions in this date range yet.</p>
+              {% endif %}
+              <div class="chart">
+                <canvas id="roadmap-chart"
+                  class="chart-canvas"
+                  data-labels='{{ roadmap_labels|tojson }}'
+                  data-values='{{ roadmap_values|tojson }}'>
+                </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
-  <!-- Argon Scripts -->
-  <!-- Core -->
-  <script src="../static/js/jquery.min.js"></script>
-  <script src="../static/js/bootstrap.bundle.min.js"></script>
-  <script src="../static/js/js.cookie.js"></script>
-  <script src="../static/js/jquery.scrollbar.min.js"></script>
-  <script src="../static/js/jquery-scrollLock.min.js"></script>
-  <!-- Optional JS -->
-  <script src="../static/js/Chart.min.js"></script>
-  <script src="../static/js/Chart.extension.js"></script>
-  <!-- Argon JS -->
-  <script src="../static/js/argon.js?v=1.2.0"></script>
+
+  <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/js.cookie.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.scrollbar.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery-scrollLock.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/Chart.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/Chart.extension.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/argon.js') }}"></script>
+
+  <script>
+    function makeSimpleBarChart(id, label) {
+      var el = document.getElementById(id);
+      if (!el) return;
+
+      new Chart(el.getContext("2d"), {
+        type: "bar",
+        data: {
+          labels: JSON.parse(el.getAttribute("data-labels") || "[]"),
+          datasets: [{
+            label: label,
+            data: JSON.parse(el.getAttribute("data-values") || "[]"),
+            backgroundColor: "#86a9c7",
+            hoverBackgroundColor: "#789fbd",
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          legend: { display: false },
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                precision: 0
+              },
+              gridLines: {
+                color: "rgba(100, 116, 139, 0.16)",
+                drawBorder: false
+              }
+            }],
+            xAxes: [{
+              gridLines: {
+                display: false,
+                drawBorder: false
+              }
+            }]
+          }
+        }
+      });
+    }
+
+    makeSimpleBarChart("roadmap-chart", "Roadmaps");
+  </script>
 </body>
 
 </html>
