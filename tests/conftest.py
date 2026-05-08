@@ -36,33 +36,29 @@ def app_ctx(app):
 
 
 @pytest.fixture(autouse=True)
-def cleanup_db(app_ctx):
+def cleanup_db(_app_ctx):
     """Automatically clean up database before and after each test."""
-    from website.models import Note, CameraGear, LabEquipment, Consumable, User
-    
+    table_names = set(db.metadata.tables.keys())
+
     # Clean up before test
     db.session.rollback()
     try:
-        # Delete in reverse order of dependencies
-        Note.query.delete()
-        CameraGear.query.delete()
-        LabEquipment.query.delete()
-        Consumable.query.delete()
-        User.query.delete()
+        # Delete in reverse dependency order for all known tables.
+        for table in reversed(db.metadata.sorted_tables):
+            if table.name in table_names:
+                db.session.execute(table.delete())
         db.session.commit()
     except Exception:  # pragma: no cover
         db.session.rollback()
-    
+
     yield
-    
+
     # Clean up after test
     db.session.rollback()
     try:
-        Note.query.delete()
-        CameraGear.query.delete()
-        LabEquipment.query.delete()
-        Consumable.query.delete()
-        User.query.delete()
+        for table in reversed(db.metadata.sorted_tables):
+            if table.name in table_names:
+                db.session.execute(table.delete())
         db.session.commit()
     except Exception:  # pragma: no cover
         db.session.rollback()

@@ -1,11 +1,10 @@
 from urllib.parse import urlparse
+import os
 
 from flask import Blueprint, redirect, render_template, request, session, url_for
 
 from authlib.integrations.flask_client import OAuth
 from flask_login import login_required, login_user, logout_user
-from website.models.temp_user import TempUser
-import os
 
 from website import db
 
@@ -62,6 +61,8 @@ def _safe_next_url(next_url: str | None) -> str | None:
 
 def init_oauth(app):
     """Initialize OAuth and register Google provider."""
+    # OAuth registration is stored at module scope for route handlers to reuse.
+    # pylint: disable=global-statement
     global google
     oauth.init_app(app)
 

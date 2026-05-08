@@ -1,3 +1,4 @@
+# pylint: disable=no-member,redefined-outer-name,unused-argument
 import logging
 from logging.config import fileConfig
 
