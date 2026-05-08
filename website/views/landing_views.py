@@ -304,7 +304,15 @@ def mentor_page():
     tracker_user = User.query.filter_by(uuid=user_uuid).first() if user_uuid else None
     profile = _mentor_profile_context(tracker_user)
 
-    return render_template("mentor.html", **profile)
+    display_name = "Guest"
+    if current_user.is_authenticated:
+        first = (current_user.first_name or "").strip()
+        last = (current_user.last_name or "").strip()
+        full = f"{first} {last}".strip()
+        if full:
+            display_name = full
+
+    return render_template("mentor.html", mentor_user_name=display_name, **profile)
 
 @landing_blueprint.route("/mentor/chat", methods=["POST"])
 def mentor_chat():
