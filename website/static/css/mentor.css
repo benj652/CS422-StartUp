@@ -239,6 +239,12 @@ body.mentor-page {
   justify-content: flex-start;
 }
 
+/* Hide hero welcome + starter cards once the user has sent a message */
+.mentor-content:has(.chat-msg) .mentor-welcome,
+.mentor-content:has(.chat-msg) .action-grid {
+  display: none;
+}
+
 .chat-msg {
   width: 100%;
   max-width: 640px;
@@ -262,7 +268,7 @@ body.mentor-page {
 
 .chat-msg-assistant {
   align-self: flex-start;
-  background: #91b9eb;
+  background: #437bf6;
   border: 1px solid var(--border);
   color: var(--text);
   box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
