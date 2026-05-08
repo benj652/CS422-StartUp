@@ -306,6 +306,40 @@ def mentor_page():
 
     return render_template("mentor.html", **profile)
 
+@landing_blueprint.route("/mentor/chat", methods=["POST"])
+def mentor_chat():
+    data = request.get_json(silent=True)
+    if not isinstance(data, dict):
+        return jsonify({"status": "error", "message": "JSON body required"}), 400
+
+    user_message = (data.get("message") or "").strip()
+    if not user_message:
+        return jsonify({"status": "error", "message": "message is required"}), 400
+
+    if len(user_message) > 1200:
+        return jsonify({"status": "error", "message": "message too long (max 1200 chars)"}), 400
+
+    history = data.get("history")
+    if history is not None and not isinstance(history, list):
+        return jsonify({"status": "error", "message": "history must be an array"}), 400
+
+    user_uuid = request.cookies.get("tracking_id")
+    tracker_user = User.query.filter_by(uuid=user_uuid).first() if user_uuid else None
+    profile = _mentor_llm_profile(tracker_user)
+
+    result = get_mentor_reply(
+        user_message=user_message,
+        profile=profile,
+        history=history,
+    )
+
+    return jsonify(
+        {
+            "status": "success",
+            "reply": result["reply"],
+            "source": result["source"],
+        }
+    ), 200
 
 @landing_blueprint.route("/privacy")
 def privacy():
