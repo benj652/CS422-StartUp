@@ -2,6 +2,7 @@ import hashlib
 import hmac
 import os
 import random
+from ..services.mentor_openai import get_mentor_reply
 
 from flask import (
     Blueprint,
@@ -41,6 +42,22 @@ _PROFILE_SHORT_CAREER = (
     "Complete the full onboarding path to see your career goal and stage here."
 )
 
+def _mentor_llm_profile(tracker_user):
+    """Compact profile payload for mentor prompts."""
+    if not tracker_user:
+        return {
+            "class_year": "",
+            "major": "",
+            "career_goal": "",
+            "career_stage": "",
+        }
+
+    return {
+        "class_year": tracker_user.class_year or "",
+        "major": tracker_user.major or "",
+        "career_goal": tracker_user.career_goal or "",
+        "career_stage": tracker_user.career_stage or "",
+    }
 
 def _mentor_profile_context(tracker_user):
     """
