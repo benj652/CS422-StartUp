@@ -313,11 +313,12 @@ def save_wishlist_item_from_roadmap():
     data = request.get_json(silent=True) or {}
     roadmap_item_id = (data.get("roadmap_item_id") or "").strip()[:255]
     title = (data.get("title") or "").strip()[:255]
+    checked = bool(data.get("checked"))
 
-    if not roadmap_item_id or not title:
+    if not roadmap_item_id:
         return (
             jsonify(
-                {"status": "error", "message": "roadmap_item_id and title required"}
+                {"status": "error", "message": "roadmap_item_id required"}
             ),
             400,
         )
@@ -326,6 +327,15 @@ def save_wishlist_item_from_roadmap():
         user_id=current_user.id,
         roadmap_item_id=roadmap_item_id,
     ).first()
+
+    if not checked:
+        if item is not None:
+            db.session.delete(item)
+            db.session.commit()
+        return jsonify({"status": "success", "removed": True}), 200
+
+    if not title:
+        return jsonify({"status": "error", "message": "title required"}), 400
 
     if item is None:
         item = WishlistItem(

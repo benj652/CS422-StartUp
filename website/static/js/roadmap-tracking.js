@@ -20,7 +20,7 @@
   }
 
   function saveWishlistItem(detail, node) {
-    if (!detail || !node || !detail.checked) return;
+    if (!detail || !node) return;
 
     var titleNode = node.querySelector(".item-title-link, .item-title");
     var summaryNode = node.querySelector(".item-meta");
@@ -35,6 +35,7 @@
         section: detail.section || "",
         summary: summaryNode ? (summaryNode.textContent || "").trim() : "",
         href: linkNode ? linkNode.href || "" : "",
+        checked: !!detail.checked,
       }),
     }).catch(function () {});
   }
