@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/mentor.css') }}" />
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   </head>
-  <body class="mentor-page">
+  <body class="mentor-page" data-mentor-chat-url="{{ url_for('homepage.mentor_chat') }}">
     <div class="mentor-blob mentor-blob-1" aria-hidden="true"></div>
     <div class="mentor-blob mentor-blob-2" aria-hidden="true"></div>
 
@@ -129,5 +129,6 @@
     </div>
 
     {% include 'footer.html' %}
+    <script src="{{ url_for('static', filename='js/mentorPage.js') }}"></script>
   </body>
 </html>
